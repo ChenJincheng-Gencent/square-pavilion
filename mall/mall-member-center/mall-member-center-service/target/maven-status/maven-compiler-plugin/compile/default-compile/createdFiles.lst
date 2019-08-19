@@ -1,0 +1,3 @@
+com\juncheng\mall\member\center\service\MemberCenterApplication.class
+com\juncheng\mall\member\center\service\service\MemberService.class
+com\juncheng\mall\member\center\service\dao\MemberDao.class

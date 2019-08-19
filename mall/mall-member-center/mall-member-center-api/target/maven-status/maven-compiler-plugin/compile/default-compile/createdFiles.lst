@@ -1,0 +1,3 @@
+com\juncheng\mall\member\center\api\dto\response\MemberRsp.class
+com\juncheng\mall\member\center\api\Member.class
+com\juncheng\mall\member\center\api\dto\request\MemberReq.class
