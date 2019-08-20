@@ -1,7 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="GROUP_BY_SEVERITY" value="true" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b777e05-a5b5-4022-a327-4c9498e5c989" name="Default Changelist" comment="" />
+    <list default="true" id="1b777e05-a5b5-4022-a327-4c9498e5c989" name="Default Changelist" comment="完善基本工程">
+      <change afterPath="$PROJECT_DIR$/../mall-common/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/src/main/java/com/juncheng/mall/common/eo/BaseEo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/target/classes/com/juncheng/mall/common/util/CommonConstant.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/target/classes/com/juncheng/mall/common/util/ErrorCode.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/target/classes/com/juncheng/mall/common/util/HttpClientUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/target/classes/com/juncheng/mall/common/util/ListUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/target/classes/com/juncheng/mall/common/util/StringUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/target/classes/com/juncheng/mall/common/util/SymbolConstant.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/target/classes/com/juncheng/mall/common/util/TimeUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/target/mall-common-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-api/target/classes/com/juncheng/mall/member/center/api/MemberApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/src/main/java/com/juncheng/mall/member/center/service/apiimpl/MemberApiImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/src/main/java/com/juncheng/mall/member/center/service/eo/MemberEo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/src/main/java/com/juncheng/mall/member/center/service/service/impl/MemberServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/src/main/resources/application-dev.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/src/main/resources/application-local.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/src/main/resources/logback-spring.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/src/main/resources/mapper/ids/BusStatisticsMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/src/main/resources/mapper/ids/DispatchMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/src/main/resources/mapper/ids/PushNotifyMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/src/main/resources/mapper/mdm/BusMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/target/classes/application-dev.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/target/classes/application-local.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/target/classes/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/target/classes/logback-spring.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/target/classes/mapper/ids/BusStatisticsMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/target/classes/mapper/ids/DispatchMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/target/classes/mapper/ids/PushNotifyMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-service/target/classes/mapper/mdm/BusMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mall-modules/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-api/src/main/java/com/juncheng/mall/member/center/api/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-member-center-api/src/main/java/com/juncheng/mall/member/center/api/MemberApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-api/target/classes/com/juncheng/mall/member/center/api/Member.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-api/target/mall-member-center-api-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/mall-member-center-api/target/mall-member-center-api-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-api/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/mall-member-center-api/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/mall-member-center-api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/mall-member-center-api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mall-member-center-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-service/src/main/java/com/juncheng/mall/member/center/service/MemberCenterApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-member-center-service/src/main/java/com/juncheng/mall/member/center/service/MemberCenterApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-service/target/classes/com/juncheng/mall/member/center/service/MemberCenterApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-service/target/classes/com/juncheng/mall/member/center/service/dao/MemberDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-service/target/classes/com/juncheng/mall/member/center/service/service/MemberService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-service/target/mall-member-center-service-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-service/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/mall-member-center-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/mall-member-center-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-service/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../mall-common/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mall-modules/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mall-modules/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mall-modules/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mall-modules/pom.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,10 +90,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -43,14 +111,23 @@
     </option>
   </component>
   <component name="ProjectId" id="1PYnO0oQ3b0vD3FGHhtrWn3pczo" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../mall-modules" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Github\juncheng\mall\mall-member-center\mall-member-center-service\src\main\resources" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -63,6 +140,26 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="MemberCenterApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="mall-member-center-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.juncheng.mall.member.center.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.juncheng.mall.member.center.service.MemberCenterApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.MemberCenterApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -79,10 +176,29 @@
       <workItem from="1566096727783" duration="5519000" />
       <workItem from="1566144394135" duration="1602000" />
       <workItem from="1566223295402" duration="1752000" />
+      <workItem from="1566229211420" duration="1348000" />
+      <workItem from="1566305801165" duration="5387000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="完善基本工程" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善基本工程" />
   </component>
 </project>

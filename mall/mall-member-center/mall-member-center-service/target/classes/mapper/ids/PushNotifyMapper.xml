@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ibuscloud.ids.line.dao.PushNotifyDao">
+
+    <resultMap id="PushNotifyMap" type="com.ibuscloud.ids.line.model.PushNotify">
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <sql id="need_column">
+        `status`
+    </sql>
+
+    <select id="getPushNotifyByDispatchId" resultMap="PushNotifyMap">
+        SELECT
+        <include refid="need_column"/>
+        FROM ids_push_notify
+        WHERE dispatch_id = #{dispatchId};
+    </select>
+
+</mapper>
+
