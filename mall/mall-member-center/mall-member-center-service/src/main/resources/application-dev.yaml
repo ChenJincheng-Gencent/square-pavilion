@@ -6,7 +6,7 @@ apollo:
   bootstrap:
     enabled: true
     namespaces: DEPT2.line-diagram
-  meta : http://10.0.102.74:8080
+  meta: http://10.0.
 
 
 #mybatis

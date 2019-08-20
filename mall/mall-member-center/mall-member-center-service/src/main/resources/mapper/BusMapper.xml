@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ibuscloud.aided.com.ibuscloud.ids.line.dao.mdm.BusDao">
+<mapper namespace="com.BusDao">
 
-    <resultMap id="BusMap" type="com.ibuscloud.ids.line.model.Bus">
+    <resultMap id="BusMap" type="com..ids.line.model.Bus">
         <result column="city" property="cityCode"/>
         <result column="self_no" property="busSelfNo"/>
         <result column="device_no" property="deviceNo"/>
