@@ -11,7 +11,6 @@
       <change afterPath="$PROJECT_DIR$/../mall-common/.idea/misc.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../mall-common/.idea/uiDesigner.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../mall-common/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../mall-common/src/main/java/com/juncheng/mall/common/eo/BaseEo.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../mall-common/target/classes/com/juncheng/mall/common/util/CommonConstant.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../mall-common/target/classes/com/juncheng/mall/common/util/ErrorCode.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../mall-common/target/classes/com/juncheng/mall/common/util/HttpClientUtil.class" afterDir="false" />
@@ -24,6 +23,7 @@
       <change afterPath="$PROJECT_DIR$/../mall-common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../mall-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mall-member-center-api/src/main/java/com/juncheng/mall/member/center/api/MemberApi.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/mall-member-center-api/target/classes/com/juncheng/mall/member/center/api/MemberApi.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/mall-member-center-service/src/main/java/com/juncheng/mall/member/center/service/apiimpl/MemberApiImpl.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/mall-member-center-service/src/main/java/com/juncheng/mall/member/center/service/eo/MemberEo.java" afterDir="false" />
@@ -45,8 +45,9 @@
       <change afterPath="$PROJECT_DIR$/mall-member-center-service/target/classes/mapper/ids/PushNotifyMapper.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/mall-member-center-service/target/classes/mapper/mdm/BusMapper.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../mall-modules/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mall-member-center-api/src/main/java/com/juncheng/mall/member/center/api/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/mall-member-center-api/src/main/java/com/juncheng/mall/member/center/api/MemberApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mall-member-center-api/src/main/java/com/juncheng/mall/member/center/api/Member.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-member-center-api/target/classes/com/juncheng/mall/member/center/api/Member.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-member-center-api/target/mall-member-center-api-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/mall-member-center-api/target/mall-member-center-api-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-member-center-api/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/mall-member-center-api/target/maven-archiver/pom.properties" afterDir="false" />
@@ -63,7 +64,6 @@
       <change beforePath="$PROJECT_DIR$/mall-member-center-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/mall-member-center-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-member-center-service/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../mall-common/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mall-member-center.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../mall-modules/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mall-modules/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../mall-modules/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mall-modules/pom.xml" afterDir="false" />
     </list>
@@ -177,8 +177,16 @@
       <workItem from="1566144394135" duration="1602000" />
       <workItem from="1566223295402" duration="1752000" />
       <workItem from="1566229211420" duration="1348000" />
-      <workItem from="1566305801165" duration="5387000" />
+      <workItem from="1566305801165" duration="6726000" />
     </task>
+    <task id="LOCAL-00001" summary="增加mall-common依赖">
+      <created>1566313926929</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1566313926929</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +206,12 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="完善基本工程" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善基本工程" />
+    <MESSAGE value="增加mall-common依赖" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加mall-common依赖" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
