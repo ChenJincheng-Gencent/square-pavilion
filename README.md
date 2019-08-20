@@ -1,7 +1,7 @@
 # juncheng
 It is a cube project for e-commerce
 
-#技术选型
+# 技术选型
 
 技术|说明|版本
 :--:|:--:|:--:
