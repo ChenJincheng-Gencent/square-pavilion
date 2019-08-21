@@ -155,7 +155,7 @@ public class StringUtil {
             return null;
         }
 
-        String[] strings = str.split(":");
+        String[] strings = str.split(SymbolConstant.COLON);
         if (strings.length > 0) {
             return strings[0];
         }
