@@ -1,5 +1,5 @@
-# juncheng
-It is a cube project for e-commerce
+# square-pavilion（四方阁）
+It is a cube project for e-commerce.（这是一个为电商而生的中台项目。）
 
 # 技术选型
 
