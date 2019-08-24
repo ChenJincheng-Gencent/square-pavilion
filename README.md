@@ -13,6 +13,6 @@ MyBatis|ORM框架|
 Elasticsearch|搜索引擎|
 Redis|分布式缓存|
 MongoDb|NoSql数据库|
-Mysql|关系型数据库|
+Mysql|关系型数据库|5.7.27
 Lombok|简化对象封装工具|1.18.8
 Dubbo|RPC框架|
