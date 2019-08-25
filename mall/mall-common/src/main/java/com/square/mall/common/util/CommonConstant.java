@@ -1,4 +1,4 @@
-package com.juncheng.mall.common.util;
+package com.square.mall.common.util;
 
 /**
  * 通用常量类

@@ -1,4 +1,4 @@
-package com.juncheng.mall.common.util;
+package com.square.mall.common.util;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

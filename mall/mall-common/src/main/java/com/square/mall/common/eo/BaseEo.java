@@ -1,4 +1,4 @@
-package com.juncheng.mall.common.eo;
+package com.square.mall.common.eo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

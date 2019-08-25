@@ -1,4 +1,4 @@
-package com.juncheng.mall.common.util;
+package com.square.mall.common.util;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.juncheng.mall.common.util;
+package com.square.mall.common.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
