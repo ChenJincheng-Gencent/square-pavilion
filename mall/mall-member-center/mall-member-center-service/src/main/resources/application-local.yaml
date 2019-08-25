@@ -1,13 +1,12 @@
 server:
   port: 9876
 
-rds:
-  rds配置
-  ids:
+mysql:
+  member:
     dataSource:
-      url: jdbc:mysql://
-      userName: dispatch
-      password: DtDreamdispatch
+      url: jdbc:mysql://192.168.117.130:3306/sp_member?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      userName: root
+      password: cjc1573
       driverClassName: com.mysql.jdbc.Driver
       validationQuery: select 1
       maxPoolSize: 30
@@ -18,7 +17,7 @@ mybatis:
 
 #log
 logging:
-  config: classpath:log-plugin.xml
+  config: classpath:logback-spring.xml
 
 #用户中心
 zookeeper:
@@ -37,8 +36,7 @@ kafka:
 
 
 redis:
-  redis配置
-  ids:
+  member:
     host: 192.168.
     port: 6379
     password: 123456

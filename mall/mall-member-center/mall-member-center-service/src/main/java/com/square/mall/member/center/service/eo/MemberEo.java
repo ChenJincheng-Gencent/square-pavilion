@@ -1,7 +1,8 @@
-package com.juncheng.mall.member.center.service.eo;
+package com.square.mall.member.center.service.eo;
 
 import com.juncheng.mall.common.eo.BaseEo;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 会员基本信息
@@ -10,6 +11,7 @@ import lombok.Data;
  * @date 2019/8/20
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class MemberEo extends BaseEo {
 
     /**

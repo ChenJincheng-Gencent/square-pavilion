@@ -12,7 +12,8 @@
     <property name="FILE_LOG_PATTERN"
               value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
 
-    <springProperty name="LOG_PATH" scope="context" source="logging.logpath" defaultValue="/opt/pubtrans/logs/line-diagram"/>
+    <springProperty name="LOG_PATH" scope="context" source="logging.logpath"
+                    defaultValue="/opt/square-pavilion/logs/mall/mall-member-center"/>
     <!--############################################################-->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>

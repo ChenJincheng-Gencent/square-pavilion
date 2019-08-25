@@ -1,6 +1,6 @@
-package com.juncheng.mall.member.center.service.service.impl;
+package com.square.mall.member.center.service.service.impl;
 
-import com.juncheng.mall.member.center.service.service.MemberService;
+import com.square.mall.member.center.service.service.MemberService;
 import org.springframework.stereotype.Service;
 
 /**

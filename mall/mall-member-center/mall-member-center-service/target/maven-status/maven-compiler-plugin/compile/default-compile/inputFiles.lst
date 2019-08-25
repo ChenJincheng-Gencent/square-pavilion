@@ -1,6 +1,7 @@
-E:\Github\juncheng\mall\mall-member-center\mall-member-center-service\src\main\java\com\juncheng\mall\member\center\service\apiimpl\MemberApiImpl.java
-E:\Github\juncheng\mall\mall-member-center\mall-member-center-service\src\main\java\com\juncheng\mall\member\center\service\service\MemberService.java
-E:\Github\juncheng\mall\mall-member-center\mall-member-center-service\src\main\java\com\juncheng\mall\member\center\service\service\impl\MemberServiceImpl.java
-E:\Github\juncheng\mall\mall-member-center\mall-member-center-service\src\main\java\com\juncheng\mall\member\center\service\dao\MemberDao.java
-E:\Github\juncheng\mall\mall-member-center\mall-member-center-service\src\main\java\com\juncheng\mall\member\center\service\eo\MemberEo.java
-E:\Github\juncheng\mall\mall-member-center\mall-member-center-service\src\main\java\com\juncheng\mall\member\center\service\MemberCenterApplication.java
+E:\Github\square-pavilion\mall\mall-member-center\mall-member-center-service\src\main\java\com\square\mall\member\center\service\apiimpl\MemberApiImpl.java
+E:\Github\square-pavilion\mall\mall-member-center\mall-member-center-service\src\main\java\com\square\mall\member\center\service\eo\MemberEo.java
+E:\Github\square-pavilion\mall\mall-member-center\mall-member-center-service\src\main\java\com\square\mall\member\center\service\dao\MemberDao.java
+E:\Github\square-pavilion\mall\mall-member-center\mall-member-center-service\src\main\java\com\square\mall\member\center\service\config\MysqlDataConfig.java
+E:\Github\square-pavilion\mall\mall-member-center\mall-member-center-service\src\main\java\com\square\mall\member\center\service\service\impl\MemberServiceImpl.java
+E:\Github\square-pavilion\mall\mall-member-center\mall-member-center-service\src\main\java\com\square\mall\member\center\service\MemberCenterApplication.java
+E:\Github\square-pavilion\mall\mall-member-center\mall-member-center-service\src\main\java\com\square\mall\member\center\service\service\MemberService.java
