@@ -1,6 +1,6 @@
 package com.square.mall.member.center.service.eo;
 
-import com.juncheng.mall.common.eo.BaseEo;
+import com.square.mall.common.eo.BaseEo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
