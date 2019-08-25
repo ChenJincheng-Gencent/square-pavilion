@@ -1,8 +1,10 @@
 package com.square.mall.member.center.service.eo;
 
 import com.juncheng.mall.common.eo.BaseEo;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * 会员基本信息
@@ -12,6 +14,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+@AllArgsConstructor
 public class MemberEo extends BaseEo {
 
     /**
