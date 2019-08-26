@@ -13,9 +13,9 @@ public class MemberRsp {
     private String name;
 
     /**
-     * 电话
+     * 手机号码
      */
-    private String phone;
+    private String mobile;
 
     /**
      * 等级

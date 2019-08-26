@@ -24,9 +24,9 @@ public class MemberEo extends BaseEo {
     private String name;
 
     /**
-     * 电话
+     * 手机号码
      */
-    private String phone;
+    private String mobile;
 
     /**
      * 等级

@@ -13,9 +13,9 @@ public interface MemberApi {
     /**
      * 根据手机号码查询会员信息
      *
-     * @param phone 手机号码
+     * @param mobile 手机号码
      * @return 会员基本信息
      */
-    MemberRsp findMemberByPhone(String phone);
+    MemberRsp findMemberByMobile(String mobile);
 
 }

@@ -4,7 +4,7 @@
 
     <resultMap id="MemberMap" type="com.square.mall.member.center.service.eo.MemberEo">
         <result column="name" property="name"/>
-        <result column="phone" property="phone"/>
+        <result column="mobile" property="mobile"/>
         <result column="level" property="level"/>
         <result column="gender" property="gender"/>
         <result column="email" property="email"/>
@@ -12,16 +12,16 @@
 
     <sql id="need_column">
         `name`,
-        `phone`,
+        `mobile`,
         `level`,
         `gender`,
         `email`
     </sql>
 
-    <select id="findMemberByPhone" resultMap="MemberMap">
+    <select id="findMemberByMobile" resultMap="MemberMap">
         SELECT
         <include refid="need_column"/>
-        FROM member WHERE phone = #{phone};
+        FROM member WHERE mobile = #{mobile};
     </select>
 
 </mapper>

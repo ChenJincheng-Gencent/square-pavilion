@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
+ *  会员基本信息Service实现类
+ *
  * @author Gencent
  * @date 2019/8/19
  */
@@ -24,13 +26,13 @@ public class MemberServiceImpl implements MemberService {
     private MemberDao memberDao;
 
     @Override
-    public MemberRsp findMemberByPhone(String phone) {
+    public MemberRsp findMemberByMobile(String mobile) {
 
-        if (StringUtils.isEmpty(phone)) {
-            log.error("phone is empty.");
+        if (StringUtils.isEmpty(mobile)) {
+            log.error("mobile is empty.");
             return null;
         }
-        MemberEo memberEo = memberDao.findMemberByPhone(phone);
+        MemberEo memberEo = memberDao.findMemberByMobile(mobile);
         if (null == memberEo) {
             log.error("memberEo is null.");
             return null;

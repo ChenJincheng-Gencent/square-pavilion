@@ -18,6 +18,6 @@ public interface MemberDao {
      * @param phone 手机号码
      * @return 会员基本信息
      */
-    MemberEo findMemberByPhone(String phone);
+    MemberEo findMemberByMobile(String phone);
 
 }

@@ -21,14 +21,14 @@ public class MemberApiImpl implements MemberApi {
     private MemberService memberService;
 
     @Override
-    public MemberRsp findMemberByPhone(String phone) {
+    public MemberRsp findMemberByMobile(String mobile) {
 
-        if (StringUtils.isEmpty(phone)) {
-            log.error("phone is empty.");
+        if (StringUtils.isEmpty(mobile)) {
+            log.error("mobile is empty.");
             return null;
         }
 
         //TODO 需要将返回对象封装到ResponseDto里
-        return memberService.findMemberByPhone(phone);
+        return memberService.findMemberByMobile(mobile);
     }
 }
