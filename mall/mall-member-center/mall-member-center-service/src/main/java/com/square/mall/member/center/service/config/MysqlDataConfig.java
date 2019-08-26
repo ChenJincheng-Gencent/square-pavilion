@@ -49,9 +49,6 @@ public class MysqlDataConfig {
         config.setDriverClassName(driverClassName);
         config.setMaximumPoolSize(maxPoolSize);
         config.setConnectionTestQuery(validationQuery);
-        //config.addDataSourceProperty("cachePrepStmts", "true");
-        //config.addDataSourceProperty("prepStmtCacheSize", "250");
-        //config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
 
         return new HikariDataSource(config);
 
