@@ -1,5 +1,6 @@
 package com.square.mall.member.center.service.apiimpl;
 
+import com.square.mall.common.dto.RspDto;
 import com.square.mall.member.center.api.MemberApi;
 import com.square.mall.member.center.api.dto.response.MemberRsp;
 import com.square.mall.member.center.service.service.MemberService;
@@ -21,14 +22,13 @@ public class MemberApiImpl implements MemberApi {
     private MemberService memberService;
 
     @Override
-    public MemberRsp findMemberByMobile(String mobile) {
+    public RspDto<MemberRsp> findMemberByMobile(String mobile) {
 
         if (StringUtils.isEmpty(mobile)) {
             log.error("mobile is empty.");
             return null;
         }
 
-        //TODO 需要将返回对象封装到ResponseDto里
-        return memberService.findMemberByMobile(mobile);
+        return new RspDto<>(memberService.findMemberByMobile(mobile));
     }
 }
