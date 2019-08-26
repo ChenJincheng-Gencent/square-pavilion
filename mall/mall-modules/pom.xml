@@ -15,6 +15,7 @@
         <java.version>11</java.version>
         <dubbo.version>2.0.0</dubbo.version>
         <zkclient.version>0.10</zkclient.version>
+        <lombok.version>1.18.8</lombok.version>
         <spring-boot-dubbo>1.0.0</spring-boot-dubbo>
 
     </properties>
