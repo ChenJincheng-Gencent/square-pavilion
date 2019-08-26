@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 错误码常量类
+ * 错误码枚举类
  *
  * @author Gencent
  * @date 2019/8/20
