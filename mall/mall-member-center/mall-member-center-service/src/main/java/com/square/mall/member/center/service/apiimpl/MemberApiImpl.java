@@ -2,7 +2,7 @@ package com.square.mall.member.center.service.apiimpl;
 
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.member.center.api.MemberApi;
-import com.square.mall.member.center.api.dto.response.MemberRsp;
+import com.square.mall.member.center.api.dto.response.MemberRspDto;
 import com.square.mall.member.center.service.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -22,7 +22,7 @@ public class MemberApiImpl implements MemberApi {
     private MemberService memberService;
 
     @Override
-    public RspDto<MemberRsp> findMemberByMobile(String mobile) {
+    public RspDto<MemberRspDto> findMemberByMobile(String mobile) {
 
         if (StringUtils.isEmpty(mobile)) {
             log.error("mobile is empty.");

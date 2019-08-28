@@ -1,6 +1,6 @@
 package com.square.mall.member.center.service.service;
 
-import com.square.mall.member.center.api.dto.response.MemberRsp;
+import com.square.mall.member.center.api.dto.response.MemberRspDto;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,8 +19,8 @@ public class MemberServiceTest {
     @Test
     public void findMemberByMobile(){
 
-        MemberRsp memberRsp = memberService.findMemberByMobile("123");
-        Assert.assertNull(memberRsp);
+        MemberRspDto memberRspDto = memberService.findMemberByMobile("123");
+        Assert.assertNull(memberRspDto);
 
     }
 

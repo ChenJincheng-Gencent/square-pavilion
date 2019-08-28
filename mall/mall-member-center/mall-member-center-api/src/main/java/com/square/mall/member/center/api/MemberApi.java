@@ -1,7 +1,7 @@
 package com.square.mall.member.center.api;
 
 import com.square.mall.common.dto.RspDto;
-import com.square.mall.member.center.api.dto.response.MemberRsp;
+import com.square.mall.member.center.api.dto.response.MemberRspDto;
 
 /**
  * 会员基本信息RPC接口
@@ -17,6 +17,6 @@ public interface MemberApi {
      * @param mobile 手机号码
      * @return 会员基本信息
      */
-    RspDto<MemberRsp> findMemberByMobile(String mobile);
+    RspDto<MemberRspDto> findMemberByMobile(String mobile);
 
 }

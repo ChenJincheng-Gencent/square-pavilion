@@ -1,6 +1,6 @@
 package com.square.mall.member.center.service.service;
 
-import com.square.mall.member.center.api.dto.response.MemberRsp;
+import com.square.mall.member.center.api.dto.response.MemberRspDto;
 
 /**
  * 会员基本信息Service
@@ -16,6 +16,6 @@ public interface MemberService {
      * @param mobile 手机号码
      * @return 会员基本信息
      */
-    MemberRsp findMemberByMobile(String mobile);
+    MemberRspDto findMemberByMobile(String mobile);
 
 }
