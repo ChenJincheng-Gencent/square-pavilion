@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import redis.clients.jedis.JedisPoolConfig;
 
 import javax.annotation.PostConstruct;
 
@@ -52,25 +52,19 @@ public class RedisCacheConfig {
     @Primary
     @Bean(name = "memberRedisConnectionFactory")
     public JedisConnectionFactory memberRedisConnectionFactory() {
-        if (StringUtils.isBlank(this.host)) {
-            log.info("No need to initialize member redis.");
+
+        if (StringUtils.isBlank(host) || StringUtils.isBlank(password)) {
+            log.error("member redis host or password is blank.");
             return null;
         }
-        JedisConnectionFactory factory = new JedisConnectionFactory();
-        factory.setHostName(this.host);
-        factory.setPort(this.port);
-        factory.setDatabase(this.index);
-        factory.setTimeout(this.timeout);
-        factory.setUsePool(true);
-        if (StringUtils.isNotBlank(this.password)) {
-            factory.setPassword(this.password);
-            log.info("memberRedisConnectionFactory setPassword {}", this.password);
-        }
-        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-        jedisPoolConfig.setMaxTotal(this.maxTotal);
-        factory.setPoolConfig(jedisPoolConfig);
+        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
+        config.setHostName(host);
+        config.setPort(port);
+        config.setDatabase(index);
+        config.setPassword(password);
 
-        return factory;
+        return new JedisConnectionFactory(config);
+
     }
 
     @Primary

@@ -3,6 +3,7 @@ package com.square.mall.member.center.service.service.impl;
 import com.square.mall.member.center.service.service.CommonRedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * Redis Service接口实现类
  *
- * @author 剑痕
- * @date 2019/2/25
+ * @author Gencent
+ * @date 2019/8/29
  */
 
 @Slf4j
@@ -36,8 +37,13 @@ public class CommonRedisServiceImpl implements CommonRedisService {
     private RedisTemplate getTemplate(int index) {
 
         JedisConnectionFactory jedisConnectionFactory = (JedisConnectionFactory) redisTemplate.getConnectionFactory();
-        jedisConnectionFactory.setDatabase(index);
-        redisTemplate.setConnectionFactory(jedisConnectionFactory);
+        if (null != jedisConnectionFactory) {
+            RedisStandaloneConfiguration config = jedisConnectionFactory.getStandaloneConfiguration();
+            if (null != config) {
+                config.setDatabase(index);
+                redisTemplate.setConnectionFactory(jedisConnectionFactory);
+            }
+        }
 
         return redisTemplate;
 
