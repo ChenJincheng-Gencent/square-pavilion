@@ -19,9 +19,17 @@ mybatis:
 logging:
   config: classpath:logback-spring.xml
 
-#用户中心
-zookeeper:
-  zookeeper://192.168.117.128:2181,192.168.117.129:2181,192.168.117.130:2181
+spring:
+  dubbo:
+    application:
+      name: member-center-provider
+    server: true
+    base-package: com.square.mall.member.center.service.apiimpl
+    registry:
+      address: zookeeper://192.168.117.128:2181,192.168.117.129:2181,192.168.117.130:2181
+    protocol:
+      name: dubbo
+      port: 20880
 
 #kafka配置
 kafka:
