@@ -20,6 +20,7 @@
         <redis.starter.version>2.1.7.RELEASE</redis.starter.version>
         <fastjson.version>1.2.59</fastjson.version>
         <commons-lang3.version>3.9</commons-lang3.version>
+        <swagger2.version>2.9.2</swagger2.version>
         <spring-boot-dubbo>1.0.0</spring-boot-dubbo>
 
         <!-- mall模块版本号 -->
