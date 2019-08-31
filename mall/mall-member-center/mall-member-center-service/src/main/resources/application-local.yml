@@ -1,0 +1,58 @@
+server:
+  port: 9876
+
+mysql:
+  member:
+    dataSource:
+      url: jdbc:mysql://192.168.117.130:3306/sp_member?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      userName: root
+      password: cjc1573
+      driverClassName: com.mysql.jdbc.Driver
+      validationQuery: select 1
+      maxPoolSize: 30
+
+#mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+#log
+logging:
+  config: classpath:logback-spring.xml
+
+spring:
+  dubbo:
+    application:
+      name: member-center-provider
+    server: true
+    base-package: com.square.mall.member.center.service.apiimpl
+    registry:
+      address: zookeeper://192.168.117.128:2181,192.168.117.129:2181,192.168.117.130:2181
+    protocol:
+      name: dubbo
+      port: 20880
+
+#kafka配置
+kafka:
+  bootstrap:
+    server: 10.0.
+  report:
+    topic: IDS
+    groupId: operation-dev
+    auto:
+      offset:
+        reset: earliest
+
+
+redis:
+  member:
+    host: 192.168.117.128
+    port: 6379
+    password: cjc1573
+    timeout: 2000
+    index: 10
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
+      max-total: 10
