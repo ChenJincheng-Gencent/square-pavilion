@@ -16,3 +16,4 @@ MongoDb|NoSql数据库|4.2
 Mysql|关系型数据库|5.7.27
 Lombok|简化对象封装工具|1.18.8
 Dubbo|RPC框架|2.6.0
+Swagger|API文档工具|2.9.2
