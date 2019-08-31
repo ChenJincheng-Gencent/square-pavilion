@@ -33,7 +33,7 @@ public enum ErrorCode {
     /**
      * 错误描述
      */
-    private String desc;
+    private String msg;
 
 
 }
