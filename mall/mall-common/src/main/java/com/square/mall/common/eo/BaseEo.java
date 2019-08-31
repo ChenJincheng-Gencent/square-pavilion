@@ -21,6 +21,11 @@ public class BaseEo implements Serializable {
     private static final long serialVersionUID = -8752680305912189331L;
 
     /**
+     * 数据库自增ID
+     */
+    private Long id;
+
+    /**
      * 租户ID
      */
     private Long tenantId;
