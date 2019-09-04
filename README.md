@@ -20,7 +20,7 @@ MongoDb|NoSql数据库|4.2
 Mysql|关系型数据库|5.7.27
 Lombok|简化对象封装工具|1.18.8
 Dubbo|RPC框架|2.6.0
-Swagger|API文档工具|2.9.2
+Swagger2|API文档工具|2.9.2
 
 
 ## 项目架构
@@ -29,6 +29,6 @@ Swagger|API文档工具|2.9.2
 &emsp;&emsp;从业务维度拆分，四大层级具体内容，如下所述：  
 &emsp;&emsp;应用层有mall-mgmt-application（后台管理应用层）、mall-member-application（会员应用层）、mall-item-application（商品应用层）、mall-trade-application（交易应用层）、mall-share-application（开放应用层）；  
 &emsp;&emsp;中心层有mall-member-center（会员中心）、mall-item-center（商品中心）、mall-trade-center（交易中心）、mall-promotion-center（营销中心）、mall-inventory-center（库存中心）；  
-&emsp;&emsp;能力服务层有mall-search-service（搜索服务）、mall-mq-service（MQ服务）、mall-message-service（消息服务）、mall-payment-service（支付服务）；  
+&emsp;&emsp;能力服务层有mall-search-service（搜索服务）、mall-mq-service（MQ服务）、mall-message-service（消息服务）、mall-payment-service（支付服务）、mall-identity-service（认证服务）；  
 &emsp;&emsp;基本组件层有mall-common（公共组件）、mall-job（定时任务组件）、mall-cache（缓存组件）。  
 &emsp;&emsp;另外，还包含mall-modules(总体模块)以及mall-doc（文档模块）。  
