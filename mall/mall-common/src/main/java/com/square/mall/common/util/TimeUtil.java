@@ -19,10 +19,19 @@ public class TimeUtil {
      */
     public static final DateTimeFormatter DF = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
+    /**
+     * 时间格式 yyyy-MM-dd
+     */
     private static final DateTimeFormatter DF_YMD = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    /**
+     * 时间格式 HH:mm:ss
+     */
     private static final DateTimeFormatter DF_HMS = DateTimeFormatter.ofPattern("HH:mm:ss");
 
+    /**
+     * 时间格式 HH:mm
+     */
     private static final DateTimeFormatter DF_HM = DateTimeFormatter.ofPattern("HH:mm");
 
 
@@ -183,7 +192,7 @@ public class TimeUtil {
      *
      * @param start 开始时间
      * @param end   结束时间
-     * @return long
+     * @return 分钟数
      */
     public static long getDurationMinutes(LocalDateTime start, LocalDateTime end) {
 
