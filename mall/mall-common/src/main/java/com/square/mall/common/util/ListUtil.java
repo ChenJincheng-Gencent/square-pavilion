@@ -11,12 +11,12 @@ import java.util.List;
 public class ListUtil {
 
     /**
-     * 判断字符串是否不为空
+     * 判断列表是否不为空
      *
      * @param list 列表
-     * @return boolean
+     * @return 是否不为空
      */
-    public static boolean isNotNullAndEmpty(List list) {
+    public static boolean isNotBlank(List list) {
 
         return null != list && !list.isEmpty();
 
@@ -28,7 +28,7 @@ public class ListUtil {
      * @param list 列表
      * @return boolean
      */
-    public static boolean isNullOrEmpty(List list) {
+    public static boolean isBlank(List list) {
 
         return null == list || list.isEmpty();
 

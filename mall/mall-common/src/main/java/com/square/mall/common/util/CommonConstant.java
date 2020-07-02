@@ -156,7 +156,7 @@ public class CommonConstant {
     /**
      * UTF-8编码
      */
-    public static final String UTF8 = "UTF-8";
+    public static final String ENCODE_UTF_8 = "UTF-8";
 
     /**
      * MD5

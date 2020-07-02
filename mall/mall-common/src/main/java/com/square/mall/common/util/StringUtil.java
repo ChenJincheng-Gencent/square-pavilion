@@ -106,7 +106,7 @@ public class StringUtil {
             byte[] md5Array = md5.digest();
             //byte[]通常我们会转化为十六进制的32位长度的字符串来使用,本文会介绍三种常用的转换方法
             if (null != md5Array) {
-                return bytesToHex1(md5Array);
+                return getBytesToHexStr(md5Array);
             } else {
                 return "";
             }
@@ -118,30 +118,57 @@ public class StringUtil {
     }
 
     /**
-     * 完成byte->HexString
+     * 字符数组转Hex字符串
      *
-     * @param md5Array MD5数组
-     * @return String
+     * @param bytes 字符数组
+     * @return Hex字符串
      */
-    private static String bytesToHex1(byte[] md5Array) {
+    public static String getBytesToHexStr(byte[] bytes) {
 
-        StringBuilder strBuilder = new StringBuilder();
-
-        for (byte md5 : md5Array) {
-            //此处为什么添加 0xff & ？
-            int temp = 0xff & md5;
-            String hexString = Integer.toHexString(temp);
-            //如果是十六进制的0f，默认只显示f，此时要补上0
-            if (hexString.length() == CommonConstant.ONE) {
-                strBuilder.append("0").append(hexString);
-            } else {
-                strBuilder.append(hexString);
+        StringBuffer sb = new StringBuffer();
+        for (byte b : bytes) {
+            String hex = Integer.toHexString(b & 0xFF);
+            if (hex.length() == CommonConstant.ONE) {
+                sb.append(CommonConstant.ZER0_STR).append(hex);
             }
+            sb.append(hex);
+        }
+        return sb.toString();
+    }
+
+    /**
+     *  Hex字符串转字符数组
+     *
+     * @param hexStr Hex字符串
+     * @return 字符数组
+     */
+    public static byte[] getHexStrToBytes(String hexStr) {
+
+        if (isBlank(hexStr)) {
+            return null;
         }
 
-        return strBuilder.toString();
-
+        hexStr= hexStr.toUpperCase();
+        int length = hexStr.length() / 2;
+        char[] hexChars = hexStr.toCharArray();
+        byte[] bytes = new byte[length];
+        for (int i = 0; i < length; i++) {
+            int pos = i * 2;
+            bytes[i] = (byte) (getCharToByte(hexChars[pos]) << 4 | getCharToByte(hexChars[pos + 1]));
+        }
+        return bytes;
     }
+
+    /**
+     *  字符转字节
+     *
+     * @param c 字符
+     * @return 字节
+     */
+    public static byte getCharToByte(char c) {
+        return (byte) "0123456789ABCDEF".indexOf(c);
+    }
+
 
     /**
      * 获取根据冒号分隔后的第一个字符串
