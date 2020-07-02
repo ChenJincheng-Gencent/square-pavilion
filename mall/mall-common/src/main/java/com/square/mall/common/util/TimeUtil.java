@@ -1,10 +1,14 @@
 package com.square.mall.common.util;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import lombok.extern.slf4j.Slf4j;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.TemporalAdjusters;
+import java.util.Date;
 
 /**
  * 时间工具类
@@ -12,28 +16,28 @@ import java.time.format.DateTimeFormatter;
  * @author Gencent
  * @date 2019/8/20
  */
+@Slf4j
 public class TimeUtil {
 
     /**
      * 时间格式 yyyy-MM-dd HH:mm:ss
      */
-    public static final DateTimeFormatter DF = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final DateTimeFormatter YYYY_MM_DD_HH_MM_SS = DateTimeFormatter.ofPattern(TimePatternConstant.YYYY_MM_DD_HH_MM_SS);
 
     /**
      * 时间格式 yyyy-MM-dd
      */
-    private static final DateTimeFormatter DF_YMD = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter YYYY_MM_DD = DateTimeFormatter.ofPattern(TimePatternConstant.YYYY_MM_DD);
 
     /**
      * 时间格式 HH:mm:ss
      */
-    private static final DateTimeFormatter DF_HMS = DateTimeFormatter.ofPattern("HH:mm:ss");
+    private static final DateTimeFormatter HH_MM_SS = DateTimeFormatter.ofPattern(TimePatternConstant.HH_MM_SS);
 
     /**
      * 时间格式 HH:mm
      */
-    private static final DateTimeFormatter DF_HM = DateTimeFormatter.ofPattern("HH:mm");
-
+    private static final DateTimeFormatter HH_MM = DateTimeFormatter.ofPattern(TimePatternConstant.HH_MM);
 
     /**
      * 获取今天的日期，格式为yyyy-MM-dd，例如2018-06-21
@@ -42,7 +46,7 @@ public class TimeUtil {
      */
     public static String getCurrentDate() {
 
-        return DF_YMD.format(LocalDate.now());
+        return YYYY_MM_DD.format(LocalDate.now());
 
     }
 
@@ -71,7 +75,7 @@ public class TimeUtil {
      *
      * @return String
      */
-    public static LocalDateTime transformLocalTimeToLocalDateTime(LocalTime localTime) {
+    public static LocalDateTime getLocalTimeToLocalDateTime(LocalTime localTime) {
 
         LocalDate localDate = LocalDate.now();
         return LocalDateTime.of(localDate, localTime);
@@ -84,16 +88,16 @@ public class TimeUtil {
      * @param str 时间字符串
      * @return LocalTime
      */
-    public static LocalTime transformStrToLocalTime(String str) {
+    public static LocalTime getStrToLocalTime(String str) {
 
         if (StringUtil.isBlank(str)) {
             return null;
         }
 
         try {
-            return LocalTime.parse(str, DF_HM);
-        } catch (Exception e) {
-            e.printStackTrace();
+            return LocalTime.parse(str, HH_MM);
+        } catch (DateTimeParseException e) {
+            log.error(e.getMessage(), e);
         }
 
         return null;
@@ -106,14 +110,14 @@ public class TimeUtil {
      * @param localDateTime 时间
      * @return String
      */
-    public static String turnLocalDateTime2Hm(LocalDateTime localDateTime) {
+    public static String getLocalDateTimeToHm(LocalDateTime localDateTime) {
 
         if (null == localDateTime) {
             return null;
         }
 
         try {
-            return localDateTime.format(DF_HM);
+            return localDateTime.format(HH_MM);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -126,18 +130,18 @@ public class TimeUtil {
      * 将时间字符串转成LocalDateTime格式，格式为"yyyy-MM-dd HH:mm:ss"，例如2018-06-28 11:36:30
      *
      * @param str 时间字符串
-     * @return LocalDateTime
+     * @return 时间
      */
-    public static LocalDateTime transformStrToLocalDateTime(String str) {
+    public static LocalDateTime getStrToLocalDateTime(String str) {
 
         if (StringUtil.isBlank(str)) {
             return null;
         }
 
         try {
-            return LocalDateTime.parse(str, DF);
-        } catch (Exception e) {
-            e.printStackTrace();
+            return LocalDateTime.parse(str, YYYY_MM_DD_HH_MM_SS);
+        } catch (DateTimeParseException e) {
+            log.error(e.getMessage(), e);
         }
 
         return null;
@@ -151,7 +155,7 @@ public class TimeUtil {
      */
     public static String getCurrentLocalDateTime() {
 
-        return DF.format(LocalDateTime.now());
+        return YYYY_MM_DD_HH_MM_SS.format(LocalDateTime.now());
 
     }
 
@@ -163,7 +167,7 @@ public class TimeUtil {
      */
     public static String getCurrentLocalTime() {
 
-        return DF_HMS.format(LocalTime.now());
+        return HH_MM_SS.format(LocalTime.now());
 
     }
 
@@ -203,6 +207,86 @@ public class TimeUtil {
 
         return duration.toMinutes();
 
+    }
+
+    /**
+     *  获取本月最后一天23点59分59秒
+     *
+     * @return 本月最后一天23点59分59秒
+     */
+    public static LocalDateTime getMonthLastDayLastTime() {
+
+        LocalDateTime date = LocalDateTime.now();
+        LocalDateTime lastDay = date.with(TemporalAdjusters.lastDayOfMonth());
+        return LocalDateTime.of(lastDay.toLocalDate(), LocalTime.MAX);
+
+    }
+
+    /**
+     *  获取本月最后一天23点59分59秒
+     *
+     * @return 本月最后一天23点59分59秒
+     */
+    public static Date getMonthLastDayLastTime2Date() {
+
+        LocalDateTime date = LocalDateTime.now();
+        LocalDateTime lastDay = date.with(TemporalAdjusters.lastDayOfMonth());
+        LocalDateTime time = LocalDateTime.of(lastDay.toLocalDate(), LocalTime.MAX);
+        return Date.from(time.atZone(ZoneId.systemDefault()).toInstant());
+
+    }
+
+    /**
+     * LocalDateTime转为Date
+     *
+     * @param localDateTime 时间
+     * @return 时间
+     */
+    public static Date getLocalDateTimeToDate(LocalDateTime localDateTime) {
+
+        if (null == localDateTime) {
+            return null;
+        }
+
+        return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+    }
+
+    /**
+     * 获取2099年12月31日23点59分59秒
+     *
+     * @return 2099年12月31日23点59分59秒
+     */
+    public static LocalDateTime getLastDayLastTime() {
+        return LocalDateTime.of(2099, 12, 31, 23, 59, 59);
+    }
+
+
+    /**
+     * 获取2099年12月31日23点59分59秒
+     *
+     * @return 2099年12月31日23点59分59秒
+     */
+    public static Date getLastDayLastTimeToDate() {
+        LocalDateTime time = LocalDateTime.of(2099, 12, 31, 23, 59, 59);
+        return Date.from(time.atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    /**
+     *  根据格式化方式将时间字符串转成Date
+     *
+     * @param timeStr 时间字符串
+     * @param pattern 格式化方式
+     * @return 时间
+     */
+    public static Date getTimeStrToDate(String timeStr, String pattern) throws ParseException {
+
+        if (StringUtil.isBlank(timeStr) || StringUtil.isBlank(pattern)) {
+            return null;
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        return sdf.parse(timeStr);
     }
 
 
