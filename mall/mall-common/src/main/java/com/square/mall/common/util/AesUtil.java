@@ -49,7 +49,7 @@ public class AesUtil {
             return Base64.encodeBase64String(result);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | UnsupportedEncodingException
                 | IllegalBlockSizeException | BadPaddingException e) {
-            log.error(e.getMessage(), e);
+            log.error("encrypt password failed, ", e);
         }
         return null;
     }
@@ -62,14 +62,16 @@ public class AesUtil {
         try {
             byte[] enCodeFormat = getSecretKey(password);
             SecretKeySpec key = new SecretKeySpec(enCodeFormat, "AES");
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding"); // 创建密码器
+            // 创建密码器
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             byte[] byteContent = str.getBytes(CommonConstant.ENCODE_UTF_8);
-            cipher.init(Cipher.ENCRYPT_MODE, key); // 初始化
+            // 初始化
+            cipher.init(Cipher.ENCRYPT_MODE, key);
             byte[] result = cipher.doFinal(byteContent);
             return StringUtil.getBytesToHexStr(result);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | UnsupportedEncodingException
             | IllegalBlockSizeException | BadPaddingException e) {
-            log.error(e.getMessage(), e);
+            log.error("encrypt password failed, ", e);
         }
         return null;
     }
@@ -78,9 +80,8 @@ public class AesUtil {
      * 解密
      */
     public static String decryptToken(String str, String password) {
-        if (log.isInfoEnabled()) {
-            log.info("decryptToken---------解密-----------密文：{}，秘钥：{}", str, password);
-        }
+
+        log.info("decryptToken---------解密-----------密文：{}，秘钥：{}", str, password);
 
         // 长token解密得到明文token
         String realToken = "";
@@ -90,9 +91,8 @@ public class AesUtil {
             log.error("decrypt password failed, ", e);
         }
 
-        if (log.isInfoEnabled()) {
-            log.info("decryptToken---------解密-----------明文：{}", realToken);
-        }
+        log.info("decryptToken---------解密-----------明文：{}", realToken);
+
         return realToken;
     }
 
@@ -100,10 +100,8 @@ public class AesUtil {
      * 解密，没有特殊字符情况下
      */
     public static String decryptExcludeSpecialChars(String str, String password) {
-        if (log.isInfoEnabled()) {
-            log.info("decryptToken---------解密-----------密文：{}，秘钥：{}", str, password);
-        }
 
+        log.info("decryptToken---------解密-----------密文：{}，秘钥：{}", str, password);
 
         String decryptStr = "";
         try {
@@ -112,9 +110,8 @@ public class AesUtil {
             log.error("decrypt password failed, ", e);
         }
 
-        if (log.isInfoEnabled()) {
-            log.info("decptStr---------解密-----------明文：{}", decryptStr);
-        }
+        log.info("decryptStr---------解密-----------明文：{}", decryptStr);
+
         return decryptStr;
     }
 
@@ -137,6 +134,7 @@ public class AesUtil {
     }
 
     private static String decryptECBExcludeSpecialChars(String data, String key) throws Exception {
+
         if (StringUtil.isBlank(key) || key.length() < 16) {
             return null;
         }
