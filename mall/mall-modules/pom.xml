@@ -22,6 +22,7 @@
         <commons-lang3.version>3.9</commons-lang3.version>
         <swagger2.version>2.9.2</swagger2.version>
         <spring-boot-dubbo>1.0.0</spring-boot-dubbo>
+        <aspectjweaver.version>1.9.5</aspectjweaver.version>
 
         <!-- mall模块版本号 -->
         <mall-common.version>1.0-SNAPSHOT</mall-common.version>
