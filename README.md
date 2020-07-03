@@ -9,10 +9,10 @@
 
 技术|说明|版本
 :--:|:--:|:--:
-JDK|Java开发工具包|11
-Maven|构建工具|3.6.1
+JDK|Java开发工具包|14
+Maven|构建工具|3.6.3
 IDEA|IDE软件|2020.1.2
-Spring Boot|容器+MVC框架|2.1.7.RELEASE
+Spring Boot|容器+MVC框架|2.3.1.RELEASE
 MyBatis|ORM框架|2.1.0
 Elasticsearch|搜索引擎|7.3.1
 Redis|分布式缓存|5.0.5
