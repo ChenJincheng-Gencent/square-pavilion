@@ -1,6 +1,6 @@
 package com.square.mall.member.center.service.apiimpl;
 
-import com.alibaba.dubbo.config.annotation.Service;
+import org.apache.dubbo.config.annotation.Service;
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.member.center.api.MemberApi;
 import com.square.mall.member.center.api.dto.response.MemberRspDto;

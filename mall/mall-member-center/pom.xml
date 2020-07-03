@@ -11,7 +11,7 @@
 
     <artifactId>mall-member-center</artifactId>
     <packaging>pom</packaging>
-    <version>${mall-member-center.version}</version>
+    <!--<version>${mall-member-center.version}</version>-->
     <modules>
         <module>mall-member-center-service</module>
         <module>mall-member-center-api</module>
@@ -24,8 +24,9 @@
             <version>${mall-common.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.spring.boot</groupId>
-            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>${dubbo.version}</version>
         </dependency>
         <!-- Zk客户端依赖 -->
         <dependency>
