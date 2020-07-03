@@ -2,11 +2,14 @@ package com.square.mall.member.application.controller;
 
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.common.util.StringUtil;
+import com.square.mall.member.center.api.MemberApi;
 import com.square.mall.member.center.api.dto.response.MemberRspDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * 会员信息Controller
@@ -19,6 +22,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/member/v1")
 @Slf4j
 public class MemberController {
+
+    @Resource
+    private MemberApi memberApi;
 
     /**
      * 根据手机号获取会员信息
@@ -35,9 +41,10 @@ public class MemberController {
             return RspDto.FAILED;
         }
 
-        MemberRspDto memberRspDto = new MemberRspDto();
+        RspDto<MemberRspDto> memberRspDto = memberApi.findMemberByMobile(mobile);
+        log.info("memberRspDto: {}", memberRspDto);
 
-        return new RspDto<>(memberRspDto);
+        return memberRspDto;
 
     }
 
