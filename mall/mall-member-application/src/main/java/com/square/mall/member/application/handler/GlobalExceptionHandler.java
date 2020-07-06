@@ -2,7 +2,6 @@ package com.square.mall.member.application.handler;
 
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.common.exception.BusinessException;
-import com.square.mall.common.util.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -14,10 +13,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.ServletRequestBindingException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +39,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class GlobalExceptionHandler {
 
-    private static final String FORWARD_GLOBAL_ERROR = "forward:/global/error";
     private final HttpServletRequest request;
 
     /**
@@ -57,9 +54,9 @@ public class GlobalExceptionHandler {
             MethodArgumentNotValidException.class,
             ServletRequestBindingException.class,
             BindException.class})
-    public ModelAndView handleValidationException(Exception e) {
+    public RspDto handleValidationException(Exception e) {
         String logMsg = getErrorLogMsg(e);
-        String msg = "";
+        String msg;
         if (e instanceof MethodArgumentNotValidException) {
             MethodArgumentNotValidException t = (MethodArgumentNotValidException) e;
             msg = getBindingResultMsg(t.getBindingResult());
@@ -82,74 +79,38 @@ public class GlobalExceptionHandler {
             return handleUnknownException(e);
         }
         log.warn("参数校验不通过, {}, msg: {}", logMsg, msg);
-        return failResultModelAndView(msg);
-    }
-
-    private String getBindingResultMsg(BindingResult result) {
-        return result.getAllErrors().stream()
-                .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                .collect(Collectors.joining(","));
+        return RspDto.FAILED;
     }
 
     /**
      * 统一处理业务异常
      */
     @ExceptionHandler(BusinessException.class)
-    public ModelAndView handleBusinessException(BusinessException t) {
+    @ResponseBody
+    public RspDto handleBusinessException(BusinessException t) {
         String logMsg = getErrorLogMsg(t);
         log.error("捕获到业务异常, {}, msg: {}", logMsg, t.getMessage());
-        return failResultModelAndView(t.getMessage());
-    }
-
-    private ModelAndView failResultModelAndView(String msg) {
-        Map<String, Object> model = new HashMap<>(4);
-        model.put("msg", msg);
-        model.put("code", RspDto.FAILED);
-        return new ModelAndView(FORWARD_GLOBAL_ERROR, model);
+        return new RspDto("-1", t.getMessage());
     }
 
     /**
      * 统一处理未知异常
      */
-    @ExceptionHandler
-    public ModelAndView handleUnknownException(Throwable t) {
-        String logMsg = getErrorLogMsg(t);
-        // 未知异常
-        log.error("捕获到未经处理的未知异常, {}", logMsg, t);
-        return new ModelAndView(FORWARD_GLOBAL_ERROR, "msg", "服务发生异常");
-    }
-
-    /**
-     * 处理浏览器的 html 直接请求
-     */
-    @RequestMapping(produces = "text/html")
-    public String errorHtml() {
-        String msg = Objects.toString(request.getAttribute("msg"), "出错啦");
-        request.setAttribute("msg", msg);
-        return "error";
-    }
-
-    /**
-     * 其他请求则以 response body 的形式返回
-     */
+    @ExceptionHandler(Exception.class)
     @ResponseBody
-    @RequestMapping
-    public RspDto<?> error() {
-        String msg = Objects.toString(request.getAttribute("msg"), "出错啦");
-        String code = Objects.toString(request.getAttribute("code"), null);
-        // 如果有指定 code，则按 code 返回
-        if (StringUtils.isNotBlank(code)) {
-            return new RspDto<>(code, msg);
-        } else {
-            // 否则视为未知异常
-            return RspDto.FAILED;
-        }
+    public RspDto handleUnknownException(Exception e) {
+        String logMsg = getErrorLogMsg(e);
+        // 未知异常
+        log.error("捕获到未经处理的未知异常, {}", logMsg, e);
+        return new RspDto("-1", e.toString());
     }
+
 
     /**
      * 异常信息应包含 url + queryString(若有) + 请求参数(这里只能拿到表单提交的参数) + username(若有)
      */
     private String getErrorLogMsg(Throwable t) {
+
         StringBuilder errorLogMsg = new StringBuilder();
         // url，包括查询 queryString
         errorLogMsg.append("url: ").append(request.getRequestURL().toString());
@@ -171,6 +132,12 @@ public class GlobalExceptionHandler {
             errorLogMsg.insert(0, "username: " + username + ", ");
         }
         return errorLogMsg.toString();
+    }
+
+    private String getBindingResultMsg(BindingResult result) {
+        return result.getAllErrors().stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                .collect(Collectors.joining(","));
     }
 
     private String getUsername() {

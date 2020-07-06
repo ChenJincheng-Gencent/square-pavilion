@@ -1,5 +1,9 @@
 package com.square.mall.member.center.api.dto.response;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +11,9 @@ import java.io.Serializable;
  * @author Gencent
  * @date 2019/8/21
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class MemberRspDto implements Serializable {
 
     private static final long serialVersionUID = 8753491498155471509L;

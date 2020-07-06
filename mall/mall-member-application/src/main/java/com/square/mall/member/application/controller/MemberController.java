@@ -2,12 +2,14 @@ package com.square.mall.member.application.controller;
 
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.common.util.StringUtil;
-import com.square.mall.member.center.api.MemberApi;
+import com.square.mall.member.application.service.MemberService;
 import com.square.mall.member.center.api.dto.response.MemberRspDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
@@ -24,7 +26,7 @@ import javax.annotation.Resource;
 public class MemberController {
 
     @Resource
-    private MemberApi memberApi;
+    private MemberService memberService;
 
     /**
      * 根据手机号获取会员信息
@@ -34,14 +36,14 @@ public class MemberController {
      */
     @GetMapping("/member/info")
     @ResponseBody
-    public RspDto getMember(String mobile) {
+    public RspDto selectMemberByMobile(String mobile) {
 
         if (StringUtil.isBlank(mobile)) {
             log.error("mobile is null or empty.");
             return RspDto.FAILED;
         }
 
-        RspDto<MemberRspDto> memberRspDto = memberApi.findMemberByMobile(mobile);
+        RspDto<MemberRspDto> memberRspDto = memberService.selectMemberByMobile(mobile);
         log.info("memberRspDto: {}", memberRspDto);
 
         return memberRspDto;
