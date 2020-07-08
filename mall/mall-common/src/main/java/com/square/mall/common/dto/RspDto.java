@@ -23,12 +23,12 @@ public class RspDto<T> implements Serializable {
     /**
      *  成功
      */
-    public static final RspDto SUCCESS = new RspDto(ErrorCode.SUCCESS.getCode(), ErrorCode.SUCCESS.getMsg());
+    public static final RspDto SUCCESS = new RspDto(ErrorCode.SUCCESS);
 
     /**
      * 失败
      */
-    public static final RspDto FAILED = new RspDto(ErrorCode.FAILED.getCode(), ErrorCode.FAILED.getMsg());
+    public static final RspDto FAILED = new RspDto(ErrorCode.FAILED);
 
     /**
      * 错误码
@@ -54,6 +54,11 @@ public class RspDto<T> implements Serializable {
     public RspDto(String code, String msg) {
         this.code = code;
         this.msg = msg;
+    }
+
+    public RspDto(ErrorCode errorCode) {
+        this.code = errorCode.getCode();
+        this.msg = errorCode.getMsg();
     }
 
 }
