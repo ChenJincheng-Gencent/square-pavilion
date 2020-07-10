@@ -3,6 +3,11 @@ package com.square.mall.member.application.service;
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.member.center.api.dto.response.MemberRspDto;
 
+/**
+ * 会员Service
+ * @author Gencent
+ * @date 2020/7/10
+ */
 public interface MemberService {
 
     /**

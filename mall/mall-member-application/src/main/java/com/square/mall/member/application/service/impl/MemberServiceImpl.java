@@ -1,4 +1,4 @@
-package com.square.mall.member.application.service.Impl;
+package com.square.mall.member.application.service.impl;
 
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.member.application.service.MemberService;
@@ -7,6 +7,11 @@ import com.square.mall.member.center.api.dto.response.MemberRspDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * 会员Service实现类
+ * @author Gencent
+ * @date 2020/7/10
+ */
 @Service
 public class MemberServiceImpl implements MemberService {
 

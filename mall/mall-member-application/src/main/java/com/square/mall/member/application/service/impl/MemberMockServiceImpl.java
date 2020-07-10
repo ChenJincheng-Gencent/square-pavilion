@@ -1,4 +1,4 @@
-package com.square.mall.member.application.service.Impl;
+package com.square.mall.member.application.service.impl;
 
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.common.util.member.MemberLevel;
@@ -9,6 +9,11 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+/**
+ * 会员ServiceMock实现类
+ * @author Gencent
+ * @date 2020/7/10
+ */
 @Service
 @Profile("member-application-mock")
 @Primary
