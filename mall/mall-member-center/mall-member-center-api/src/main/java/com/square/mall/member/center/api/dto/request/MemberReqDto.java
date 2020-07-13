@@ -3,6 +3,7 @@ package com.square.mall.member.center.api.dto.request;
 import java.io.Serializable;
 
 /**
+ * 会员请求DTO
  * @author Gencent
  * @date 2019/8/21
  */
