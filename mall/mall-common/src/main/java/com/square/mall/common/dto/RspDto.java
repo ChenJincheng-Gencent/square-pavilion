@@ -2,6 +2,7 @@ package com.square.mall.common.dto;
 
 import com.square.mall.common.util.ErrorCode;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -15,7 +16,7 @@ import java.io.Serializable;
  */
 @Data
 @AllArgsConstructor
-@ApiModel(description = "返回结果")
+@ApiModel(description = "返回消息体")
 public class RspDto<T> implements Serializable {
 
     private static final long serialVersionUID = 5244335969680099007L;
@@ -33,16 +34,19 @@ public class RspDto<T> implements Serializable {
     /**
      * 错误码
      */
+    @ApiModelProperty(name = "code", value = "错误码")
     private String code;
 
     /**
      * 错误描述
      */
+    @ApiModelProperty(name = "msg", value = "错误描述")
     private String msg;
 
     /**
      * 数据泛型
      */
+    @ApiModelProperty(name = "data", value = "数据")
     private T data;
 
     public RspDto(T data){
