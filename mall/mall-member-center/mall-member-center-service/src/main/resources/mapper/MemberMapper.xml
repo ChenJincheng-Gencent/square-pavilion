@@ -27,7 +27,7 @@
 
     <insert id="insertMember" parameterType="com.square.mall.member.center.service.eo.MemberEo" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO member (`id`, `name`, `mobile`, `level`, `gender`, `email`, `create_time`, `update_time`)
-        VALUES (#{id}, #{name}, #{mobile}, #{level}, #{gender}, #{email}, now, now)
+        VALUES (#{id}, #{name}, #{mobile}, #{level}, #{gender}, #{email}, now(), now())
     </insert>
 
 </mapper>
