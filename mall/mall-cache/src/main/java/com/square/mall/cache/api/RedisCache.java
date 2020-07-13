@@ -18,7 +18,6 @@ import redis.clients.jedis.util.Sharded;
 
 import java.util.*;
 
-@Data
 @Slf4j
 public class RedisCache extends AbstractCacheService {
 
@@ -32,9 +31,6 @@ public class RedisCache extends AbstractCacheService {
     private JedisCluster jedisCluster;
 
     private int dbIndex;
-
-    public static final String COLON_NAME = ":";
-
 
     @Override
     public void init(String group, CacheRegistryVo cacheRegistryVo) {
