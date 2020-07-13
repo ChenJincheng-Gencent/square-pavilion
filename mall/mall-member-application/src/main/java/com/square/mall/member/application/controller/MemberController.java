@@ -2,14 +2,14 @@ package com.square.mall.member.application.controller;
 
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.common.util.StringUtil;
+import com.square.mall.member.application.service.MemberQueryService;
 import com.square.mall.member.application.service.MemberService;
+import com.square.mall.member.center.api.dto.MemberDto;
 import com.square.mall.member.center.api.dto.response.MemberRspDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -24,6 +24,9 @@ import javax.annotation.Resource;
 @RequestMapping(value = "/member/v1")
 @Slf4j
 public class MemberController {
+
+    @Resource
+    private MemberQueryService memberQueryService;
 
     @Resource
     private MemberService memberService;
@@ -43,11 +46,25 @@ public class MemberController {
             return RspDto.FAILED;
         }
 
-        RspDto<MemberRspDto> memberRspDto = memberService.selectMemberByMobile(mobile);
-        log.info("memberRspDto: {}", memberRspDto);
+        RspDto<MemberRspDto> memberRspDto = memberQueryService.selectMemberByMobile(mobile);
+        log.info("memberRspDto: {}, mobile: {}", memberRspDto, mobile);
 
         return memberRspDto;
 
+    }
+
+    /**
+     * 插入会员信息
+     *
+     * @param memberDto 会员信息
+     * @return 数据库ID
+     */
+    @PostMapping("/member/info")
+    @ResponseBody
+    public RspDto insertMember(@RequestBody MemberDto memberDto) {
+        RspDto<Long> id = memberService.insertMember(memberDto);
+        log.info("id: {}, memberDto: {}", id.getData(), memberDto);
+        return id;
     }
 
 
