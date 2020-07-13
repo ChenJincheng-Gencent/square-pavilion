@@ -1,5 +1,3 @@
-server:
-  port: 9876
 
 mysql:
   member:
