@@ -1,12 +1,13 @@
 package com.square.mall.member.center.service.apiimpl;
 
-import org.apache.dubbo.config.annotation.Service;
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.member.center.api.MemberApi;
 import com.square.mall.member.center.api.dto.response.MemberRspDto;
 import com.square.mall.member.center.service.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.dubbo.config.annotation.Service;
+
 
 import javax.annotation.Resource;
 
@@ -17,7 +18,7 @@ import javax.annotation.Resource;
  * @date 2019/8/19
  */
 @Slf4j
-@Service(version = "1.0.0", interfaceClass = MemberApiImpl.class)
+@Service
 public class MemberApiImpl implements MemberApi {
 
     @Resource
