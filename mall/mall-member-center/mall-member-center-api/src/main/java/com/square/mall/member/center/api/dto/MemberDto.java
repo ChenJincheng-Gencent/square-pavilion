@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * 会员基本信息DTO
  *
@@ -18,7 +20,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "MemberDto")
-public class MemberDto {
+public class MemberDto implements Serializable {
+
+    private static final long serialVersionUID = -1315053788575053945L;
 
     /**
      * 姓名
