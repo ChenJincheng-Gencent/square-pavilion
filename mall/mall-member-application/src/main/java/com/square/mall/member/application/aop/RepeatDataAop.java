@@ -1,7 +1,7 @@
 package com.square.mall.member.application.aop;
 
 import com.alibaba.fastjson.JSON;
-import com.dtyunxi.huieryun.cache.api.ICacheService;
+import com.square.mall.cache.api.CacheService;
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.common.util.Md5Util;
 import com.square.mall.common.util.UserInfoUtil;
@@ -36,7 +36,7 @@ import java.util.Map;
 public class RepeatDataAop {
 
     @Resource
-    private ICacheService tradeCacheService;
+    private CacheService cacheService;
 
     /**
      * 验证重复表单的请求方法
@@ -101,14 +101,14 @@ public class RepeatDataAop {
         } catch (Exception e) {
             throw e;
         } finally {
-            tradeCacheService.delCache(REPEAT_DATA_GROUP, CACHE_KEY.get());
+            cacheService.delCache(REPEAT_DATA_GROUP, CACHE_KEY.get());
         }
         return obj;
     }
 
     /**
      * 替换表情等特殊字段
-     * @param joinPoint
+     * @param args
      */
     private void replaceEmoji(Object[] args) {
         try {
@@ -169,10 +169,10 @@ public class RepeatDataAop {
         String nowUrlParams = Md5Util.getMd5(userId + ":" + map.toString());
         CACHE_KEY.set(nowUrlParams);
 
-        String preUrlParams = tradeCacheService.getCache(REPEAT_DATA_GROUP, nowUrlParams, String.class);
+        String preUrlParams = cacheService.getCache(REPEAT_DATA_GROUP, nowUrlParams, String.class);
         if (preUrlParams == null) {
-            Long t = tradeCacheService.setnx(REPEAT_DATA_GROUP, nowUrlParams, CACHE_TIME_OUT.toString());
-            tradeCacheService.expire(REPEAT_DATA_GROUP, nowUrlParams, CACHE_TIME_OUT);
+            Long t = cacheService.setnx(REPEAT_DATA_GROUP, nowUrlParams, CACHE_TIME_OUT.toString());
+            cacheService.expire(REPEAT_DATA_GROUP, nowUrlParams, CACHE_TIME_OUT);
             return null != t && t == 0;
         } else {
             return true;

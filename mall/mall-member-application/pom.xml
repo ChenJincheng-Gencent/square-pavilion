@@ -33,6 +33,11 @@
             <artifactId>com.springsource.javax.validation</artifactId>
             <version>1.0.0.GA</version>
         </dependency>
+        <dependency>
+            <groupId>com.square.mall</groupId>
+            <artifactId>mall-cache</artifactId>
+            <version>${mall-cache.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
