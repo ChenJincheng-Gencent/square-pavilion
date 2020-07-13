@@ -5,6 +5,7 @@ import com.square.mall.member.application.service.MemberService;
 import com.square.mall.member.center.api.MemberApi;
 import com.square.mall.member.center.api.dto.MemberDto;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.stereotype.Service;
 
 /**
  *  会员信息Service实现类
@@ -12,6 +13,7 @@ import org.apache.dubbo.config.annotation.Reference;
  * @author Gencent
  * @date 2020/7/13
  */
+@Service
 public class MemberServiceImpl implements MemberService {
 
     @Reference
