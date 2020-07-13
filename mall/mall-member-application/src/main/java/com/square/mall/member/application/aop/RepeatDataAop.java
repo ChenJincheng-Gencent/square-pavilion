@@ -70,7 +70,7 @@ public class RepeatDataAop {
 
     @Around("repeatDataPoint()")
     public Object repeatDataProcess(ProceedingJoinPoint joinPoint) throws Throwable {
-        // 重复提交判断
+
         String method = "";
         String url = "";
         try {
@@ -80,7 +80,7 @@ public class RepeatDataAop {
                 url = request.getRequestURI();
                 method = request.getMethod();
                 if (REQUEST_METHOD.contains(method) && repeatDataValidator(request, joinPoint)) {
-                    return new RspDto<>(-1, "系统正在为您处理上一次提交的内容，请稍候再提交。");
+                    return new RspDto<>("-1", "系统正在为您处理上一次提交的内容，请稍候再提交。");
                 }
             }
         } catch (Exception e) {
@@ -88,10 +88,6 @@ public class RepeatDataAop {
         }
         Object[] args = joinPoint.getArgs();
         if (!WHITE_NAME_LIST.contains(url) && REQUEST_METHOD.contains(method)) {
-//            RestResponse response = isExistEmoj(joinPoint);
-//            if(response!=null){
-//            	return response;
-//            }
             replaceEmoji(args);
         }
         Object obj = null;
@@ -179,15 +175,4 @@ public class RepeatDataAop {
         }
     }
 
-    private Map<String, Object> getArgsMap(String[] paramsNames, Object[] objects) {
-        Map<String, Object> resultMap = new HashMap<>();
-        for (int i = 0; i < paramsNames.length; i++) {
-            resultMap.put(paramsNames[i], objects[i]);
-        }
-        return resultMap;
-    }
-
-    public static void addWhiteName(String uri) {
-        WHITE_NAME_LIST.add(uri);
-    }
 }
