@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-    @Reference(url = "10.129.238.232:20880")
+    @Reference
     private MemberApi memberApi;
 
     @Override
