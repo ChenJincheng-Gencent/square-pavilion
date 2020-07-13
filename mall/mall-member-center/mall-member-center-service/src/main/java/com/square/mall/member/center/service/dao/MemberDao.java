@@ -19,14 +19,13 @@ public interface MemberDao {
      * @param mobile 手机号码
      * @return 会员基本信息
      */
-    MemberEo findMemberByMobile(@Param("mobile") String mobile);
+    MemberEo selectMemberByMobile(@Param("mobile") String mobile);
 
     /**
      * 插入会员信息
      *
      * @param memberEo 会员信息
-     * @return 数据库ID
      */
-    Long insertMember(MemberEo memberEo);
+    void insertMember(MemberEo memberEo);
 
 }

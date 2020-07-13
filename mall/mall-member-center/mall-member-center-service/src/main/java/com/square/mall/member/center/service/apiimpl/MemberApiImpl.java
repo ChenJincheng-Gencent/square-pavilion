@@ -2,17 +2,15 @@ package com.square.mall.member.center.service.apiimpl;
 
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.member.center.api.MemberApi;
-import com.square.mall.member.center.api.dto.response.MemberRspDto;
+import com.square.mall.member.center.api.dto.MemberDto;
 import com.square.mall.member.center.service.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Service;
-
 
 import javax.annotation.Resource;
 
 /**
- *  会员基本信息RPC接口实现类
+ *  会员信息API实现类
  *
  * @author Gencent
  * @date 2019/8/19
@@ -25,13 +23,8 @@ public class MemberApiImpl implements MemberApi {
     private MemberService memberService;
 
     @Override
-    public RspDto<MemberRspDto> findMemberByMobile(String mobile) {
-
-        if (StringUtils.isEmpty(mobile)) {
-            log.error("mobile is empty.");
-            return null;
-        }
-
-        return new RspDto<>(memberService.findMemberByMobile(mobile));
+    public RspDto<Long> insertMember(MemberDto memberDto) {
+        return new RspDto<>(memberService.insertMember(memberDto));
     }
+
 }

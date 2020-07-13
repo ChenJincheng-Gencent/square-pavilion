@@ -3,6 +3,7 @@
 <mapper namespace="com.square.mall.member.center.service.dao.MemberDao">
 
     <resultMap id="MemberMap" type="com.square.mall.member.center.service.eo.MemberEo">
+        <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="mobile" property="mobile"/>
         <result column="level" property="level"/>
@@ -18,13 +19,16 @@
         `email`
     </sql>
 
-    <select id="findMemberByMobile" resultMap="MemberMap">
+    <select id="selectMemberByMobile" resultMap="MemberMap">
         SELECT
         <include refid="need_column"/>
         FROM member WHERE mobile = #{mobile};
     </select>
 
-    <insert id="insertMember"
+    <insert id="insertMember" parameterType="com.square.mall.member.center.service.eo.MemberEo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO member (`id`, `name`, `mobile`, `level`, `gender`, `email`, `create_time`, `modify_time`)
+        VALUES (#{id}, #{name}, #{mobile}, #{level}, #{gender}, #{email}, now, now)
+    </insert>
 
 </mapper>
 

@@ -17,9 +17,9 @@ public class MemberServiceTest {
     private MemberService memberService;
 
     @Test
-    public void findMemberByMobile(){
+    public void selectMemberByMobile(){
 
-        MemberRspDto memberRspDto = memberService.findMemberByMobile("123");
+        MemberRspDto memberRspDto = memberService.selectMemberByMobile("123");
         Assert.assertNull(memberRspDto);
 
     }
