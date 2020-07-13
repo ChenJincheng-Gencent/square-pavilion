@@ -23,8 +23,11 @@
         <swagger2.version>2.9.2</swagger2.version>
         <spring-boot-dubbo>2.7.0</spring-boot-dubbo>
         <aspectjweaver.version>1.9.5</aspectjweaver.version>
+        <jedis.version>3.3.0</jedis.version>
+        <jackson.version>2.11.1</jackson.version>
 
         <!-- mall模块版本号 -->
+        <mall-cache.version>1.0-SNAPSHOT</mall-cache.version>
         <mall-common.version>1.0-SNAPSHOT</mall-common.version>
         <mall-member-center.version>1.0-SNAPSHOT</mall-member-center.version>
         <mall-member-center-api.version>1.0-SNAPSHOT</mall-member-center-api.version>

@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -22,7 +23,13 @@ import java.util.Objects;
 @Aspect
 @Component
 @Slf4j
-public class AopLog {
+@Order(2)
+public class LogAop {
+
+
+    /**
+     * 开始时间
+     */
     private static final String START_TIME = "request-start";
 
     /**
