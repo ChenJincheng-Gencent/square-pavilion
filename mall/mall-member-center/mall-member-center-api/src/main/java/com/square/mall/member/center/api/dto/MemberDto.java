@@ -39,7 +39,7 @@ public class MemberDto implements Serializable {
     /**
      * 等级
      */
-    @ApiModelProperty(name = "level", value = "等级")
+    @ApiModelProperty(name = "level", value = "等级", allowableValues = "1,2,3,4,5,6,7")
     private Integer level;
 
     /**
