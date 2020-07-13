@@ -45,7 +45,7 @@ public class MemberDto implements Serializable {
     /**
      * 性别
      */
-    @ApiModelProperty(name = "gender", value = "性别",allowableValues = "0,1,2")
+    @ApiModelProperty(name = "gender", value = "性别", allowableValues = "0未知,1男,2女")
     private Integer gender;
 
     /**
