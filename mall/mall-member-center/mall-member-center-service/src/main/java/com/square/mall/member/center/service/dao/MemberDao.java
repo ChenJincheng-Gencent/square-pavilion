@@ -21,4 +21,12 @@ public interface MemberDao {
      */
     MemberEo findMemberByMobile(@Param("mobile") String mobile);
 
+    /**
+     * 插入会员信息
+     *
+     * @param memberEo 会员信息
+     * @return 数据库ID
+     */
+    Long insertMember(MemberEo memberEo);
+
 }

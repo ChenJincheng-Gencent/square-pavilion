@@ -24,5 +24,7 @@
         FROM member WHERE mobile = #{mobile};
     </select>
 
+    <insert id="insertMember"
+
 </mapper>
 

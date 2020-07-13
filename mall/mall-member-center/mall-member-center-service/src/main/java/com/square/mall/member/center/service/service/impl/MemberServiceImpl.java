@@ -1,11 +1,11 @@
 package com.square.mall.member.center.service.service.impl;
 
+import com.github.pagehelper.util.StringUtil;
 import com.square.mall.member.center.api.dto.response.MemberRspDto;
 import com.square.mall.member.center.service.dao.MemberDao;
 import com.square.mall.member.center.service.eo.MemberEo;
 import com.square.mall.member.center.service.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -28,13 +28,13 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberRspDto findMemberByMobile(String mobile) {
 
-        if (StringUtils.isEmpty(mobile)) {
+        if (StringUtil.isEmpty(mobile)) {
             log.error("mobile is empty.");
             return null;
         }
         MemberEo memberEo = memberDao.findMemberByMobile(mobile);
         if (null == memberEo) {
-            log.error("memberEo is null.");
+            log.error("memberEo is null. mobile: {}", mobile);
             return null;
         }
 
