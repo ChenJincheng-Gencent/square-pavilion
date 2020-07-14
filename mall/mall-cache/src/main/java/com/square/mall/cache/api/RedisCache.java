@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.util.CollectionUtils;
 import redis.clients.jedis.*;
+import redis.clients.jedis.params.SetParams;
 import redis.clients.jedis.util.Hashing;
 import redis.clients.jedis.util.Sharded;
 
@@ -159,6 +160,43 @@ public class RedisCache extends AbstractCacheService {
                 result = shardedJedis.setex(combineKey, seconds, jsonValue);
             } else if (jedisCluster != null) {
                 result = jedisCluster.setex(combineKey, seconds, jsonValue);
+            }
+            if ("OK".equalsIgnoreCase(result)) {
+                flag = true;
+            }
+        } catch (Exception e) {
+            log.error("设置缓存出错: key={}, value={}", combineKey, jsonValue, e);
+        } finally {
+            shutdown(jds, shardedJedis);
+        }
+
+        return flag;
+    }
+
+    @Override
+    public boolean setCache(String group, String key, Object value, int seconds, String setParam) {
+        Jedis jds = null;
+        ShardedJedis shardedJedis = null;
+        boolean flag = false;
+        String result = "";
+        String combineKey = combineKey(group, key);
+        String jsonValue = JSON.toJSONString(value);
+        SetParams setParams = new SetParams();
+        if ("xx".equalsIgnoreCase(setParam)) {
+            setParams.xx();
+        }else {
+            setParams.nx();
+        }
+        setParams.ex(seconds);
+        try {
+            jds = getJedis();
+            shardedJedis = getShardedJedis();
+            if (jds != null) {
+                result = jds.set(combineKey, jsonValue, setParams);
+            } else if (shardedJedis != null) {
+                result = shardedJedis.set(combineKey, jsonValue, setParams);
+            } else if (jedisCluster != null) {
+                result = jedisCluster.set(combineKey, jsonValue, setParams);
             }
             if ("OK".equalsIgnoreCase(result)) {
                 flag = true;

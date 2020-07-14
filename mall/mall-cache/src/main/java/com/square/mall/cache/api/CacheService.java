@@ -24,6 +24,8 @@ public interface CacheService {
 
     boolean setCache(String paramString1, String paramString2, Object paramObject, int paramInt);
 
+    boolean setCache(String group, String key, Object value, int seconds, String setParam);
+
     boolean setPersistCache(String paramString, Object paramObject);
 
     boolean setPersistCache(String paramString1, String paramString2, Object paramObject);
