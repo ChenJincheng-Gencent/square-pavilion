@@ -7,7 +7,7 @@ import com.square.mall.cache.constant.WorkModel;
 import com.square.mall.cache.vo.CacheRegistryVo;
 import com.square.mall.common.exception.BusinessException;
 import com.square.mall.common.util.StringUtil;
-import lombok.Data;
+import com.square.mall.common.util.SymbolConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
@@ -34,35 +34,34 @@ public class RedisCache extends AbstractCacheService {
 
     @Override
     public void init(String group, CacheRegistryVo cacheRegistryVo) {
-        log.info("group:{}, redis ����:{}", group, cacheRegistryVo);
+        log.info("group:{}, redis配置:{}", group, cacheRegistryVo);
         super.init(group, cacheRegistryVo);
         checkAddress(cacheRegistryVo.getAddresses());
-        this.dbIndex = cacheRegistryVo.getDbIndex();
+        dbIndex = cacheRegistryVo.getDbIndex();
         JedisPoolConfig poolConfig = new JedisPoolConfig();
         setConfig(poolConfig);
 
         if (WorkModel.SINGLE.getName().equalsIgnoreCase(cacheRegistryVo.getWorkModel())) {
             String address = cacheRegistryVo.getAddresses()[0];
-            String host = address.split(":")[0];
-            String port = address.split(":")[1];
-            jedisPool = new JedisPool(poolConfig, host, Integer.parseInt(port), '?', StringUtils
-                .isEmpty(cacheRegistryVo.getAppSecret()) ? null : cacheRegistryVo.getAppSecret(), this.dbIndex);
+            String host = address.split(SymbolConstant.COLON)[0];
+            String port = address.split(SymbolConstant.COLON)[1];
+            jedisPool = new JedisPool(poolConfig, host, Integer.parseInt(port), cacheRegistryVo.getConnectionTimeout(),
+                cacheRegistryVo.getAppSecret(), dbIndex);
         } else if (WorkModel.CLUSTER.getName().equalsIgnoreCase(cacheRegistryVo.getWorkModel())) {
             jedisCluster = new JedisCluster(getHostAndPortSet(cacheRegistryVo), cacheRegistryVo.getConnectionTimeout(),
-                cacheRegistryVo.getSoTimeout(), cacheRegistryVo.getMaxAttempts(), StringUtils.isEmpty(cacheRegistryVo
-                .getAppSecret()) ? null : cacheRegistryVo.getAppSecret(), poolConfig);
+                cacheRegistryVo.getSoTimeout(), cacheRegistryVo.getMaxAttempts(), cacheRegistryVo.getAppSecret(), poolConfig);
         }
         else if (WorkModel.SHARDING.getName().equalsIgnoreCase(cacheRegistryVo.getWorkModel())) {
-            this.shardedJedisPool = new ShardedJedisPool(poolConfig, getShardInfoList(cacheRegistryVo), Hashing.MURMUR_HASH,
+            shardedJedisPool = new ShardedJedisPool(poolConfig, getShardInfoList(cacheRegistryVo), Hashing.MURMUR_HASH,
                 Sharded.DEFAULT_KEY_TAG_PATTERN);
         } else {
-            throw new BusinessException("������RedisCache����������������������workModel:" + cacheRegistryVo.getWorkModel());
+            throw new BusinessException("初始化RedisCache找不到运行模式。workModel:"+cacheRegistryVo.getWorkModel());
         }
     }
 
     private void checkAddress(String[] addresses) {
         if (addresses == null) {
-            throw new BusinessException("����RedisCache������������������");
+            throw new BusinessException("连接RedisCache地址不能为空");
         }
     }
 
@@ -75,7 +74,6 @@ public class RedisCache extends AbstractCacheService {
                 hostAndPortSet.add(hostAndPort);
             }
         } else {
-
             HostAndPort hostAndPort = new HostAndPort(cacheRegistryVo.getHost(), Integer.parseInt(cacheRegistryVo.getPort()));
             hostAndPortSet.add(hostAndPort);
         }
@@ -83,7 +81,7 @@ public class RedisCache extends AbstractCacheService {
     }
 
     private List<JedisShardInfo> getShardInfoList(CacheRegistryVo cacheRegistryVo) {
-        List<JedisShardInfo> shardsList = new ArrayList<JedisShardInfo>();
+        List<JedisShardInfo> shardsList = new ArrayList<>();
         if (cacheRegistryVo.getAddresses() != null) {
             String[] addrs = cacheRegistryVo.getAddresses();
             for (int i = 0; i < addrs.length; i++) {
@@ -91,7 +89,7 @@ public class RedisCache extends AbstractCacheService {
             }
         } else {
             addShardInfo(cacheRegistryVo.getHost(), Integer.parseInt(cacheRegistryVo.getPort()), cacheRegistryVo
-                    .getAppSecret(), shardsList);
+                .getAppSecret(), shardsList);
         }
         return shardsList;
     }
@@ -115,32 +113,32 @@ public class RedisCache extends AbstractCacheService {
 
 
 
-    private int getPort(String val) { return Integer.parseInt(val.substring(val.indexOf(":") + 1, val.length())); }
+    private int getPort(String val) { return Integer.parseInt(val.substring(val.indexOf(":") + 1)); }
 
 
 
     private void setConfig(GenericObjectPoolConfig config) {
-        config.setMaxIdle(this.cacheRegistryVo.getMaxIdle());
+        config.setMaxIdle(cacheRegistryVo.getMaxIdle());
 
-        config.setMaxTotal(this.cacheRegistryVo.getMaxTotal());
+        config.setMaxTotal(cacheRegistryVo.getMaxTotal());
         config.setTestOnBorrow(false);
         config.setTestOnReturn(false);
-        config.setMaxWaitMillis(this.cacheRegistryVo.getMaxWaitMillis());
+        config.setMaxWaitMillis(cacheRegistryVo.getMaxWaitMillis());
     }
 
     private Jedis getJedis() {
-        if (this.jedisPool == null) {
+        if (jedisPool == null) {
             return null;
         }
-        return this.jedisPool.getResource();
+        return jedisPool.getResource();
     }
 
 
     private ShardedJedis getShardedJedis() {
-        if (this.shardedJedisPool == null) {
+        if (shardedJedisPool == null) {
             return null;
         }
-        return this.shardedJedisPool.getResource();
+        return shardedJedisPool.getResource();
     }
 
 
@@ -159,14 +157,14 @@ public class RedisCache extends AbstractCacheService {
                 result = jds.setex(combineKey, seconds, jsonValue);
             } else if (shardedJedis != null) {
                 result = shardedJedis.setex(combineKey, seconds, jsonValue);
-            } else if (this.jedisCluster != null) {
-                result = this.jedisCluster.setex(combineKey, seconds, jsonValue);
+            } else if (jedisCluster != null) {
+                result = jedisCluster.setex(combineKey, seconds, jsonValue);
             }
             if ("OK".equalsIgnoreCase(result)) {
                 flag = true;
             }
         } catch (Exception e) {
-            log.error("������������: key={}, value={}", combineKey, jsonValue, e);
+            log.error("设置缓存出错: key={}, value={}", combineKey, jsonValue, e);
         } finally {
             shutdown(jds, shardedJedis);
         }
@@ -194,18 +192,18 @@ public class RedisCache extends AbstractCacheService {
                 shardedJedis.persist(combineKey);
 
                 result = shardedJedis.set(combineKey, jsonValue);
-            } else if (this.jedisCluster != null) {
-                this.jedisCluster.expire(combineKey, 1);
-                this.jedisCluster.persist(combineKey);
+            } else if (jedisCluster != null) {
+                jedisCluster.expire(combineKey, 1);
+                jedisCluster.persist(combineKey);
 
-                result = this.jedisCluster.set(combineKey, jsonValue);
+                result = jedisCluster.set(combineKey, jsonValue);
             }
             if ("OK".equalsIgnoreCase(result)) {
                 flag = true;
             }
-            log.debug("��������������: key={}", key);
+            log.debug("设置持久化缓存: key={}", key);
         } catch (Exception e) {
-            log.error("������������: key={}, value={}", combineKey, jsonValue, e );
+            log.error("设置缓存出错: key={}, value={}", combineKey, jsonValue, e );
         } finally {
             shutdown(jds, shardedJedis);
         }
@@ -227,14 +225,14 @@ public class RedisCache extends AbstractCacheService {
                 json = jds.get(combineKey);
             } else if (shardedJedis != null) {
                 json = shardedJedis.get(combineKey);
-            } else if (this.jedisCluster != null) {
-                json = this.jedisCluster.get(combineKey);
+            } else if (jedisCluster != null) {
+                json = jedisCluster.get(combineKey);
             }
             if (StringUtils.isNotEmpty(json)) {
                 value = JSONObject.parseObject(json, clz);
             }
         } catch (Exception e) {
-            log.error("������������: key={}", combineKey, e);
+            log.error("读取缓存出错: key={}", combineKey, e);
         } finally {
             shutdown(jds, shardedJedis);
         }
@@ -255,15 +253,15 @@ public class RedisCache extends AbstractCacheService {
                 del = jds.del(combineKey);
             } else if (shardedJedis != null) {
                 del = shardedJedis.del(combineKey);
-            } else if (this.jedisCluster != null) {
-                del = this.jedisCluster.del(combineKey);
+            } else if (jedisCluster != null) {
+                del = jedisCluster.del(combineKey);
             }
             if (del > 0L) {
                 flag = true;
             }
             return flag;
         } catch (Exception e) {
-            log.error("������������: key={}", combineKey, e);
+            log.error("删除缓存出错: key={}", combineKey, e);
         } finally {
             shutdown(jds, shardedJedis);
         }
@@ -294,15 +292,15 @@ public class RedisCache extends AbstractCacheService {
                     shardedJedis.expire(combineKey, seconds);
                     flag = true;
                 }
-            } else if (this.jedisCluster != null) {
-                setnx = this.jedisCluster.setnx(combineKey, jsonValue);
+            } else if (jedisCluster != null) {
+                setnx = jedisCluster.setnx(combineKey, jsonValue);
                 if (setnx == 1L) {
-                    this.jedisCluster.expire(combineKey, seconds);
+                    jedisCluster.expire(combineKey, seconds);
                     flag = true;
                 }
             }
         } catch (Exception e) {
-            log.error("������������: key={}, value={}", combineKey, jsonValue, e );
+            log.error("新增缓存出错: key={}, value={}", combineKey, jsonValue, e );
         } finally {
             shutdown(jds, shardedJedis);
         }
@@ -1029,8 +1027,8 @@ public class RedisCache extends AbstractCacheService {
                 count = jds.setnx(combineKey, value);
             } else if (shardedJedis != null) {
                 count = shardedJedis.setnx(combineKey, value);
-            } else if (this.jedisCluster != null) {
-                count = this.jedisCluster.setnx(combineKey, value);
+            } else if (jedisCluster != null) {
+                count = jedisCluster.setnx(combineKey, value);
             }
             return count;
         } catch (Exception e) {
