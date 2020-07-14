@@ -37,3 +37,12 @@ kafka:
       offset:
         reset: earliest
 
+redis:
+  member:
+    application:
+      host: 192.168.117.128
+      port: 6379
+      password: cjc1573
+      timeout: 2000
+      index: 1
+      workModel: single
