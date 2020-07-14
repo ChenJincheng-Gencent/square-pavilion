@@ -11,6 +11,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -33,6 +34,7 @@ import java.util.Map;
 @Aspect
 @Order(2)
 @Slf4j
+@Component
 public class RepeatDataAop {
 
     @Resource
@@ -63,14 +65,14 @@ public class RepeatDataAop {
         WHITE_NAME_LIST.add("/api/v1/notify");
     }
 
-    @Pointcut("execution (public * com.square..*.ctrl..*.*(..))")
+    @Pointcut("execution(public * com.square.mall.member.application.controller.*Controller.*(..))")
     protected void repeatDataPoint() {
 
     }
 
     @Around("repeatDataPoint()")
     public Object repeatDataProcess(ProceedingJoinPoint joinPoint) throws Throwable {
-
+        log.error("表单重复提交验证开始");
         String method = "";
         String url = "";
         try {
