@@ -25,7 +25,8 @@ public class UserInfoUtil {
 
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = Objects.requireNonNull(attributes).getRequest();
-        return Long.parseLong(request.getHeader("userId"));
+        String userId = request.getHeader("userId");
+        return StringUtil.isBlank(userId) ? null : Long.parseLong(userId);
 
     }
 
