@@ -23,7 +23,7 @@ import java.util.Objects;
 @Aspect
 @Component
 @Slf4j
-@Order(2)
+@Order(1)
 public class LogAop {
 
 
