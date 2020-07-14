@@ -6,6 +6,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
+/**
+ *  缓存服务抽象类
+ *
+ * @author Gencent
+ * @date 2020/7/14
+ */
 public abstract class AbstractCacheService implements CacheService {
 
     protected CacheRegistryVo cacheRegistryVo;

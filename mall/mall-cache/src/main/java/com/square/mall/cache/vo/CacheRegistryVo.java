@@ -18,9 +18,7 @@ public class CacheRegistryVo implements Serializable {
     private static final long serialVersionUID = 1389978615223522831L;
 
     private String type;
-    @Deprecated
     private String host;
-    @Deprecated
     private String port;
     private String appId;
     private String appSecret;
@@ -60,8 +58,10 @@ public class CacheRegistryVo implements Serializable {
 
     @Override
     public String toString() {
-        return "CacheRegistryVo [type=" + this.type + ", host=" + this.host + ", port=" + this.port + ", appId=" + this.appId + ", appSecret=" + this.appSecret + ", maxIdleConnectionTotal=" + this.maxIdle + ", maxConnectionPoolTotal=" + this.maxTotal + ", maxWaitMillis=" + this.maxWaitMillis + ", livetime=" + this.liveTime + ", dbIndex=" + this.dbIndex + ", workModel=" + this.workModel + ", addresses=" +
-
+        return "CacheRegistryVo [type=" + this.type + ", host=" + this.host + ", port=" + this.port + ", appId=" +
+                this.appId + ", appSecret=" + this.appSecret + ", maxIdleConnectionTotal=" + this.maxIdle + ", " +
+                "maxConnectionPoolTotal=" + this.maxTotal + ", maxWaitMillis=" + this.maxWaitMillis + ", liveTime=" +
+                this.liveTime + ", dbIndex=" + this.dbIndex + ", workModel=" + this.workModel + ", addresses=" +
                 Arrays.toString(this.addresses) + "]";
     }
 }

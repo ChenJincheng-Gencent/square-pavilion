@@ -8,15 +8,13 @@ import redis.clients.jedis.ScanResult;
 import redis.clients.jedis.Transaction;
 import redis.clients.jedis.Tuple;
 
+/**
+ * 缓存Service
+ *
+ * @author Gencent
+ * @date 2020/7/14
+ */
 public interface CacheService {
-
-    String TYPE_REDIS = "REDIS";
-
-    String TYPE_MEMCACHED = "MEMCACHED";
-
-    String TYPE_ALIYUN_REDIS = "ALIYUN_REDIS";
-
-    String TYPE_ALIYUN_MEMCACHE = "ALIYUN_MEMCACHE";
 
     boolean setCache(String paramString, Object paramObject);
 

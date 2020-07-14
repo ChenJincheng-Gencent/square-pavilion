@@ -1135,7 +1135,7 @@ public class RedisCache extends AbstractCacheService {
     public Set<String> getKeys(String pattern) {
         log.debug("Start getting keys...");
         Set<String> keys = new HashSet<>();
-        Map<String, JedisPool> clusterNodes = this.jedisCluster.getClusterNodes();
+        Map<String, JedisPool> clusterNodes = jedisCluster.getClusterNodes();
         for (String k : clusterNodes.keySet()) {
             log.debug("Getting keys from: {}", k);
             JedisPool jp = clusterNodes.get(k);
