@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * 会员基本信息
+ * 会员信息
  *
  * @author Gencent
  * @date 2019/8/20
@@ -18,13 +18,13 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value = "MemberEo")
+@ApiModel(value = "MemberEo", description = "会员信息")
 public class MemberEo extends BaseEo {
 
     /**
-     * 姓名
+     * 昵称
      */
-    @ApiModelProperty(name = "name", value = "姓名")
+    @ApiModelProperty(name = "name", value = "昵称")
     private String name;
 
     /**
