@@ -193,6 +193,7 @@ public class RedisCache extends AbstractCacheService {
             shardedJedis = getShardedJedis();
             if (jds != null) {
                 result = jds.set(combineKey, jsonValue, setParams);
+                log.info("combineKey: {}, jsonValue: {}",combineKey, jsonValue);
             } else if (shardedJedis != null) {
                 result = shardedJedis.set(combineKey, jsonValue, setParams);
             } else if (jedisCluster != null) {
@@ -261,6 +262,7 @@ public class RedisCache extends AbstractCacheService {
             shardedJedis = getShardedJedis();
             if (jds != null) {
                 json = jds.get(combineKey);
+                log.info("combineKey: {}, json: {}", combineKey, json);
             } else if (shardedJedis != null) {
                 json = shardedJedis.get(combineKey);
             } else if (jedisCluster != null) {
