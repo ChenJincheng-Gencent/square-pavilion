@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Controller
 @ControllerAdvice
-@RequestMapping("/global/error")
+@RequestMapping("/global/exception")
 @RequiredArgsConstructor
 public class GlobalExceptionHandler {
 
