@@ -43,7 +43,7 @@ public class MemberController {
      */
     @GetMapping("/member/info")
     @ResponseBody
-    public RspDto selectMemberByMobile(@RequestParam("mobile") @Pattern(regexp = "^1[345789][0-9]{9}$", message = "手机号必须满足格式") String mobile) {
+    public RspDto selectMemberByMobile(@RequestParam("mobile") @Pattern(regexp = "^1[345789][0-9]{9}$", message = "手机号格式不对") String mobile) {
 
         if (StringUtil.isBlank(mobile)) {
             log.error("mobile is null or empty.");
