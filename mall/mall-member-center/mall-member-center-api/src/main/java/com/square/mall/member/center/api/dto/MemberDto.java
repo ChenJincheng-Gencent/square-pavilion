@@ -32,7 +32,7 @@ public class MemberDto implements Serializable {
     /**
      * 昵称
      */
-    @ApiModelProperty(name = "name", value = "昵称")
+    @ApiModelProperty(name = "name", value = "昵称", example = "xxx")
     @Length(max = 20, message = "昵称不能超过20个字符")
     @Pattern(regexp = "^[\\u4E00-\\u9FA5A-Za-z0-9\\*]*$", message = "昵称限制：最多20字符，包含文字、字母和数字")
     private String name;
@@ -40,28 +40,28 @@ public class MemberDto implements Serializable {
     /**
      * 手机号码
      */
-    @ApiModelProperty(name = "mobile", value = "手机号码")
+    @ApiModelProperty(name = "mobile", value = "手机号码", example = "13500000001")
     @Pattern(regexp = "^1[345789][0-9]{9}$", message = "手机号格式有误")
     private String mobile;
 
     /**
      * 等级
      */
-    @ApiModelProperty(name = "level", value = "等级", allowableValues = "1,2,3,4,5,6,7")
+    @ApiModelProperty(name = "level", value = "等级", allowableValues = "1,2,3,4,5,6,7", example = "1")
     @Range(min = 1L, max = 7L, message = "等级只能是0到7之间的值")
     private Integer level;
 
     /**
      * 性别
      */
-    @ApiModelProperty(name = "gender", value = "性别", allowableValues = "0,1,2")
+    @ApiModelProperty(name = "gender", value = "性别", allowableValues = "0,1,2", example = "0")
     @Range(max = 2L, message = "性别只能是0到2之间的值")
     private Integer gender;
 
     /**
      * 邮箱
      */
-    @ApiModelProperty(name = "email", value = "邮箱")
+    @ApiModelProperty(name = "email", value = "邮箱", example = "13500000001@139.com")
     @Email(message = "邮箱格式有误")
     private String email;
 
