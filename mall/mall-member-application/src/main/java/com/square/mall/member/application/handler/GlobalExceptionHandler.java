@@ -85,16 +85,6 @@ public class GlobalExceptionHandler {
             + ":" + msg);
     }
 
-    /**
-     * 统一处理业务异常
-     */
-    @ExceptionHandler(BusinessException.class)
-    @ResponseBody
-    public RspDto handleBusinessException(BusinessException t) {
-        String logMsg = getErrorLogMsg(t);
-        log.error("捕获到业务异常, {}, msg: {}", logMsg, t.getMessage());
-        return new RspDto("-1", t.getMessage());
-    }
 
     /**
      * 统一处理未知异常
@@ -105,7 +95,7 @@ public class GlobalExceptionHandler {
         String logMsg = getErrorLogMsg(e);
         // 未知异常
         log.error("捕获到未经处理的未知异常, {}", logMsg, e);
-        return new RspDto("-1", e.toString());
+        return RspDto.FAILED;
     }
 
 
