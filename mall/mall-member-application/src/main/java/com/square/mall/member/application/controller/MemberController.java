@@ -6,6 +6,9 @@ import com.square.mall.member.application.service.MemberQueryService;
 import com.square.mall.member.application.service.MemberService;
 import com.square.mall.member.center.api.dto.MemberDto;
 import com.square.mall.member.center.api.dto.response.MemberRspDto;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -27,6 +30,7 @@ import javax.validation.constraints.Pattern;
 @RequestMapping(value = "/member/v1")
 @Slf4j
 @Validated
+@Api(tags = "会员API接口")
 public class MemberController {
 
     @Resource
@@ -43,6 +47,8 @@ public class MemberController {
      */
     @GetMapping("/member/info")
     @ResponseBody
+    @ApiOperation(value = "根据手机号获取会员信息")
+    @ApiImplicitParam(name = "mobile", value = "手机号码", paramType = "query", dataTypeClass = String.class, required = true, example = "13500000001")
     public RspDto selectMemberByMobile(@RequestParam("mobile") @Pattern(regexp = "^1[345789][0-9]{9}$", message = "手机号格式不对") String mobile) {
 
         if (StringUtil.isBlank(mobile)) {
@@ -65,6 +71,7 @@ public class MemberController {
      */
     @PostMapping("/member/info")
     @ResponseBody
+    @ApiOperation(value = "插入会员信息")
     public RspDto insertMember(@RequestBody @Valid MemberDto memberDto) {
         RspDto<Long> id = memberService.insertMember(memberDto);
         log.info("id: {}, memberDto: {}", id.getData(), memberDto);
