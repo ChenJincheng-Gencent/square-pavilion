@@ -2,6 +2,7 @@ package com.square.mall.member.application.handler;
 
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.common.exception.BusinessException;
+import com.square.mall.common.util.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -78,8 +79,8 @@ public class GlobalExceptionHandler {
             // 其他类型的错误当成未知异常处理
             return handleUnknownException(e);
         }
-        log.warn("参数校验不通过, {}, msg: {}", logMsg, msg);
-        return RspDto.FAILED;
+        log.error("参数校验不通过, {}, msg: {}", logMsg, msg);
+        return new RspDto(ErrorCode.ME_APP_ME_PARA_ILLEGAL.getCode(), ErrorCode.ME_APP_ME_PARA_ILLEGAL+":"+msg);
     }
 
     /**

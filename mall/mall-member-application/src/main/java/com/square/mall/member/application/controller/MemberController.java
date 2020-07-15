@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.constraints.Pattern;
 
 /**
  * 会员信息Controller
@@ -39,7 +40,7 @@ public class MemberController {
      */
     @GetMapping("/member/info")
     @ResponseBody
-    public RspDto selectMemberByMobile(String mobile) {
+    public RspDto selectMemberByMobile(@Pattern(regexp = "^1[34578][0-9]{9}$", message = "手机号必须满足格式") String mobile) {
 
         if (StringUtil.isBlank(mobile)) {
             log.error("mobile is null or empty.");
