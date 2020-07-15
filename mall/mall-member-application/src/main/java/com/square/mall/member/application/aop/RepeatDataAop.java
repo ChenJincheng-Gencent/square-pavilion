@@ -47,14 +47,20 @@ public class RepeatDataAop {
     /**
      * redis的group
      */
-    private static final String REPEAT_DATA_GROUP = "repeat-data";
+    private static final String REPEAT_DATA_GROUP = "member-application:repeat-data";
     /**
      * 该事件内的重复表单验证时间(单位秒)
      */
     private static final Integer CACHE_TIME_OUT = 60;
 
+    /**
+     * url白名单
+     */
     private final static List<String> WHITE_NAME_LIST = new ArrayList<>();
 
+    /**
+     * 缓存key
+     */
     private final static ThreadLocal<String> CACHE_KEY = new ThreadLocal<>();
 
     static {
@@ -72,14 +78,12 @@ public class RepeatDataAop {
 
     @Around("repeatDataPoint()")
     public Object repeatDataProcess(ProceedingJoinPoint joinPoint) throws Throwable {
-        log.error("表单重复提交验证开始");
+
         String method = "";
-        String url = "";
         try {
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             if (attributes != null) {
                 HttpServletRequest request = attributes.getRequest();
-                url = request.getRequestURI();
                 method = request.getMethod();
                 if (REQUEST_METHOD.contains(method) && repeatDataValidator(request, joinPoint)) {
                     return new RspDto<>("-1", "系统正在为您处理上一次提交的内容，请稍候再提交。");
@@ -89,65 +93,28 @@ public class RepeatDataAop {
             log.error(e.getMessage(), e);
         }
         Object[] args = joinPoint.getArgs();
-        if (!WHITE_NAME_LIST.contains(url) && REQUEST_METHOD.contains(method)) {
-            replaceEmoji(args);
-        }
-        Object obj = null;
+        Object obj;
         try {
-            ///执行方法，以新的参数（如果不带args就是用原先的参数；这里带不带都可以，上面方法获取原先参数的引用做的修改）
             obj = joinPoint.proceed(args);
         } catch (Exception e) {
+            log.error(e.getMessage(), e);
             throw e;
         } finally {
-            cacheService.delCache(REPEAT_DATA_GROUP, CACHE_KEY.get());
+            if (REQUEST_METHOD.contains(method)) {
+                cacheService.delCache(REPEAT_DATA_GROUP, CACHE_KEY.get());
+            }
         }
         return obj;
     }
 
+
     /**
-     * 替换表情等特殊字段
-     * @param args
+     * 重复表单数据校验
+     *
+     * @param request 请求
+     * @param joinPoint 切入点
+     * @return 是否重复提交
      */
-    private void replaceEmoji(Object[] args) {
-        try {
-            if (args != null && args.length > 0) {
-                for (int i = 0; i < args.length; i++) {
-                    Object object = args[i];
-                    if (object != null) {
-                        if (object instanceof String) {
-                            object = ((String) object).replaceAll("\\t|\\r|\\n|\\u202C","");
-                            object = ((String) object).replaceAll("[\\ud800\\udc00-\\udbff\\udfff\\ud800-\\udfff]", "?");
-                            args[i] = object;
-                            continue;
-                        }
-
-                        Class clazz = object.getClass();
-                        if (clazz.getName().endsWith("Eo") || clazz.getName().endsWith("Dto")) {
-                            Field[] fields = clazz.getDeclaredFields();
-                            for (Field field : fields) {
-                                PropertyDescriptor pd = new PropertyDescriptor(field.getName(), clazz);
-                                Method getMethod = pd.getReadMethod();
-                                Object obj = getMethod.invoke(object);
-                                if (obj instanceof String) {
-                                    obj = ((String)obj).replaceAll("\\t|\\r|\\n|\\u202C","");
-                                    obj = ((String) obj).replaceAll("[\\ud800\\udc00-\\udbff\\udfff\\ud800-\\udfff]", "?");
-                                    Method setMethod = pd.getWriteMethod();
-                                    setMethod.invoke(object, obj);
-                                }
-                            }
-                        }
-
-                    }
-
-                }
-            }
-
-        } catch (Exception e) {
-            log.error("aop拦截异常，参数:{}", JSON.toJSONString(args), e);
-        }
-
-    }
-
     private boolean repeatDataValidator(HttpServletRequest request, ProceedingJoinPoint joinPoint) {
         Long userId = UserInfoUtil.getUserId();
         String params = JSON.toJSONString(request.getParameterMap());
@@ -162,19 +129,17 @@ public class RepeatDataAop {
         if (WHITE_NAME_LIST.contains(url)) {
             return false;
         }
-        Map<String, String> map = new HashMap<>(1);
-        map.put(url, params);
-        String nowUrlParams = Md5Util.getMd5(userId + ":" + map.toString());
+
+        String nowUrlParams = Md5Util.getMd5(userId + ":" + url + ":" + params);
+        log.info("nowUrlParams: {}", nowUrlParams);
         CACHE_KEY.set(nowUrlParams);
 
-        String preUrlParams = cacheService.getCache(REPEAT_DATA_GROUP, nowUrlParams, String.class);
-        if (preUrlParams == null) {
-            Long t = cacheService.setnx(REPEAT_DATA_GROUP, nowUrlParams, CACHE_TIME_OUT.toString());
-            cacheService.expire(REPEAT_DATA_GROUP, nowUrlParams, CACHE_TIME_OUT);
-            return null != t && t == 0;
-        } else {
+        String preUrlParamsValue = cacheService.getCache(REPEAT_DATA_GROUP, nowUrlParams, String.class);
+        log.info("preUrlParamsValue: {}", preUrlParamsValue);
+        if (null != preUrlParamsValue) {
             return true;
         }
+        return !cacheService.setCache(REPEAT_DATA_GROUP, nowUrlParams, CACHE_TIME_OUT, CACHE_TIME_OUT, null);
     }
 
 }
