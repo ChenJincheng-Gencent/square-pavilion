@@ -38,7 +38,7 @@ public class MemberDto implements Serializable {
      * 手机号码
      */
     @ApiModelProperty(name = "mobile", value = "手机号码")
-    @Pattern(regexp = "^1[34578][0-9]{9}$", message = "手机号必须满足格式")
+    @Pattern(regexp = "^1[345789][0-9]{9}$", message = "手机号必须满足格式")
     private String mobile;
 
     /**

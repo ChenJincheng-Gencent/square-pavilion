@@ -55,6 +55,7 @@ public class GlobalExceptionHandler {
             MethodArgumentNotValidException.class,
             ServletRequestBindingException.class,
             BindException.class})
+    @ResponseBody
     public RspDto handleValidationException(Exception e) {
         String logMsg = getErrorLogMsg(e);
         String msg;
@@ -80,7 +81,8 @@ public class GlobalExceptionHandler {
             return handleUnknownException(e);
         }
         log.error("参数校验不通过, {}, msg: {}", logMsg, msg);
-        return new RspDto(ErrorCode.ME_APP_ME_PARA_ILLEGAL.getCode(), ErrorCode.ME_APP_ME_PARA_ILLEGAL+":"+msg);
+        return new RspDto(ErrorCode.ME_APP_ME_PARA_ILLEGAL.getCode(), ErrorCode.ME_APP_ME_PARA_ILLEGAL.getMsg()
+            + ":" + msg);
     }
 
     /**
