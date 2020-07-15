@@ -14,13 +14,13 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>14</java.version>
         <dubbo.version>2.7.0</dubbo.version>
-
         <lombok.version>1.18.8</lombok.version>
         <mybatis.starter.version>2.1.0</mybatis.starter.version>
         <redis.starter.version>2.3.1.RELEASE</redis.starter.version>
         <fastjson.version>1.2.59</fastjson.version>
         <commons-lang3.version>3.9</commons-lang3.version>
         <swagger2.version>2.9.2</swagger2.version>
+        <knife4j.starter.version>2.0.4</knife4j.starter.version>
         <spring-boot-dubbo>2.7.0</spring-boot-dubbo>
         <aspectjweaver.version>1.9.5</aspectjweaver.version>
         <jedis.version>3.3.0</jedis.version>
