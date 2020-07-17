@@ -22,11 +22,11 @@
     <select id="selectMemberByMobile" resultMap="MemberMap">
         SELECT
         <include refid="need_column"/>
-        FROM member WHERE mobile = #{mobile};
+        FROM me_member WHERE mobile = #{mobile};
     </select>
 
     <insert id="insertMember" parameterType="com.square.mall.member.center.service.eo.MemberEo" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO member (`id`, `name`, `mobile`, `level`, `gender`, `email`, `create_time`, `update_time`)
+        INSERT INTO me_member (`id`, `name`, `mobile`, `level`, `gender`, `email`, `create_time`, `update_time`)
         VALUES (#{id}, #{name}, #{mobile}, #{level}, #{gender}, #{email}, now(), now())
     </insert>
 
