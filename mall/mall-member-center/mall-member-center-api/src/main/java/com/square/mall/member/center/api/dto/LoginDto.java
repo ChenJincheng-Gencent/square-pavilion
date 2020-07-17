@@ -28,7 +28,7 @@ public class LoginDto implements Serializable {
      * 会员ID
      */
     @ApiModelProperty(name = "memberId", value = "会员ID")
-    private String memberId;
+    private Long memberId;
 
     /**
      * 手机号码
