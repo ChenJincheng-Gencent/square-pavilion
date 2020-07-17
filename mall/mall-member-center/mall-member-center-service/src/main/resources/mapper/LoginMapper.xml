@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.square.mall.member.center.service.dao.LoginDao">
+
+    <resultMap id="LoginMap" type="com.square.mall.member.center.service.eo.LoginEo">
+        <id column="id" property="id"/>
+        <result column="member_id" property="memberId"/>
+        <result column="mobile" property="mobile"/>
+        <result column="token" property="token"/>
+        <result column="expire_time" property="expireTime"/>
+        <result column="try_times" property="tryTimes"/>
+    </resultMap>
+
+    <sql id="need_column">
+        `id`
+        `member_id`,
+        `mobile`,
+        `token`,
+        `expire_time`,
+        `try_times`
+    </sql>
+
+    <insert id="insertLogin" parameterType="com.square.mall.member.center.service.eo.LoginEo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO me_login (`id`, `member_id`, `mobile`, `token`, `expire_time`, `try_times`, `create_time`, `update_time`)
+        VALUES (#{id}, #{memberId}, #{mobile}, #{token}, #{expireTime}, #{tryTimes}, now(), now())
+    </insert>
+
+</mapper>
+

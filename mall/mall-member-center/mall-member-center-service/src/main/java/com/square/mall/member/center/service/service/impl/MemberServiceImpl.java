@@ -1,8 +1,7 @@
 package com.square.mall.member.center.service.service.impl;
 
-import com.github.pagehelper.util.StringUtil;
+import com.square.mall.common.util.StringUtil;
 import com.square.mall.member.center.api.dto.MemberDto;
-import com.square.mall.member.center.api.dto.response.MemberRspDto;
 import com.square.mall.member.center.service.dao.MemberDao;
 import com.square.mall.member.center.service.eo.MemberEo;
 import com.square.mall.member.center.service.service.MemberService;
@@ -27,9 +26,9 @@ public class MemberServiceImpl implements MemberService {
     private MemberDao memberDao;
 
     @Override
-    public MemberRspDto selectMemberByMobile(String mobile) {
+    public MemberDto selectMemberByMobile(String mobile) {
 
-        if (StringUtil.isEmpty(mobile)) {
+        if (StringUtil.isBlank(mobile)) {
             log.error("mobile is empty.");
             return null;
         }
@@ -39,9 +38,9 @@ public class MemberServiceImpl implements MemberService {
             return null;
         }
 
-        MemberRspDto memberRspDto = new MemberRspDto();
-        BeanUtils.copyProperties(memberEo, memberRspDto);
-        return memberRspDto;
+        MemberDto memberDto = new MemberDto();
+        BeanUtils.copyProperties(memberEo, memberDto);
+        return memberDto;
 
     }
 

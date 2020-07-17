@@ -22,13 +22,18 @@ import java.io.Serializable;
  * @date 2020/7/13
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "MemberDto", description = "会员信息")
 public class MemberDto implements Serializable {
 
     private static final long serialVersionUID = -1315053788575053945L;
+
+    /**
+     * 数据库ID
+     */
+    @ApiModelProperty(name = "id", value = "数据库ID")
+    private Long id;
 
     /**
      * 昵称

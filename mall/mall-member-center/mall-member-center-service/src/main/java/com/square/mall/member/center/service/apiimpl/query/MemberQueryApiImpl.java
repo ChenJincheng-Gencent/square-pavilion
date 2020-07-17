@@ -1,11 +1,11 @@
 package com.square.mall.member.center.service.apiimpl.query;
 
 import com.square.mall.common.dto.RspDto;
-import com.square.mall.member.center.api.dto.response.MemberRspDto;
+import com.square.mall.common.util.StringUtil;
+import com.square.mall.member.center.api.dto.MemberDto;
 import com.square.mall.member.center.api.query.MemberQueryApi;
 import com.square.mall.member.center.service.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Service;
 
 import javax.annotation.Resource;
@@ -24,10 +24,10 @@ public class MemberQueryApiImpl implements MemberQueryApi {
     private MemberService memberService;
 
     @Override
-    public RspDto<MemberRspDto> selectMemberByMobile(String mobile) {
+    public RspDto<MemberDto> selectMemberByMobile(String mobile) {
 
-        if (StringUtils.isEmpty(mobile)) {
-            log.error("mobile is empty.");
+        if (StringUtil.isBlank(mobile)) {
+            log.error("mobile is blank.");
             return null;
         }
 
