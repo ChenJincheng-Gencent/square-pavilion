@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.square.mall.cache.constant.WorkModel;
 import com.square.mall.cache.vo.CacheRegistryVo;
-import com.square.mall.common.exception.BusinessException;
 import com.square.mall.common.util.StringUtil;
 import com.square.mall.common.util.SymbolConstant;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +36,6 @@ public class RedisCache extends AbstractCacheService {
     public void init(String group, CacheRegistryVo cacheRegistryVo) {
         log.info("group:{}, redis配置:{}", group, cacheRegistryVo);
         super.init(group, cacheRegistryVo);
-        checkAddress(cacheRegistryVo.getAddresses());
         dbIndex = cacheRegistryVo.getDbIndex();
         JedisPoolConfig poolConfig = new JedisPoolConfig();
         setConfig(poolConfig);
@@ -56,13 +54,7 @@ public class RedisCache extends AbstractCacheService {
             shardedJedisPool = new ShardedJedisPool(poolConfig, getShardInfoList(cacheRegistryVo), Hashing.MURMUR_HASH,
                 Sharded.DEFAULT_KEY_TAG_PATTERN);
         } else {
-            throw new BusinessException("初始化RedisCache找不到运行模式。workModel:"+cacheRegistryVo.getWorkModel());
-        }
-    }
-
-    private void checkAddress(String[] addresses) {
-        if (addresses == null) {
-            throw new BusinessException("连接RedisCache地址不能为空");
+            log.error("初始化RedisCache找不到运行模式。workModel: {}", cacheRegistryVo.getWorkModel());
         }
     }
 
