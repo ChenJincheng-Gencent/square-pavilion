@@ -11,6 +11,7 @@ import org.hibernate.validator.constraints.Range;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
@@ -40,7 +41,8 @@ public class MemberDto implements Serializable {
     /**
      * 手机号码
      */
-    @ApiModelProperty(name = "mobile", value = "手机号码", example = "13500000001")
+    @ApiModelProperty(name = "mobile", value = "手机号码", required = true, example = "13500000001")
+    @NotBlank(message = "手机号不能为空")
     @Pattern(regexp = "^1[345789][0-9]{9}$", message = "手机号格式有误")
     private String mobile;
 
