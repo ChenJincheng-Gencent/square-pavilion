@@ -1,7 +1,7 @@
 package com.square.mall.member.application.controller;
 
 import com.square.mall.common.dto.RspDto;
-import com.square.mall.member.application.service.MemberService;
+import com.square.mall.member.application.service.LoginService;
 import com.square.mall.member.center.api.dto.MemberDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -18,21 +18,22 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 /**
- * 会员信息Controller
+ * 登录Controller
  *
  * @author Gencent
- * @date 2020/7/3
+ * @date 2020/7/17
  */
 @Controller
 @EnableAutoConfiguration
 @RequestMapping(value = "/member/v1")
 @Slf4j
 @Validated
-@Api(tags = "会员REST API接口")
-public class MemberController {
+@Api(tags = "登录API接口")
+public class LoginController {
 
     @Resource
-    private MemberService memberService;
+    private LoginService loginService;
+
 
     /**
      * 根据手机号获取会员信息
@@ -40,35 +41,21 @@ public class MemberController {
      * @param mobile 手机号
      * @return 会员信息
      */
-    @GetMapping("/member/info")
+    @PostMapping("/login")
     @ResponseBody
     @ApiOperation(value = "根据手机号获取会员信息")
     @ApiImplicitParam(name = "mobile", value = "手机号码", paramType = "query", dataTypeClass = String.class,
         required = true, example = "13500000001")
-    public RspDto selectMemberByMobile(@RequestParam("mobile") @Pattern(regexp = "^1[345789][0-9]{9}$",
-        message = "手机号格式不对") @NotBlank(message = "手机号不能为空") String mobile) {
+    public RspDto login(@RequestParam("mobile") @Pattern(regexp = "^1[345789][0-9]{9}$",
+        message = "手机号格式不对") @NotBlank(message = "手机号不能为空")String mobile, @RequestParam("authCode")
+        @NotBlank(message = "验证码不能为空") String authCode) {
 
-        RspDto<MemberDto> memberRspDto = memberService.selectMemberByMobile(mobile);
-        log.info("memberRspDto: {}, mobile: {}", memberRspDto, mobile);
+        log.info("mobile: {}, authCode: {}", mobile, authCode);
+        RspDto<String> token = loginService.login(mobile, authCode);
+        log.info("token: {}, mobile: {}, authCode: {}", token, mobile, authCode);
 
-        return memberRspDto;
+        return token;
 
     }
-
-    /**
-     * 插入会员信息
-     *
-     * @param memberDto 会员信息
-     * @return 数据库ID
-     */
-    @PostMapping("/member/info")
-    @ResponseBody
-    @ApiOperation(value = "插入会员信息")
-    public RspDto insertMember(@RequestBody @Valid MemberDto memberDto) {
-        RspDto<Long> id = memberService.insertMember(memberDto);
-        log.info("id: {}, memberDto: {}", id.getData(), memberDto);
-        return id;
-    }
-
 
 }
