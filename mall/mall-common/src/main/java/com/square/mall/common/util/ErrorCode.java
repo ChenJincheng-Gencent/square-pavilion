@@ -31,7 +31,12 @@ public enum ErrorCode {
     /**
      * 参数不合法
      */
-    ME_APP_ME_PARA_ILLEGAL("01-01-P-00001","参数不合法");
+    ME_APP_ME_PARA_ILLEGAL("01-01-P-00001","参数不合法"),
+
+    /**
+     * 验证码错误
+     */
+    ME_APP_ME_AUTH_CODE_ERROR("01-01-B-00002","验证码错误");
 
 
     /**
