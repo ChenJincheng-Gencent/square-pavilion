@@ -1,11 +1,8 @@
 package com.square.mall.member.center.service.service.impl;
 
-import com.square.mall.common.dto.RspDto;
 import com.square.mall.member.center.api.dto.LoginDto;
 import com.square.mall.member.center.service.dao.LoginDao;
-import com.square.mall.member.center.service.dao.MemberDao;
 import com.square.mall.member.center.service.eo.LoginEo;
-import com.square.mall.member.center.service.eo.MemberEo;
 import com.square.mall.member.center.service.service.LoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
