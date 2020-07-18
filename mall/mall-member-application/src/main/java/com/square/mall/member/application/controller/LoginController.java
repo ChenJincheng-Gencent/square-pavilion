@@ -36,14 +36,14 @@ public class LoginController {
 
 
     /**
-     * 根据手机号获取会员信息
+     * 手机号码登录
      *
      * @param mobile 手机号
-     * @return 会员信息
+     * @return token
      */
     @PostMapping("/login")
     @ResponseBody
-    @ApiOperation(value = "根据手机号获取会员信息")
+    @ApiOperation(value = "手机号码登录")
     @ApiImplicitParam(name = "mobile", value = "手机号码", paramType = "query", dataTypeClass = String.class,
         required = true, example = "13500000001")
     public RspDto login(@RequestParam("mobile") @Pattern(regexp = "^1[345789][0-9]{9}$",
