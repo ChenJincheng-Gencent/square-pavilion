@@ -12,7 +12,7 @@
     </resultMap>
 
     <sql id="need_column">
-        `id`
+        `id`,
         `name`,
         `mobile`,
         `level`,
