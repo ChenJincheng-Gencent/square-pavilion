@@ -28,16 +28,16 @@ import javax.annotation.Resource;
 @Slf4j
 public class LoginServiceImpl implements LoginService {
 
-    @Resource
+    @Reference
     private MemberApi memberApi;
-
-    @Resource
-    private CacheService cacheService;
 
     @Reference
     private MemberQueryApi memberQueryApi;
 
     @Resource
+    private CacheService cacheService;
+
+    @Reference
     private LoginApi loginApi;
 
     @Override
