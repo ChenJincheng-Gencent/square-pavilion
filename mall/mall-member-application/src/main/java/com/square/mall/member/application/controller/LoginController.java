@@ -58,4 +58,22 @@ public class LoginController {
 
     }
 
+    /**
+     * 根据手机号获取短信验证码
+     *
+     * @param mobile 手机号
+     * @return 会员信息
+     */
+    @PostMapping("/auth/code")
+    @ResponseBody
+    @ApiOperation(value = "根据手机号获取短信验证码")
+    @ApiImplicitParam(name = "mobile", value = "手机号码", paramType = "query", dataTypeClass = String.class,
+            required = true, example = "13500000001")
+    public RspDto generateAuthCode(@RequestParam("mobile") @Pattern(regexp = "^1[345789][0-9]{9}$",
+            message = "手机号格式不对") @NotBlank(message = "手机号不能为空") String mobile) {
+
+        return loginService.generateAuthCode(mobile);
+
+    }
+
 }

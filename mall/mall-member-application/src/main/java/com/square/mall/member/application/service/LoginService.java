@@ -19,4 +19,12 @@ public interface LoginService {
      */
     RspDto<String> login(String mobile, String authCode);
 
+    /**
+     * 生成短信验证码
+     *
+     * @param mobile 手机号
+     * @return 响应
+     */
+    RspDto generateAuthCode(String mobile);
+
 }
