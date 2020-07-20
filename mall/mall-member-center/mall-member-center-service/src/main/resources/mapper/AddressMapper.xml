@@ -38,7 +38,7 @@
         INSERT INTO me_address (`id`, `member_id`, `receiver`, `mobile`, `province`, `city`, `county`, `street`, `detail`,
         `is_default`, `create_time`, `update_time`)
         VALUES (#{id}, #{memberId}, #{receiver}, #{mobile}, #{province}, #{city}, #{county}, #{street}, #{detail},
-        #{isDefaut}, now(), now())
+        #{isDefault}, now(), now())
     </insert>
 
     <insert id="updateAddress" parameterType="com.square.mall.member.center.service.eo.AddressEo">
