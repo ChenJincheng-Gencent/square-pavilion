@@ -21,7 +21,7 @@ import org.springframework.web.servlet.config.annotation.*;
 @RestController
 @ComponentScan(basePackages = {"com.square.mall.member.application.controller"}, useDefaultFilters = false,
     includeFilters = @ComponentScan.Filter(RestController.class))
-public class ContextConfig extends WebMvcConfigurerAdapter {
+public class ContextConfig implements WebMvcConfigurer {
 
     @Bean
     public ServletRegistrationBean restServlet() {
@@ -47,8 +47,9 @@ public class ContextConfig extends WebMvcConfigurerAdapter {
 
 
     @Override
-    public void addInterceptors(InterceptorRegistry tradeCoreRegistryService) {
-        InterceptorRegistration registration = tradeCoreRegistryService.addInterceptor(authInterceptor()).addPathPatterns("/**");
+    public void addInterceptors(InterceptorRegistry interceptorRegistry) {
+        InterceptorRegistration registration = interceptorRegistry.addInterceptor(authInterceptor()).addPathPatterns("/**");
+        //swagger相关的URL
         registration.excludePathPatterns("/doc.html");
         registration.excludePathPatterns("/swagger-resources/configuration/ui");
         registration.excludePathPatterns("/swagger-resources");
@@ -56,7 +57,8 @@ public class ContextConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        /**
+
+        /*
          * SpringBoot自动配置本身并不会把/swagger-ui.html
          * 这个路径映射到对应的目录META-INF/resources/下面
          * 采用WebMvcConfigurerAdapter将swagger的静态文件进行发布;
@@ -68,8 +70,4 @@ public class ContextConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
 
-    @Override
-    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-        configurer.favorPathExtension(false);
-    }
 }
