@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -40,6 +41,7 @@ public class AddressDto implements Serializable {
      */
     @NotNull(message = "会员ID不能为空")
     @ApiModelProperty(name = "memberId", value = "会员ID", required = true, example = "1")
+    @Min(value = 0L, message = "会员ID最小值为1")
     private Long memberId;
 
     /**
