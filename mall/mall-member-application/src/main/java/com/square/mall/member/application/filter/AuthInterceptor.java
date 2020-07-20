@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -23,16 +24,17 @@ import java.util.Set;
 @NoArgsConstructor
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
-    private static final String RESP_RESULT = "{\"code\":401,\"msg\":\"请先登录！\"}";
+    private static final String RESP_RESULT = "{\"code\":401,\"msg\":\"unauthorized!\"}";
 
     /**
-     * 可直接访问url
-     * */
-    private static Set<String> uriWhiteSet;
+     * 可直接访问的url
+     */
+    private static Set<String> uriWhiteSet = new HashSet<>();
 
     static {
-        uriWhiteSet.add("/login");
-        uriWhiteSet.add("/auth/code");
+        uriWhiteSet.add("/error");
+        uriWhiteSet.add("/member/v1/login");
+        uriWhiteSet.add("/member/v1/auth/code");
     }
 
     @Resource
@@ -52,7 +54,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
                 return isContinue;
             }
             // 需要token才能访问的uri
-            String authToken = httpRequest.getHeader("autho");
+            String authToken = httpRequest.getHeader("auth");
             if (StringUtils.isEmpty(authToken)) {
                 return isContinue;
             }

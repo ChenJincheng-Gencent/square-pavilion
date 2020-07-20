@@ -36,7 +36,7 @@ public class ContextConfig extends WebMvcConfigurerAdapter {
         ServletRegistrationBean registrationBean = new ServletRegistrationBean(restDispatcherServlet);
         registrationBean.setLoadOnStartup(1);
         //指定urlmapping
-        registrationBean.addUrlMappings("/api/*");
+        //registrationBean.addUrlMappings("/api/*");
         return registrationBean;
     }
 
@@ -49,11 +49,21 @@ public class ContextConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry tradeCoreRegistryService) {
         InterceptorRegistration registration = tradeCoreRegistryService.addInterceptor(authInterceptor()).addPathPatterns("/**");
-        registration.excludePathPatterns("/**/api");
+        registration.excludePathPatterns("/doc.html");
+        registration.excludePathPatterns("/swagger-resources/configuration/ui");
+        registration.excludePathPatterns("/swagger-resources");
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        /**
+         * SpringBoot自动配置本身并不会把/swagger-ui.html
+         * 这个路径映射到对应的目录META-INF/resources/下面
+         * 采用WebMvcConfigurerAdapter将swagger的静态文件进行发布;
+         */
+        registry.addResourceHandler("doc.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+
         //将所有/static/** 访问都映射到classpath:/static/ 目录下
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
