@@ -11,7 +11,7 @@ import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 /**
- * 登录信息
+ * 登录信息DTO
  *
  * @author Gencent
  * @date 2020/7/17

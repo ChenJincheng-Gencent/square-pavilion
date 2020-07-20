@@ -21,6 +21,8 @@ import lombok.NoArgsConstructor;
 @ApiModel(value = "LoginEo", description = "登录信息")
 public class LoginEo extends BaseEo {
 
+    private static final long serialVersionUID = 5048565640663101859L;
+
     /**
      * 会员ID
      */

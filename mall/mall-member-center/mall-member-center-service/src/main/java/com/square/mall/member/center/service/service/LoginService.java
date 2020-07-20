@@ -1,6 +1,5 @@
 package com.square.mall.member.center.service.service;
 
-import com.square.mall.common.dto.RspDto;
 import com.square.mall.member.center.api.dto.LoginDto;
 
 /**
