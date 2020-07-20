@@ -39,7 +39,7 @@ public class AddressDto implements Serializable {
      * 会员ID
      */
     @NotNull(message = "会员ID不能为空")
-    @ApiModelProperty(name = "memberId", value = "会员ID")
+    @ApiModelProperty(name = "memberId", value = "会员ID", required = true, example = "1")
     private Long memberId;
 
     /**
@@ -63,7 +63,7 @@ public class AddressDto implements Serializable {
      */
     @NotBlank(message = "省份不能为空")
     @Length(max = 20, message = "省份不能超过20个字符")
-    @ApiModelProperty(name = "province", value = "省份")
+    @ApiModelProperty(name = "province", value = "省份", required = true, example = "浙江省")
     private String province;
 
     /**
@@ -71,7 +71,7 @@ public class AddressDto implements Serializable {
      */
     @Length(max = 20, message = "城市不能超过20个字符")
     @NotBlank(message = "城市不能为空")
-    @ApiModelProperty(name = "city", value = "城市")
+    @ApiModelProperty(name = "city", value = "城市", required = true, example = "杭州市")
     private String city;
 
     /**
@@ -79,7 +79,7 @@ public class AddressDto implements Serializable {
      */
     @Length(max = 20, message = "区县不能超过20个字符")
     @NotBlank(message = "区县不能为空")
-    @ApiModelProperty(name = "county", value = "区县")
+    @ApiModelProperty(name = "county", value = "区县", required = true, example = "滨江区")
     private String county;
 
     /**
@@ -87,7 +87,7 @@ public class AddressDto implements Serializable {
      */
     @Length(max = 20, message = "街道/乡镇不能超过20个字符")
     @NotBlank(message = "街道/乡镇不能为空")
-    @ApiModelProperty(name = "street", value = "街道/乡镇")
+    @ApiModelProperty(name = "street", value = "街道/乡镇", required = true, example = "浦沿街道")
     private String street;
 
     /**
@@ -95,7 +95,7 @@ public class AddressDto implements Serializable {
      */
     @Length(max = 50, message = "详细地址不能超过50个字符")
     @NotBlank(message = "详细地址不能为空")
-    @ApiModelProperty(name = "detail", value = "详细地址")
+    @ApiModelProperty(name = "detail", value = "详细地址", required = true, example = "xx小区xx幢xx单元xx号")
     private String detail;
 
     /**
