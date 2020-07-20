@@ -28,7 +28,7 @@ import javax.validation.constraints.Pattern;
 @RequestMapping(value = "/member/v1")
 @Slf4j
 @Validated
-@Api(tags = "登录API接口")
+@Api(tags = "登录REST API")
 public class LoginController {
 
     @Resource
@@ -59,14 +59,14 @@ public class LoginController {
     }
 
     /**
-     * 根据手机号获取短信验证码
+     * 获取短信验证码
      *
      * @param mobile 手机号
-     * @return 会员信息
+     * @return 响应结果
      */
     @PostMapping("/auth/code")
     @ResponseBody
-    @ApiOperation(value = "根据手机号获取短信验证码")
+    @ApiOperation(value = "获取短信验证码")
     @ApiImplicitParam(name = "mobile", value = "手机号码", paramType = "query", dataTypeClass = String.class,
             required = true, example = "13500000001")
     public RspDto generateAuthCode(@RequestParam("mobile") @Pattern(regexp = "^1[345789][0-9]{9}$",

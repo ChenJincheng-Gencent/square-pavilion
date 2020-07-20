@@ -28,7 +28,7 @@ import javax.validation.constraints.Pattern;
 @RequestMapping(value = "/member/v1")
 @Slf4j
 @Validated
-@Api(tags = "会员REST API接口")
+@Api(tags = "会员REST API")
 public class MemberController {
 
     @Resource
