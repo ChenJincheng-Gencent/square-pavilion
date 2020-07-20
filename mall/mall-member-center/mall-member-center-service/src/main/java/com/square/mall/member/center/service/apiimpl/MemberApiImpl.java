@@ -27,4 +27,10 @@ public class MemberApiImpl implements MemberApi {
         return new RspDto<>(memberService.insertMember(memberDto));
     }
 
+    @Override
+    public RspDto updateMemberByMobile(MemberDto memberDto) {
+        memberService.updateMemberByMobile(memberDto);
+        return RspDto.SUCCESS;
+    }
+
 }

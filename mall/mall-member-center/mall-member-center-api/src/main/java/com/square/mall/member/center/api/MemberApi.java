@@ -19,4 +19,12 @@ public interface MemberApi {
      */
     RspDto<Long> insertMember(MemberDto memberDto);
 
+    /**
+     * 根据手机号码更新会员信息
+     *
+     * @param memberDto 会员信息
+     * @return 响应
+     */
+    RspDto updateMemberByMobile(MemberDto memberDto);
+
 }

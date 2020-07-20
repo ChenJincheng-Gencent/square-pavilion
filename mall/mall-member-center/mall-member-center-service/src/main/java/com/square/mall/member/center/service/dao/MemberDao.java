@@ -28,4 +28,11 @@ public interface MemberDao {
      */
     void insertMember(MemberEo memberEo);
 
+    /**
+     * 根据手机号码更新会员信息
+     *
+     * @param memberEo 会员信息
+     */
+    void updateMemberByMobile(MemberEo memberEo);
+
 }

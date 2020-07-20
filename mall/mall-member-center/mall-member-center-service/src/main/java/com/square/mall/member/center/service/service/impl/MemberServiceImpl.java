@@ -59,4 +59,18 @@ public class MemberServiceImpl implements MemberService {
 
     }
 
+    @Override
+    public void updateMemberByMobile(MemberDto memberDto) {
+
+        if (null == memberDto || StringUtil.isBlank(memberDto.getMobile())) {
+            log.error("memberDto or mobile is null.");
+            return;
+        }
+
+        MemberEo memberEo = new MemberEo();
+        BeanUtils.copyProperties(memberDto, memberEo);
+        memberDao.updateMemberByMobile(memberEo);
+
+    }
+
 }

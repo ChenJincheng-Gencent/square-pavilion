@@ -26,4 +26,11 @@ public interface MemberService {
      */
     Long insertMember(MemberDto memberDto);
 
+    /**
+     * 根据手机号码更新会员信息
+     *
+     * @param memberDto 会员信息
+     */
+    void updateMemberByMobile(MemberDto memberDto);
+
 }

@@ -31,5 +31,23 @@
         VALUES (#{id}, #{name}, #{mobile}, #{level}, #{gender}, #{email}, now(), now())
     </insert>
 
+    <insert id="updateMemberByMobile" parameterType="com.square.mall.member.center.service.eo.MemberEo">
+        UPDATE me_member SET
+        <if test="name != null and name !=''">
+            name = #{name},
+        </if>
+        <if test="level != null">
+            level = #{level},
+        </if>
+        <if test="gender != null">
+            gender = #{gender},
+        </if>
+        <if test="email != null and email !=''">
+            email = #{email},
+        </if>
+        update_time = now()
+        WHERE mobile = #{mobile}
+    </insert>
+
 </mapper>
 
