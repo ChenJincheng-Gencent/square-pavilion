@@ -61,6 +61,7 @@ public class LoginServiceImpl implements LoginService {
             memberId = oldMemberDto.getId();
         }
         String token = JwtUtil.sign(mobile, memberId);
+        cacheService.setCache("login:auth:token:" + mobile, token, 24*60*60);
         LoginDto loginDto = new LoginDto();
         loginDto.setMemberId(memberId);
         loginDto.setMobile(mobile);
