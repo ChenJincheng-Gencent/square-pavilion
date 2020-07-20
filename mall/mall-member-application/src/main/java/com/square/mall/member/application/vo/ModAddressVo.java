@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
@@ -32,7 +33,7 @@ public class ModAddressVo implements Serializable {
      * 数据库ID
      */
     @NotNull(message = "数据库ID不能为空")
-    @Range(min = 1L, message = "数据库ID最小值为1")
+    @Min(value = 0L, message = "数据库ID最小值为1")
     @ApiModelProperty(name = "id", value = "数据库ID")
     private Long id;
 
