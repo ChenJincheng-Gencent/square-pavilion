@@ -34,4 +34,9 @@ public class MemberServiceMockImpl implements MemberService {
         return new RspDto<>(0L);
     }
 
+    @Override
+    public RspDto updateMemberByMobile(MemberDto memberDto) {
+        return RspDto.SUCCESS;
+    }
+
 }

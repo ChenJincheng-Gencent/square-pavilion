@@ -33,4 +33,9 @@ public class MemberServiceImpl implements MemberService {
         return memberApi.insertMember(memberDto);
     }
 
+    @Override
+    public RspDto updateMemberByMobile(MemberDto memberDto) {
+        return memberApi.updateMemberByMobile(memberDto);
+    }
+
 }

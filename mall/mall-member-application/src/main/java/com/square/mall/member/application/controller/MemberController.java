@@ -70,5 +70,18 @@ public class MemberController {
         return id;
     }
 
+    /**
+     * 根据手机号码更新会员信息
+     *
+     * @param memberDto 会员信息
+     * @return 响应
+     */
+    @PutMapping("/member/info")
+    @ResponseBody
+    @ApiOperation(value = "根据手机号码更新会员信息")
+    public RspDto updateMemberByMobile(@RequestBody @Valid MemberDto memberDto) {
+       return memberService.updateMemberByMobile(memberDto);
+    }
+
 
 }
