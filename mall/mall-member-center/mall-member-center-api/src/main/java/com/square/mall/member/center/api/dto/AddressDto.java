@@ -1,6 +1,5 @@
 package com.square.mall.member.center.api.dto;
 
-import com.square.mall.common.eo.BaseEo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
