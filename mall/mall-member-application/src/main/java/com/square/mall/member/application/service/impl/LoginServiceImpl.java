@@ -51,6 +51,7 @@ public class LoginServiceImpl implements LoginService {
 
         Long memberId;
         MemberDto oldMemberDto = memberQueryApi.selectMemberByMobile(mobile).getData();
+        log.info("oldMemberDto: {}, mobile: {}", oldMemberDto, mobile);
         if (null == oldMemberDto) {
             log.warn("该用户第一次注册。mobile: {}", mobile);
             MemberDto memberDto = new MemberDto();
