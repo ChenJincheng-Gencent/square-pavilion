@@ -39,7 +39,7 @@ public class LoginDto implements Serializable {
     private String mobile;
 
     /**
-     * token
+     * 令牌
      */
     @ApiModelProperty(name = "token", value = "令牌")
     private String token;

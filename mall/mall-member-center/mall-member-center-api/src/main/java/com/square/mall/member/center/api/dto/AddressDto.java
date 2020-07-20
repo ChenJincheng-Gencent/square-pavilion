@@ -31,6 +31,12 @@ public class AddressDto implements Serializable {
     private static final long serialVersionUID = 7626193990345770251L;
 
     /**
+     * 数据库ID
+     */
+    @ApiModelProperty(name = "id", value = "数据库ID")
+    private Long id;
+
+    /**
      * 会员ID
      */
     @NotNull(message = "会员ID不能为空")
@@ -41,8 +47,7 @@ public class AddressDto implements Serializable {
      * 收货人
      */
     @NotBlank(message = "收货人不能为空")
-    @Length(max = 20, message = "收货人不能超过20个字符")
-    @Pattern(regexp = "^[\\u4E00-\\u9FA5A-Za-z0-9\\*]*$", message = "收货人限制：最多20字符，包含文字、字母和数字")
+    @Pattern(regexp = "^[\\u4e00-\\u9fa5]{1,7}$|^[\\dA-Za-z_]{1,14}$", message = "最长不得超过7个汉字，或14个字节(数字，字母和下划线)")
     @ApiModelProperty(name = "receiver", value = "收货人", required = true, example = "xxx")
     private String receiver;
 

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.square.mall.member.center.service.dao.AddressDao">
+
+    <resultMap id="AddressMap" type="com.square.mall.member.center.service.eo.AddressEo">
+        <id column="id" property="id"/>
+        <result column="member_id" property="memberId"/>
+        <result column="name" property="receiver"/>
+        <result column="mobile" property="mobile"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="county" property="county"/>
+        <result column="street" property="street"/>
+        <result column="detail" property="detail"/>
+        <result column="is_default" property="isDefault"/>
+    </resultMap>
+
+    <sql id="need_column">
+        `id`,
+        `member_id`,
+        `receiver`,
+        `mobile`,
+        `province`,
+        `city`,
+        `county`,
+        `street`,
+        `detail`,
+        `is_default`
+    </sql>
+
+    <select id="selectAddressByMemberId" resultMap="AddressMap">
+        SELECT
+        <include refid="need_column"/>
+        FROM me_address WHERE member_id = #{memberId};
+    </select>
+
+    <insert id="insertAddress" parameterType="com.square.mall.member.center.service.eo.AddressEo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO me_address (`id`, `member_id`, `receiver`, `mobile`, `province`, `city`, `county`, `street`, `detail`,
+        `is_default`, `create_time`, `update_time`)
+        VALUES (#{id}, #{memberId}, #{receiver}, #{mobile}, #{province}, #{city}, #{county}, #{street}, #{detail},
+        #{isDefaut}, now(), now())
+    </insert>
+
+    <insert id="updateAddress" parameterType="com.square.mall.member.center.service.eo.AddressEo">
+        UPDATE me_address SET
+        <if test="memberId != null">
+            member_id = #{memberId},
+        </if>
+        <if test="receiver != null and receiver !=''">
+            receiver = #{receiver},
+        </if>
+        <if test="mobile != null and mobile !=''">
+            mobile = #{mobile},
+        </if>
+        <if test="province != null and province !=''">
+            province = #{province},
+        </if>
+        <if test="city != null and city !=''">
+            city = #{city},
+        </if>
+        <if test="county != null and county !=''">
+            county = #{county},
+        </if>
+        <if test="street != null and street !=''">
+            street = #{street},
+        </if>
+        <if test="detail != null and detail !=''">
+            detail = #{detail},
+        </if>
+        <if test="isDefault != null">
+            is_default = #{isDefault},
+        </if>
+        update_time = now()
+        WHERE id = #{id}
+    </insert>
+
+</mapper>
+

@@ -39,8 +39,7 @@ public class MemberDto implements Serializable {
      * 昵称
      */
     @ApiModelProperty(name = "name", value = "昵称", example = "xxx")
-    @Length(max = 20, message = "昵称不能超过20个字符")
-    @Pattern(regexp = "^[\\u4E00-\\u9FA5A-Za-z0-9\\*]*$", message = "昵称限制：最多20字符，包含文字、字母和数字")
+    @Pattern(regexp = "^[\\u4e00-\\u9fa5]{1,7}$|^[\\dA-Za-z_]{1,14}$", message = "最长不得超过7个汉字，或14个字节(数字，字母和下划线)")
     private String name;
 
     /**
