@@ -2,6 +2,7 @@ package com.square.mall.member.application.filter;
 
 import com.square.mall.cache.api.CacheService;
 import com.square.mall.common.util.JwtUtil;
+import com.square.mall.common.util.StringUtil;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -43,48 +44,53 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest httpRequest, HttpServletResponse httpResponse, Object handler) throws Exception {
-        boolean isContinue = false;
+
+        boolean isOk = false;
         try {
             String uri = httpRequest.getRequestURI().replace(httpRequest.getContextPath(), "");
             log.info("uri: " + uri);
             // 可直接访问的uri
             if (uriWhiteSet.contains(uri)) {
-                isContinue = true;
                 log.info("可直接访问的uri = {}", uri);
-                return isContinue;
+                isOk = true;
+                return isOk;
             }
             // 需要token才能访问的uri
-            String authToken = httpRequest.getHeader("auth");
-            if (StringUtils.isEmpty(authToken)) {
-                return isContinue;
+            String token = httpRequest.getHeader("auth");
+            if (StringUtil.isBlank(token)) {
+                log.error("消息头没有传auth参数！uri: {}", uri);
+                return isOk;
             }
-            String mobile = JwtUtil.getMobile(authToken);
-            isContinue = checkToken(mobile, authToken);
+            String mobile = JwtUtil.getMobile(token);
+            String key = "login:auth:token:" + mobile;
+            isOk = checkToken(key, token);
+            return isOk;
         } catch (Exception e) {
             log.error("error message", e);
         } finally {
-            log.info("isContinue值为 {}", isContinue);
-            if (!isContinue) {
-                String status = String.valueOf(HttpServletResponse.SC_UNAUTHORIZED);
-                httpResponse.setStatus(Integer.parseInt(status));
+
+            if (!isOk) {
+                httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 PrintWriter out = httpResponse.getWriter();
                 out.append(RESP_RESULT);
                 out.close();
             }
         }
-        return isContinue;
+        return isOk;
     }
 
 
     /**
-     * 验证token
-     * @param key
-     * @param authToken
-     * @return 验证通过返回true  否则返回false
+     *  验证token
+     *
+     * @param key 缓存Key
+     * @param token 令牌
+     * @return 是否严重通过
      */
-    private boolean checkToken(String key, String authToken) {
-        String authTokenCache = cacheService.getCache("login:auth:token:"+key, String.class);
-        return authToken.equals(authTokenCache);
+    private boolean checkToken(String key, String token) {
+        String tokenCache = cacheService.getCache(key, String.class);
+        log.info("token: {}, tokenCache: {}", token, tokenCache);
+        return token.equals(tokenCache);
     }
 
 }

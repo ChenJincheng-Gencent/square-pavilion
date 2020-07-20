@@ -11,7 +11,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.*;
 
 /**
- * 描述
+ * 上下文配置
  *
  * @author Gencent
  * @date 2020/7/20
