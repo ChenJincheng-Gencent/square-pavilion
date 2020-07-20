@@ -41,6 +41,7 @@ public class ModAddressVo implements Serializable {
      * 会员ID
      */
     @ApiModelProperty(name = "memberId", value = "会员ID")
+    @Min(value = 0L, message = "会员ID最小值为1")
     private Long memberId;
 
     /**
