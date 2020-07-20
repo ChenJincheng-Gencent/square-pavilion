@@ -34,13 +34,13 @@ public class ModAddressVo implements Serializable {
      */
     @NotNull(message = "数据库ID不能为空")
     @Min(value = 0L, message = "数据库ID最小值为1")
-    @ApiModelProperty(name = "id", value = "数据库ID")
+    @ApiModelProperty(name = "id", value = "数据库ID", required = true, example = "1")
     private Long id;
 
     /**
      * 会员ID
      */
-    @ApiModelProperty(name = "memberId", value = "会员ID")
+    @ApiModelProperty(name = "memberId", value = "会员ID", example = "1")
     @Min(value = 0L, message = "会员ID最小值为1")
     private Long memberId;
 
@@ -62,35 +62,35 @@ public class ModAddressVo implements Serializable {
      * 省份
      */
     @Length(max = 20, message = "省份不能超过20个字符")
-    @ApiModelProperty(name = "province", value = "省份")
+    @ApiModelProperty(name = "province", value = "省份", example = "浙江省")
     private String province;
 
     /**
      * 城市
      */
     @Length(max = 20, message = "城市不能超过20个字符")
-    @ApiModelProperty(name = "city", value = "城市")
+    @ApiModelProperty(name = "city", value = "城市", example = "杭州市")
     private String city;
 
     /**
      * 区县
      */
     @Length(max = 20, message = "区县不能超过20个字符")
-    @ApiModelProperty(name = "county", value = "区县")
+    @ApiModelProperty(name = "county", value = "区县", example = "滨江区")
     private String county;
 
     /**
      * 街道/乡镇
      */
     @Length(max = 20, message = "街道/乡镇不能超过20个字符")
-    @ApiModelProperty(name = "street", value = "街道/乡镇")
+    @ApiModelProperty(name = "street", value = "街道/乡镇", example = "浦沿街道")
     private String street;
 
     /**
      * 详细地址
      */
     @Length(max = 50, message = "详细地址不能超过50个字符")
-    @ApiModelProperty(name = "detail", value = "详细地址")
+    @ApiModelProperty(name = "detail", value = "详细地址", example = "xx小区xx幢xx单元xx号")
     private String detail;
 
     /**
