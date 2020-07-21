@@ -71,6 +71,12 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
+    public RspDto loginOut(String mobile) {
+        cacheService.delCache("login:auth:token:" + mobile);
+        return RspDto.SUCCESS;
+    }
+
+    @Override
     public RspDto generateAuthCode(String mobile) {
 
         String authCode = SequenceUtil.getRandNum(6);

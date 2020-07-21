@@ -38,7 +38,7 @@ public class LoginController {
     /**
      * 手机号码登录
      *
-     * @param mobile 手机号
+     * @param mobile 手机号码
      * @return token
      */
     @PostMapping("/login")
@@ -55,6 +55,25 @@ public class LoginController {
         log.info("token: {}, mobile: {}, authCode: {}", token, mobile, authCode);
 
         return token;
+
+    }
+
+    /**
+     * 手机号码登出
+     *
+     * @param mobile 手机号码
+     * @return 响应
+     */
+    @PostMapping("/login/out")
+    @ResponseBody
+    @ApiOperation(value = "手机号码登出")
+    @ApiImplicitParam(name = "mobile", value = "手机号码", paramType = "query", dataTypeClass = String.class,
+            required = true, example = "13500000001")
+    public RspDto loginOut(@RequestParam("mobile") @Pattern(regexp = "^1[345789][0-9]{9}$",
+            message = "手机号格式不对") @NotBlank(message = "手机号不能为空")String mobile) {
+
+        log.info("mobile: {}", mobile);
+        return loginService.loginOut(mobile);
 
     }
 
