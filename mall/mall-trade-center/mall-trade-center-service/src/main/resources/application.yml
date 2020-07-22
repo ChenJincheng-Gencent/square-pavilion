@@ -1,0 +1,5 @@
+# 指定环境
+spring:
+  profiles:
+    active: local
+
