@@ -33,6 +33,8 @@
         <mall-member-center-api.version>1.0-SNAPSHOT</mall-member-center-api.version>
         <mall-item-center.version>1.0-SNAPSHOT</mall-item-center.version>
         <mall-item-center-api.version>1.0-SNAPSHOT</mall-item-center-api.version>
+        <mall-trade-center.version>1.0-SNAPSHOT</mall-trade-center.version>
+        <mall-trade-center-api.version>1.0-SNAPSHOT</mall-trade-center-api.version>
 
     </properties>
 
