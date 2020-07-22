@@ -1,4 +1,6 @@
 package com.square.mall.trade.center.service.apiimpl;
 
-public class OrderApiImpl implements {
+import com.square.mall.trade.center.api.OrderApi;
+
+public class OrderApiImpl implements OrderApi {
 }
