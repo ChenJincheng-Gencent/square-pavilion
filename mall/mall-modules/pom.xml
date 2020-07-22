@@ -37,6 +37,8 @@
         <mall-trade-center-api.version>1.0-SNAPSHOT</mall-trade-center-api.version>
         <mall-promotion-center.version>1.0-SNAPSHOT</mall-promotion-center.version>
         <mall-promotion-center-api.version>1.0-SNAPSHOT</mall-promotion-center-api.version>
+        <mall-inventory-center.version>1.0-SNAPSHOT</mall-inventory-center.version>
+        <mall-inventory-center-api.version>1.0-SNAPSHOT</mall-inventory-center-api.version>
 
     </properties>
 
