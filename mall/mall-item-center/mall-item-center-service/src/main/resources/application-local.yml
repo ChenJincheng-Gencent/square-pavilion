@@ -1,8 +1,8 @@
 
 mysql:
-  member:
+  item:
     dataSource:
-      url: jdbc:mysql://192.168.117.130:3306/sp_member?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      url: jdbc:mysql://192.168.117.130:3306/sp_item?useUnicode=true&characterEncoding=utf-8&useSSL=false
       userName: root
       password: cjc1573
       driverClassName: com.mysql.jdbc.Driver
@@ -20,9 +20,9 @@ logging:
 
 dubbo:
   application:
-    name: member-center-provider
+    name: item-center-provider
   server: true
-  base-package: com.square.mall.member.center.service.apiimpl
+  base-package: com.square.mall.item.center.service.apiimpl
   registry:
     ##address: N/A
     address: zookeeper://192.168.117.128:2181,192.168.117.129:2181,192.168.117.130:2181
@@ -48,7 +48,7 @@ kafka:
 
 
 redis:
-  member:
+  item:
     host: 192.168.117.128
     port: 6379
     password: cjc1573
