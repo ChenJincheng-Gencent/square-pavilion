@@ -23,6 +23,10 @@ import org.springframework.web.servlet.config.annotation.*;
     includeFilters = @ComponentScan.Filter(RestController.class))
 public class ContextConfig implements WebMvcConfigurer {
 
+    private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
+            "classpath:/META-INF/resources/", "classpath:/resources/",
+            "classpath:/static/", "classpath:/public/" };
+
     @Bean
     public ServletRegistrationBean restServlet() {
         //注解扫描上下文
@@ -53,6 +57,8 @@ public class ContextConfig implements WebMvcConfigurer {
         registration.excludePathPatterns("/doc.html");
         registration.excludePathPatterns("/swagger-resources/configuration/ui");
         registration.excludePathPatterns("/swagger-resources");
+        registration.excludePathPatterns("/webjars/**");
+
     }
 
     @Override
@@ -68,6 +74,15 @@ public class ContextConfig implements WebMvcConfigurer {
 
         //将所有/static/** 访问都映射到classpath:/static/ 目录下
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+
+        if (!registry.hasMappingForPattern("/webjars/**")) {
+            registry.addResourceHandler("/webjars/**").addResourceLocations(
+                    "classpath:/META-INF/resources/webjars/");
+        }
+        if (!registry.hasMappingForPattern("/**")) {
+            registry.addResourceHandler("/**").addResourceLocations(
+                    CLASSPATH_RESOURCE_LOCATIONS);
+        }
     }
 
 }
