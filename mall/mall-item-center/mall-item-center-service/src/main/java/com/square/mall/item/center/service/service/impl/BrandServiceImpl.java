@@ -1,5 +1,6 @@
 package com.square.mall.item.center.service.service.impl;
 
+import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.service.eo.BrandEo;
 import com.square.mall.item.center.service.service.BrandService;
 
@@ -22,7 +23,7 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public List<BrandEo> selectBrandByCondition(BrandEo brandEo) {
+    public List<BrandDto> selectBrandByCondition(BrandDto brandDto) {
         return null;
     }
 }

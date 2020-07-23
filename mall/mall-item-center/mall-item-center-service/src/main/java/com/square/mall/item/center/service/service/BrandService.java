@@ -1,5 +1,6 @@
 package com.square.mall.item.center.service.service;
 
+import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.service.eo.BrandEo;
 
 import java.util.List;
@@ -12,5 +13,5 @@ public interface BrandService {
 
     void deleteBrand(Long id);
 
-    List<BrandEo> selectBrandByCondition(BrandEo brandEo);
+    List<BrandDto> selectBrandByCondition(BrandDto brandDto);
 }
