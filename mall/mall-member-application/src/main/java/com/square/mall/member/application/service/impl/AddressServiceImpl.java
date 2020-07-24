@@ -42,6 +42,6 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public RspDto deleteAddress(Long id) {
-        return addressApi.d;
+        return addressApi.deleteAddress(id);
     }
 }

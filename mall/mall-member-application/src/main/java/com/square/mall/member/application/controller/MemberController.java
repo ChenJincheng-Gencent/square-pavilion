@@ -18,7 +18,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 /**
- * 会员信息Controller
+ * 会员Controller
  *
  * @author Gencent
  * @date 2020/7/3

@@ -28,7 +28,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- *  全局异常处理器
+ * 全局异常处理器
  *
  * @author Gencent
  * @date 2019/8/31
@@ -82,7 +82,7 @@ public class GlobalExceptionHandler {
             return handleUnknownException(e);
         }
         log.error("参数校验不通过, {}, msg: {}", logMsg, msg);
-        return new RspDto(ErrorCode.ME_APP_ME_PARA_ILLEGAL.getCode(), ErrorCode.ME_APP_ME_PARA_ILLEGAL.getMsg()
+        return new RspDto(ErrorCode.ME_APP_PARA_ILLEGAL.getCode(), ErrorCode.ME_APP_PARA_ILLEGAL.getMsg()
             + ":" + msg);
     }
 
