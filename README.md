@@ -33,3 +33,12 @@ Swagger2|API文档工具|2.9.2
 &emsp;&emsp;能力服务层有mall-search-service（搜索服务）、mall-mq-service（MQ服务）、mall-message-service（消息服务）、mall-payment-service（支付服务）、mall-identity-service（认证服务）；  
 &emsp;&emsp;基本组件层有mall-common（公共组件）、mall-job（定时任务组件）、mall-cache（缓存组件）。  
 &emsp;&emsp;另外，还包含mall-modules(工程父模块)以及mall-doc（文档模块）。  
+
+## 端口号分配
+应用名|代码模块|端口号
+:--:|:--:|:--:
+交易应用|mall-trade-application|9321
+会员应用|mall-trade-application|9322
+商品应用|mall-trade-application|9323
+管理应用|mall-trade-application|9324
+分享应用|mall-trade-application|9325
