@@ -14,7 +14,49 @@
         `first_char`
     </sql>
 
+    <!-- 动态查询 -->
+    <sql id="select">
+        <where>
+            is_delete  = 0
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name !=''">
+                and name = #{name}
+            </if>
+            <if test="firstChar != null and firstChar !=''">
+                and first_char = #{firstChar}
+            </if>
+        </where>
+    </sql>
 
+    <select id="selectBrandByCondition" resultMap="ItemMap">
+        SELECT
+        <include refid="need_column"/>
+        FROM it_brand <include refid="select"/>
+        ORDER BY create_time desc;
+    </select>
+
+    <insert id="insertBrand" parameterType="com.square.mall.item.center.service.eo.BrandEo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO it_brand (`id`, `name`, `first_char`, `create_time`, `update_time`)
+        VALUES (#{id}, #{name}, #{firstChar}, now(), now())
+    </insert>
+
+    <insert id="updateBrand" parameterType="com.square.mall.item.center.service.eo.ItemEo">
+        UPDATE it_brand SET
+        <if test="name != null and name !=''">
+            name = #{name},
+        </if>
+        <if test="firstChar != null and firstChar !=''">
+            first_char = #{firstChar},
+        </if>
+        update_time = now()
+        WHERE id = #{id} and is_delete = 0
+    </insert>
+
+    <delete id="deleteBrand" parameterType="Long" >
+        UPDATE it_brand SET is_delete = 1 where id = #{id} and is_delete = 0;
+    </delete>
 
 </mapper>
 
