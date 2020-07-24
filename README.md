@@ -42,3 +42,17 @@ Swagger2|API文档工具|2.9.2
 商品应用|mall-item-application|9323
 管理应用|mall-manager-application|9324
 分享应用|mall-share-application|9325
+
+## 五、Redis库分配
+应用名|代码模块|库号
+:--:|:--:|:--:
+交易应用|mall-trade-application|1
+会员应用|mall-member-application|2
+商品应用|mall-item-application|3
+管理应用|mall-manager-application|4
+分享应用|mall-share-application|5
+交易中心|mall-trade-center|6
+会员中心|mall-member-center|7
+商品中心|mall-item-center|8
+库存中心|mall-inventory-center|9
+营销中心|mall-promotion-center|10
