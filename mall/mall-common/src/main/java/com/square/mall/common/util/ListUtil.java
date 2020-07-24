@@ -1,5 +1,7 @@
 package com.square.mall.common.util;
 
+import org.springframework.beans.BeanUtils;
+
 import java.util.List;
 
 /**
@@ -31,6 +33,23 @@ public class ListUtil {
     public static boolean isBlank(List list) {
 
         return null == list || list.isEmpty();
+
+    }
+
+    /**
+     * List拷贝
+     * @param source 来源列表
+     * @param target 目标列表
+     */
+    public static void copyList(List source, List target) {
+
+        if (isBlank(source) || null == target) {
+            return;
+        }
+
+        for (int i = 0; i < source.size(); i++) {
+            BeanUtils.copyProperties(source.get(i), target.get(i));
+        }
 
     }
 
