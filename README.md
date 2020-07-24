@@ -44,6 +44,7 @@ Swagger2|API文档工具|2.9.2
 分享应用|mall-share-application|9325
 
 ## 五、Redis库分配
+0号库留做公共使用  
 应用名|代码模块|库号
 :--:|:--:|:--:
 交易应用|mall-trade-application|1
@@ -55,4 +56,13 @@ Swagger2|API文档工具|2.9.2
 会员中心|mall-member-center|7
 商品中心|mall-item-center|8
 库存中心|mall-inventory-center|9
-营销中心|mall-promotion-center|10
+营销中心|mall-promotion-center|10  
+
+## 六、Mysql库分配
+应用名|代码模块|库名
+:--:|:--:|:--:
+交易中心|mall-trade-center|sp_trade
+会员中心|mall-member-center|sp_member
+商品中心|mall-item-center|sp_item
+库存中心|mall-inventory-center|sp_inventory
+营销中心|mall-promotion-center|sp_promotion
