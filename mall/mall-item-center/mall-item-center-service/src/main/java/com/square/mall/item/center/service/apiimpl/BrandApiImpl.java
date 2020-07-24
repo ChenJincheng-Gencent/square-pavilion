@@ -12,7 +12,7 @@ import org.apache.dubbo.config.annotation.Service;
 import javax.annotation.Resource;
 
 /**
- *  品牌API实现类
+ * 品牌API实现类
  *
  * @author Gencent
  * @date 2020/7/23

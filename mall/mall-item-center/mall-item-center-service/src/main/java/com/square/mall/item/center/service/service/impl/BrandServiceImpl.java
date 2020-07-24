@@ -1,5 +1,8 @@
 package com.square.mall.item.center.service.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.service.dao.BrandDao;
@@ -78,4 +81,19 @@ public class BrandServiceImpl implements BrandService {
         ListUtil.copyList(brandEoList, brandDtoList);
         return brandDtoList;
     }
+
+    @Override
+    public PageRspDto<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageNum, Integer pageSize) {
+
+        pageNum = null == pageNum ? 1 : pageNum;
+        pageSize = null == pageSize ? 10 : pageSize;
+        PageHelper.startPage(pageNum, pageSize);
+        BrandEo brandEo = new BrandEo();
+        BeanUtils.copyProperties(brandDto, brandEo);
+        Page<BrandEo> page = (Page<BrandEo>) brandDao.selectBrandByCondition(brandEo);
+        List<BrandDto> brandDtoList = new ArrayList<>();
+        ListUtil.copyList(page.getResult(), brandDtoList);
+        return new PageRspDto<>(page.getTotal(), brandDtoList);
+    }
+
 }

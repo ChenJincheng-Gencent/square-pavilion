@@ -1,5 +1,6 @@
 package com.square.mall.item.center.service.apiimpl.query;
 
+import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.api.query.BrandQueryApi;
@@ -30,7 +31,9 @@ public class BrandQueryApiImpl implements BrandQueryApi {
     }
 
     @Override
-    public RspDto<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageIndex, Integer pageSize) {
-        return null;
+    public PageRspDto<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageNum, Integer pageSize) {
+        return brandService.selectPageBrandByCondition(brandDto, pageNum, pageSize);
     }
+
+
 }

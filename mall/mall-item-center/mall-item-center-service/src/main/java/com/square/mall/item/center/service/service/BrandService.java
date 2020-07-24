@@ -1,5 +1,6 @@
 package com.square.mall.item.center.service.service;
 
+import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.item.center.api.dto.BrandDto;
 
 import java.util.List;
@@ -38,4 +39,13 @@ public interface BrandService {
      * @return 品牌数据列表
      */
     List<BrandDto> selectBrandByCondition(BrandDto brandDto);
+
+    /**
+     * 分页条件查询品牌数据列表
+     * @param brandDto 查询条件
+     * @param pageNum 当前页
+     * @param pageSize 分页大小
+     * @return 品牌数据列表
+     */
+    PageRspDto<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageNum, Integer pageSize);
 }
