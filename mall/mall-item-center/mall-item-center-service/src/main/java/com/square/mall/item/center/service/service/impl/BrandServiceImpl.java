@@ -1,5 +1,6 @@
 package com.square.mall.item.center.service.service.impl;
 
+import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.service.dao.BrandDao;
 import com.square.mall.item.center.service.eo.BrandEo;
@@ -9,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -65,6 +67,15 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public List<BrandDto> selectBrandByCondition(BrandDto brandDto) {
-        return null;
+        if (null == brandDto) {
+            log.error("brandDto is null.");
+            return null;
+        }
+        BrandEo brandEo = new BrandEo();
+        BeanUtils.copyProperties(brandDto, brandEo);
+        List<BrandEo> brandEoList = brandDao.selectBrandByCondition(brandEo);
+        List<BrandDto> brandDtoList = new ArrayList<>();
+        ListUtil.copyList(brandEoList, brandDtoList);
+        return brandDtoList;
     }
 }

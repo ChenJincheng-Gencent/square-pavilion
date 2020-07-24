@@ -17,7 +17,7 @@
     <!-- 动态查询 -->
     <sql id="select">
         <where>
-            is_delete  = 0
+            is_delete = 0
             <if test="id != null">
                 and id = #{id}
             </if>
