@@ -95,7 +95,7 @@ public class AddressController {
     @DeleteMapping("/address")
     @ResponseBody
     @ApiOperation(value = "删除收货地址")
-    public RspDto deleteAddress(@RequestBody @RequestParam("id") @NotNull(message = "ID不能为空") Long id) {
+    public RspDto deleteAddress(@RequestParam("id") @NotNull(message = "ID不能为空") Long id) {
         return addressService.deleteAddress(id);
     }
 
