@@ -25,6 +25,7 @@
         <aspectjweaver.version>1.9.5</aspectjweaver.version>
         <jedis.version>3.3.0</jedis.version>
         <jackson.version>2.11.1</jackson.version>
+        <zookeeper.version>3.4.14</zookeeper.version>
 
         <!-- mall模块版本号 -->
         <mall-cache.version>1.0-SNAPSHOT</mall-cache.version>
