@@ -86,4 +86,19 @@ public class AddressController {
         return addressService.updateAddress(addressDto);
     }
 
+    /**
+     * 更新收货地址
+     *
+     * @param id 数据库ID
+     * @return 响应
+     */
+    @DeleteMapping("/address")
+    @ResponseBody
+    @ApiOperation(value = "更新收货地址")
+    public RspDto deleteAddress(@RequestBody @RequestParam("id") @NotNull(message = "ID不能为空") Long id) {
+        AddressDto addressDto = new AddressDto();
+        BeanUtils.copyProperties(modAddressVo, addressDto);
+        return addressService.updateAddress(addressDto);
+    }
+
 }

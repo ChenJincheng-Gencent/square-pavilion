@@ -36,4 +36,12 @@ public interface AddressService {
      * @return 响应
      */
     RspDto updateAddress(AddressDto addressDto);
+
+    /**
+     * 删除收货地址
+     *
+     * @param id 数据库ID
+     * @return 响应
+     */
+    RspDto deleteAddress(Long id);
 }

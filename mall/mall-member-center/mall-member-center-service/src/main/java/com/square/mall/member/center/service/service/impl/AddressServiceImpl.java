@@ -51,30 +51,40 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Long insertAddress(AddressDto addressDto) {
+    public int insertAddress(AddressDto addressDto) {
 
         if (null == addressDto) {
             log.error("addressDto is null.");
-            return 0L;
+            return 0;
         }
 
         AddressEo addressEo = new AddressEo();
         BeanUtils.copyProperties(addressDto, addressEo);
-        addressDao.insertAddress(addressEo);
-        return addressEo.getId();
+        int success = addressDao.insertAddress(addressEo);
+        addressDto.setId(addressEo.getId());
+        return success;
 
     }
 
     @Override
-    public void updateAddress(AddressDto addressDto) {
+    public int updateAddress(AddressDto addressDto) {
 
         if (null == addressDto || null == addressDto.getId()) {
             log.error("addressDto or id is null.");
-            return;
+            return 0;
         }
         AddressEo addressEo = new AddressEo();
         BeanUtils.copyProperties(addressDto, addressEo);
-        addressDao.updateAddress(addressEo);
+        return addressDao.updateAddress(addressEo);
 
+    }
+
+    @Override
+    public int deleteAddress(Long id) {
+        if (null == id) {
+            log.error("id is null.");
+            return 0;
+        }
+        return addressDao.deleteAddress(id);
     }
 }

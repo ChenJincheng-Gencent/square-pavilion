@@ -39,4 +39,9 @@ public class AddressServiceImpl implements AddressService {
     public RspDto updateAddress(AddressDto addressDto) {
         return addressApi.updateAddress(addressDto);
     }
+
+    @Override
+    public RspDto deleteAddress(Long id) {
+        return addressApi.d;
+    }
 }
