@@ -1,6 +1,7 @@
 package com.square.mall.item.center.service.dao;
 
 import com.square.mall.item.center.service.eo.BrandEo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public interface BrandDao {
      * @param id 数据库ID
      * @return 是否成功，1成功，0失败
      */
-    int deleteBrand(Long id);
+    int deleteBrand(@Param("id") Long id);
 
     /**
      * 条件查询品牌数据列表
