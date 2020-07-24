@@ -24,7 +24,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value = "ModAddressVo", description = "收货地址")
+@ApiModel(value = "ModAddressVo", description = "修改收货地址")
 public class ModAddressVo implements Serializable {
 
     private static final long serialVersionUID = 7626193990345770251L;
