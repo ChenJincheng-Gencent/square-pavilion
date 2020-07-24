@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
- *  会员基本信息Service实现类
+ *  会员Service实现类
  *
  * @author Gencent
  * @date 2019/8/19
@@ -29,7 +29,7 @@ public class MemberServiceImpl implements MemberService {
     public MemberDto selectMemberByMobile(String mobile) {
 
         if (StringUtil.isBlank(mobile)) {
-            log.error("mobile is empty.");
+            log.error("mobile is blank.");
             return null;
         }
         MemberEo memberEo = memberDao.selectMemberByMobile(mobile);
@@ -45,31 +45,32 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Long insertMember(MemberDto memberDto) {
+    public int insertMember(MemberDto memberDto) {
 
         if (null == memberDto) {
             log.error("memberDto is null.");
-            return 0L;
+            return 0;
         }
 
         MemberEo memberEo = new MemberEo();
         BeanUtils.copyProperties(memberDto, memberEo);
-        memberDao.insertMember(memberEo);
-        return memberEo.getId();
+        int success = memberDao.insertMember(memberEo);
+        memberDto.setId(memberEo.getId());
+        return success;
 
     }
 
     @Override
-    public void updateMemberByMobile(MemberDto memberDto) {
+    public int updateMemberByMobile(MemberDto memberDto) {
 
         if (null == memberDto || StringUtil.isBlank(memberDto.getMobile())) {
             log.error("memberDto or mobile is null.");
-            return;
+            return 0;
         }
 
         MemberEo memberEo = new MemberEo();
         BeanUtils.copyProperties(memberDto, memberEo);
-        memberDao.updateMemberByMobile(memberEo);
+        return memberDao.updateMemberByMobile(memberEo);
 
     }
 

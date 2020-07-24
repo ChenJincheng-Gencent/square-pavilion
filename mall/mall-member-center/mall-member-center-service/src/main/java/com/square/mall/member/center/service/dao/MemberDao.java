@@ -25,14 +25,16 @@ public interface MemberDao {
      * 插入会员信息
      *
      * @param memberEo 会员信息
+     * @return 是否成功，1成功，0失败
      */
-    void insertMember(MemberEo memberEo);
+    int insertMember(MemberEo memberEo);
 
     /**
      * 根据手机号码更新会员信息
      *
      * @param memberEo 会员信息
+     * @return 是否成功，1成功，0失败
      */
-    void updateMemberByMobile(MemberEo memberEo);
+    int updateMemberByMobile(MemberEo memberEo);
 
 }

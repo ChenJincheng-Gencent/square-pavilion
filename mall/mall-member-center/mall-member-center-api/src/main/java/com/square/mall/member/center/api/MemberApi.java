@@ -4,7 +4,7 @@ import com.square.mall.common.dto.RspDto;
 import com.square.mall.member.center.api.dto.MemberDto;
 
 /**
- * 会员信息API
+ * 会员API
  *
  * @author Gencent
  * @date 2019/8/26

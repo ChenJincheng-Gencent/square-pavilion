@@ -3,7 +3,7 @@ package com.square.mall.member.center.service.service;
 import com.square.mall.member.center.api.dto.MemberDto;
 
 /**
- * 会员信息Service
+ * 会员Service
  *
  * @author Gencent
  * @date 2019/8/26
@@ -22,15 +22,16 @@ public interface MemberService {
      * 插入会员信息
      *
      * @param memberDto 会员信息
-     * @return 数据库ID
+     * @return 是否成功,1成功，0失败
      */
-    Long insertMember(MemberDto memberDto);
+    int insertMember(MemberDto memberDto);
 
     /**
      * 根据手机号码更新会员信息
      *
      * @param memberDto 会员信息
+     * @return 是否成功,1成功，0失败
      */
-    void updateMemberByMobile(MemberDto memberDto);
+    int updateMemberByMobile(MemberDto memberDto);
 
 }

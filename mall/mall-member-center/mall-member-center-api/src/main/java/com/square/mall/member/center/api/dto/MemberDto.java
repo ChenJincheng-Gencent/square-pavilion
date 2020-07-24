@@ -16,7 +16,7 @@ import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 /**
- * 会员信息DTO
+ * 会员DTO
  *
  * @author Gencent
  * @date 2020/7/13
@@ -24,7 +24,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value = "MemberDto", description = "会员信息")
+@ApiModel(value = "MemberDto", description = "会员")
 public class MemberDto implements Serializable {
 
     private static final long serialVersionUID = -1315053788575053945L;
