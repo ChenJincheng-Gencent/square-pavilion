@@ -9,27 +9,18 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 基本返回DTO
+ * 分页基本返回DTO
  *
  * @author Gencent
- * @date 2019/8/26
+ * @date 2020/7/24
  */
 @Data
 @AllArgsConstructor
-@ApiModel(description = "返回消息体")
-public class RspDto<T> implements Serializable {
+@ApiModel(description = "分页返回消息体")
+public class PageRspDto<T> implements Serializable {
 
-    private static final long serialVersionUID = 5244335969680099007L;
+    private static final long serialVersionUID = -8255510440938304460L;
 
-    /**
-     * 成功
-     */
-    public static final RspDto SUCCESS = new RspDto(ErrorCode.SUCCESS);
-
-    /**
-     * 失败
-     */
-    public static final RspDto FAILED = new RspDto(ErrorCode.FAILED);
 
     /**
      * 错误码
@@ -44,25 +35,22 @@ public class RspDto<T> implements Serializable {
     private String msg;
 
     /**
+     * 总记录数
+     */
+    @ApiModelProperty(name = "total", value = "总记录数")
+    private Long total;
+
+    /**
      * 数据泛型
      */
     @ApiModelProperty(name = "data", value = "数据")
     private T data;
 
-    public RspDto(T data){
+    public PageRspDto(Long total, T data) {
         this.code = ErrorCode.SUCCESS.getCode();
         this.msg = ErrorCode.SUCCESS.getMsg();
+        this.total = total;
         this.data = data;
-    }
-
-    public RspDto(String code, String msg) {
-        this.code = code;
-        this.msg = msg;
-    }
-
-    public RspDto(ErrorCode errorCode) {
-        this.code = errorCode.getCode();
-        this.msg = errorCode.getMsg();
     }
 
 }
