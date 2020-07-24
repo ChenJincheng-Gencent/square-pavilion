@@ -1,5 +1,5 @@
 server:
-  port: 9321
+  port: 9324
 
 #log
 logging:
@@ -12,7 +12,7 @@ spring:
 
 dubbo:
   application:
-    name: member-application-consumer
+    name: manager-application-consumer
   consumer:
     check: false
   registry:
@@ -38,7 +38,7 @@ kafka:
         reset: earliest
 
 redis:
-  member:
+  manager:
     application:
       host: 192.168.117.128
       port: 6379
