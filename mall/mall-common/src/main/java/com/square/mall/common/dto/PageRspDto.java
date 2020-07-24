@@ -21,6 +21,17 @@ public class PageRspDto<T> implements Serializable {
 
     private static final long serialVersionUID = -8255510440938304460L;
 
+    /**
+     * 成功
+     */
+    public static final PageRspDto SUCCESS = new PageRspDto(ErrorCode.SUCCESS);
+
+    /**
+     * 失败
+     */
+    public static final PageRspDto FAILED = new PageRspDto(ErrorCode.FAILED);
+
+
 
     /**
      * 错误码
@@ -51,6 +62,11 @@ public class PageRspDto<T> implements Serializable {
         this.msg = ErrorCode.SUCCESS.getMsg();
         this.total = total;
         this.data = data;
+    }
+
+    public PageRspDto(ErrorCode errorCode) {
+        this.code = errorCode.getCode();
+        this.msg = errorCode.getMsg();
     }
 
 }
