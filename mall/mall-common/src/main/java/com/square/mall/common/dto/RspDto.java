@@ -9,14 +9,14 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 基本返回DTO
+ * 通用返回DTO
  *
  * @author Gencent
  * @date 2019/8/26
  */
 @Data
 @AllArgsConstructor
-@ApiModel(description = "返回消息体")
+@ApiModel(description = "通用返回消息体")
 public class RspDto<T> implements Serializable {
 
     private static final long serialVersionUID = 5244335969680099007L;
