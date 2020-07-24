@@ -1,11 +1,11 @@
 # square-pavilion（四方阁）
 
-## 前言
+## 一、前言
 
 &emsp;&emsp;Square pavilion is a cube project for e-commerce.（四方阁是一个为电商而生的中台项目）。在玄幻小说中，总有一些比较牛逼且左右逢源于各个势力之间的中立组织，这些组织通常带有“阁”字。因此本项目取名“四方阁”，取包容并蓄，吸取百家之长之意。欢迎有兴趣的小伙伴们一起努力，把这个项目完善、推广。
 
 
-## 技术选型
+## 二、技术选型
 
 技术|说明|版本
 :--:|:--:|:--:
@@ -24,7 +24,7 @@ Zookeeper|分布式注册中心|3.4.14
 Swagger2|API文档工具|2.9.2
 
 
-## 项目架构
+## 三、项目架构
 
 &emsp;&emsp;Square pavilion采用微服务思想，实现分布式、高并发且易于拓展的中台框架。结合我所在公司的中台实践，将该项目分为应用层、中心层、能力服务层及基本组件层四大层级。项目为电商项目，包含前台商城系统和后台管理系统。  
 &emsp;&emsp;从业务维度拆分，四大层级具体内容，如下所述：  
@@ -34,11 +34,11 @@ Swagger2|API文档工具|2.9.2
 &emsp;&emsp;基本组件层有mall-common（公共组件）、mall-job（定时任务组件）、mall-cache（缓存组件）。  
 &emsp;&emsp;另外，还包含mall-modules(工程父模块)以及mall-doc（文档模块）。  
 
-## 端口号分配
+## 四、端口号分配
 应用名|代码模块|端口号
 :--:|:--:|:--:
 交易应用|mall-trade-application|9321
-会员应用|mall-trade-application|9322
-商品应用|mall-trade-application|9323
-管理应用|mall-trade-application|9324
-分享应用|mall-trade-application|9325
+会员应用|mall-member-application|9322
+商品应用|mall-item-application|9323
+管理应用|mall-manager-application|9324
+分享应用|mall-share-application|9325
