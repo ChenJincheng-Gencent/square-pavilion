@@ -30,7 +30,7 @@ dubbo:
     file: dubbo-registry/dubbo-registry.properties
   protocol:
     name: dubbo
-    port: 20880
+    port: 20888
 
 spring:
   main:
