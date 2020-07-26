@@ -44,5 +44,5 @@ redis:
       port: 6379
       password: cjc1573
       timeout: 2000
-      index: 1
+      index: 4
       workModel: single

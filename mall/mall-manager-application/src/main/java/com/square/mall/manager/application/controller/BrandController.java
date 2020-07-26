@@ -44,7 +44,7 @@ public class BrandController {
      * @param pageSize 分页大小
      * @return 品牌列表
      */
-    @GetMapping("/brand/list/page")
+    @PostMapping("/brand/list/page")
     @ResponseBody
     @ApiOperation(value = "分页条件查询品牌列表")
     public PageRspDto<List<BrandDto>> selectPageBrandByCondition(@RequestBody BrandDto brandDto,
