@@ -1,4 +1,5 @@
-
+server:
+  port: 9328
 mysql:
   item:
     dataSource:
