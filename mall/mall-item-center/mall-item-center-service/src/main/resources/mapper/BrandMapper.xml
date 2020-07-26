@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.square.mall.item.center.service.dao.BrandDao">
 
-    <resultMap id="ItemMap" type="com.square.mall.item.center.service.eo.BrandEo">
+    <resultMap id="BrandMap" type="com.square.mall.item.center.service.eo.BrandEo">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="first_char" property="firstChar"/>
@@ -30,7 +30,7 @@
         </where>
     </sql>
 
-    <select id="selectBrandByCondition" resultMap="ItemMap">
+    <select id="selectBrandByCondition" resultMap="BrandMap">
         SELECT
         <include refid="need_column"/>
         FROM it_brand <include refid="select"/>
@@ -42,7 +42,7 @@
         VALUES (#{id}, #{name}, #{firstChar}, now(), now())
     </insert>
 
-    <insert id="updateBrand" parameterType="com.square.mall.item.center.service.eo.ItemEo">
+    <insert id="updateBrand" parameterType="com.square.mall.item.center.service.eo.BrandEo">
         UPDATE it_brand SET
         <if test="name != null and name !=''">
             name = #{name},
