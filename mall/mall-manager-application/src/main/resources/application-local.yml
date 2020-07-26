@@ -22,7 +22,7 @@ dubbo:
     check: false
   protocol:
     name: dubbo
-    port: 20880
+    port: 20884
   reference:
     loadbalance: roundrobin
 
