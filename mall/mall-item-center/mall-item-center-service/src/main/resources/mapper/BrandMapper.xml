@@ -34,7 +34,6 @@
         SELECT
         <include refid="need_column"/>
         FROM it_brand <include refid="select"/>
-        ORDER BY create_time desc;
     </select>
 
     <insert id="insertBrand" parameterType="com.square.mall.item.center.service.eo.BrandEo" useGeneratedKeys="true" keyProperty="id">

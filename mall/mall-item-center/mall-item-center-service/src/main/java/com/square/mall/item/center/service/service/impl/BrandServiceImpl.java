@@ -92,6 +92,13 @@ public class BrandServiceImpl implements BrandService {
         BeanUtils.copyProperties(brandDto, brandEo);
         Page<BrandEo> page = (Page<BrandEo>) brandDao.selectBrandByCondition(brandEo);
         List<BrandDto> brandDtoList = new ArrayList<>();
+        if (ListUtil.isNotBlank(page.getResult())) {
+            page.getResult().forEach( x -> {
+                BrandDto brandDtoTemp = new BrandDto();
+                BeanUtils.copyProperties(x, brandDtoTemp);
+                brandDtoList.add(brandDtoTemp);
+            });
+        }
         ListUtil.copyList(page.getResult(), brandDtoList);
         return new PageRspDto<>(page.getTotal(), brandDtoList);
     }
