@@ -1,5 +1,6 @@
 package com.square.mall.member.center.service.dao;
 
+import com.square.mall.member.center.api.dto.AddressDto;
 import com.square.mall.member.center.service.eo.AddressEo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -46,5 +47,13 @@ public interface AddressDao {
      * @return 是否成功，1成功，0失败
      */
     int deleteAddress(@Param("id") Long id);
+
+    /**
+     * 根据ID查询收货地址
+     *
+     * @param id ID
+     * @return 收货地址
+     */
+    AddressEo selectAddressById(@Param("id") Long id);
 
 }

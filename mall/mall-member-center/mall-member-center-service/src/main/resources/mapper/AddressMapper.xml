@@ -78,5 +78,11 @@
         UPDATE me_address SET is_delete = 1 where id = #{id} and is_delete = 0;
     </delete>
 
+    <select id="selectAddressById" resultMap="AddressMap">
+        SELECT
+        <include refid="need_column"/>
+        FROM me_address WHERE id = #{id} and is_delete = 0
+    </select>
+
 </mapper>
 

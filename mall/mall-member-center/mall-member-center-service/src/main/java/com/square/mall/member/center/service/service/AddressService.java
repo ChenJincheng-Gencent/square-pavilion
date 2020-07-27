@@ -44,4 +44,12 @@ public interface AddressService {
      */
     int deleteAddress(Long id);
 
+    /**
+     * 根据ID查询收货地址
+     *
+     * @param id ID
+     * @return 收货地址
+     */
+    AddressDto selectAddressById(Long id);
+
 }

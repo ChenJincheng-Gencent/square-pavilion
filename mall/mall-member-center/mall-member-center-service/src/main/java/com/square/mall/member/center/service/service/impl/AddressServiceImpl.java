@@ -1,5 +1,6 @@
 package com.square.mall.member.center.service.service.impl;
 
+import com.square.mall.common.util.DatabaseOptConstant;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.member.center.api.dto.AddressDto;
 import com.square.mall.member.center.service.dao.AddressDao;
@@ -55,7 +56,7 @@ public class AddressServiceImpl implements AddressService {
 
         if (null == addressDto) {
             log.error("addressDto is null.");
-            return 0;
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
         }
 
         AddressEo addressEo = new AddressEo();
@@ -71,7 +72,12 @@ public class AddressServiceImpl implements AddressService {
 
         if (null == addressDto || null == addressDto.getId()) {
             log.error("addressDto or id is null.");
-            return 0;
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+        AddressEo oldAddressEo = addressDao.selectAddressById(addressDto.getId());
+        if (null == oldAddressEo) {
+            log.error("oldAddressEo is null. id: {}", addressDto.getId());
+            return DatabaseOptConstant.DATABASE_DATA_NOT_EXIST;
         }
         AddressEo addressEo = new AddressEo();
         BeanUtils.copyProperties(addressDto, addressEo);
@@ -83,8 +89,30 @@ public class AddressServiceImpl implements AddressService {
     public int deleteAddress(Long id) {
         if (null == id) {
             log.error("id is null.");
-            return 0;
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+        AddressEo addressEo = addressDao.selectAddressById(id);
+        if (null == addressEo) {
+            log.error("addressEo is null. id: {}", id);
+            return DatabaseOptConstant.DATABASE_DATA_NOT_EXIST;
         }
         return addressDao.deleteAddress(id);
+    }
+
+    @Override
+    public AddressDto selectAddressById(Long id) {
+
+        if (null == id) {
+            log.error("id is null.");
+            return null;
+        }
+        AddressEo addressEo = addressDao.selectAddressById(id);
+        if (null == addressEo) {
+            log.error("addressEo is null. id: {}", id);
+            return null;
+        }
+        AddressDto addressDto = new AddressDto();
+        BeanUtils.copyProperties(addressEo, addressDto);
+        return addressDto;
     }
 }
