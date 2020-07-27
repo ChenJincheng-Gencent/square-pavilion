@@ -58,7 +58,7 @@ public enum ErrorCode {
     /**
      * 数据已存在
      */
-    ME_CEN_DATABASE_DATA_ALREADY_EXIST("07-00-D-00004","数据不存在"),
+    ME_CEN_DATABASE_DATA_ALREADY_EXIST("07-00-D-00004","数据已存在"),
 
     /*----------------------------------------------商品应用----------------------------------------------------------*/
 
@@ -87,7 +87,7 @@ public enum ErrorCode {
     /**
      * 数据已存在
      */
-    IT_CEN_DATABASE_DATA_ALREADY_EXIST("08-00-D-00004","数据不存在"),
+    IT_CEN_DATABASE_DATA_ALREADY_EXIST("08-00-D-00004","数据已存在"),
 
     /**
      * 系统错误
