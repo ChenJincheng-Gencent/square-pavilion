@@ -31,6 +31,9 @@ public class DatabaseUtil {
                         return RspDto.FAILED;
                 }
             case DatabaseOptConstant.DATABASE_OPT_SUCCESS:
+                if (null == data) {
+                    return RspDto.SUCCESS;
+                }
                 return new RspDto<>(data);
             case DatabaseOptConstant.DATABASE_PARA_ILLEGAL:
                 switch (moduleName) {
