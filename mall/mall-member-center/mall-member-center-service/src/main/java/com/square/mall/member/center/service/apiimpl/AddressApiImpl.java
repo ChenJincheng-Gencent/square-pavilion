@@ -2,7 +2,9 @@ package com.square.mall.member.center.service.apiimpl;
 
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.common.util.CommonConstant;
+import com.square.mall.common.util.DatabaseUtil;
 import com.square.mall.common.util.ErrorCode;
+import com.square.mall.common.util.ModuleConstant;
 import com.square.mall.member.center.api.AddressApi;
 import com.square.mall.member.center.api.dto.AddressDto;
 import com.square.mall.member.center.service.service.AddressService;
@@ -25,28 +27,19 @@ public class AddressApiImpl implements AddressApi {
     @Override
     public RspDto<Long> insertAddress(AddressDto addressDto) {
         int success = addressService.insertAddress(addressDto);
-        if (CommonConstant.DATABASE_OPT_SUCCESS == success) {
-            return new RspDto<>(addressDto.getId());
-        }
-        return new RspDto<>(ErrorCode.ME_CEN_DATABASE_OPT_FAILED);
+        return DatabaseUtil.getResult(success, addressDto.getId(), ModuleConstant.MEMBER_CENTER);
     }
 
     @Override
     public RspDto updateAddress(AddressDto addressDto) {
         int success = addressService.updateAddress(addressDto);
-        if (CommonConstant.DATABASE_OPT_SUCCESS == success) {
-            return RspDto.SUCCESS;
-        }
-        return new RspDto<>(ErrorCode.ME_CEN_DATABASE_OPT_FAILED);
+        return DatabaseUtil.getResult(success, ModuleConstant.MEMBER_CENTER);
     }
 
     @Override
     public RspDto deleteAddress(Long id) {
         int success = addressService.deleteAddress(id);
-        if (CommonConstant.DATABASE_OPT_SUCCESS == success) {
-            return RspDto.SUCCESS;
-        }
-        return new RspDto<>(ErrorCode.ME_CEN_DATABASE_OPT_FAILED);
+        return DatabaseUtil.getResult(success, ModuleConstant.MEMBER_CENTER);
     }
 
 }
