@@ -42,6 +42,11 @@ Swagger2|API文档工具|2.9.2
 商品应用|mall-item-application|9323
 管理应用|mall-manager-application|9324
 分享应用|mall-share-application|9325
+交易中心|mall-trade-center|9326
+会员中心|mall-member-center|9327
+商品中心|mall-item-center|9328
+库存中心|mall-inventory-center|9329
+营销中心|mall-promotion-center|9330  
 
 ## 五、Redis库分配
 0号库留做公共使用  
