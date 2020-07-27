@@ -163,15 +163,5 @@ public class CommonConstant {
      */
     public static final String MD5 = "MD5";
 
-    /**
-     * 数据库操作成功返回值
-     */
-    public static final int DATABASE_OPT_SUCCESS = 1;
-
-    /**
-     * 数据库操作失败返回值
-     */
-    public static final int DATABASE_OPT_FAILED = 0;
-
 
 }

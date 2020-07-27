@@ -43,7 +43,22 @@ public enum ErrorCode {
     /**
      * 数据库操作失败
      */
-    ME_CEN_DATABASE_OPT_FAILED("02-00-D-00001","数据库操作失败"),
+    ME_CEN_DATABASE_OPT_FAILED("07-00-D-00001","数据库操作失败"),
+
+    /**
+     * 数据库入参不合法
+     */
+    ME_CEN_DATABASE_PARA_ILLEGAL("07-00-D-00002","数据库入参不合法"),
+
+    /**
+     * 数据不存在
+     */
+    ME_CEN_DATABASE_DATA_NOT_EXIST("07-00-D-00003","数据不存在"),
+
+    /**
+     * 数据已存在
+     */
+    ME_CEN_DATABASE_DATA_ALREADY_EXIST("07-00-D-00004","数据不存在"),
 
     /*----------------------------------------------商品应用----------------------------------------------------------*/
 
@@ -57,7 +72,22 @@ public enum ErrorCode {
     /**
      * 数据库操作失败
      */
-    IT_CEN_DATABASE_OPT_FAILED("04-00-D-00001","数据库操作失败"),
+    IT_CEN_DATABASE_OPT_FAILED("08-00-D-00001","数据库操作失败"),
+
+    /**
+     * 数据库入参不合法
+     */
+    IT_CEN_DATABASE_PARA_ILLEGAL("08-00-D-00002","数据库入参不合法"),
+
+    /**
+     * 数据不存在
+     */
+    IT_CEN_DATABASE_DATA_NOT_EXIST("08-00-D-00003","数据不存在"),
+
+    /**
+     * 数据已存在
+     */
+    IT_CEN_DATABASE_DATA_ALREADY_EXIST("08-00-D-00004","数据不存在"),
 
     /**
      * 系统错误
