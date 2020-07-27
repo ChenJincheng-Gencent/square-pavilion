@@ -23,4 +23,8 @@ public class SpecificationOptionDto implements Serializable {
 
     private static final long serialVersionUID = 8051521745575588121L;
 
+    private Long id;
+
+    private String name;
+
 }

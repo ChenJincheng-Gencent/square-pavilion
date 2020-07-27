@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.square.mall.item.center.service.dao.BrandDao">
+<mapper namespace="com.square.mall.item.center.service.dao.SpecificationOptionDao">
 
-    <resultMap id="BrandMap" type="com.square.mall.item.center.service.eo.BrandEo">
+    <resultMap id="SpecificationOptionMap" type="com.square.mall.item.center.service.eo.SpecificationOptionEo">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
-        <result column="first_char" property="firstChar"/>
+        <result column="sort" property="sort"/>
+        <result column="spec_id" property="specId"/>
     </resultMap>
 
     <sql id="need_column">
         `id`,
         `name`,
-        `first_char`
+        `sort`,
+        `spec_id`
     </sql>
 
     <!-- 动态查询 -->
@@ -30,19 +32,20 @@
         </where>
     </sql>
 
-    <select id="selectBrandByCondition" resultMap="BrandMap">
+    <select id="selectSpecificationOptionByCondition" resultMap="SpecificationOptionMap">
         SELECT
         <include refid="need_column"/>
-        FROM it_brand <include refid="select"/>
+        FROM it_specification_option <include refid="select"/>
     </select>
 
-    <insert id="insertBrand" parameterType="com.square.mall.item.center.service.eo.BrandEo" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO it_brand (`id`, `name`, `first_char`, `create_time`, `update_time`)
+    <insert id="insertSpecificationOption" parameterType="com.square.mall.item.center.service.eo.SpecificationOptionEo"
+        useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO it_specification_option (`id`, `name`, `first_char`, `create_time`, `update_time`)
         VALUES (#{id}, #{name}, #{firstChar}, now(), now())
     </insert>
 
-    <insert id="updateBrand" parameterType="com.square.mall.item.center.service.eo.BrandEo">
-        UPDATE it_brand SET
+    <insert id="updateSpecificationOption" parameterType="com.square.mall.item.center.service.eo.SpecificationOptionEo">
+        UPDATE it_specification_option SET
         <if test="name != null and name !=''">
             name = #{name},
         </if>
@@ -53,20 +56,20 @@
         WHERE id = #{id} and is_delete = 0
     </insert>
 
-    <delete id="deleteBrand" parameterType="Long" >
-        UPDATE it_brand SET is_delete = 1 where id = #{id} and is_delete = 0;
+    <delete id="deleteSpecificationOption" parameterType="Long" >
+        UPDATE it_specification_option SET is_delete = 1 where id = #{id} and is_delete = 0;
     </delete>
 
-    <select id="selectBrandByName" resultMap="BrandMap">
+    <select id="selectSpecificationOptionByName" resultMap="SpecificationOptionMap">
         SELECT
         <include refid="need_column"/>
-        FROM it_brand WHERE name = #{name} and is_delete = 0;
+        FROM it_specification_option WHERE name = #{name} and is_delete = 0;
     </select>
 
-    <select id="selectBrandById" resultMap="BrandMap">
+    <select id="selectSpecificationOptionById" resultMap="SpecificationOptionMap">
         SELECT
         <include refid="need_column"/>
-        FROM it_brand WHERE id = #{id} and is_delete = 0;
+        FROM it_specification_option WHERE id = #{id} and is_delete = 0;
     </select>
 
 </mapper>
