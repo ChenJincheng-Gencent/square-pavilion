@@ -87,7 +87,8 @@ public class BrandServiceImpl implements BrandService {
 
         pageNum = null == pageNum ? 1 : pageNum;
         pageSize = null == pageSize ? 10 : pageSize;
-        PageHelper.startPage(pageNum, pageSize);
+        String orderBy = "create_time" + " desc";
+        PageHelper.startPage(pageNum, pageSize, orderBy);
         BrandEo brandEo = new BrandEo();
         BeanUtils.copyProperties(brandDto, brandEo);
         Page<BrandEo> page = (Page<BrandEo>) brandDao.selectBrandByCondition(brandEo);
