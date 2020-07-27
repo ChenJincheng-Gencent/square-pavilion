@@ -64,4 +64,15 @@ public class DatabaseUtil {
         }
 
     }
+
+    /**
+     * 返回数据库操作结果
+     *
+     * @param value 数据库操作返回值
+     * @param moduleName 模块名称
+     * @return 数据库操作结果
+     */
+    public static RspDto getResult(int value, String moduleName) {
+        return getResult(value, null, moduleName);
+    }
 }
