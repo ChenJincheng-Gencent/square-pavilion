@@ -1,5 +1,6 @@
 package com.square.mall.member.center.service.service.impl;
 
+import com.square.mall.common.util.DatabaseOptConstant;
 import com.square.mall.common.util.StringUtil;
 import com.square.mall.member.center.api.dto.MemberDto;
 import com.square.mall.member.center.service.dao.MemberDao;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
- *  会员Service实现类
+ * 会员Service实现类
  *
  * @author Gencent
  * @date 2019/8/19
@@ -47,11 +48,16 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public int insertMember(MemberDto memberDto) {
 
-        if (null == memberDto) {
-            log.error("memberDto is null.");
-            return 0;
+        if (null == memberDto || StringUtil.isBlank(memberDto.getMobile())) {
+            log.error("memberDto or mobile is null or blank.");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
         }
 
+        MemberEo oldMemberEo = memberDao.selectMemberByMobile(memberDto.getMobile());
+        if (null != oldMemberEo) {
+            log.error("oldMemberEo already exist. mobile: {}", memberDto.getMobile());
+            return DatabaseOptConstant.DATABASE_DATA_ALREADY_EXIST;
+        }
         MemberEo memberEo = new MemberEo();
         BeanUtils.copyProperties(memberDto, memberEo);
         int success = memberDao.insertMember(memberEo);
@@ -64,10 +70,15 @@ public class MemberServiceImpl implements MemberService {
     public int updateMemberByMobile(MemberDto memberDto) {
 
         if (null == memberDto || StringUtil.isBlank(memberDto.getMobile())) {
-            log.error("memberDto or mobile is null.");
-            return 0;
+            log.error("memberDto or mobile is null or blank.");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
         }
 
+        MemberEo oldMemberEo = memberDao.selectMemberByMobile(memberDto.getMobile());
+        if (null == oldMemberEo) {
+            log.error("oldMemberEo is null. mobile: {}", memberDto.getMobile());
+            return DatabaseOptConstant.DATABASE_DATA_NOT_EXIST;
+        }
         MemberEo memberEo = new MemberEo();
         BeanUtils.copyProperties(memberDto, memberEo);
         return memberDao.updateMemberByMobile(memberEo);
