@@ -57,5 +57,17 @@
         UPDATE it_brand SET is_delete = 1 where id = #{id} and is_delete = 0;
     </delete>
 
+    <select id="selectBrandByName" resultMap="BrandMap">
+        SELECT
+        <include refid="need_column"/>
+        FROM it_brand WHERE name = #{name} and is_delete = 0;
+    </select>
+
+    <select id="selectBrandById" resultMap="BrandMap">
+        SELECT
+        <include refid="need_column"/>
+        FROM it_brand WHERE id = #{id} and is_delete = 0;
+    </select>
+
 </mapper>
 

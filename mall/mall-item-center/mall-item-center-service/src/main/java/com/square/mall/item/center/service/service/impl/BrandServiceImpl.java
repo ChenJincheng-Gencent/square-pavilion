@@ -3,7 +3,9 @@ package com.square.mall.item.center.service.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.square.mall.common.dto.PageRspDto;
+import com.square.mall.common.util.DatabaseOptConstant;
 import com.square.mall.common.util.ListUtil;
+import com.square.mall.common.util.StringUtil;
 import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.service.dao.BrandDao;
 import com.square.mall.item.center.service.eo.BrandEo;
@@ -18,6 +20,7 @@ import java.util.List;
 
 /**
  * 品牌Service实现类
+ *
  * @author Gencent
  * @date 2020/7/24
  */
@@ -31,10 +34,15 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public int insertBrand(BrandDto brandDto) {
 
-        if (null == brandDto) {
-            log.error("brandDto is null.");
-            return 0;
+        if (null == brandDto || StringUtil.isBlank(brandDto.getName())) {
+            log.error("brandDto or name is null or blank.");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
 
+        }
+        BrandEo oldBrandEo = brandDao.selectBrandByName(brandDto.getName());
+        if (null != oldBrandEo) {
+            log.error("oldBrandEo already exist. brandDto: {}", brandDto);
+            return DatabaseOptConstant.DATABASE_DATA_ALREADY_EXIST;
         }
         BrandEo brandEo = new BrandEo();
         BeanUtils.copyProperties(brandDto, brandEo);
@@ -49,7 +57,12 @@ public class BrandServiceImpl implements BrandService {
 
         if (null == brandDto || null == brandDto.getId()) {
             log.error("brandDto or id is null");
-            return 0;
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+        BrandEo oldBrandEo = brandDao.selectBrandById(brandDto.getId());
+        if (null == oldBrandEo) {
+            log.error("oldBrandEo is null. id: {}", brandDto.getId());
+            return DatabaseOptConstant.DATABASE_DATA_NOT_EXIST;
         }
         BrandEo brandEo = new BrandEo();
         return brandDao.updateBrand(brandEo);
@@ -61,7 +74,13 @@ public class BrandServiceImpl implements BrandService {
 
         if (null == id) {
             log.error("id is null.");
-            return 0;
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+
+        BrandEo brandEo = brandDao.selectBrandById(id);
+        if (null == brandEo) {
+            log.error("brandEo is null. id: {}", id);
+            return DatabaseOptConstant.DATABASE_DATA_NOT_EXIST;
         }
 
         return brandDao.deleteBrand(id);
@@ -70,15 +89,18 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public List<BrandDto> selectBrandByCondition(BrandDto brandDto) {
-        if (null == brandDto) {
-            log.error("brandDto is null.");
-            return null;
-        }
+
         BrandEo brandEo = new BrandEo();
         BeanUtils.copyProperties(brandDto, brandEo);
         List<BrandEo> brandEoList = brandDao.selectBrandByCondition(brandEo);
         List<BrandDto> brandDtoList = new ArrayList<>();
-        ListUtil.copyList(brandEoList, brandDtoList);
+        if (ListUtil.isNotBlank(brandEoList)) {
+            brandEoList.forEach( x -> {
+                BrandDto brandDtoTemp = new BrandDto();
+                BeanUtils.copyProperties(x, brandDtoTemp);
+                brandDtoList.add(brandDtoTemp);
+            });
+        }
         return brandDtoList;
     }
 
@@ -100,8 +122,39 @@ public class BrandServiceImpl implements BrandService {
                 brandDtoList.add(brandDtoTemp);
             });
         }
-        ListUtil.copyList(page.getResult(), brandDtoList);
         return new PageRspDto<>(page.getTotal(), brandDtoList);
+    }
+
+    @Override
+    public BrandDto selectBrandByName(String name) {
+        if (StringUtil.isBlank(name)) {
+            log.error("name is blank.");
+            return null;
+        }
+        BrandDto brandDto = new BrandDto();
+        BrandEo brandEo = brandDao.selectBrandByName(name);
+        if (null == brandEo) {
+            log.error("brandEo is null. name: {}", name);
+            return null;
+        }
+        BeanUtils.copyProperties(brandEo, brandDto);
+        return brandDto;
+    }
+
+    @Override
+    public BrandDto selectBrandById(Long id) {
+        if (null == id) {
+            log.error("id is null.");
+            return null;
+        }
+        BrandDto brandDto = new BrandDto();
+        BrandEo brandEo = brandDao.selectBrandById(id);
+        if (null == brandEo) {
+            log.error("brandEo is null. id: {}", id);
+            return null;
+        }
+        BeanUtils.copyProperties(brandEo, brandDto);
+        return brandDto;
     }
 
 }

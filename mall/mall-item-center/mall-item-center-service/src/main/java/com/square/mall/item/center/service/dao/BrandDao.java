@@ -1,5 +1,6 @@
 package com.square.mall.item.center.service.dao;
 
+import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.service.eo.BrandEo;
 import org.apache.ibatis.annotations.Param;
 
@@ -40,5 +41,21 @@ public interface BrandDao {
      * @return 品牌数据列表
      */
     List<BrandEo> selectBrandByCondition(BrandEo brandEo);
+
+    /**
+     * 根据名称查询品牌
+     *
+     * @param name 名称
+     * @return 品牌
+     */
+    BrandEo selectBrandByName(@Param("name") String name);
+
+    /**
+     * 根据ID查询品牌
+     *
+     * @param id ID
+     * @return 品牌
+     */
+    BrandEo selectBrandById(@Param("id") Long id);
 
 }
