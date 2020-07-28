@@ -1,15 +1,14 @@
 package com.square.mall.member.center.service.apiimpl;
 
 import com.square.mall.common.dto.RspDto;
-import com.square.mall.common.util.CommonConstant;
 import com.square.mall.common.util.DatabaseUtil;
-import com.square.mall.common.util.ErrorCode;
 import com.square.mall.common.util.ModuleConstant;
 import com.square.mall.member.center.api.MemberApi;
 import com.square.mall.member.center.api.dto.MemberDto;
 import com.square.mall.member.center.service.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -21,6 +20,7 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class MemberApiImpl implements MemberApi {
 
     @Resource

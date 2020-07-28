@@ -1,14 +1,13 @@
 package com.square.mall.member.center.service.apiimpl;
 
 import com.square.mall.common.dto.RspDto;
-import com.square.mall.common.util.CommonConstant;
 import com.square.mall.common.util.DatabaseUtil;
-import com.square.mall.common.util.ErrorCode;
 import com.square.mall.common.util.ModuleConstant;
 import com.square.mall.member.center.api.AddressApi;
 import com.square.mall.member.center.api.dto.AddressDto;
 import com.square.mall.member.center.service.service.AddressService;
 import org.apache.dubbo.config.annotation.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -19,6 +18,7 @@ import javax.annotation.Resource;
  * @date 2020/7/20
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class AddressApiImpl implements AddressApi {
 
     @Resource
