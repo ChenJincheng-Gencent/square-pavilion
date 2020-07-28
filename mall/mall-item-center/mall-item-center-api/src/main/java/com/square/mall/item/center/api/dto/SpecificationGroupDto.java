@@ -1,6 +1,7 @@
 package com.square.mall.item.center.api.dto;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -27,11 +28,13 @@ public class SpecificationGroupDto implements Serializable {
     /**
      * 规格
      */
+    @ApiModelProperty(name = "specificationDto", value = "规格")
     private SpecificationDto specificationDto;
 
     /**
      * 规格选项列表
      */
+    @ApiModelProperty(name = "specificationOptionDtoList", value = "规格选项列表")
     private List<SpecificationOptionDto> specificationOptionDtoList;
 
 }

@@ -1,6 +1,7 @@
 package com.square.mall.item.center.service.service.impl;
 
 import com.square.mall.common.util.DatabaseOptConstant;
+import com.square.mall.common.util.ListUtil;
 import com.square.mall.common.util.StringUtil;
 import com.square.mall.item.center.api.dto.SpecificationOptionDto;
 import com.square.mall.item.center.service.dao.SpecificationOptionDao;
@@ -11,6 +12,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 规格选项Service实现类
@@ -90,6 +93,28 @@ public class SpecificationOptionServiceImpl implements SpecificationOptionServic
         }
         return specificationOptionDao.deleteSpecificationOptionBySpecId(specId);
 
+    }
+
+    @Override
+    public List<SpecificationOptionDto> selectSpecificationOptionBySpecId(Long specId) {
+
+        if (null == specId) {
+            log.error("specId is null.");
+            return null;
+        }
+        List<SpecificationOptionEo> optionEoList = specificationOptionDao.selectSpecificationOptionBySpecId(specId);
+        if (ListUtil.isBlank(optionEoList)) {
+            log.error("optionEoList is blank. specId: {}", specId);
+            return null;
+        }
+
+        List<SpecificationOptionDto> specificationOptionDtoList = new ArrayList<>();
+        optionEoList.forEach( x -> {
+            SpecificationOptionDto specificationOptionDto = new SpecificationOptionDto();
+            BeanUtils.copyProperties(x, specificationOptionDto);
+            specificationOptionDtoList.add(specificationOptionDto);
+        });
+        return specificationOptionDtoList;
     }
 
 }

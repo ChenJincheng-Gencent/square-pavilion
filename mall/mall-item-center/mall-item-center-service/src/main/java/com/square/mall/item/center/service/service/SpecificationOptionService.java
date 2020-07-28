@@ -1,6 +1,9 @@
 package com.square.mall.item.center.service.service;
 
 import com.square.mall.item.center.api.dto.SpecificationOptionDto;
+import com.square.mall.item.center.service.eo.SpecificationOptionEo;
+
+import java.util.List;
 
 /**
  * 规格选项Service
@@ -49,5 +52,13 @@ public interface SpecificationOptionService {
      * @return 操作结果
      */
     int deleteSpecificationOptionBySpecId(Long specId);
+
+    /**
+     * 根据规格ID查询规格选项列表
+     *
+     * @param specId 规格ID
+     * @return 规格选项列表
+     */
+    List<SpecificationOptionDto> selectSpecificationOptionBySpecId(Long specId);
 
 }

@@ -77,4 +77,12 @@ public interface SpecificationOptionDao {
      */
     int deleteSpecificationOptionBySpecId(@Param("specId") Long specId);
 
+    /**
+     * 根据规格ID查询规格选项列表
+     *
+     * @param specId 规格ID
+     * @return 规格选项列表
+     */
+    List<SpecificationOptionEo> selectSpecificationOptionBySpecId(@Param("specId") Long specId);
+
 }

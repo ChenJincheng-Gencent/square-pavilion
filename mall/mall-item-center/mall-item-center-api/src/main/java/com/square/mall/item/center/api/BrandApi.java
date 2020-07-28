@@ -13,6 +13,7 @@ public interface BrandApi {
 
     /**
      * 插入品牌数据
+     *
      * @param brandDto 品牌
      * @return 数据库ID
      */
@@ -20,6 +21,7 @@ public interface BrandApi {
 
     /**
      * 更新品牌数据
+     *
      * @param brandDto 品牌
      * @return 响应
      */
@@ -27,6 +29,7 @@ public interface BrandApi {
 
     /**
      * 删除品牌数据
+     *
      * @param id 数据库ID
      * @return 响应
      */

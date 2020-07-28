@@ -16,6 +16,7 @@ public interface BrandQueryApi {
 
     /**
      * 条件查询品牌数据列表
+     *
      * @param brandDto 查询条件
      * @return 品牌数据列表
      */
@@ -23,6 +24,7 @@ public interface BrandQueryApi {
 
     /**
      * 分页条件查询品牌数据列表
+     *
      * @param brandDto 查询条件
      * @param pageNum 当前页
      * @param pageSize 分页大小

@@ -89,5 +89,11 @@
         UPDATE it_specification_option SET is_delete = 1 where spec_id = #{specId} and is_delete = 0
     </delete>
 
+    <select id="selectSpecificationOptionBySpecId" resultMap="SpecificationOptionMap">
+        SELECT
+        <include refid="need_column"/>
+        FROM it_specification_option WHERE spec_id = #{specId} and is_delete = 0;
+    </select>
+
 </mapper>
 
