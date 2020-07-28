@@ -1,60 +1,64 @@
 package com.square.mall.item.center.service.dao;
 
-import com.square.mall.item.center.service.eo.BrandEo;
+import com.square.mall.item.center.service.eo.ExtraAttributesEo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
- * 品牌dao
+ * 扩展属性Dao
  *
  * @author Gencent
- * @date 2020/7/24
+ * @date 2020/7/28
  */
 public interface ExtraAttributesDao {
 
     /**
-     * 插入品牌数据
-     * @param brandEo 品牌
+     * 插入扩展属性
+     *
+     * @param extraAttributesEo 扩展属性
      * @return 是否成功，1成功，0失败
      */
-    int insertBrand(BrandEo brandEo);
+    int insertExtraAttributes(ExtraAttributesEo extraAttributesEo);
 
     /**
-     * 更新品牌数据
-     * @param brandEo 品牌
+     * 更新扩展属性
+     *
+     * @param extraAttributesEo 扩展属性
      * @return 是否成功，1成功，0失败
      */
-    int updateBrand(BrandEo brandEo);
+    int updateExtraAttributes(ExtraAttributesEo extraAttributesEo);
 
     /**
-     * 删除品牌数据
+     * 删除扩展属性
+     *
      * @param id 数据库ID
      * @return 是否成功，1成功，0失败
      */
-    int deleteBrand(@Param("id") Long id);
+    int deleteExtraAttributes(@Param("id") Long id);
 
     /**
-     * 条件查询品牌数据列表
-     * @param brandEo 查询条件
-     * @return 品牌数据列表
+     * 条件查询扩展属性列表
+     *
+     * @param extraAttributesEo 查询条件
+     * @return 扩展属性列表
      */
-    List<BrandEo> selectBrandByCondition(BrandEo brandEo);
+    List<ExtraAttributesEo> selectExtraAttributesByCondition(ExtraAttributesEo extraAttributesEo);
 
     /**
-     * 根据名称查询品牌
+     * 根据名称查询扩展属性
      *
      * @param name 名称
-     * @return 品牌
+     * @return 扩展属性
      */
-    BrandEo selectBrandByName(@Param("name") String name);
+    ExtraAttributesEo selectExtraAttributesByName(@Param("name") String name);
 
     /**
-     * 根据ID查询品牌
+     * 根据ID查询扩展属性
      *
      * @param id ID
-     * @return 品牌
+     * @return 扩展属性
      */
-    BrandEo selectBrandById(@Param("id") Long id);
+    ExtraAttributesEo selectExtraAttributesById(@Param("id") Long id);
 
 }

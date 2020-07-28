@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.square.mall.item.center.service.dao.BrandDao">
+<mapper namespace="com.square.mall.item.center.service.dao.TemplateBrandDao">
 
-    <resultMap id="BrandMap" type="com.square.mall.item.center.service.eo.BrandEo">
+    <resultMap id="TemplateBrandMap" type="com.square.mall.item.center.service.eo.TemplateBrandEo">
         <id column="id" property="id"/>
-        <result column="name" property="name"/>
-        <result column="first_char" property="firstChar"/>
+        <result column="template_id" property="templateId"/>
+        <result column="brand_id" property="brandId"/>
     </resultMap>
 
     <sql id="need_column">
         `id`,
-        `name`,
-        `first_char`
+        `template_id`,
+        `brand_id`
     </sql>
 
     <!-- 动态查询 -->
@@ -21,52 +21,46 @@
             <if test="id != null">
                 and id = #{id}
             </if>
-            <if test="name != null and name !=''">
-                and name = #{name}
+            <if test="templateId != null">
+                and template_id = #{templateId}
             </if>
-            <if test="firstChar != null and firstChar !=''">
-                and first_char = #{firstChar}
+            <if test="brandId != null">
+                and brand_id = #{brandId}
             </if>
         </where>
     </sql>
 
-    <select id="selectBrandByCondition" resultMap="BrandMap">
+    <select id="selectTemplateBrandByCondition" resultMap="TemplateBrandMap">
         SELECT
         <include refid="need_column"/>
-        FROM it_brand <include refid="select"/>
+        FROM it_template_brand <include refid="select"/>
     </select>
 
-    <insert id="insertBrand" parameterType="com.square.mall.item.center.service.eo.BrandEo" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO it_brand (`id`, `name`, `first_char`, `create_time`, `update_time`)
-        VALUES (#{id}, #{name}, #{firstChar}, now(), now())
+    <insert id="insertTemplateBrand" parameterType="com.square.mall.item.center.service.eo.TemplateBrandEo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO it_template_brand (`id`, `template_id`, `brand_id`, `create_time`, `update_time`)
+        VALUES (#{id}, #{templateId}, #{brandId}, now(), now())
     </insert>
 
-    <insert id="updateBrand" parameterType="com.square.mall.item.center.service.eo.BrandEo">
-        UPDATE it_brand SET
-        <if test="name != null and name !=''">
-            name = #{name},
+    <insert id="updateTemplateBrand" parameterType="com.square.mall.item.center.service.eo.TemplateBrandEo">
+        UPDATE it_template_brand SET
+        <if test="templateId != null">
+            template_id = #{templateId},
         </if>
-        <if test="firstChar != null and firstChar !=''">
-            first_char = #{firstChar},
+        <if test="brandId != null">
+            brand_id = #{brandId},
         </if>
         update_time = now()
         WHERE id = #{id} and is_delete = 0
     </insert>
 
-    <delete id="deleteBrand" parameterType="Long" >
-        UPDATE it_brand SET is_delete = 1 where id = #{id} and is_delete = 0;
+    <delete id="deleteTemplateBrand" parameterType="Long" >
+        UPDATE it_template_brand SET is_delete = 1 where id = #{id} and is_delete = 0;
     </delete>
 
-    <select id="selectBrandByName" resultMap="BrandMap">
+    <select id="selectTemplateBrandById" resultMap="TemplateBrandMap">
         SELECT
         <include refid="need_column"/>
-        FROM it_brand WHERE name = #{name} and is_delete = 0;
-    </select>
-
-    <select id="selectBrandById" resultMap="BrandMap">
-        SELECT
-        <include refid="need_column"/>
-        FROM it_brand WHERE id = #{id} and is_delete = 0;
+        FROM it_template_brand WHERE id = #{id} and is_delete = 0;
     </select>
 
 </mapper>
