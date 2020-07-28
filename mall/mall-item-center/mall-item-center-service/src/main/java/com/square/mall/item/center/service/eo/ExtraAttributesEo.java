@@ -30,7 +30,7 @@ public class ExtraAttributesEo extends BaseEo {
     private String name;
 
     /**
-     * 规格ID
+     * 模板ID
      */
     @ApiModelProperty(name = "templateId", value = "模板ID")
     private Long templateId;
