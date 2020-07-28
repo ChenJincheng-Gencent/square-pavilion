@@ -1,74 +1,74 @@
 package com.square.mall.item.center.service.service;
 
 import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.item.center.api.dto.BrandDto;
+import com.square.mall.item.center.api.dto.TemplateBrandDto;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
- * 品牌Service
+ * 模板品牌Service
  *
  * @author Gencent
- * @date 2020/7/24
+ * @date 2020/7/28
  */
 public interface TemplateBrandService {
 
     /**
-     * 插入品牌数据
+     * 插入模板品牌
      *
-     * @param brandDto 品牌
+     * @param templateBrandDto 模板品牌
      * @return 是否成功，1成功，0失败
      */
-    int insertBrand(BrandDto brandDto);
+    int insertTemplateBrand(TemplateBrandDto templateBrandDto);
 
     /**
-     * 更新品牌数据
+     * 更新模板品牌
      *
-     * @param brandDto 品牌
+     * @param templateBrandDto 模板品牌
      * @return 否成功，1成功，0失败
      */
-    int updateBrand(BrandDto brandDto);
+    int updateTemplateBrand(TemplateBrandDto templateBrandDto);
 
     /**
-     * 删除品牌数据
+     * 删除模板品牌
      *
      * @param id 数据库ID
      * @return 是否成功，1成功，0失败
      */
-    int deleteBrand(Long id);
+    int deleteTemplateBrand(Long id);
 
     /**
-     * 条件查询品牌数据列表
+     * 条件查询模板品牌列表
      *
-     * @param brandDto 查询条件
+     * @param templateBrandDto 查询条件
      * @return 品牌数据列表
      */
-    List<BrandDto> selectBrandByCondition(BrandDto brandDto);
+    List<TemplateBrandDto> selectTemplateBrandByCondition(TemplateBrandDto templateBrandDto);
 
     /**
-     * 分页条件查询品牌数据列表
+     * 分页条件查询模板品牌列表
      *
-     * @param brandDto 查询条件
+     * @param templateBrandDto 查询条件
      * @param pageNum 当前页
      * @param pageSize 分页大小
-     * @return 品牌数据列表
+     * @return 模板品牌列表
      */
-    PageRspDto<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageNum, Integer pageSize);
+    PageRspDto<List<TemplateBrandDto>> selectPageTemplateBrandByCondition(TemplateBrandDto templateBrandDto, Integer pageNum, Integer pageSize);
 
     /**
-     * 根据名称查询品牌
+     * 根据名称查询模板品牌
      *
      * @param name 名称
-     * @return 品牌
+     * @return 模板品牌
      */
-    BrandDto selectBrandByName(@Param("name") String name);
+    TemplateBrandDto selectTemplateBrandByName(@Param("name") String name);
 
     /**
-     * 根据ID查询品牌
+     * 根据ID查询模板品牌
      *
      * @param id ID
-     * @return 品牌
+     * @return 模板品牌
      */
-    BrandDto selectBrandById(@Param("id") Long id);
+    TemplateBrandDto selectTemplateBrandById(@Param("id") Long id);
 }

@@ -1,58 +1,58 @@
 package com.square.mall.item.center.service.service;
 
 import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.item.center.api.dto.SpecificationDto;
+import com.square.mall.item.center.api.dto.TemplateSpecificationDto;
 
 import java.util.List;
 
 /**
- * 规格Service
+ * 模板规格Service
  *
  * @author Gencent
- * @date 2020/7/27
+ * @date 2020/7/28
  */
 public interface TemplateSpecificationService {
 
     /**
-     * 插入规格
+     * 插入模板规格
      *
-     * @param specificationDto 规格
+     * @param templateSpecificationDto 模板规格
      * @return 操作结果
      */
-    int insertSpecification(SpecificationDto specificationDto);
+    int insertTemplateSpecification(TemplateSpecificationDto templateSpecificationDto);
 
     /**
-     * 更新规格
+     * 更新模板规格
      *
-     * @param specificationDto 规格
+     * @param templateSpecificationDto 模板规格
      * @return 操作结果
      */
-    int updateSpecification(SpecificationDto specificationDto);
+    int updateTemplateSpecification(TemplateSpecificationDto templateSpecificationDto);
 
     /**
-     * 删除规格
+     * 删除模板规格
      *
      * @param id ID
      * @return 操作结果
      */
-    int deleteSpecification(Long id);
+    int deleteTemplateSpecification(Long id);
 
     /**
-     * 条件查询规格列表
-     * @param specificationDto 查询条件
-     * @return 规格列表
+     * 条件查询模板规格列表
+     * @param templateSpecificationDto 查询条件
+     * @return 模板规格列表
      */
-    List<SpecificationDto> selectSpecificationByCondition(SpecificationDto specificationDto);
+    List<TemplateSpecificationDto> selectTemplateSpecificationByCondition(TemplateSpecificationDto templateSpecificationDto);
 
     /**
-     * 分页条件查询规格列表
+     * 分页条件查询模板规格列表
      *
-     * @param specificationDto 查询条件
+     * @param templateSpecificationDto 查询条件
      * @param pageNum 当前页
      * @param pageSize 分页大小
-     * @return 规格列表
+     * @return 模板规格列表
      */
-    PageRspDto<List<SpecificationDto>> selectPageSpecificationByCondition(SpecificationDto specificationDto,
+    PageRspDto<List<TemplateSpecificationDto>> selectPageTemplateSpecificationByCondition(TemplateSpecificationDto templateSpecificationDto,
         Integer pageNum, Integer pageSize);
 
 }

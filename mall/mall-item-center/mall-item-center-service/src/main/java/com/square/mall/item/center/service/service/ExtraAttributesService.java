@@ -2,73 +2,74 @@ package com.square.mall.item.center.service.service;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.item.center.api.dto.BrandDto;
+import com.square.mall.item.center.api.dto.ExtraAttributesDto;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
- * 品牌Service
+ * 扩展属性Service
  *
  * @author Gencent
- * @date 2020/7/24
+ * @date 2020/7/28
  */
 public interface ExtraAttributesService {
 
     /**
-     * 插入品牌数据
+     * 插入扩展属性
      *
-     * @param brandDto 品牌
+     * @param extraAttributesDto 扩展属性
      * @return 是否成功，1成功，0失败
      */
-    int insertBrand(BrandDto brandDto);
+    int insertExtraAttributes(ExtraAttributesDto extraAttributesDto);
 
     /**
-     * 更新品牌数据
+     * 更新扩展属性
      *
-     * @param brandDto 品牌
+     * @param extraAttributesDto 扩展属性
      * @return 否成功，1成功，0失败
      */
-    int updateBrand(BrandDto brandDto);
+    int updateExtraAttributes(ExtraAttributesDto extraAttributesDto);
 
     /**
-     * 删除品牌数据
+     * 删除扩展属性
      *
      * @param id 数据库ID
      * @return 是否成功，1成功，0失败
      */
-    int deleteBrand(Long id);
+    int deleteExtraAttributes(Long id);
 
     /**
-     * 条件查询品牌数据列表
+     * 条件查询扩展属性列表
      *
-     * @param brandDto 查询条件
-     * @return 品牌数据列表
+     * @param extraAttributesDto 查询条件
+     * @return 扩展属性列表
      */
-    List<BrandDto> selectBrandByCondition(BrandDto brandDto);
+    List<ExtraAttributesDto> selectExtraAttributesByCondition(ExtraAttributesDto extraAttributesDto);
 
     /**
-     * 分页条件查询品牌数据列表
+     * 分页条件查询扩展属性列表
      *
-     * @param brandDto 查询条件
+     * @param extraAttributesDto 查询条件
      * @param pageNum 当前页
      * @param pageSize 分页大小
-     * @return 品牌数据列表
+     * @return 扩展属性列表
      */
-    PageRspDto<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageNum, Integer pageSize);
+    PageRspDto<List<ExtraAttributesDto>> selectPageExtraAttributesByCondition(ExtraAttributesDto extraAttributesDto, Integer pageNum, Integer pageSize);
 
     /**
-     * 根据名称查询品牌
+     * 根据名称查询扩展属性
      *
      * @param name 名称
-     * @return 品牌
+     * @return 扩展属性
      */
-    BrandDto selectBrandByName(@Param("name") String name);
+    ExtraAttributesDto selectExtraAttributesByName(@Param("name") String name);
 
     /**
-     * 根据ID查询品牌
+     * 根据ID查询扩展属性
      *
      * @param id ID
-     * @return 品牌
+     * @return 扩展属性
      */
-    BrandDto selectBrandById(@Param("id") Long id);
+    ExtraAttributesDto selectExtraAttributesById(@Param("id") Long id);
 }
