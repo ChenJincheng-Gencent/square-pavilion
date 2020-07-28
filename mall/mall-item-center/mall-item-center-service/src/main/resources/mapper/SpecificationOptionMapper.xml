@@ -26,8 +26,11 @@
             <if test="name != null and name !=''">
                 and name = #{name}
             </if>
-            <if test="firstChar != null and firstChar !=''">
-                and first_char = #{firstChar}
+            <if test="sort != null">
+                and sort = #{sort}
+            </if>
+            <if test="specId != null">
+                and spec_id = #{specId}
             </if>
         </where>
     </sql>
@@ -40,8 +43,8 @@
 
     <insert id="insertSpecificationOption" parameterType="com.square.mall.item.center.service.eo.SpecificationOptionEo"
         useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO it_specification_option (`id`, `name`, `first_char`, `create_time`, `update_time`)
-        VALUES (#{id}, #{name}, #{firstChar}, now(), now())
+        INSERT INTO it_specification_option (`id`, `name`, `sort`, `spec_id`, `create_time`, `update_time`)
+        VALUES (#{id}, #{name}, #{sort}, #{specId}, now(), now())
     </insert>
 
     <insert id="updateSpecificationOption" parameterType="com.square.mall.item.center.service.eo.SpecificationOptionEo">
@@ -49,15 +52,25 @@
         <if test="name != null and name !=''">
             name = #{name},
         </if>
-        <if test="firstChar != null and firstChar !=''">
-            first_char = #{firstChar},
+        <if test="sort != null">
+            sort = #{sort},
+        </if>
+        <if test="specId != null">
+            spec_id = #{specId},
         </if>
         update_time = now()
         WHERE id = #{id} and is_delete = 0
     </insert>
 
     <delete id="deleteSpecificationOption" parameterType="Long" >
-        UPDATE it_specification_option SET is_delete = 1 where id = #{id} and is_delete = 0;
+        UPDATE it_specification_option SET is_delete = 1 where id = #{id} and is_delete = 0
+    </delete>
+
+    <delete id="batchDeleteSpecificationOption" parameterType="Long" >
+        UPDATE it_specification_option SET is_delete = 1 where is_delete = 0 and id in
+        <foreach collection="array" item="ids" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
     </delete>
 
     <select id="selectSpecificationOptionByName" resultMap="SpecificationOptionMap">
@@ -71,6 +84,10 @@
         <include refid="need_column"/>
         FROM it_specification_option WHERE id = #{id} and is_delete = 0;
     </select>
+
+    <delete id="deleteSpecificationOptionBySpecId" parameterType="Long" >
+        UPDATE it_specification_option SET is_delete = 1 where spec_id = #{specId} and is_delete = 0
+    </delete>
 
 </mapper>
 

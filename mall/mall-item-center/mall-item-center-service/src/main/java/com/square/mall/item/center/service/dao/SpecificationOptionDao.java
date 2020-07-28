@@ -39,6 +39,14 @@ public interface SpecificationOptionDao {
     int deleteSpecificationOption(@Param("id") Long id);
 
     /**
+     * 批量删除规格选项
+     *
+     * @param ids ID数组
+     * @return 操作结果
+     */
+    int batchDeleteSpecificationOption(Long[] ids);
+
+    /**
      * 条件查询规格选项列表
      * @param specificationOptionEo 查询条件
      * @return 规格选项列表
@@ -60,5 +68,13 @@ public interface SpecificationOptionDao {
      * @return 规格选项
      */
     SpecificationOptionEo selectSpecificationOptionById(@Param("id") Long id);
+
+    /**
+     * 根据规格ID删除规格选项
+     *
+     * @param specId 规格ID
+     * @return 操作结果
+     */
+    int deleteSpecificationOptionBySpecId(@Param("specId") Long specId);
 
 }

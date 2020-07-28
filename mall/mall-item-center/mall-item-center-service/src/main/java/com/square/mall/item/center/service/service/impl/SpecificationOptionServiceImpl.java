@@ -38,16 +38,58 @@ public class SpecificationOptionServiceImpl implements SpecificationOptionServic
 
     @Override
     public int updateSpecificationOption(SpecificationOptionDto specificationOptionDto) {
-        return 0;
+
+        if (null == specificationOptionDto || null == specificationOptionDto.getId()) {
+            log.error("specificationOptionDto or id is null.");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+        SpecificationOptionEo oldSpecificationOptionEo = specificationOptionDao
+            .selectSpecificationOptionById(specificationOptionDto.getId());
+        if (null == oldSpecificationOptionEo) {
+            log.error("oldSpecificationOptionEo is null. id: {}", specificationOptionDto.getId());
+            return DatabaseOptConstant.DATABASE_DATA_NOT_EXIST;
+        }
+        SpecificationOptionEo specificationOptionEo = new SpecificationOptionEo();
+        BeanUtils.copyProperties(specificationOptionDto, specificationOptionEo);
+        return specificationOptionDao.updateSpecificationOption(specificationOptionEo);
+
     }
 
     @Override
     public int deleteSpecificationOption(Long id) {
-        return 0;
+
+        if (null == id) {
+            log.error("id is null.");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+        SpecificationOptionEo oldSpecificationOptionEo = specificationOptionDao.selectSpecificationOptionById(id);
+        if (null == oldSpecificationOptionEo) {
+            log.error("oldSpecificationOptionEo is null. id: {}", id);
+            return DatabaseOptConstant.DATABASE_DATA_NOT_EXIST;
+        }
+        return specificationOptionDao.deleteSpecificationOption(id);
+
     }
 
     @Override
-    public int patchDeleteSpecificationOption(Long[] id) {
-        return 0;
+    public int batchDeleteSpecificationOption(Long[] ids) {
+
+        if (null == ids) {
+            log.error("ids is null.");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+        return specificationOptionDao.batchDeleteSpecificationOption(ids);
     }
+
+    @Override
+    public int deleteSpecificationOptionBySpecId(Long specId) {
+
+        if (null == specId) {
+            log.error("specId is null.");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+        return specificationOptionDao.deleteSpecificationOptionBySpecId(specId);
+
+    }
+
 }

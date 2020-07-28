@@ -1,6 +1,5 @@
 package com.square.mall.item.center.service.service;
 
-import com.square.mall.item.center.api.dto.SpecificationDto;
 import com.square.mall.item.center.api.dto.SpecificationOptionDto;
 
 /**
@@ -19,9 +18,36 @@ public interface SpecificationOptionService {
      */
     int insertSpecificationOption(SpecificationOptionDto specificationOptionDto);
 
+    /**
+     * 更新规格选项
+     *
+     * @param specificationOptionDto 规格选项
+     * @return 操作结果
+     */
     int updateSpecificationOption(SpecificationOptionDto specificationOptionDto);
 
+    /**
+     * 删除规格选项
+     *
+     * @param id ID
+     * @return 操作结果
+     */
     int deleteSpecificationOption(Long id);
 
-    int patchDeleteSpecificationOption(Long[] id);
+    /**
+     * 批量删除规格选项
+     *
+     * @param ids ID数组
+     * @return 操作结果
+     */
+    int batchDeleteSpecificationOption(Long[] ids);
+
+    /**
+     * 根据规格ID删除规格选项
+     *
+     * @param specId 规格ID
+     * @return 操作结果
+     */
+    int deleteSpecificationOptionBySpecId(Long specId);
+
 }

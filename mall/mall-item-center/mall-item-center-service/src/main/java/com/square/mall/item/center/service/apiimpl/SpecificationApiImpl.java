@@ -47,6 +47,7 @@ public class SpecificationApiImpl implements SpecificationApi {
             return DatabaseUtil.getResult(success, specificationDto.getId(), ModuleConstant.ITEM_CENTER);
         }
         specificationOptionDtoList.forEach( x -> {
+            x.setSpecId(specificationDto.getId());
             specificationOptionService.insertSpecificationOption(x);
         });
         return DatabaseUtil.getResult(success, specificationDto.getId(), ModuleConstant.ITEM_CENTER);
@@ -54,11 +55,44 @@ public class SpecificationApiImpl implements SpecificationApi {
 
     @Override
     public RspDto updateSpecificationGroup(SpecificationGroupDto specificationGroupDto) {
-        return null;
+
+        if (null == specificationGroupDto) {
+            log.error("specificationGroupDto is null.");
+            return DatabaseUtil.getResult(DatabaseOptConstant.DATABASE_PARA_ILLEGAL, ModuleConstant.ITEM_CENTER);
+        }
+        int success = specificationService.updateSpecification(specificationGroupDto.getSpecificationDto());
+        if (DatabaseOptConstant.DATABASE_OPT_SUCCESS != success) {
+            return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
+        }
+        List<SpecificationOptionDto> specificationOptionDtoList = specificationGroupDto.getSpecificationOptionDtoList();
+        if (null != specificationOptionDtoList) {
+            Long[] ids = new Long[specificationOptionDtoList.size()];
+            for (int i = 0; i < specificationOptionDtoList.size(); i++) {
+                ids[i] = specificationOptionDtoList.get(i).getId();
+            }
+            int batchSuccess = specificationOptionService.batchDeleteSpecificationOption(ids);
+            if (DatabaseOptConstant.DATABASE_OPT_SUCCESS != batchSuccess) {
+                return DatabaseUtil.getResult(batchSuccess, ModuleConstant.ITEM_CENTER);
+            }
+            specificationOptionDtoList.forEach( x -> {
+                specificationOptionService.insertSpecificationOption(x);
+            });
+        }
+
+        return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
+
     }
 
     @Override
     public RspDto deleteSpecificationGroup(Long id) {
-        return null;
+
+        int optionSuccess = specificationOptionService.deleteSpecificationOptionBySpecId(id);
+        if (DatabaseOptConstant.DATABASE_OPT_SUCCESS != optionSuccess) {
+            return DatabaseUtil.getResult(optionSuccess, ModuleConstant.ITEM_CENTER);
+        }
+
+        int success = specificationService.deleteSpecification(id);
+        return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
+
     }
 }
