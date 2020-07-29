@@ -42,7 +42,7 @@ public interface BrandDao {
      * 条件查询品牌列表
      *
      * @param brandEo 查询条件
-     * @return 品牌数据列表
+     * @return 品牌列表
      */
     List<BrandEo> selectBrandByCondition(BrandEo brandEo);
 
