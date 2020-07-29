@@ -20,10 +20,10 @@ import java.util.List;
 @Service
 public class BrandServiceImpl implements BrandService {
 
-    //@Reference
+    @Reference
     private BrandApi brandApi;
 
-    //@Reference
+    @Reference
     private BrandQueryApi brandQueryApi;
 
     @Override
@@ -38,7 +38,7 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public RspDto batchDeleteBrand(Long[] ids) {
-        return brandApi.deleteBrand(ids);
+        return brandApi.batchDeleteBrand(ids);
     }
 
     @Override

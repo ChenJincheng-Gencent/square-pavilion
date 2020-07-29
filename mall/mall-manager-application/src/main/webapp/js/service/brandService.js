@@ -7,7 +7,7 @@ app.service('brandService',function($http){
 	}
 	//分页 
 	this.findPage=function(page,rows){
-		return $http.get('../brand/findPage.do?page='+page+'&rows='+rows);
+		return $http.get('../manager/v1/brand/list/page?pageNum='+pageNum+"&pageSize="+pageSize);
 	}
 	//查询实体
 	this.findOne=function(id){
@@ -19,7 +19,7 @@ app.service('brandService',function($http){
 	}
 	//修改 
 	this.update=function(entity){
-		return  $http.post('../brand/update.do',entity );
+		return  $http.put('../manager/v1/brand',entity );
 	}
 	//删除
 	this.delete=function(ids){
