@@ -41,17 +41,12 @@ public class ItemEo extends BaseEo {
     private String desc;
 
     /**
-     * 图片
-     */
-    private String image;
-
-    /**
      * 审核状态
      */
     private Integer auditStatus;
 
     /**
-     * 上级状态
+     * 上架状态
      */
     private Integer shelfStatus;
 
@@ -59,6 +54,22 @@ public class ItemEo extends BaseEo {
      * 是否热门
      */
     private Integer isHot;
+
+    private String sku;
+
+    private Long brandId;
+
+    private Long firstCategoryId;
+
+    private Long secondCategoryId;
+
+    private Long thirdCategoryId;
+
+    private Long templateId;
+
+    private Integer isEnableSpec;
+
+
 
 
 }
