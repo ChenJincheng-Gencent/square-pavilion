@@ -30,10 +30,10 @@ public interface BrandService {
 
     /**
      * 删除品牌数据
-     * @param id 数据库ID
+     * @param ids ID数组
      * @return 响应
      */
-    RspDto deleteBrand(Long id);
+    RspDto batchDeleteBrand(Long[] ids);
 
     /**
      * 条件查询品牌数据列表

@@ -22,8 +22,8 @@ app.service('brandService',function($http){
 		return  $http.post('../brand/update.do',entity );
 	}
 	//删除
-	this.dele=function(ids){
-		return $http.get('../brand/delete.do?ids='+ids);
+	this.delete=function(ids){
+		return $http.delete('../manager/v1/brand?ids='+ids);
 	}
 	//搜索
 	this.search=function(pageNum,pageSize,searchEntity){

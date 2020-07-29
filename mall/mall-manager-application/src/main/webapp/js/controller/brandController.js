@@ -53,9 +53,9 @@ app.controller('brandController' ,function($scope,$controller   ,brandService){
 	
 	 
 	//批量删除 
-	$scope.dele=function(){			
+	$scope.delete=function(){
 		//获取选中的复选框			
-		brandService.dele( $scope.selectIds ).success(
+		brandService.delete( $scope.selectIds ).success(
 			function(response){
 				if(response.success){
 					$scope.reloadList();//刷新列表

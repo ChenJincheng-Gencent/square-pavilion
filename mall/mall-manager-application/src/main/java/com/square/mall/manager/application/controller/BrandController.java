@@ -50,10 +50,10 @@ public class BrandController {
     public PageRspDto<List<BrandDto>> selectPageBrandByCondition(@RequestBody BrandDto brandDto,
         @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize)  {
 
-        PageRspDto<List<BrandDto>> brandDtoList = brandService.selectPageBrandByCondition(brandDto, pageNum, pageSize);
-        log.info("brandDtoList: {}, brandDto: {}, pageNum: {}, pageSize: {}", brandDtoList, brandDto, pageNum, pageSize);
-
-        return brandDtoList;
+        //PageRspDto<List<BrandDto>> brandDtoList = brandService.selectPageBrandByCondition(brandDto, pageNum, pageSize);
+        //log.info("brandDtoList: {}, brandDto: {}, pageNum: {}, pageSize: {}", brandDtoList, brandDto, pageNum, pageSize);
+        return new PageRspDto<List<BrandDto>>(0L, null);
+        //return brandDtoList;
 
     }
 
@@ -88,16 +88,16 @@ public class BrandController {
     }
 
     /**
-     * 删除品牌
+     * 批量删除品牌
      *
-     * @param id 数据库ID
+     * @param ids ID数组
      * @return 响应
      */
-    @DeleteMapping("/brand")
+    @DeleteMapping("/brand/batch")
     @ResponseBody
-    @ApiOperation(value = "删除品牌")
-    public RspDto deleteBrand(@RequestParam("id") @NotNull(message = "ID不能为空") Long id) {
-        return brandService.deleteBrand(id);
+    @ApiOperation(value = "批量删除品牌")
+    public RspDto deleteBrand(Long[] ids) {
+        return brandService.batchDeleteBrand(ids);
     }
 
 }
