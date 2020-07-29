@@ -15,7 +15,7 @@ import java.util.List;
 public interface BrandService {
 
     /**
-     * 插入品牌数据
+     * 插入品牌
      *
      * @param brandDto 品牌
      * @return 是否成功，1成功，0失败
@@ -23,7 +23,7 @@ public interface BrandService {
     int insertBrand(BrandDto brandDto);
 
     /**
-     * 更新品牌数据
+     * 更新品牌
      *
      * @param brandDto 品牌
      * @return 否成功，1成功，0失败
@@ -31,7 +31,7 @@ public interface BrandService {
     int updateBrand(BrandDto brandDto);
 
     /**
-     * 删除品牌数据
+     * 删除品牌
      *
      * @param id 数据库ID
      * @return 是否成功，1成功，0失败
@@ -39,20 +39,20 @@ public interface BrandService {
     int deleteBrand(Long id);
 
     /**
-     * 条件查询品牌数据列表
+     * 条件查询品牌列表
      *
      * @param brandDto 查询条件
-     * @return 品牌数据列表
+     * @return 品牌列表
      */
     List<BrandDto> selectBrandByCondition(BrandDto brandDto);
 
     /**
-     * 分页条件查询品牌数据列表
+     * 分页条件查询品牌列表
      *
      * @param brandDto 查询条件
      * @param pageNum 当前页
      * @param pageSize 分页大小
-     * @return 品牌数据列表
+     * @return 品牌列表
      */
     PageRspDto<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageNum, Integer pageSize);
 

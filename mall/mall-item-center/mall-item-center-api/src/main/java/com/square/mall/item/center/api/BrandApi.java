@@ -12,7 +12,7 @@ import com.square.mall.item.center.api.dto.BrandDto;
 public interface BrandApi {
 
     /**
-     * 插入品牌数据
+     * 插入品牌
      *
      * @param brandDto 品牌
      * @return 数据库ID
@@ -20,7 +20,7 @@ public interface BrandApi {
     RspDto<Long> insertBrand(BrandDto brandDto);
 
     /**
-     * 更新品牌数据
+     * 更新品牌
      *
      * @param brandDto 品牌
      * @return 响应
@@ -28,7 +28,7 @@ public interface BrandApi {
     RspDto updateBrand(BrandDto brandDto);
 
     /**
-     * 删除品牌数据
+     * 删除品牌
      *
      * @param id 数据库ID
      * @return 响应
