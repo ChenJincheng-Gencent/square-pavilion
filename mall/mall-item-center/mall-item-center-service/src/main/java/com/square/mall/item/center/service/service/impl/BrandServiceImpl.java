@@ -88,6 +88,15 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
+    public int batchDeleteBrand(Long[] ids) {
+        if (null == ids) {
+            log.error("ids is null");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+        return brandDao.batchDeleteBrand(ids);
+    }
+
+    @Override
     public List<BrandDto> selectBrandByCondition(BrandDto brandDto) {
 
         BrandEo brandEo = new BrandEo();

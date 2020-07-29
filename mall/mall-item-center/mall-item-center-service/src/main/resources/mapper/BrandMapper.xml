@@ -57,6 +57,13 @@
         UPDATE it_brand SET is_delete = 1 where id = #{id} and is_delete = 0;
     </delete>
 
+    <delete id="batchDeleteBrand" parameterType="Long" >
+        UPDATE it_brand SET is_delete = 1 where is_delete = 0 and id in
+        <foreach collection="array" item="ids" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </delete>
+
     <select id="selectBrandByName" resultMap="BrandMap">
         SELECT
         <include refid="need_column"/>

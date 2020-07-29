@@ -34,4 +34,12 @@ public interface BrandApi {
      * @return 响应
      */
     RspDto deleteBrand(Long id);
+
+    /**
+     * 批量删除品牌
+     *
+     * @param ids ID数组
+     * @return 响应
+     */
+    RspDto batchDeleteBrand(Long[] ids);
 }

@@ -43,4 +43,10 @@ public class BrandApiImpl implements BrandApi {
         int success = brandService.deleteBrand(id);
         return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
     }
+
+    @Override
+    public RspDto batchDeleteBrand(Long[] ids) {
+        int success = brandService.batchDeleteBrand(ids);
+        return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
+    }
 }

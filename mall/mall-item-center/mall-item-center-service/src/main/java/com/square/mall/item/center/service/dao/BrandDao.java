@@ -1,5 +1,6 @@
 package com.square.mall.item.center.service.dao;
 
+import com.square.mall.common.dto.RspDto;
 import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.service.eo.BrandEo;
 import org.apache.ibatis.annotations.Param;
@@ -37,6 +38,14 @@ public interface BrandDao {
      * @return 是否成功，1成功，0失败
      */
     int deleteBrand(@Param("id") Long id);
+
+    /**
+     * 批量删除品牌
+     *
+     * @param ids ID数组
+     * @return 响应
+     */
+    int batchDeleteBrand(Long[] ids);
 
     /**
      * 条件查询品牌列表
