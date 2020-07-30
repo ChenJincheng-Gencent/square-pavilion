@@ -26,21 +26,6 @@ public class BaseEo implements Serializable {
     private Long id;
 
     /**
-     * 租户ID
-     */
-    private Long tenantId;
-
-    /**
-     * 创建人
-     */
-    private String createPerson;
-
-    /**
-     * 更新人
-     */
-    private String updatePerson;
-
-    /**
      * 创建时间
      */
     private LocalDateTime createTime;
@@ -49,10 +34,5 @@ public class BaseEo implements Serializable {
      * 更新时间
      */
     private LocalDateTime updateTime;
-
-    /**
-     * 是否删除
-     */
-    private Short isDelete;
 
 }
