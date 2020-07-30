@@ -22,7 +22,7 @@ app.service('userService',function($http){
 		return  $http.post('../user/update.do',entity );
 	}
 	//删除
-	this.dele=function(ids){
+	this.delete=function(ids){
 		return $http.get('../user/delete.do?ids='+ids);
 	}
 	//搜索

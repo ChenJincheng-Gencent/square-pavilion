@@ -59,7 +59,7 @@
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ng-click="entity={customAttributeItems:[]}"><i class="fa fa-file-o"></i> 新建</button>
-                                        <button type="button" class="btn btn-default" title="删除" ng-click="dele()"><i class="fa fa-trash-o"></i> 删除</button>
+                                        <button type="button" class="btn btn-default" title="删除" ng-click="delete()"><i class="fa fa-trash-o"></i> 删除</button>
                                        
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
@@ -165,7 +165,7 @@
 								<tr ng-repeat="pojo in entity.customAttributeItems">
 									<td><input type="checkbox" class="icheckbox_square-blue" ></td>
 									<td><input class="form-control" placeholder="属性名称" ng-model="pojo.text"></td>
-									<td><button type="button" class="btn btn-default" title="删除" ng-click="deleTableRow($index)"><i class="fa fa-trash-o"></i> 删除</button></td>
+									<td><button type="button" class="btn btn-default" title="删除" ng-click="deleteTableRow($index)"><i class="fa fa-trash-o"></i> 删除</button></td>
 								</tr>
 								
 							</tbody>

@@ -53,9 +53,9 @@ app.controller('payLogController' ,function($scope,$controller   ,payLogService)
 	
 	 
 	//批量删除 
-	$scope.dele=function(){			
+	$scope.delete=function(){
 		//获取选中的复选框			
-		payLogService.dele( $scope.selectIds ).success(
+		payLogService.delete( $scope.selectIds ).success(
 			function(response){
 				if(response.success){
 					$scope.reloadList();//刷新列表

@@ -22,7 +22,7 @@ app.service('payLogService',function($http){
 		return  $http.post('../payLog/update.do',entity );
 	}
 	//删除
-	this.dele=function(ids){
+	this.delete=function(ids){
 		return $http.get('../payLog/delete.do?ids='+ids);
 	}
 	//搜索

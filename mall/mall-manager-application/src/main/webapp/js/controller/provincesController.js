@@ -53,9 +53,9 @@ app.controller('provincesController' ,function($scope,$controller   ,provincesSe
 	
 	 
 	//批量删除 
-	$scope.dele=function(){			
+	$scope.delete=function(){
 		//获取选中的复选框			
-		provincesService.dele( $scope.selectIds ).success(
+		provincesService.delete( $scope.selectIds ).success(
 			function(response){
 				if(response.success){
 					$scope.reloadList();//刷新列表

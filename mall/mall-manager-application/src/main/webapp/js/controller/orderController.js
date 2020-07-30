@@ -53,7 +53,7 @@ app.controller('orderController' ,function($scope,$controller   ,orderService){
 	
 	 
 	//批量删除 
-	$scope.dele=function(){			
+	$scope.delete=function(){
 		//获取选中的复选框			
 		orderService.dele( $scope.selectIds ).success(
 			function(response){

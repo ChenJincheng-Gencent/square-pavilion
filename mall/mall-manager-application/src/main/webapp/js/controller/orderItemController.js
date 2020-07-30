@@ -53,9 +53,9 @@ app.controller('orderItemController' ,function($scope,$controller   ,orderItemSe
 	
 	 
 	//批量删除 
-	$scope.dele=function(){			
+	$scope.delete=function(){
 		//获取选中的复选框			
-		orderItemService.dele( $scope.selectIds ).success(
+		orderItemService.delete( $scope.selectIds ).success(
 			function(response){
 				if(response.success){
 					$scope.reloadList();//刷新列表

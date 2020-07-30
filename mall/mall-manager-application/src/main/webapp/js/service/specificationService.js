@@ -15,19 +15,19 @@ app.service('specificationService',function($http){
 	}
 	//增加 
 	this.add=function(entity){
-		return  $http.post('../specification/add.do',entity );
+		return  $http.post('../manager/v1/specification',entity );
 	}
 	//修改 
 	this.update=function(entity){
-		return  $http.post('../specification/update.do',entity );
+		return  $http.put('../manager/v1/specification',entity );
 	}
 	//删除
-	this.dele=function(ids){
-		return $http.get('../specification/delete.do?ids='+ids);
+	this.delete=function(ids){
+		return $http.delete('../manager/v1/specification/batch?ids='+ids);
 	}
 	//搜索
-	this.search=function(page,rows,searchEntity){
-		return $http.post('../specification/search.do?page='+page+"&rows="+rows, searchEntity);
+	this.search=function(pageNum,pageSize,searchEntity){
+		return $http.post('../manager/v1/specification/list/page?pageNum='+pageNum+"pageSize="+pageSize, searchEntity);
 	}    	
 	//下拉列表
 	this.selectOptionList=function(){

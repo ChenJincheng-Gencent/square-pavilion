@@ -22,7 +22,7 @@ app.service('goodsDescService',function($http){
 		return  $http.post('../goodsDesc/update.do',entity );
 	}
 	//删除
-	this.dele=function(ids){
+	this.delete=function(ids){
 		return $http.get('../goodsDesc/delete.do?ids='+ids);
 	}
 	//搜索

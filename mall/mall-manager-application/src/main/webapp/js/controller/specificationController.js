@@ -13,10 +13,10 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	}    
 	
 	//分页
-	$scope.findPage=function(page,rows){			
-		specificationService.findPage(page,rows).success(
+	$scope.findPage=function(pageNum,pageSize){
+		specificationService.findPage(pageNum,pageSize).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.data;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
@@ -41,11 +41,11 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 		}				
 		serviceObject.success(
 			function(response){
-				if(response.success){
+				if("0" === response.code){
 					//重新查询 
 		        	$scope.reloadList();//重新加载
 				}else{
-					alert(response.message);
+					alert(response.msg);
 				}
 			}		
 		);				
@@ -85,7 +85,7 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	}
 	
 	//删除规格选项行
-	$scope.deleTableRow=function(index){
+	$scope.deleteTableRow=function(index){
 		$scope.entity.specificationOptionList.splice(index,1);
 	}
     
