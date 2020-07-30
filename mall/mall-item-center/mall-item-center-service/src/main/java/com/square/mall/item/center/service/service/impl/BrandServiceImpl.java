@@ -64,7 +64,13 @@ public class BrandServiceImpl implements BrandService {
             log.error("oldBrandEo is null. id: {}", brandDto.getId());
             return DatabaseOptConstant.DATABASE_DATA_NOT_EXIST;
         }
+        BrandEo oldBrandEo2 = brandDao.selectBrandByName(brandDto.getName());
+        if (null != oldBrandEo2 && !oldBrandEo2.getId().equals(brandDto.getId())) {
+            log.error("oldBrandEo2 already exist. brandDto: {}", brandDto);
+            return DatabaseOptConstant.DATABASE_DATA_ALREADY_EXIST;
+        }
         BrandEo brandEo = new BrandEo();
+        BeanUtils.copyProperties(brandDto, brandEo);
         return brandDao.updateBrand(brandEo);
 
     }
