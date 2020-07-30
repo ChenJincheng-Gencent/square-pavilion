@@ -93,7 +93,7 @@ public class BrandServiceImpl implements BrandService {
             log.error("ids is null");
             return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
         }
-        return brandDao.batchDeleteBrand(ids) > 1 ? 1 : 0;
+        return brandDao.batchDeleteBrand(ids) >= 1 ? 1 : 0;
     }
 
     @Override
