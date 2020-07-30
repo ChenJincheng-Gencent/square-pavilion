@@ -6,7 +6,7 @@ app.service('brandService',function($http){
 		return $http.get('../brand/findAll.do');		
 	}
 	//分页 
-	this.findPage=function(page,rows){
+	this.findPage=function(pageNum,pageSize){
 		return $http.get('../manager/v1/brand/list/page?pageNum='+pageNum+"&pageSize="+pageSize);
 	}
 	//查询实体
@@ -23,7 +23,7 @@ app.service('brandService',function($http){
 	}
 	//删除
 	this.delete=function(ids){
-		return $http.delete('../manager/v1/brand?ids='+ids);
+		return $http.delete('../manager/v1/brand/batch?ids='+ids);
 	}
 	//搜索
 	this.search=function(pageNum,pageSize,searchEntity){

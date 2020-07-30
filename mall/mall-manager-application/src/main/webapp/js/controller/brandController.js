@@ -68,7 +68,7 @@ app.controller('brandController' ,function($scope,$controller   ,brandService){
 	$scope.searchEntity={};//定义搜索对象 
 	
 	//搜索
-	$scope.search=function(page,rows){			
+	$scope.search=function(pageNum,pageSize){
 		brandService.search(page,rows,$scope.searchEntity).success(
 			function(response){
 				$scope.list=response.data;
