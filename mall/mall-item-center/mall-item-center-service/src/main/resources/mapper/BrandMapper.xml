@@ -22,7 +22,7 @@
                 and id = #{id}
             </if>
             <if test="name != null and name !=''">
-                and name like "%"#{name}"%"
+                and name like concat("%",#{name},"%")
             </if>
             <if test="firstChar != null and firstChar !=''">
                 and first_char = #{firstChar}
