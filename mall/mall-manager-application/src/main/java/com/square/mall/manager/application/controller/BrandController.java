@@ -106,7 +106,7 @@ public class BrandController {
      * @param id ID
      * @return 品牌
      */
-    @PostMapping("/brand")
+    @GetMapping("/brand")
     @ResponseBody
     @ApiOperation(value = "根据ID查询品牌")
     public RspDto<BrandDto> selectBrandById(@RequestParam("id") @NotNull(message = "ID不能为空") Long id)  {
