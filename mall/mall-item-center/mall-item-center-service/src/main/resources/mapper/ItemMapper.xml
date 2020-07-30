@@ -50,19 +50,19 @@
     </insert>
 
     <delete id="deleteItem" parameterType="Long" >
-        UPDATE it_item SET is_delete = 1 where id = #{id} and is_delete = 0;
+        UPDATE it_item SET is_delete = 1 where id = #{id}
     </delete>
 
     <select id="selectItemByName" resultMap="ItemMap">
         SELECT
         <include refid="need_column"/>
-        FROM it_item WHERE name = #{name} and is_delete = 0;
+        FROM it_item WHERE name = #{name}
     </select>
 
     <select id="selectItemById" resultMap="ItemMap">
         SELECT
         <include refid="need_column"/>
-        FROM it_item WHERE id = #{id} and is_delete = 0;
+        FROM it_item WHERE id = #{id}
     </select>
 
 
