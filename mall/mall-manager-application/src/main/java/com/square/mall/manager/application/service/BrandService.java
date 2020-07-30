@@ -15,28 +15,32 @@ import java.util.List;
 public interface BrandService {
 
     /**
-     * 插入品牌数据
+     * 插入品牌
+     *
      * @param brandDto 品牌
      * @return 数据库ID
      */
     RspDto<Long> insertBrand(BrandDto brandDto);
 
     /**
-     * 更新品牌数据
+     * 更新品牌
+     *
      * @param brandDto 品牌
      * @return 响应
      */
     RspDto updateBrand(BrandDto brandDto);
 
     /**
-     * 删除品牌数据
+     * 删除品牌
+     *
      * @param ids ID数组
      * @return 响应
      */
     RspDto batchDeleteBrand(Long[] ids);
 
     /**
-     * 条件查询品牌数据列表
+     * 条件查询品牌列表
+     *
      * @param brandDto 查询条件
      * @return 品牌列表
      */
@@ -44,6 +48,7 @@ public interface BrandService {
 
     /**
      * 分页条件查询品牌列表
+     *
      * @param brandDto 查询条件
      * @param pageNum 当前页
      * @param pageSize 分页大小
@@ -53,6 +58,7 @@ public interface BrandService {
 
     /**
      * 根据ID查询品牌
+     *
      * @param id ID
      * @return 品牌
      */

@@ -7,7 +7,7 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	$scope.findAll=function(){
 		specificationService.findAll().success(
 			function(response){
-				$scope.list=response;
+				$scope.list=response.data;
 			}			
 		);
 	}    
@@ -26,7 +26,7 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	$scope.findOne=function(id){				
 		specificationService.findOne(id).success(
 			function(response){
-				$scope.entity= response;					
+				$scope.entity= response.data;
 			}
 		);				
 	}
@@ -53,11 +53,11 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	
 	 
 	//批量删除 
-	$scope.dele=function(){			
+	$scope.delete=function(){
 		//获取选中的复选框			
-		specificationService.dele( $scope.selectIds ).success(
+		specificationService.delete( $scope.selectIds ).success(
 			function(response){
-				if(response.success){
+				if("0"===response.data){
 					$scope.reloadList();//刷新列表
 					$scope.selectIds=[];
 				}						
@@ -68,10 +68,10 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	$scope.searchEntity={};//定义搜索对象 
 	
 	//搜索
-	$scope.search=function(page,rows){			
-		specificationService.search(page,rows,$scope.searchEntity).success(
+	$scope.search=function(pageNum,pageSize){
+		specificationService.search(pageNum,pageSize,$scope.searchEntity).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.data;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);

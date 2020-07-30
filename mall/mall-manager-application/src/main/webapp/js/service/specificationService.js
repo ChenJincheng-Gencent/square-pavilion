@@ -3,15 +3,15 @@ app.service('specificationService',function($http){
 	    	
 	//读取列表数据绑定到表单中
 	this.findAll=function(){
-		return $http.get('../specification/findAll.do');		
+		return $http.get('../manager/v1/specification/all');
 	}
 	//分页 
-	this.findPage=function(page,rows){
-		return $http.get('../specification/findPage.do?page='+page+'&rows='+rows);
+	this.findPage=function(pageNum,pageSize){
+		return $http.get('../manager/v1/specification/list/page?pageNum='+pageNum+'&pageSize='+pageSize);
 	}
 	//查询实体
 	this.findOne=function(id){
-		return $http.get('../specification/findOne.do?id='+id);
+		return $http.get('../manager/v1/specification?id='+id);
 	}
 	//增加 
 	this.add=function(entity){
@@ -27,7 +27,7 @@ app.service('specificationService',function($http){
 	}
 	//搜索
 	this.search=function(pageNum,pageSize,searchEntity){
-		return $http.post('../manager/v1/specification/list/page?pageNum='+pageNum+"pageSize="+pageSize, searchEntity);
+		return $http.post('../manager/v1/specification/list/page/condition?pageNum='+pageNum+"pageSize="+pageSize, searchEntity);
 	}    	
 	//下拉列表
 	this.selectOptionList=function(){
