@@ -69,7 +69,7 @@ app.controller('brandController' ,function($scope,$controller   ,brandService){
 	
 	//搜索
 	$scope.search=function(pageNum,pageSize){
-		brandService.search(page,rows,$scope.searchEntity).success(
+		brandService.search(pageNum,pageSize,$scope.searchEntity).success(
 			function(response){
 				$scope.list=response.data;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
