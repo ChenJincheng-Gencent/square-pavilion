@@ -22,7 +22,7 @@
                 and id = #{id}
             </if>
             <if test="name != null and name !=''">
-                and name = #{name}
+                and name like "%"#{name}"%"
             </if>
             <if test="firstChar != null and firstChar !=''">
                 and first_char = #{firstChar}
@@ -54,11 +54,11 @@
     </insert>
 
     <delete id="deleteBrand" parameterType="Long" >
-        UPDATE it_brand SET is_delete = 1 where id = #{id} and is_delete = 0;
+        UPDATE it_brand SET is_delete = ++is_delete where id = #{id} and is_delete = 0;
     </delete>
 
     <delete id="batchDeleteBrand" parameterType="Long" >
-        UPDATE it_brand SET is_delete = 1 where is_delete = 0 and id in
+        UPDATE it_brand SET is_delete = ++is_delete where is_delete = 0 and id in
         <foreach collection="array" item="ids" open="(" separator="," close=")">
             #{ids}
         </foreach>
