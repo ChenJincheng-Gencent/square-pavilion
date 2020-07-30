@@ -17,7 +17,7 @@
     <!-- 动态查询 -->
     <sql id="select">
         <where>
-            is_delete = 0
+            1 = 1
             <if test="id != null">
                 and id = #{id}
             </if>
@@ -50,15 +50,15 @@
             first_char = #{firstChar},
         </if>
         update_time = now()
-        WHERE id = #{id} and is_delete = 0
+        WHERE id = #{id}
     </insert>
 
     <delete id="deleteBrand" parameterType="Long" >
-        UPDATE it_brand SET is_delete = ++is_delete where id = #{id} and is_delete = 0;
+        DELETE FROM it_brand where id = #{id};
     </delete>
 
     <delete id="batchDeleteBrand" parameterType="Long" >
-        UPDATE it_brand SET is_delete = ++is_delete where is_delete = 0 and id in
+        DELETE FROM it_brand where id in
         <foreach collection="array" item="ids" open="(" separator="," close=")">
             #{ids}
         </foreach>
@@ -67,13 +67,13 @@
     <select id="selectBrandByName" resultMap="BrandMap">
         SELECT
         <include refid="need_column"/>
-        FROM it_brand WHERE name = #{name} and is_delete = 0;
+        FROM it_brand WHERE name = #{name};
     </select>
 
     <select id="selectBrandById" resultMap="BrandMap">
         SELECT
         <include refid="need_column"/>
-        FROM it_brand WHERE id = #{id} and is_delete = 0;
+        FROM it_brand WHERE id = #{id};
     </select>
 
 </mapper>
