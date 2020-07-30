@@ -7,7 +7,7 @@ app.controller('brandController' ,function($scope,$controller   ,brandService){
 	$scope.findAll=function(){
 		brandService.findAll().success(
 			function(response){
-				$scope.list=response;
+				$scope.list=response.data;
 			}			
 		);
 	}    
@@ -57,7 +57,7 @@ app.controller('brandController' ,function($scope,$controller   ,brandService){
 		//获取选中的复选框			
 		brandService.delete( $scope.selectIds ).success(
 			function(response){
-				if("0"===response.success){
+				if("0"===response.code){
 					$scope.reloadList();//刷新列表
 					$scope.selectIds=[];
 				}						
