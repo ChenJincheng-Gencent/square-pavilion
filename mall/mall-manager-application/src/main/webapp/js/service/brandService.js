@@ -3,7 +3,7 @@ app.service('brandService',function($http){
 	    	
 	//读取列表数据绑定到表单中
 	this.findAll=function(){
-		return $http.get('../brand/findAll.do');		
+		return $http.get('../manager/v1/brand/all');
 	}
 	//分页 
 	this.findPage=function(pageNum,pageSize){
@@ -11,7 +11,7 @@ app.service('brandService',function($http){
 	}
 	//查询实体
 	this.findOne=function(id){
-		return $http.get('../brand/findOne.do?id='+id);
+		return $http.get('../manager/v1/brand?id='+id);
 	}
 	//增加 
 	this.add=function(entity){
@@ -27,7 +27,7 @@ app.service('brandService',function($http){
 	}
 	//搜索
 	this.search=function(pageNum,pageSize,searchEntity){
-		return $http.post('../manager/v1/brand/list/page?pageNum='+pageNum+"&pageSize="+pageSize, searchEntity);
+		return $http.post('../manager/v1/brand/list/page/condition?pageNum='+pageNum+"&pageSize="+pageSize, searchEntity);
 	}    
 	//下拉列表数据
 	this.selectOptionList=function(){

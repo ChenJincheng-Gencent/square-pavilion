@@ -50,4 +50,9 @@ public class BrandServiceImpl implements BrandService {
     public PageRspDto<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageNum, Integer pageSize) {
         return brandQueryApi.selectPageBrandByCondition(brandDto, pageNum, pageSize);
     }
+
+    @Override
+    public RspDto<BrandDto> selectBrandById(Long id) {
+        return brandQueryApi.selectBrandById(id);
+    }
 }

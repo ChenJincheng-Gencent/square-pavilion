@@ -44,7 +44,7 @@ public class BrandController {
      * @param pageSize 分页大小
      * @return 品牌列表
      */
-    @PostMapping("/brand/list/page")
+    @PostMapping("/brand/list/page/condition")
     @ResponseBody
     @ApiOperation(value = "分页条件查询品牌列表")
     public PageRspDto<List<BrandDto>> selectPageBrandByCondition(@RequestBody BrandDto brandDto,
@@ -98,6 +98,24 @@ public class BrandController {
     @ApiOperation(value = "批量删除品牌")
     public RspDto deleteBrand(Long[] ids) {
         return brandService.batchDeleteBrand(ids);
+    }
+
+    /**
+     * 根据ID查询品牌
+     *
+     * @param id ID
+     * @return 品牌
+     */
+    @PostMapping("/brand")
+    @ResponseBody
+    @ApiOperation(value = "根据ID查询品牌")
+    public RspDto<BrandDto> selectBrandById(@RequestParam("id") @NotNull(message = "ID不能为空") Long id)  {
+
+        RspDto<BrandDto> brandDto = brandService.selectBrandById(id);
+        log.info("brandDto: {}, id: {}", brandDto, id);
+
+        return brandDto;
+
     }
 
 }
