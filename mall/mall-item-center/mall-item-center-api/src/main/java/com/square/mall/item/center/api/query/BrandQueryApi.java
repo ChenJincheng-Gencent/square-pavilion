@@ -32,4 +32,11 @@ public interface BrandQueryApi {
      */
     PageRspDto<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageNum, Integer pageSize);
 
+    /**
+     * 根据ID查询品牌
+     * @param id ID
+     * @return 品牌
+     */
+    RspDto<BrandDto> selectBrandById(Long id);
+
 }
