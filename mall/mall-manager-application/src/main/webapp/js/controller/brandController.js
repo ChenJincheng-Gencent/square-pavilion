@@ -41,11 +41,11 @@ app.controller('brandController' ,function($scope,$controller   ,brandService){
 		}				
 		serviceObject.success(
 			function(response){
-				if(response.success){
+				if("0"===response.code){
 					//重新查询 
 		        	$scope.reloadList();//重新加载
 				}else{
-					alert(response.message);
+					alert(response.msg);
 				}
 			}		
 		);				
@@ -57,7 +57,7 @@ app.controller('brandController' ,function($scope,$controller   ,brandService){
 		//获取选中的复选框			
 		brandService.delete( $scope.selectIds ).success(
 			function(response){
-				if(response.success){
+				if("0"===response.success){
 					$scope.reloadList();//刷新列表
 					$scope.selectIds=[];
 				}						
