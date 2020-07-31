@@ -89,7 +89,7 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 	$scope.findBrandList=function(){
 		brandService.selectOptionList().success(
 			function(response){
-				$scope.brandList={data:response};
+				$scope.brandList={data:response.data};
 			}
 		);		
 	}
@@ -100,7 +100,7 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 	$scope.findSpecList=function(){
 		specificationService.selectOptionList().success(
 				function(response){
-					$scope.specList={data:response};
+					$scope.specList={data:response.data};
 				}
 		);		
 	}

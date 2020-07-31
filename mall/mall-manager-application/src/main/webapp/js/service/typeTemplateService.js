@@ -15,11 +15,11 @@ app.service('typeTemplateService',function($http){
 	}
 	//增加 
 	this.add=function(entity){
-		return  $http.post('../manager/v1/template',entity );
+		return  $http.post('../manager/v1/template/group',entity );
 	}
 	//修改 
 	this.update=function(entity){
-		return  $http.put('../manager/v1/template',entity );
+		return  $http.put('../manager/v1/template/group',entity );
 	}
 	//删除
 	this.delete=function(ids){
