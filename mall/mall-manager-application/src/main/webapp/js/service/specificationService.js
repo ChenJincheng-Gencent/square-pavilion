@@ -27,7 +27,7 @@ app.service('specificationService',function($http){
 	}
 	//搜索
 	this.search=function(pageNum,pageSize,searchEntity){
-		return $http.post('../manager/v1/specification/list/page/condition?pageNum='+pageNum+"pageSize="+pageSize, searchEntity);
+		return $http.post('../manager/v1/specification/list/page/condition?pageNum='+pageNum+"&pageSize="+pageSize, searchEntity);
 	}    	
 	//下拉列表
 	this.selectOptionList=function(){

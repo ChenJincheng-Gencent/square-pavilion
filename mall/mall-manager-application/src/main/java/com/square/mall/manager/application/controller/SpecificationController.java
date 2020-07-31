@@ -3,6 +3,9 @@ package com.square.mall.manager.application.controller;
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.item.center.api.dto.SpecificationDto;
+import com.square.mall.item.center.api.dto.SpecificationGroupDto;
+import com.square.mall.manager.application.service.SpecificationService;
+import com.square.mall.manager.application.vo.ModSpecificationVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -58,15 +61,15 @@ public class SpecificationController {
     /**
      * 插入规格
      *
-     * @param specificationDto 规格
+     * @param specificationGroupDto 规格
      * @return 数据库ID
      */
     @PostMapping("/specification")
     @ResponseBody
     @ApiOperation(value = "插入规格")
-    public RspDto insertSpecification(@RequestBody @Valid SpecificationDto specificationDto) {
-        RspDto<Long> id = specificationService.insertSpecification(specificationDto);
-        log.info("id: {}, specificationDto: {}", id.getData(), specificationDto);
+    public RspDto insertSpecificationGroup(@RequestBody @Valid SpecificationGroupDto specificationGroupDto) {
+        RspDto<Long> id = specificationService.insertSpecificationGroup(specificationGroupDto);
+        log.info("id: {}, specificationDto: {}", id.getData(), specificationGroupDto);
         return id;
     }
 
@@ -99,20 +102,21 @@ public class SpecificationController {
     }
 
     /**
-     * 根据ID查询规格
+     * 根据规格ID查询规格组合
      *
-     * @param id ID
-     * @return 规格
+     * @param specId 规格ID
+     * @return 规格组合
      */
-    @GetMapping("/specification")
+    @GetMapping("/specification/group")
     @ResponseBody
-    @ApiOperation(value = "根据ID查询规格")
-    public RspDto<SpecificationDto> selectSpecificationById(@RequestParam("id") @NotNull(message = "ID不能为空") Long id)  {
+    @ApiOperation(value = "根据规格ID查询规格组合")
+    public RspDto<SpecificationGroupDto> selectSpecificationGroupBySpecId(@RequestParam("specId")
+        @NotNull(message = "规格ID不能为空") Long specId)  {
 
-        RspDto<SpecificationDto> specificationDto = specificationService.selectSpecificationById(id);
-        log.info("specificationDto: {}, id: {}", specificationDto, id);
+        RspDto<SpecificationGroupDto> specificationGroupDto = specificationService.selectSpecificationGroupBySpecId(specId);
+        log.info("specificationGroupDto: {}, specId: {}", specificationGroupDto, specId);
 
-        return specificationDto;
+        return specificationGroupDto;
 
     }
 

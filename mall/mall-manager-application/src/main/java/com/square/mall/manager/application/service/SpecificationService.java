@@ -3,6 +3,7 @@ package com.square.mall.manager.application.service;
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.item.center.api.dto.SpecificationDto;
+import com.square.mall.item.center.api.dto.SpecificationGroupDto;
 
 import java.util.List;
 
@@ -17,10 +18,10 @@ public interface SpecificationService {
     /**
      * 插入规格
      *
-     * @param specificationDto 规格
+     * @param specificationGroupDto 规格
      * @return 数据库ID
      */
-    RspDto<Long> insertSpecification(SpecificationDto specificationDto);
+    RspDto<Long> insertSpecificationGroup(SpecificationGroupDto specificationGroupDto);
 
     /**
      * 更新规格
@@ -63,5 +64,13 @@ public interface SpecificationService {
      * @return 规格
      */
     RspDto<SpecificationDto> selectSpecificationById(Long id);
+
+    /**
+     * 根据规格ID查询规格组合
+     *
+     * @param specId 规格ID
+     * @return 规格组合
+     */
+    RspDto<SpecificationGroupDto> selectSpecificationGroupBySpecId(Long specId);
 
 }
