@@ -1,10 +1,13 @@
 package com.square.mall.item.center.service.service.impl;
 
 import com.square.mall.common.dto.PageRspDto;
+import com.square.mall.common.util.DatabaseOptConstant;
 import com.square.mall.item.center.api.dto.TemplateBrandDto;
 import com.square.mall.item.center.service.dao.TemplateBrandDao;
+import com.square.mall.item.center.service.eo.TemplateBrandEo;
 import com.square.mall.item.center.service.service.TemplateBrandService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,7 +28,19 @@ public class TemplateBrandServiceImpl implements TemplateBrandService {
 
     @Override
     public int insertTemplateBrand(TemplateBrandDto templateBrandDto) {
-        return 0;
+
+        if (null == templateBrandDto) {
+            log.error("templateBrandDto is null.");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+
+        TemplateBrandEo templateBrandEo = new TemplateBrandEo();
+        BeanUtils.copyProperties(templateBrandDto, templateBrandEo);
+        int success = templateBrandDao.insertTemplateBrand(templateBrandEo);
+        templateBrandDto.setId(templateBrandEo.getId());
+
+        return success;
+
     }
 
     @Override
