@@ -40,5 +40,10 @@ public class BrandQueryApiImpl implements BrandQueryApi {
         return new RspDto<>(brandService.selectBrandById(id));
     }
 
+    @Override
+    public RspDto<List<BrandDto>> selectBrandAll() {
+        return new RspDto<>(brandService.selectBrandAll());
+    }
+
 
 }

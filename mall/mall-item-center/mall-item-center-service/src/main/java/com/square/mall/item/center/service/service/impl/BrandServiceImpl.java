@@ -172,4 +172,24 @@ public class BrandServiceImpl implements BrandService {
         return brandDto;
     }
 
+    @Override
+    public List<BrandDto> selectBrandAll() {
+
+        List<BrandEo> brandEoList = brandDao.selectBrandAll();
+        if (ListUtil.isBlank(brandEoList)) {
+            log.error("brandEoList is blank.");
+            return null;
+        }
+
+        List<BrandDto> brandDtoList = new ArrayList<>();
+        brandEoList.forEach( x -> {
+            BrandDto brandDto = new BrandDto();
+            BeanUtils.copyProperties(x, brandDto);
+            brandDtoList.add(brandDto);
+        });
+
+        return brandDtoList;
+
+    }
+
 }

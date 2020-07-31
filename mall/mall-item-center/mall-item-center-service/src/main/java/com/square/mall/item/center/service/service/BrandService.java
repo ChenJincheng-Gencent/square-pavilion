@@ -78,4 +78,11 @@ public interface BrandService {
      * @return 品牌
      */
     BrandDto selectBrandById(Long id);
+
+    /**
+     * 查询所有品牌列表
+     *
+     * @return 品牌列表
+     */
+    List<BrandDto> selectBrandAll();
 }
