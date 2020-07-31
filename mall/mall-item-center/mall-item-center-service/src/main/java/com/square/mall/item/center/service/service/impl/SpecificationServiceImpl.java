@@ -47,7 +47,9 @@ public class SpecificationServiceImpl implements SpecificationService {
         }
         SpecificationEo specificationEo = new SpecificationEo();
         BeanUtils.copyProperties(specificationDto, specificationEo);
-        return specificationDao.insertSpecification(specificationEo);
+        int success = specificationDao.insertSpecification(specificationEo);
+        specificationDto.setId(specificationEo.getId());
+        return success;
 
     }
 
@@ -102,7 +104,9 @@ public class SpecificationServiceImpl implements SpecificationService {
         String orderBy = "create_time" + " desc";
         PageHelper.startPage(pageNum, pageSize, orderBy);
         SpecificationEo specificationEo = new SpecificationEo();
-        BeanUtils.copyProperties(specificationDto, specificationEo);
+        if (null != specificationDto) {
+            BeanUtils.copyProperties(specificationDto, specificationEo);
+        }
         Page<SpecificationEo> page = (Page<SpecificationEo>) specificationDao.selectSpecificationByCondition(specificationEo);
         List<SpecificationDto> specificationDtoList = new ArrayList<>();
         if (ListUtil.isNotBlank(page.getResult())) {
@@ -113,5 +117,21 @@ public class SpecificationServiceImpl implements SpecificationService {
             });
         }
         return new PageRspDto<>(page.getTotal(), specificationDtoList);
+    }
+
+    @Override
+    public SpecificationDto selectSpecificationById(Long id) {
+        if (null == id) {
+            log.error("id is null.");
+            return null;
+        }
+        SpecificationEo specificationEo = specificationDao.selectSpecificationById(id);
+        if (null == specificationEo) {
+            log.error("specificationEo is null. id: {}", id);
+            return null;
+        }
+        SpecificationDto specificationDto = new SpecificationDto();
+        BeanUtils.copyProperties(specificationEo, specificationDto);
+        return specificationDto;
     }
 }

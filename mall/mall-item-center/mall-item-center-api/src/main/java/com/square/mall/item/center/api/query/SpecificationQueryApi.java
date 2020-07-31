@@ -16,12 +16,12 @@ import java.util.List;
 public interface SpecificationQueryApi {
 
     /**
-     * 条件查询规格组合
+     * 根据规格ID查询规格组合
      *
-     * @param specificationDto 查询条件
+     * @param specId 规格ID
      * @return 规格组合
      */
-    RspDto<List<SpecificationGroupDto>> selectSpecificationGroup(SpecificationDto specificationDto);
+    RspDto<SpecificationGroupDto> selectSpecificationGroupBySpecId(Long specId);
 
     /**
      * 分页条件查询规格列表
@@ -33,5 +33,13 @@ public interface SpecificationQueryApi {
      */
     PageRspDto<List<SpecificationDto>> selectPageSpecificationByCondition(SpecificationDto specificationDto,
         Integer pageNum, Integer pageSize);
+
+    /**
+     * 根据ID查询规格
+     *
+     * @param id ID
+     * @return 规格
+     */
+    RspDto<SpecificationDto> selectSpecificationById(Long id);
 
 }

@@ -1,9 +1,7 @@
 package com.square.mall.item.center.service.service;
 
 import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
 import com.square.mall.item.center.api.dto.BrandDto;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -71,7 +69,7 @@ public interface BrandService {
      * @param name 名称
      * @return 品牌
      */
-    BrandDto selectBrandByName(@Param("name") String name);
+    BrandDto selectBrandByName(String name);
 
     /**
      * 根据ID查询品牌
@@ -79,5 +77,5 @@ public interface BrandService {
      * @param id ID
      * @return 品牌
      */
-    BrandDto selectBrandById(@Param("id") Long id);
+    BrandDto selectBrandById(Long id);
 }

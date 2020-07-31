@@ -2,7 +2,6 @@ package com.square.mall.item.center.service.service;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.item.center.api.dto.SpecificationDto;
-import com.square.mall.item.center.service.eo.SpecificationEo;
 
 import java.util.List;
 
@@ -55,5 +54,13 @@ public interface SpecificationService {
      */
     PageRspDto<List<SpecificationDto>> selectPageSpecificationByCondition(SpecificationDto specificationDto,
         Integer pageNum, Integer pageSize);
+
+    /**
+     * 根据ID查询规格
+     *
+     * @param id ID
+     * @return 规格
+     */
+    SpecificationDto selectSpecificationById(Long id);
 
 }

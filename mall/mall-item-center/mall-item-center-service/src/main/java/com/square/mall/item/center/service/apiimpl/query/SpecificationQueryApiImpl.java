@@ -33,28 +33,27 @@ public class SpecificationQueryApiImpl implements SpecificationQueryApi {
     private SpecificationOptionService specificationOptionService;
 
     @Override
-    public RspDto<List<SpecificationGroupDto>> selectSpecificationGroup(SpecificationDto specificationDto) {
-        List<SpecificationDto> specificationDtoList = specificationService.selectSpecificationByCondition(specificationDto);
-        if (ListUtil.isBlank(specificationDtoList)) {
-            log.error("specificationDtoList is blank. specificationDto: {}", specificationDto);
+    public RspDto<SpecificationGroupDto> selectSpecificationGroupBySpecId(Long specId) {
+        SpecificationDto specificationDto = specificationService.selectSpecificationById(specId);
+        if (null == specificationDto) {
+            log.error("specificationDto is null. specId: {}", specId);
             return new RspDto<>(null);
         }
-        List<SpecificationGroupDto> specificationGroupDtoList = new ArrayList<>();
-        specificationDtoList.forEach( x -> {
-            SpecificationGroupDto specificationGroupDto = new SpecificationGroupDto();
-            specificationGroupDto.setSpecificationDto(x);
-            List<SpecificationOptionDto> optionDtoList = specificationOptionService.selectSpecificationOptionBySpecId(x
-                .getId());
-            specificationGroupDto.setSpecificationOptionDtoList(optionDtoList);
-            specificationGroupDtoList.add(specificationGroupDto);
-        });
-
-        return new RspDto<>(specificationGroupDtoList);
+        SpecificationGroupDto specificationGroupDto = new SpecificationGroupDto();
+        specificationGroupDto.setSpecificationDto(specificationDto);
+        List<SpecificationOptionDto> optionDtoList = specificationOptionService.selectSpecificationOptionBySpecId(specId);
+        specificationGroupDto.setSpecificationOptionDtoList(optionDtoList);
+        return new RspDto<>(specificationGroupDto);
     }
 
     @Override
     public PageRspDto<List<SpecificationDto>> selectPageSpecificationByCondition(SpecificationDto specificationDto,
         Integer pageNum, Integer pageSize) {
         return specificationService.selectPageSpecificationByCondition(specificationDto, pageNum, pageSize);
+    }
+
+    @Override
+    public RspDto<SpecificationDto> selectSpecificationById(Long id) {
+        return new RspDto<>(specificationService.selectSpecificationById(id));
     }
 }
