@@ -88,16 +88,16 @@ public class SpecificationController {
     }
 
     /**
-     * 批量删除规格
+     * 批量删除规格组合
      *
-     * @param ids ID数组
+     * @param ids 规格ID数组
      * @return 响应
      */
-    @DeleteMapping("/specification/batch")
+    @DeleteMapping("/specification/group/batch")
     @ResponseBody
-    @ApiOperation(value = "批量删除规格")
-    public RspDto deleteSpecification(Long[] ids) {
-        return specificationService.batchDeleteSpecification(ids);
+    @ApiOperation(value = "批量删除规格组合")
+    public RspDto deleteSpecificationGroup(Long[] ids) {
+        return specificationService.batchDeleteSpecificationGroup(ids);
     }
 
     /**

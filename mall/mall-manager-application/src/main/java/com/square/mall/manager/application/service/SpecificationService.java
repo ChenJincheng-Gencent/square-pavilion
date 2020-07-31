@@ -32,12 +32,12 @@ public interface SpecificationService {
     RspDto updateSpecificationGroup(SpecificationGroupDto specificationGroupDto);
 
     /**
-     * 删除规格
+     * 删除规格组合
      *
-     * @param ids ID数组
+     * @param ids 规格ID数组
      * @return 响应
      */
-    RspDto batchDeleteSpecification(Long[] ids);
+    RspDto batchDeleteSpecificationGroup(Long[] ids);
 
     /**
      * 条件查询规格

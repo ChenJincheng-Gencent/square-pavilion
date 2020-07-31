@@ -38,9 +38,8 @@ public class SpecificationServiceImpl implements SpecificationService {
     }
 
     @Override
-    public RspDto batchDeleteSpecification(Long[] ids) {
-        return null;
-        //return specificationApi.batchDeleteSpecification(ids);
+    public RspDto batchDeleteSpecificationGroup(Long[] ids) {
+        return specificationApi.batchDeleteSpecificationGroup(ids);
     }
 
     @Override
