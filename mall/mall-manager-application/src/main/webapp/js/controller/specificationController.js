@@ -57,7 +57,7 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 		//获取选中的复选框			
 		specificationService.delete( $scope.selectIds ).success(
 			function(response){
-				if("0"===response.data){
+				if("0"===response.code){
 					$scope.reloadList();//刷新列表
 					$scope.selectIds=[];
 				}						
