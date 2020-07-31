@@ -61,4 +61,11 @@ public interface SpecificationDao {
      */
     SpecificationEo selectSpecificationById(@Param("id") Long id);
 
+    /**
+     * 查询所有规格列表
+     *
+     * @return 规格列表
+     */
+    List<SpecificationEo> selectSpecificationAll();
+
 }

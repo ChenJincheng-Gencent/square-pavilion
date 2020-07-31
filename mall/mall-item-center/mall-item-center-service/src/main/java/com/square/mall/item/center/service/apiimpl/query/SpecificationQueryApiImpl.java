@@ -56,4 +56,9 @@ public class SpecificationQueryApiImpl implements SpecificationQueryApi {
     public RspDto<SpecificationDto> selectSpecificationById(Long id) {
         return new RspDto<>(specificationService.selectSpecificationById(id));
     }
+
+    @Override
+    public RspDto<List<SpecificationDto>> selectSpecificationAll() {
+        return new RspDto<>(specificationService.selectSpecificationAll());
+    }
 }
