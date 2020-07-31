@@ -59,14 +59,14 @@ public class SpecificationController {
     }
 
     /**
-     * 插入规格
+     * 插入规格组合
      *
-     * @param specificationGroupDto 规格
+     * @param specificationGroupDto 规格组合
      * @return 数据库ID
      */
-    @PostMapping("/specification")
+    @PostMapping("/specification/group")
     @ResponseBody
-    @ApiOperation(value = "插入规格")
+    @ApiOperation(value = "插入规格组合")
     public RspDto insertSpecificationGroup(@RequestBody @Valid SpecificationGroupDto specificationGroupDto) {
         RspDto<Long> id = specificationService.insertSpecificationGroup(specificationGroupDto);
         log.info("id: {}, specificationDto: {}", id.getData(), specificationGroupDto);
