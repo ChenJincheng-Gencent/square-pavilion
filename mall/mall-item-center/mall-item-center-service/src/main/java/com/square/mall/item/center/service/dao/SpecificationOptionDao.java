@@ -44,7 +44,7 @@ public interface SpecificationOptionDao {
      * @param ids ID数组
      * @return 操作结果
      */
-    int batchDeleteSpecificationOption(Long[] ids);
+    int batchDeleteSpecificationOption(@Param("ids") Long[] ids);
 
     /**
      * 条件查询规格选项列表

@@ -81,7 +81,7 @@ public class SpecificationOptionServiceImpl implements SpecificationOptionServic
             log.error("ids is null.");
             return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
         }
-        return specificationOptionDao.batchDeleteSpecificationOption(ids);
+        return specificationOptionDao.batchDeleteSpecificationOption(ids) >= 1 ? 1: 0;
     }
 
     @Override

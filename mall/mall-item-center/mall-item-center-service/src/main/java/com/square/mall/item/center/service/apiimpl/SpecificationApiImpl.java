@@ -60,22 +60,17 @@ public class SpecificationApiImpl implements SpecificationApi {
             log.error("specificationGroupDto is null.");
             return DatabaseUtil.getResult(DatabaseOptConstant.DATABASE_PARA_ILLEGAL, ModuleConstant.ITEM_CENTER);
         }
-        int success = specificationService.updateSpecification(specificationGroupDto.getSpecificationDto());
+        SpecificationDto specificationDto = specificationGroupDto.getSpecificationDto();
+        int success = specificationService.updateSpecification(specificationDto);
         if (DatabaseOptConstant.DATABASE_OPT_SUCCESS != success) {
             return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
         }
+        Long specId = specificationDto.getId();
+        specificationOptionService.deleteSpecificationOptionBySpecId(specId);
         List<SpecificationOptionDto> specificationOptionDtoList = specificationGroupDto.getSpecificationOptionDtoList();
         if (null != specificationOptionDtoList) {
-            Long[] ids = new Long[specificationOptionDtoList.size()];
-            for (int i = 0; i < specificationOptionDtoList.size(); i++) {
-                ids[i] = specificationOptionDtoList.get(i).getId();
-            }
-            int batchSuccess = specificationOptionService.batchDeleteSpecificationOption(ids);
-            if (DatabaseOptConstant.DATABASE_OPT_SUCCESS != batchSuccess) {
-                return DatabaseUtil.getResult(batchSuccess, ModuleConstant.ITEM_CENTER);
-            }
             specificationOptionDtoList.forEach( x -> {
-                x.setSpecId(specificationGroupDto.getSpecificationDto().getId());
+                x.setSpecId(specId);
                 specificationOptionService.insertSpecificationOption(x);
             });
         }
