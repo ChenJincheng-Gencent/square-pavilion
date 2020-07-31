@@ -24,12 +24,12 @@ public interface SpecificationService {
     RspDto<Long> insertSpecificationGroup(SpecificationGroupDto specificationGroupDto);
 
     /**
-     * 更新规格
+     * 更新规格组合
      *
-     * @param specificationDto 规格
+     * @param specificationGroupDto 规格组合
      * @return 响应
      */
-    RspDto updateSpecification(SpecificationDto specificationDto);
+    RspDto updateSpecificationGroup(SpecificationGroupDto specificationGroupDto);
 
     /**
      * 删除规格

@@ -33,9 +33,8 @@ public class SpecificationServiceImpl implements SpecificationService {
     }
 
     @Override
-    public RspDto updateSpecification(SpecificationDto specificationDto) {
-        return null;
-        //return specificationApi.updateSpecification(specificationDto);
+    public RspDto updateSpecificationGroup(SpecificationGroupDto specificationGroupDto) {
+        return specificationApi.updateSpecificationGroup(specificationGroupDto);
     }
 
     @Override
@@ -51,7 +50,8 @@ public class SpecificationServiceImpl implements SpecificationService {
     }
 
     @Override
-    public PageRspDto<List<SpecificationDto>> selectPageSpecificationByCondition(SpecificationDto specificationDto, Integer pageNum, Integer pageSize) {
+    public PageRspDto<List<SpecificationDto>> selectPageSpecificationByCondition(SpecificationDto specificationDto,
+        Integer pageNum, Integer pageSize) {
         return specificationQueryApi.selectPageSpecificationByCondition(specificationDto, pageNum, pageSize);
     }
 

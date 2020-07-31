@@ -11,7 +11,7 @@ app.service('specificationService',function($http){
 	}
 	//查询实体
 	this.findOne=function(id){
-		return $http.get('../manager/v1/specification?id='+id);
+		return $http.get('../manager/v1/specification/group?specId='+id);
 	}
 	//增加 
 	this.add=function(entity){

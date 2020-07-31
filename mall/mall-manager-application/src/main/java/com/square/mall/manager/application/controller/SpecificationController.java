@@ -74,18 +74,17 @@ public class SpecificationController {
     }
 
     /**
-     * 更新规格
+     * 更新规格组合
      *
-     * @param modSpecificationVo 规格
+     * @param specificationGroupDto 规格组合
      * @return 响应
      */
-    @PutMapping("/specification")
+    @PutMapping("/specification/group")
     @ResponseBody
-    @ApiOperation(value = "更新规格")
-    public RspDto updateSpecification(@RequestBody @Valid ModSpecificationVo modSpecificationVo) {
-        SpecificationDto specificationDto = new SpecificationDto();
-        BeanUtils.copyProperties(modSpecificationVo, specificationDto);
-        return specificationService.updateSpecification(specificationDto);
+    @ApiOperation(value = "更新规格组合")
+    public RspDto updateSpecification(@RequestBody @Valid SpecificationGroupDto specificationGroupDto) {
+
+        return specificationService.updateSpecificationGroup(specificationGroupDto);
     }
 
     /**
