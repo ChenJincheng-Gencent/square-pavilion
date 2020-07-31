@@ -5,11 +5,9 @@ import com.square.mall.common.dto.RspDto;
 import com.square.mall.item.center.api.dto.SpecificationDto;
 import com.square.mall.item.center.api.dto.SpecificationGroupDto;
 import com.square.mall.manager.application.service.SpecificationService;
-import com.square.mall.manager.application.vo.ModSpecificationVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -116,6 +114,20 @@ public class SpecificationController {
         log.info("specificationGroupDto: {}, specId: {}", specificationGroupDto, specId);
 
         return specificationGroupDto;
+
+    }
+
+    /**
+     * 查询所有规格列表
+     *
+     * @return 规格列表
+     */
+    @GetMapping("/specification/all")
+    @ResponseBody
+    @ApiOperation(value = "查询所有规格列表")
+    public RspDto<List<SpecificationDto>> selectSpecificationAll()  {
+
+        return specificationService.selectSpecificationAll();
 
     }
 

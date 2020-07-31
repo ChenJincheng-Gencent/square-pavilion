@@ -63,4 +63,9 @@ public class SpecificationServiceImpl implements SpecificationService {
     public RspDto<SpecificationGroupDto> selectSpecificationGroupBySpecId(Long specId) {
         return specificationQueryApi.selectSpecificationGroupBySpecId(specId);
     }
+
+    @Override
+    public RspDto<List<SpecificationDto>> selectSpecificationAll() {
+        return specificationQueryApi.selectSpecificationAll();
+    }
 }

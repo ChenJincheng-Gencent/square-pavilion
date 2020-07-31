@@ -31,7 +31,7 @@ app.service('brandService',function($http){
 	}    
 	//下拉列表数据
 	this.selectOptionList=function(){
-		return $http.get('../brand/selectOptionList.do');
+		return $http.get('../manager/v1/brand/all');
 	}
 	
 });

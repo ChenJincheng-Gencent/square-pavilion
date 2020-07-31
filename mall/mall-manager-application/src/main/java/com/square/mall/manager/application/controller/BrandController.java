@@ -118,4 +118,18 @@ public class BrandController {
 
     }
 
+    /**
+     * 查询所有品牌列表
+     *
+     * @return 品牌列表
+     */
+    @GetMapping("/brand/all")
+    @ResponseBody
+    @ApiOperation(value = "查询所有品牌列表")
+    public RspDto<List<BrandDto>> selectBrandAll()  {
+
+        return brandService.selectBrandAll();
+
+    }
+
 }

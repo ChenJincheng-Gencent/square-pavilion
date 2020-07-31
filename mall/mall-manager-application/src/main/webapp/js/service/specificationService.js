@@ -31,7 +31,7 @@ app.service('specificationService',function($http){
 	}    	
 	//下拉列表
 	this.selectOptionList=function(){
-		return $http.get('../specification/selectOptionList.do');
+		return $http.get('../manager/v1/specification/all');
 	}
 	
 });
