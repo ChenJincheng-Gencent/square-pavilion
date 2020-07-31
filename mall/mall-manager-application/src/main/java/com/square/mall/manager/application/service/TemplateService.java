@@ -2,6 +2,7 @@ package com.square.mall.manager.application.service;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
+import com.square.mall.item.center.api.dto.SpecificationGroupDto;
 import com.square.mall.item.center.api.dto.TemplateDto;
 import com.square.mall.item.center.api.dto.TemplateGroupDto;
 
@@ -14,6 +15,14 @@ import java.util.List;
  * @date 2020/7/31
  */
 public interface TemplateService {
+
+    /**
+     * 插入模板组合
+     *
+     * @param templateGroupDto 模板组合
+     * @return 数据库ID
+     */
+    RspDto<Long> insertTemplateGroup(TemplateGroupDto templateGroupDto);
 
     /**
      * 根据模板ID查询模板组合

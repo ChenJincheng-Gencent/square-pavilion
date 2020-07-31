@@ -26,6 +26,11 @@ public class TemplateServiceImpl implements TemplateService {
     private TemplateQueryApi templateQueryApi;
 
     @Override
+    public RspDto<Long> insertTemplateGroup(TemplateGroupDto templateGroupDto) {
+        return null;
+    }
+
+    @Override
     public RspDto<TemplateGroupDto> selectTemplateGroupByTemplateId(Long templateId) {
         return templateQueryApi.selectTemplateGroupByTemplateId(templateId);
     }
