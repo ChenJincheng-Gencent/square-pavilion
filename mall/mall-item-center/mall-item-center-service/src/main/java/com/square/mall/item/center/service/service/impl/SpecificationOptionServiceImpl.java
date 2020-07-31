@@ -91,7 +91,7 @@ public class SpecificationOptionServiceImpl implements SpecificationOptionServic
             log.error("specId is null.");
             return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
         }
-        return specificationOptionDao.deleteSpecificationOptionBySpecId(specId);
+        return specificationOptionDao.deleteSpecificationOptionBySpecId(specId) >= 1 ? 1 : 0;
 
     }
 
