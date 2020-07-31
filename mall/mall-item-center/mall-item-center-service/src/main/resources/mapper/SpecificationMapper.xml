@@ -61,7 +61,7 @@
         FROM it_specification WHERE id = #{id}
     </select>
 
-    <select id="selectBrandAll" resultMap="SpecificationMap">
+    <select id="selectSpecificationAll" resultMap="SpecificationMap">
         SELECT
         <include refid="need_column"/>
         FROM it_specification
