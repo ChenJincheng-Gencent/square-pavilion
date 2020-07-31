@@ -15,12 +15,12 @@
     <!-- 动态查询 -->
     <sql id="select">
         <where>
-            is_delete = 0
+            1 = 1
             <if test="id != null">
                 and id = #{id}
             </if>
             <if test="name != null and name !=''">
-                and name = #{name}
+                and name like concat("%",#{name},"%")
             </if>
         </where>
     </sql>
@@ -42,23 +42,23 @@
             name = #{name},
         </if>
         update_time = now()
-        WHERE id = #{id} and is_delete = 0
+        WHERE id = #{id}
     </insert>
 
     <delete id="deleteTemplate" parameterType="Long" >
-        UPDATE it_template SET is_delete = 1 where id = #{id} and is_delete = 0;
+        DELETE FROM it_template where id = #{id}
     </delete>
 
     <select id="selectTemplateByName" resultMap="TemplateMap">
         SELECT
         <include refid="need_column"/>
-        FROM it_template WHERE name = #{name} and is_delete = 0;
+        FROM it_template WHERE name = #{name}
     </select>
 
     <select id="selectTemplateById" resultMap="TemplateMap">
         SELECT
         <include refid="need_column"/>
-        FROM it_template WHERE id = #{id} and is_delete = 0;
+        FROM it_template WHERE id = #{id}
     </select>
 
 </mapper>

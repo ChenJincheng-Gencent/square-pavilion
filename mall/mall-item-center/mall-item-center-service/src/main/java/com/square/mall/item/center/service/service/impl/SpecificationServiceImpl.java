@@ -6,10 +6,8 @@ import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.util.DatabaseOptConstant;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.common.util.StringUtil;
-import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.api.dto.SpecificationDto;
 import com.square.mall.item.center.service.dao.SpecificationDao;
-import com.square.mall.item.center.service.eo.BrandEo;
 import com.square.mall.item.center.service.eo.SpecificationEo;
 import com.square.mall.item.center.service.service.SpecificationService;
 import lombok.extern.slf4j.Slf4j;
@@ -133,5 +131,24 @@ public class SpecificationServiceImpl implements SpecificationService {
         SpecificationDto specificationDto = new SpecificationDto();
         BeanUtils.copyProperties(specificationEo, specificationDto);
         return specificationDto;
+    }
+
+    @Override
+    public List<SpecificationDto> selectSpecificationAll() {
+
+        List<SpecificationEo> specificationEoList = specificationDao.selectSpecificationAll();
+        if (ListUtil.isBlank(specificationEoList)) {
+            log.error("specificationEoList is blank.");
+            return null;
+        }
+
+        List<SpecificationDto> specificationDtoList = new ArrayList<>();
+        specificationEoList.forEach( x -> {
+            SpecificationDto specificationDto = new SpecificationDto();
+            BeanUtils.copyProperties(x, specificationDto);
+            specificationDtoList.add(specificationDto);
+        });
+
+        return specificationDtoList;
     }
 }

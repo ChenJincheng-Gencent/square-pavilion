@@ -2,6 +2,7 @@ package com.square.mall.item.center.api.query;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
+import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.api.dto.SpecificationDto;
 import com.square.mall.item.center.api.dto.SpecificationGroupDto;
 
@@ -41,5 +42,12 @@ public interface SpecificationQueryApi {
      * @return 规格
      */
     RspDto<SpecificationDto> selectSpecificationById(Long id);
+
+    /**
+     * 查询所有规格列表
+     *
+     * @return 规格列表
+     */
+    RspDto<List<SpecificationDto>> selectSpecificationAll();
 
 }

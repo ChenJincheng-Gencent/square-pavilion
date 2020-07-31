@@ -76,5 +76,11 @@
         FROM it_brand WHERE id = #{id};
     </select>
 
+    <select id="selectBrandAll" resultMap="BrandMap">
+        SELECT
+        <include refid="need_column"/>
+        FROM it_brand
+    </select>
+
 </mapper>
 

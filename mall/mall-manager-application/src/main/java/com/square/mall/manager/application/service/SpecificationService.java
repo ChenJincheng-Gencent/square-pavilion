@@ -73,4 +73,11 @@ public interface SpecificationService {
      */
     RspDto<SpecificationGroupDto> selectSpecificationGroupBySpecId(Long specId);
 
+    /**
+     * 查询所有规格列表
+     *
+     * @return 规格列表
+     */
+    RspDto<List<SpecificationDto>> selectSpecificationAll();
+
 }

@@ -2,14 +2,14 @@ package com.square.mall.manager.application.controller;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.SpecificationDto;
 import com.square.mall.item.center.api.dto.SpecificationGroupDto;
 import com.square.mall.manager.application.service.SpecificationService;
-import com.square.mall.manager.application.vo.ModSpecificationVo;
+import com.square.mall.manager.application.vo.Select2Vo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -116,6 +117,32 @@ public class SpecificationController {
         log.info("specificationGroupDto: {}, specId: {}", specificationGroupDto, specId);
 
         return specificationGroupDto;
+
+    }
+
+    /**
+     * 查询所有规格列表
+     *
+     * @return 规格列表
+     */
+    @GetMapping("/specification/all")
+    @ResponseBody
+    @ApiOperation(value = "查询所有规格列表")
+    public RspDto<List<Select2Vo>> selectSpecificationAll()  {
+
+        List<SpecificationDto> specificationDtoList = specificationService.selectSpecificationAll().getData();
+        if (ListUtil.isBlank(specificationDtoList)) {
+            return RspDto.SUCCESS;
+        }
+        List<Select2Vo> select2VoList = new ArrayList<>();
+        specificationDtoList.forEach( x -> {
+            Select2Vo select2Vo = new Select2Vo();
+            select2Vo.setId(x.getId());
+            select2Vo.setText(x.getName());
+            select2VoList.add(select2Vo);
+        });
+
+        return new RspDto<>(select2VoList);
 
     }
 

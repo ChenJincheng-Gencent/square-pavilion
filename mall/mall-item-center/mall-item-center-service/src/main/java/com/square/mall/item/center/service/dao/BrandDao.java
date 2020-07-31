@@ -1,7 +1,5 @@
 package com.square.mall.item.center.service.dao;
 
-import com.square.mall.common.dto.RspDto;
-import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.service.eo.BrandEo;
 import org.apache.ibatis.annotations.Param;
 
@@ -70,5 +68,12 @@ public interface BrandDao {
      * @return 品牌
      */
     BrandEo selectBrandById(@Param("id") Long id);
+
+    /**
+     * 查询所有品牌列表
+     *
+     * @return 品牌列表
+     */
+    List<BrandEo> selectBrandAll();
 
 }

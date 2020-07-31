@@ -93,9 +93,9 @@
 			                              <td><input  type="checkbox" ng-click="updateSelection($event, entity.id)" ></td>			                              
 				                          <td>{{entity.id}}</td>
 									      <td>{{entity.name}}</td>
-									      <td>{{jsonToString(entity.brandIds,'text')}}</td>
-									      <td>{{jsonToString(entity.specIds,'text')}}</td>									 
-									      <td>{{jsonToString(entity.customAttributeItems,'text')}}</td>		                                                                  
+									      <td>{{jsonToString(entity.brandIds,'name')}}</td>
+									      <td>{{jsonToString(entity.specIds,'name')}}</td>
+									      <td>{{jsonToString(entity.customAttributeItems,'name')}}</td>
 		                                  <td class="text-center">                                           
 		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" ng-click="findOne(entity.id)">修改</button>                                           
 		                                  </td>
