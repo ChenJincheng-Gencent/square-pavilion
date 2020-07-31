@@ -1,5 +1,6 @@
 package com.square.mall.item.center.service.dao;
 
+import com.square.mall.item.center.api.dto.ExtraAttributesDto;
 import com.square.mall.item.center.service.eo.ExtraAttributesEo;
 import org.apache.ibatis.annotations.Param;
 
@@ -53,12 +54,13 @@ public interface ExtraAttributesDao {
      */
     ExtraAttributesEo selectExtraAttributesByName(@Param("name") String name);
 
+
     /**
-     * 根据ID查询扩展属性
+     * 根据模板ID查询扩展属性列表
      *
-     * @param id ID
-     * @return 扩展属性
+     * @param templateId 模板ID
+     * @return 扩展属性列表
      */
-    ExtraAttributesEo selectExtraAttributesById(@Param("id") Long id);
+    List<ExtraAttributesEo> selectExtraAttributesByTemplateId(@Param("templateId") Long templateId);
 
 }

@@ -46,11 +46,11 @@ public interface TemplateSpecificationDao {
     List<TemplateSpecificationEo> selectTemplateSpecificationByCondition(TemplateSpecificationEo templateSpecificationEo);
 
     /**
-     * 根据ID查询模板规格
+     * 根据模板ID查询规格ID列表
      *
-     * @param id ID
-     * @return 模板规格
+     * @param templateId 模板ID
+     * @return 规格ID列表
      */
-    TemplateSpecificationEo selectTemplateSpecificationById(@Param("id") Long id);
+    List<Long> selectSpecIdByTemplateId(@Param("templateId") Long templateId);
 
 }

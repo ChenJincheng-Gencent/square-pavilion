@@ -63,10 +63,10 @@
         FROM it_extra_attributes WHERE name = #{name} and is_delete = 0;
     </select>
 
-    <select id="selectExtraAttributesById" resultMap="ExtraAttributesMap">
+    <select id="selectExtraAttributesByTemplateId" resultMap="ExtraAttributesMap">
         SELECT
         <include refid="need_column"/>
-        FROM it_extra_attributes WHERE id = #{id} and is_delete = 0;
+        FROM it_extra_attributes WHERE template_id = #{templateId}
     </select>
 
 </mapper>

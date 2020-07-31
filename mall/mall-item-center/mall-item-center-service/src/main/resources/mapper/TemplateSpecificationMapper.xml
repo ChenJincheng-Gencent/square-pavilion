@@ -57,10 +57,8 @@
         UPDATE it_template_specification SET is_delete = 1 where id = #{id} and is_delete = 0;
     </delete>
 
-    <select id="selectTemplateSpecificationById" resultMap="TemplateSpecificationMap">
-        SELECT
-        <include refid="need_column"/>
-        FROM it_template_specification WHERE id = #{id} and is_delete = 0;
+    <select id="selectSpecIdByTemplateId" resultType="Long">
+        SELECT spec_id FROM it_template_specification WHERE template_id = #{templateId}
     </select>
 
 </mapper>

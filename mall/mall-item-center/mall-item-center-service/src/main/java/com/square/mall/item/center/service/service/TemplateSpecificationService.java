@@ -55,4 +55,12 @@ public interface TemplateSpecificationService {
     PageRspDto<List<TemplateSpecificationDto>> selectPageTemplateSpecificationByCondition(TemplateSpecificationDto templateSpecificationDto,
         Integer pageNum, Integer pageSize);
 
+    /**
+     * 根据模板ID查询规格ID列表
+     *
+     * @param templateId 模板ID
+     * @return 规格ID列表
+     */
+    List<Long> selectSpecIdByTemplateId(Long templateId);
+
 }

@@ -1,11 +1,17 @@
 package com.square.mall.item.center.service.service.impl;
 
 import com.square.mall.common.dto.PageRspDto;
+import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.ExtraAttributesDto;
+import com.square.mall.item.center.service.dao.ExtraAttributesDao;
+import com.square.mall.item.center.service.eo.ExtraAttributesEo;
 import com.square.mall.item.center.service.service.ExtraAttributesService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +23,10 @@ import java.util.List;
 @Slf4j
 @Service
 public class ExtraAttributesServiceImpl implements ExtraAttributesService {
+
+    @Resource
+    private ExtraAttributesDao extraAttributesDao;
+
     @Override
     public int insertExtraAttributes(ExtraAttributesDto extraAttributesDto) {
         return 0;
@@ -48,7 +58,29 @@ public class ExtraAttributesServiceImpl implements ExtraAttributesService {
     }
 
     @Override
-    public ExtraAttributesDto selectExtraAttributesById(Long id) {
-        return null;
+    public List<ExtraAttributesDto> selectExtraAttributesByTemplateId(Long templateId) {
+
+        if (null == templateId) {
+            log.error("templateId is null.");
+            return null;
+        }
+
+        List<ExtraAttributesEo> extraAttributesEoList = extraAttributesDao.selectExtraAttributesByTemplateId(templateId);
+        if (ListUtil.isBlank(extraAttributesEoList)) {
+            log.error("extraAttributesEoList is blank. templateId: {}", templateId);
+            return null;
+        }
+
+        List<ExtraAttributesDto> extraAttributesDtoList = new ArrayList<>();
+        extraAttributesEoList.forEach( x -> {
+            ExtraAttributesDto extraAttributesDto = new ExtraAttributesDto();
+            BeanUtils.copyProperties(x, extraAttributesDto);
+            extraAttributesDtoList.add(extraAttributesDto);
+        });
+
+        return extraAttributesDtoList;
+
     }
+
+
 }

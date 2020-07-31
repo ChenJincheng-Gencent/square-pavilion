@@ -2,10 +2,12 @@ package com.square.mall.item.center.service.service.impl;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.item.center.api.dto.TemplateBrandDto;
+import com.square.mall.item.center.service.dao.TemplateBrandDao;
 import com.square.mall.item.center.service.service.TemplateBrandService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -17,6 +19,10 @@ import java.util.List;
 @Slf4j
 @Service
 public class TemplateBrandServiceImpl implements TemplateBrandService {
+
+    @Resource
+    private TemplateBrandDao templateBrandDao;
+
     @Override
     public int insertTemplateBrand(TemplateBrandDto templateBrandDto) {
         return 0;
@@ -48,7 +54,14 @@ public class TemplateBrandServiceImpl implements TemplateBrandService {
     }
 
     @Override
-    public TemplateBrandDto selectTemplateBrandById(Long id) {
-        return null;
+    public List<Long> selectBrandIdByTemplateId(Long templateId) {
+
+        if (null == templateId) {
+            log.error("templateId is null.");
+            return null;
+        }
+        return templateBrandDao.selectBrandIdByTemplateId(templateId);
     }
+
+
 }

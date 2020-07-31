@@ -65,10 +65,10 @@ public interface TemplateBrandService {
     TemplateBrandDto selectTemplateBrandByName(@Param("name") String name);
 
     /**
-     * 根据ID查询模板品牌
+     * 根据模板ID查询品牌ID列表
      *
-     * @param id ID
-     * @return 模板品牌
+     * @param templateId 模板ID
+     * @return 品牌ID列表
      */
-    TemplateBrandDto selectTemplateBrandById(@Param("id") Long id);
+    List<Long> selectBrandIdByTemplateId(Long templateId);
 }

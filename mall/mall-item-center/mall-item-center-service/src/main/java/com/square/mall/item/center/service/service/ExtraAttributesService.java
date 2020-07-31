@@ -66,10 +66,10 @@ public interface ExtraAttributesService {
     ExtraAttributesDto selectExtraAttributesByName(@Param("name") String name);
 
     /**
-     * 根据ID查询扩展属性
+     * 根据模板ID查询扩展属性列表
      *
-     * @param id ID
-     * @return 扩展属性
+     * @param templateId 模板ID
+     * @return 扩展属性列表
      */
-    ExtraAttributesDto selectExtraAttributesById(@Param("id") Long id);
+    List<ExtraAttributesDto> selectExtraAttributesByTemplateId(Long templateId);
 }

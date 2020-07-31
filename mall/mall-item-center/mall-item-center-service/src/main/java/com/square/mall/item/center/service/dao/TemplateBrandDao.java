@@ -47,11 +47,11 @@ public interface TemplateBrandDao {
     List<TemplateBrandEo> selectTemplateBrandByCondition(TemplateBrandEo templateBrandEo);
 
     /**
-     * 根据ID查询模板品牌
+     * 根据模板ID查询品牌ID列表
      *
-     * @param id ID
-     * @return 模板品牌
+     * @param templateId 模板ID
+     * @return 品牌ID列表
      */
-    BrandEo selectTemplateBrandById(@Param("id") Long id);
+    List<Long> selectBrandIdByTemplateId(@Param("templateId") Long templateId);
 
 }

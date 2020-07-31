@@ -57,10 +57,8 @@
         UPDATE it_template_brand SET is_delete = 1 where id = #{id} and is_delete = 0;
     </delete>
 
-    <select id="selectTemplateBrandById" resultMap="TemplateBrandMap">
-        SELECT
-        <include refid="need_column"/>
-        FROM it_template_brand WHERE id = #{id} and is_delete = 0;
+    <select id="selectBrandIdByTemplateId" resultType="Long">
+        SELECT brand_id FROM it_template_brand WHERE template_id = #{templateId}
     </select>
 
 </mapper>
