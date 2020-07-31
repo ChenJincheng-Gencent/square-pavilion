@@ -79,7 +79,7 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 
 	//增加规格选项行
 	$scope.addTableRow=function(){
-		if (null == $scope.entity.specificationOptionDtoList) {
+		if ($scope.entity.specificationOptionDtoList===undefined || null === $scope.entity.specificationOptionDtoList) {
 			$scope.entity.specificationOptionDtoList = [];
 		}
 		$scope.entity.specificationOptionDtoList.push({});

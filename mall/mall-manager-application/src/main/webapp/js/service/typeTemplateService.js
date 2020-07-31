@@ -3,30 +3,30 @@ app.service('typeTemplateService',function($http){
 	    	
 	//读取列表数据绑定到表单中
 	this.findAll=function(){
-		return $http.get('../typeTemplate/findAll.do');		
+		return $http.get('../manager/v1/template/all');
 	}
 	//分页 
-	this.findPage=function(page,rows){
-		return $http.get('../typeTemplate/findPage.do?page='+page+'&rows='+rows);
+	this.findPage=function(pageNum,pageSize){
+		return $http.get('../manager/v1/template/list/page?pageNum='+pageNum+'&pageSize='+pageSize);
 	}
 	//查询实体
 	this.findOne=function(id){
-		return $http.get('../typeTemplate/findOne.do?id='+id);
+		return $http.get('../manager/v1/template/group?id='+id);
 	}
 	//增加 
 	this.add=function(entity){
-		return  $http.post('../typeTemplate/add.do',entity );
+		return  $http.post('../manager/v1/template',entity );
 	}
 	//修改 
 	this.update=function(entity){
-		return  $http.post('../typeTemplate/update.do',entity );
+		return  $http.put('../manager/v1/template',entity );
 	}
 	//删除
-	this.dele=function(ids){
-		return $http.get('../typeTemplate/delete.do?ids='+ids);
+	this.delete=function(ids){
+		return $http.delete('../manager/v1/template/batch?ids='+ids);
 	}
 	//搜索
-	this.search=function(page,rows,searchEntity){
-		return $http.post('../typeTemplate/search.do?page='+page+"&rows="+rows, searchEntity);
+	this.search=function(pageNum,pageSize,searchEntity){
+		return $http.post('../manager/v1/template/group/list/page/condition?pageNum='+pageNum+"&pageSize="+pageSize, searchEntity);
 	}    	
 });

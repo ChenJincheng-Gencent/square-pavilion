@@ -7,16 +7,16 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 	$scope.findAll=function(){
 		typeTemplateService.findAll().success(
 			function(response){
-				$scope.list=response;
+				$scope.list=response.data;
 			}			
 		);
 	}    
 	
 	//分页
-	$scope.findPage=function(page,rows){			
-		typeTemplateService.findPage(page,rows).success(
+	$scope.findPage=function(pageNum,pageSize){
+		typeTemplateService.findPage(pageNum,pageSize).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.data;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
@@ -26,7 +26,7 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 	$scope.findOne=function(id){				
 		typeTemplateService.findOne(id).success(
 			function(response){
-				$scope.entity= response;		
+				$scope.entity= response.data;
 				
 				//转换字符串为json对象（集合）
 				$scope.entity.brandIds=  JSON.parse( $scope.entity.brandIds);
@@ -47,11 +47,11 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 		}				
 		serviceObject.success(
 			function(response){
-				if(response.success){
+				if("0"===response.code){
 					//重新查询 
 		        	$scope.reloadList();//重新加载
 				}else{
-					alert(response.message);
+					alert(response.msg);
 				}
 			}		
 		);				
@@ -59,11 +59,11 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 	
 	 
 	//批量删除 
-	$scope.dele=function(){			
+	$scope.delete=function(){
 		//获取选中的复选框			
-		typeTemplateService.dele( $scope.selectIds ).success(
+		typeTemplateService.delete( $scope.selectIds ).success(
 			function(response){
-				if(response.success){
+				if("0"===response.code){
 					$scope.reloadList();//刷新列表
 					$scope.selectIds=[];
 				}						
@@ -74,10 +74,10 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 	$scope.searchEntity={};//定义搜索对象 
 	
 	//搜索
-	$scope.search=function(page,rows){			
-		typeTemplateService.search(page,rows,$scope.searchEntity).success(
+	$scope.search=function(pageNum,pageSize){
+		typeTemplateService.search(pageNum,pageSize,$scope.searchEntity).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.data;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
