@@ -75,6 +75,7 @@ public class SpecificationApiImpl implements SpecificationApi {
                 return DatabaseUtil.getResult(batchSuccess, ModuleConstant.ITEM_CENTER);
             }
             specificationOptionDtoList.forEach( x -> {
+                x.setSpecId(specificationGroupDto.getSpecificationDto().getId());
                 specificationOptionService.insertSpecificationOption(x);
             });
         }
