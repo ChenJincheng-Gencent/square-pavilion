@@ -85,15 +85,22 @@ public class SpecificationApiImpl implements SpecificationApi {
     }
 
     @Override
-    public RspDto deleteSpecificationGroup(Long id) {
+    public RspDto batchDeleteSpecificationGroup(Long[] ids) {
 
-        int optionSuccess = specificationOptionService.deleteSpecificationOptionBySpecId(id);
-        if (DatabaseOptConstant.DATABASE_OPT_SUCCESS != optionSuccess) {
-            return DatabaseUtil.getResult(optionSuccess, ModuleConstant.ITEM_CENTER);
+        if (null == ids) {
+            log.error("ids is null.");
+            return DatabaseUtil.getResult(DatabaseOptConstant.DATABASE_PARA_ILLEGAL, ModuleConstant.ITEM_CENTER);
         }
-
-        int success = specificationService.deleteSpecification(id);
-        return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
-
+        for (Long id : ids) {
+            int optionSuccess = specificationOptionService.deleteSpecificationOptionBySpecId(id);
+            if (DatabaseOptConstant.DATABASE_OPT_SUCCESS != optionSuccess) {
+                return DatabaseUtil.getResult(optionSuccess, ModuleConstant.ITEM_CENTER);
+            }
+            int success = specificationService.deleteSpecification(id);
+            if (DatabaseOptConstant.DATABASE_OPT_SUCCESS != success) {
+                return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
+            }
+        }
+        return DatabaseUtil.getResult(DatabaseOptConstant.DATABASE_OPT_SUCCESS, ModuleConstant.ITEM_CENTER);
     }
 }

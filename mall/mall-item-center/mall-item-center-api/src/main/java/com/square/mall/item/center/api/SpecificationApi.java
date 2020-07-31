@@ -29,11 +29,11 @@ public interface SpecificationApi {
     RspDto updateSpecificationGroup(SpecificationGroupDto specificationGroupDto);
 
     /**
-     * 删除规格组合
+     * 批量删除规格组合
      *
-     * @param id 规格ID
+     * @param ids 规格ID数组
      * @return 响应
      */
-    RspDto deleteSpecificationGroup(Long id);
+    RspDto batchDeleteSpecificationGroup(Long[] ids);
 
 }
