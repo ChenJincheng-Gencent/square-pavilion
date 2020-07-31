@@ -83,7 +83,48 @@ public class TemplateQueryApiImpl implements TemplateQueryApi {
     }
 
     @Override
-    public PageRspDto<List<TemplateGroupDto>> selectPageTemplateGroupByCondition(TemplateDto templateDto, Integer pageNum, Integer pageSize) {
-        return null;
+    public PageRspDto<List<TemplateGroupDto>> selectPageTemplateGroupByCondition(TemplateDto templateDto, Integer pageNum,
+        Integer pageSize) {
+
+        PageRspDto<List<TemplateDto>> listPageRspDto = templateService.selectPageTemplateByCondition(templateDto, pageNum,
+            pageSize);
+        List<TemplateDto> templateDtoList = listPageRspDto.getData();
+        if (ListUtil.isBlank(templateDtoList)) {
+            log.error("templateDtoList is blank. templateDto: {}, pageNum: {}, pageSize: {}", templateDto, pageNum, pageSize);
+            return new PageRspDto<>(listPageRspDto.getTotal(), null);
+        }
+
+        List<TemplateGroupDto> templateGroupDtoList = new ArrayList<>();
+        templateDtoList.forEach(x -> {
+            TemplateGroupDto templateGroupDto = new TemplateGroupDto();
+            templateGroupDto.setTemplateDto(templateDto);
+
+            List<Long> brandIds = templateBrandService.selectBrandIdByTemplateId(x.getId());
+            if (ListUtil.isNotBlank(brandIds)) {
+                List<BrandDto> brandDtoList = new ArrayList<>();
+                brandIds.forEach( y -> {
+                    BrandDto brandDto = brandService.selectBrandById(y);
+                    brandDtoList.add(brandDto);
+                });
+                templateGroupDto.setBrandDtoList(brandDtoList);
+            }
+
+            List<Long> specIds = templateSpecificationService.selectSpecIdByTemplateId(x.getId());
+            if (ListUtil.isNotBlank(specIds)) {
+                List<SpecificationDto> specificationDtoList = new ArrayList<>();
+                specIds.forEach( y -> {
+                    SpecificationDto specificationDto = specificationService.selectSpecificationById(y);
+                    specificationDtoList.add(specificationDto);
+                });
+                templateGroupDto.setSpecificationDtoList(specificationDtoList);
+            }
+
+            templateGroupDto.setExtraAttributesDtoList(extraAttributesService.selectExtraAttributesByTemplateId(x.getId()));
+            templateGroupDtoList.add(templateGroupDto);
+        });
+
+        return new PageRspDto<>(listPageRspDto.getTotal(), templateGroupDtoList);
+
     }
+
 }
