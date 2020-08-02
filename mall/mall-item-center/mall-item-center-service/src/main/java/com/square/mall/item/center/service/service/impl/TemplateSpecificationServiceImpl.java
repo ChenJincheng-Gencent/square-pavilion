@@ -1,10 +1,13 @@
 package com.square.mall.item.center.service.service.impl;
 
 import com.square.mall.common.dto.PageRspDto;
+import com.square.mall.common.util.DatabaseOptConstant;
 import com.square.mall.item.center.api.dto.TemplateSpecificationDto;
 import com.square.mall.item.center.service.dao.TemplateSpecificationDao;
+import com.square.mall.item.center.service.eo.TemplateSpecificationEo;
 import com.square.mall.item.center.service.service.TemplateSpecificationService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,7 +28,15 @@ public class TemplateSpecificationServiceImpl implements TemplateSpecificationSe
 
     @Override
     public int insertTemplateSpecification(TemplateSpecificationDto templateSpecificationDto) {
-        return 0;
+        if (null == templateSpecificationDto) {
+            log.error("templateSpecificationDto is null.");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+        TemplateSpecificationEo templateSpecificationEo = new TemplateSpecificationEo();
+        BeanUtils.copyProperties(templateSpecificationDto, templateSpecificationEo);
+        int success = templateSpecificationDao.insertTemplateSpecification(templateSpecificationEo);
+        templateSpecificationDto.setId(templateSpecificationEo.getId());
+        return success;
     }
 
     @Override
