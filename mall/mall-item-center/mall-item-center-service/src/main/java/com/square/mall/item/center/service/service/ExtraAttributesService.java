@@ -32,12 +32,12 @@ public interface ExtraAttributesService {
     int updateExtraAttributes(ExtraAttributesDto extraAttributesDto);
 
     /**
-     * 删除扩展属性
+     * 根据模板ID删除扩展属性
      *
-     * @param id 数据库ID
+     * @param templateId 模板ID
      * @return 是否成功，1成功，0失败
      */
-    int deleteExtraAttributes(Long id);
+    int deleteExtraAttributesByTemplateId(Long templateId);
 
     /**
      * 条件查询扩展属性列表

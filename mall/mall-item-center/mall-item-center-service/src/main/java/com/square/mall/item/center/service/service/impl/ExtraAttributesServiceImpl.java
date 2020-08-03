@@ -47,8 +47,12 @@ public class ExtraAttributesServiceImpl implements ExtraAttributesService {
     }
 
     @Override
-    public int deleteExtraAttributes(Long id) {
-        return 0;
+    public int deleteExtraAttributesByTemplateId(Long templateId) {
+        if (null == templateId) {
+            log.error("templateId is null.");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+        return extraAttributesDao.deleteExtraAttributesByTemplateId(templateId);
     }
 
     @Override

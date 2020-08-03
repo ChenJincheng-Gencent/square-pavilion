@@ -17,7 +17,7 @@
     <!-- 动态查询 -->
     <sql id="select">
         <where>
-            is_delete = 0
+            1 = 1
             <if test="id != null">
                 and id = #{id}
             </if>
@@ -50,17 +50,17 @@
             template_id = #{templateId},
         </if>
         update_time = now()
-        WHERE id = #{id} and is_delete = 0
+        WHERE id = #{id}
     </insert>
 
-    <delete id="deleteExtraAttributes" parameterType="Long" >
-        UPDATE it_extra_attributes SET is_delete = 1 where id = #{id} and is_delete = 0;
+    <delete id="deleteExtraAttributesByTemplateId" parameterType="Long" >
+        DELETE FROM it_extra_attributes where template_id = #{templateId}
     </delete>
 
     <select id="selectExtraAttributesByName" resultMap="ExtraAttributesMap">
         SELECT
         <include refid="need_column"/>
-        FROM it_extra_attributes WHERE name = #{name} and is_delete = 0;
+        FROM it_extra_attributes WHERE name = #{name}
     </select>
 
     <select id="selectExtraAttributesByTemplateId" resultMap="ExtraAttributesMap">

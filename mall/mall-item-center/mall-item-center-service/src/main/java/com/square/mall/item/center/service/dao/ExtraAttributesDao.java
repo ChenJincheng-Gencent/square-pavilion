@@ -31,12 +31,12 @@ public interface ExtraAttributesDao {
     int updateExtraAttributes(ExtraAttributesEo extraAttributesEo);
 
     /**
-     * 删除扩展属性
+     * 根据模板ID删除扩展属性
      *
-     * @param id 数据库ID
+     * @param templateId 模板ID
      * @return 是否成功，1成功，0失败
      */
-    int deleteExtraAttributes(@Param("id") Long id);
+    int deleteExtraAttributesByTemplateId(@Param("templateId") Long templateId);
 
     /**
      * 条件查询扩展属性列表
