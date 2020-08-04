@@ -29,9 +29,10 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 				$scope.entity= response.data;
 				
 				//转换字符串为json对象（集合）
-				$scope.entity.brandIds=  JSON.parse( $scope.entity.brandIds);
-				$scope.entity.specIds= JSON.parse($scope.entity.specIds);
-				$scope.entity.customAttributeItems = JSON.parse($scope.entity.customAttributeItems);
+				$scope.entity.templateDto = JSON.parse( $scope.entity.templateDto);
+				$scope.entity.brandDtoList= JSON.parse( $scope.entity.brandDtoList);
+				$scope.entity.specificationDtoList= JSON.parse($scope.entity.specificationDtoList);
+				$scope.entity.extraAttributesDtoList = JSON.parse($scope.entity.extraAttributesDtoList);
 				
 			}
 		);				
@@ -40,7 +41,7 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 	//保存 
 	$scope.save=function(){				
 		var serviceObject;//服务层对象  				
-		if($scope.entity.id!=null){//如果有ID
+		if($scope.entity.templateDto.id!=null){//如果有ID
 			serviceObject=typeTemplateService.update( $scope.entity ); //修改  
 		}else{
 			serviceObject=typeTemplateService.add( $scope.entity  );//增加 
@@ -93,6 +94,8 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 			}
 		);		
 	}
+
+
 	
 	$scope.specList={data:[]};//规格列表
 	
@@ -107,11 +110,11 @@ app.controller('typeTemplateController' ,function($scope,$controller   ,typeTemp
 	
 	//增加扩展属性行
 	$scope.addTableRow=function(){
-		$scope.entity.customAttributeItems.push({});
+		$scope.entity.extraAttributesDtoList.push({});
 	}
 	//删除扩展属性行
 	$scope.deleteTableRow=function(index){
-		$scope.entity.customAttributeItems.splice( index,1);
+		$scope.entity.extraAttributesDtoList.splice( index,1);
 	}
 	
 });	

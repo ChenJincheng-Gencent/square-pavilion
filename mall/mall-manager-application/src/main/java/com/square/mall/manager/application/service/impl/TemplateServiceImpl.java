@@ -2,6 +2,7 @@ package com.square.mall.manager.application.service.impl;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
+import com.square.mall.item.center.api.TemplateApi;
 import com.square.mall.item.center.api.dto.TemplateDto;
 import com.square.mall.item.center.api.dto.TemplateGroupDto;
 import com.square.mall.item.center.api.query.TemplateQueryApi;
@@ -25,9 +26,12 @@ public class TemplateServiceImpl implements TemplateService {
     @Reference
     private TemplateQueryApi templateQueryApi;
 
+    @Reference
+    private TemplateApi templateApi;
+
     @Override
     public RspDto<Long> insertTemplateGroup(TemplateGroupDto templateGroupDto) {
-        return null;
+        return templateApi.insertTemplateGroup(templateGroupDto);
     }
 
     @Override

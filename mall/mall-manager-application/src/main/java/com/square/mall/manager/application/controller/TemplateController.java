@@ -2,9 +2,10 @@ package com.square.mall.manager.application.controller;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
-import com.square.mall.item.center.api.dto.TemplateDto;
-import com.square.mall.item.center.api.dto.TemplateGroupDto;
+import com.square.mall.common.util.ListUtil;
+import com.square.mall.item.center.api.dto.*;
 import com.square.mall.manager.application.service.TemplateService;
+import com.square.mall.manager.application.vo.TemplateGroupVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -75,6 +78,42 @@ public class TemplateController {
         return templateGroupDto;
 
     }
+    /**
+     * 插入模板组合
+     *
+     * @param templateGroupVo 模板组合
+     * @return 数据库ID
+     */
+    @PostMapping("/template/group")
+    @ResponseBody
+    @ApiOperation(value = "插入模板组合")
+    public RspDto insertTemplateGroup(@RequestBody @Valid TemplateGroupVo templateGroupVo) {
+        TemplateGroupDto templateGroupDto = new TemplateGroupDto();
+        templateGroupDto.setTemplateDto(templateGroupVo.getTemplateDto());
+        List<BrandDto> brandDtoList = new ArrayList<>();
+        if (ListUtil.isNotBlank(templateGroupVo.getBrandDtoList())) {
+            templateGroupVo.getBrandDtoList().forEach( x -> {
+                BrandDto brandDto = new BrandDto();
+                brandDto.setId(x.getId());
+                brandDtoList.add(brandDto);
+            });
+        }
+        templateGroupDto.setBrandDtoList(brandDtoList);
+        List<SpecificationDto> specificationDtoList = new ArrayList<>();
+        if (ListUtil.isNotBlank(templateGroupVo.getSpecificationDtoList())) {
+            templateGroupVo.getExtraAttributesDtoList().forEach( x -> {
+                SpecificationDto specificationDto = new SpecificationDto();
+                specificationDto.setId(x.getId());
+                specificationDtoList.add(specificationDto);
+            });
+        }
+        templateGroupDto.setSpecificationDtoList(specificationDtoList);
+        templateGroupDto.setExtraAttributesDtoList(templateGroupVo.getExtraAttributesDtoList());
+        RspDto<Long> id = templateService.insertTemplateGroup(templateGroupDto);
+        log.info("id: {}, templateDto: {}", id.getData(), templateGroupDto);
+        return id;
+    }
+
 
 
 }

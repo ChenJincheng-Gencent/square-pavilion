@@ -70,7 +70,7 @@ public class SpecificationController {
     @ApiOperation(value = "插入规格组合")
     public RspDto insertSpecificationGroup(@RequestBody @Valid SpecificationGroupDto specificationGroupDto) {
         RspDto<Long> id = specificationService.insertSpecificationGroup(specificationGroupDto);
-        log.info("id: {}, specificationDto: {}", id.getData(), specificationGroupDto);
+        log.info("id: {}, specificationGroupDto: {}", id.getData(), specificationGroupDto);
         return id;
     }
 

@@ -1,6 +1,7 @@
 package com.square.mall.manager.application.vo;
 
 import com.square.mall.item.center.api.dto.ExtraAttributesDto;
+import com.square.mall.item.center.api.dto.TemplateDto;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,14 +24,9 @@ import java.util.List;
 public class TemplateGroupVo {
 
     /**
-     * 模板ID
+     * 模板
      */
-    private Long id;
-
-    /**
-     * 模板名称
-     */
-    private String name;
+    private TemplateDto templateDto;
 
     /**
      * 品牌列表
