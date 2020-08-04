@@ -5,6 +5,7 @@ import com.square.mall.common.dto.RspDto;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.*;
 import com.square.mall.manager.application.service.TemplateService;
+import com.square.mall.manager.application.vo.Select2Vo;
 import com.square.mall.manager.application.vo.TemplateGroupVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -48,15 +49,37 @@ public class TemplateController {
     @PostMapping("/template/group/list/page/condition")
     @ResponseBody
     @ApiOperation(value = "分页条件查询模板组合列表")
-    public PageRspDto<List<TemplateGroupDto>> selectPageSpecificationByCondition(@RequestBody TemplateDto templateDto,
+    public PageRspDto<List<TemplateGroupVo>> selectPageSpecificationByCondition(@RequestBody TemplateDto templateDto,
         @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize)  {
 
-        PageRspDto<List<TemplateGroupDto>> templateGroupDtoList = templateService
-            .selectPageTemplateGroupByCondition(templateDto, pageNum, pageSize);
-        log.info("templateGroupDtoList: {}, templateDto: {}, pageNum: {}, pageSize: {}", templateGroupDtoList, templateDto,
+        PageRspDto<List<TemplateGroupDto>> listPageRspDto = templateService.selectPageTemplateGroupByCondition(templateDto,
+            pageNum, pageSize);
+        log.info("listPageRspDto: {}, templateDto: {}, pageNum: {}, pageSize: {}", listPageRspDto, templateDto,
             pageNum, pageSize);
 
-        return templateGroupDtoList;
+        List<TemplateGroupVo> templateGroupVoList = new ArrayList<>();
+        List<TemplateGroupDto> templateGroupDtoList = listPageRspDto.getData();
+
+        if (ListUtil.isNotBlank(templateGroupDtoList)) {
+            templateGroupDtoList.forEach( x -> {
+                TemplateGroupVo templateGroupVo = new TemplateGroupVo();
+                templateGroupVo.setTemplateDto(x.getTemplateDto());
+                List<BrandDto> brandDtoList = x.getBrandDtoList();
+                List<Select2Vo> select2VoList = new ArrayList<>();
+                if (ListUtil.isNotBlank(brandDtoList)) {
+                    brandDtoList.forEach( y -> {
+                        Select2Vo select2Vo = new Select2Vo();
+                        select2Vo.setId(y.getId());
+                        select2Vo.setText(y.getName());
+                        select2VoList.add(select2Vo);
+                    });
+                }
+                templateGroupVo.setBrandDtoList(select2VoList);
+                templateGroupVoList.add(templateGroupVo);
+            });
+        }
+
+        return new PageRspDto<>(listPageRspDto.getTotal(), templateGroupVoList);
 
     }
 
