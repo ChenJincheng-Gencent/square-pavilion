@@ -17,7 +17,7 @@
     <!-- 动态查询 -->
     <sql id="select">
         <where>
-            is_delete = 0
+            1 = 1
             <if test="id != null">
                 and id = #{id}
             </if>
@@ -50,11 +50,11 @@
             spec_id = #{specId},
         </if>
         update_time = now()
-        WHERE id = #{id} and is_delete = 0
+        WHERE id = #{id}
     </insert>
 
     <delete id="deleteTemplateSpecification" parameterType="Long" >
-        UPDATE it_template_specification SET is_delete = 1 where id = #{id} and is_delete = 0;
+        DELETE FROM it_template_specification where id = #{id}
     </delete>
 
     <select id="selectSpecIdByTemplateId" resultType="Long">

@@ -57,18 +57,19 @@ public class TemplateApiImpl implements TemplateApi {
         }
         List<BrandDto> brandDtoList = templateGroupDto.getBrandDtoList();
         if (ListUtil.isNotBlank(brandDtoList)) {
-            TemplateBrandDto templateBrandDto = new TemplateBrandDto();
-            templateBrandDto.setTemplateId(templateDto.getId());
             brandDtoList.forEach( x -> {
+                TemplateBrandDto templateBrandDto = new TemplateBrandDto();
+                templateBrandDto.setTemplateId(templateDto.getId());
                 templateBrandDto.setBrandId(x.getId());
+                log.info("templateBrandDto: {}", templateBrandDto);
                 templateBrandService.insertTemplateBrand(templateBrandDto);
             });
         }
         List<SpecificationDto> specificationDtoList = templateGroupDto.getSpecificationDtoList();
         if (ListUtil.isNotBlank(specificationDtoList)) {
-            TemplateSpecificationDto templateSpecificationDto = new TemplateSpecificationDto();
-            templateSpecificationDto.setTemplateId(templateDto.getId());
             specificationDtoList.forEach( x -> {
+                TemplateSpecificationDto templateSpecificationDto = new TemplateSpecificationDto();
+                templateSpecificationDto.setTemplateId(templateDto.getId());
                 templateSpecificationDto.setSpecId(x.getId());
                 templateSpecificationService.insertTemplateSpecification(templateSpecificationDto);
             });
