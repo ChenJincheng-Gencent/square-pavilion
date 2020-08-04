@@ -43,5 +43,13 @@ public interface TemplateService {
     PageRspDto<List<TemplateGroupDto>> selectPageTemplateGroupByCondition(TemplateDto templateDto, Integer pageNum,
         Integer pageSize);
 
+    /**
+     * 更新模板组合
+     *
+     * @param templateGroupDto 模板组合
+     * @return 响应
+     */
+    RspDto updateTemplateGroup(TemplateGroupDto templateGroupDto);
+
 
 }

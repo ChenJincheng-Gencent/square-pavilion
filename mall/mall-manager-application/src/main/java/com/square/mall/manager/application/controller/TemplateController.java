@@ -78,6 +78,7 @@ public class TemplateController {
         return templateGroupDto;
 
     }
+
     /**
      * 插入模板组合
      *
@@ -113,6 +114,43 @@ public class TemplateController {
         log.info("id: {}, templateDto: {}", id.getData(), templateGroupDto);
         return id;
     }
+
+    /**
+     * 更新模板组合
+     *
+     * @param templateGroupVo 模板组合
+     * @return 数据库ID
+     */
+    @PutMapping("/template/group")
+    @ResponseBody
+    @ApiOperation(value = "更新模板组合")
+    public RspDto updateTemplateGroup(@RequestBody @Valid TemplateGroupVo templateGroupVo) {
+
+        TemplateGroupDto templateGroupDto = new TemplateGroupDto();
+        templateGroupDto.setTemplateDto(templateGroupVo.getTemplateDto());
+        List<BrandDto> brandDtoList = new ArrayList<>();
+        if (ListUtil.isNotBlank(templateGroupVo.getBrandDtoList())) {
+            templateGroupVo.getBrandDtoList().forEach( x -> {
+                BrandDto brandDto = new BrandDto();
+                brandDto.setId(x.getId());
+                brandDtoList.add(brandDto);
+            });
+        }
+        templateGroupDto.setBrandDtoList(brandDtoList);
+        List<SpecificationDto> specificationDtoList = new ArrayList<>();
+        if (ListUtil.isNotBlank(templateGroupVo.getSpecificationDtoList())) {
+            templateGroupVo.getSpecificationDtoList().forEach( x -> {
+                SpecificationDto specificationDto = new SpecificationDto();
+                specificationDto.setId(x.getId());
+                specificationDtoList.add(specificationDto);
+            });
+        }
+        templateGroupDto.setSpecificationDtoList(specificationDtoList);
+        templateGroupDto.setExtraAttributesDtoList(templateGroupVo.getExtraAttributesDtoList());
+       return templateService.updateTemplateGroup(templateGroupDto);
+
+    }
+
 
 
 

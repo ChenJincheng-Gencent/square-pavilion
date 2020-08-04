@@ -44,4 +44,9 @@ public class TemplateServiceImpl implements TemplateService {
         return templateQueryApi.selectPageTemplateGroupByCondition(templateDto, pageNum, pageSize);
     }
 
+    @Override
+    public RspDto updateTemplateGroup(TemplateGroupDto templateGroupDto) {
+        return templateApi.updateTemplateGroup(templateGroupDto);
+    }
+
 }
