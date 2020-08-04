@@ -45,8 +45,13 @@ public class TemplateSpecificationServiceImpl implements TemplateSpecificationSe
     }
 
     @Override
-    public int deleteTemplateSpecification(Long id) {
-        return 0;
+    public int deleteTemplateSpecificationByTemplateId(Long templateId) {
+
+        if (null == templateId) {
+            log.error("templateId is null.");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+        return templateSpecificationDao.deleteTemplateSpecificationByTemplateId(templateId);
     }
 
     @Override

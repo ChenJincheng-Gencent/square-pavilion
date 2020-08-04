@@ -53,8 +53,8 @@
         WHERE id = #{id}
     </insert>
 
-    <delete id="deleteTemplateBrand" parameterType="Long" >
-        DELETE FROM it_template_brand where id = #{id}
+    <delete id="deleteTemplateBrandByTemplateId" parameterType="Long" >
+        DELETE FROM it_template_brand where template_id = #{templateId}
     </delete>
 
     <select id="selectBrandIdByTemplateId" resultType="Long">

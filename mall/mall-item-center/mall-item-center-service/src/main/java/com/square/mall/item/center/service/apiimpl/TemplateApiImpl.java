@@ -7,7 +7,6 @@ import com.square.mall.common.util.ListUtil;
 import com.square.mall.common.util.ModuleConstant;
 import com.square.mall.item.center.api.TemplateApi;
 import com.square.mall.item.center.api.dto.*;
-import com.square.mall.item.center.service.dao.TemplateBrandDao;
 import com.square.mall.item.center.service.service.ExtraAttributesService;
 import com.square.mall.item.center.service.service.TemplateBrandService;
 import com.square.mall.item.center.service.service.TemplateService;
@@ -51,10 +50,7 @@ public class TemplateApiImpl implements TemplateApi {
         }
 
         TemplateDto templateDto = templateGroupDto.getTemplateDto();
-        int success = templateService.insertTemplate(templateDto);
-        if (DatabaseOptConstant.DATABASE_OPT_SUCCESS != success) {
-            return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
-        }
+        templateService.insertTemplate(templateDto);
         List<BrandDto> brandDtoList = templateGroupDto.getBrandDtoList();
         if (ListUtil.isNotBlank(brandDtoList)) {
             brandDtoList.forEach( x -> {
@@ -84,5 +80,50 @@ public class TemplateApiImpl implements TemplateApi {
             });
         }
         return new RspDto<>(templateDto.getId());
+    }
+
+    @Override
+    public RspDto updateTemplateGroup(TemplateGroupDto templateGroupDto) {
+
+        if (null == templateGroupDto) {
+            log.error("templateGroupDto is null.");
+            return DatabaseUtil.getResult(DatabaseOptConstant.DATABASE_PARA_ILLEGAL, ModuleConstant.ITEM_CENTER);
+        }
+
+        TemplateDto templateDto = templateGroupDto.getTemplateDto();
+        int success = templateService.updateTemplate(templateDto);
+        if (DatabaseOptConstant.DATABASE_OPT_SUCCESS != success) {
+            return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
+        }
+
+        templateBrandService.deleteTemplateBrandByTemplateId(templateDto.getId());
+        List<BrandDto> brandDtoList = templateGroupDto.getBrandDtoList();
+        if (ListUtil.isNotBlank(brandDtoList)) {
+            brandDtoList.forEach( x -> {
+                TemplateBrandDto templateBrandDto = new TemplateBrandDto();
+                templateBrandDto.setBrandId(x.getId());
+                templateBrandDto.setTemplateId(templateDto.getId());
+                templateBrandService.insertTemplateBrand(templateBrandDto);
+            });
+        }
+
+        templateSpecificationService.deleteTemplateSpecificationByTemplateId(templateDto.getId());
+        List<SpecificationDto> specificationDtoList = templateGroupDto.getSpecificationDtoList();
+        if (ListUtil.isNotBlank(specificationDtoList)) {
+            specificationDtoList.forEach( x -> {
+                TemplateSpecificationDto templateSpecificationDto = new TemplateSpecificationDto();
+                templateSpecificationDto.setSpecId(x.getId());
+                templateSpecificationDto.setTemplateId(templateDto.getId());
+            });
+        }
+
+        extraAttributesService.deleteExtraAttributesByTemplateId(templateDto.getId());
+        List<ExtraAttributesDto> extraAttributesDtoList = templateGroupDto.getExtraAttributesDtoList();
+        if (ListUtil.isNotBlank(extraAttributesDtoList)) {
+            extraAttributesDtoList.forEach( x -> {
+                extraAttributesService.insertExtraAttributes(x);
+            });
+        }
+        return RspDto.SUCCESS;
     }
 }

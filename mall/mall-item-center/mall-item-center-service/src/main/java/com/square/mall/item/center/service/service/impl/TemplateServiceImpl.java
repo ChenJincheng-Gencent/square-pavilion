@@ -49,7 +49,14 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public int updateTemplate(TemplateDto templateDto) {
-        return 0;
+
+        if (null == templateDto) {
+            log.error("templateDto is null.");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+        TemplateEo templateEo = new TemplateEo();
+        BeanUtils.copyProperties(templateDto, templateEo);
+        return templateDao.updateTemplate(templateEo);
     }
 
     @Override

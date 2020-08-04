@@ -41,16 +41,16 @@ public class SpecificationApiImpl implements SpecificationApi {
         }
 
         SpecificationDto specificationDto = specificationGroupDto.getSpecificationDto();
-        int success = specificationService.insertSpecification(specificationDto);
+        specificationService.insertSpecification(specificationDto);
         List<SpecificationOptionDto> specificationOptionDtoList = specificationGroupDto.getSpecificationOptionDtoList();
-        if (ListUtil.isBlank(specificationOptionDtoList) || DatabaseOptConstant.DATABASE_OPT_SUCCESS != success) {
-            return DatabaseUtil.getResult(success, specificationDto.getId(), ModuleConstant.ITEM_CENTER);
+        if (ListUtil.isNotBlank(specificationOptionDtoList)) {
+            specificationOptionDtoList.forEach( x -> {
+                x.setSpecId(specificationDto.getId());
+                specificationOptionService.insertSpecificationOption(x);
+            });
         }
-        specificationOptionDtoList.forEach( x -> {
-            x.setSpecId(specificationDto.getId());
-            specificationOptionService.insertSpecificationOption(x);
-        });
-        return DatabaseUtil.getResult(success, specificationDto.getId(), ModuleConstant.ITEM_CENTER);
+        return DatabaseUtil.getResult(DatabaseOptConstant.DATABASE_OPT_SUCCESS, specificationDto.getId(), ModuleConstant
+            .ITEM_CENTER);
     }
 
     @Override
@@ -88,10 +88,7 @@ public class SpecificationApiImpl implements SpecificationApi {
         }
         for (Long id : ids) {
             specificationOptionService.deleteSpecificationOptionBySpecId(id);
-            int success = specificationService.deleteSpecification(id);
-            if (DatabaseOptConstant.DATABASE_OPT_SUCCESS != success) {
-                return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
-            }
+            specificationService.deleteSpecification(id);
         }
         return DatabaseUtil.getResult(DatabaseOptConstant.DATABASE_OPT_SUCCESS, ModuleConstant.ITEM_CENTER);
     }

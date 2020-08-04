@@ -31,12 +31,12 @@ public interface TemplateBrandService {
     int updateTemplateBrand(TemplateBrandDto templateBrandDto);
 
     /**
-     * 删除模板品牌
+     * 根据模板ID删除模板品牌
      *
-     * @param id 数据库ID
+     * @param templateId 模板ID
      * @return 是否成功，1成功，0失败
      */
-    int deleteTemplateBrand(Long id);
+    int deleteTemplateBrandByTemplateId(Long templateId);
 
     /**
      * 条件查询模板品牌列表

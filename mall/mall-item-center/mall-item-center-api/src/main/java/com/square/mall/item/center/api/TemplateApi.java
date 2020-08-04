@@ -19,4 +19,12 @@ public interface TemplateApi {
      */
     RspDto<Long> insertTemplateGroup(TemplateGroupDto templateGroupDto);
 
+    /**
+     * 更新模板组合
+     *
+     * @param templateGroupDto 模板组合
+     * @return 响应
+     */
+    RspDto updateTemplateGroup(TemplateGroupDto templateGroupDto);
+
 }

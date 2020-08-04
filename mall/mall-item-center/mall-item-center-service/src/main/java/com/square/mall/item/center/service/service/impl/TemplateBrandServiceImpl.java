@@ -49,8 +49,17 @@ public class TemplateBrandServiceImpl implements TemplateBrandService {
     }
 
     @Override
-    public int deleteTemplateBrand(Long id) {
-        return 0;
+    public int deleteTemplateBrandByTemplateId(Long templateId) {
+
+        if (null == templateId) {
+            log.error("templateId is null.");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+
+        int success = templateBrandDao.deleteTemplateBrandByTemplateId(templateId);
+
+        return success >= 1 ? 1 : 0;
+
     }
 
     @Override

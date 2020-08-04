@@ -53,8 +53,8 @@
         WHERE id = #{id}
     </insert>
 
-    <delete id="deleteTemplateSpecification" parameterType="Long" >
-        DELETE FROM it_template_specification where id = #{id}
+    <delete id="deleteTemplateSpecificationByTemplateId" parameterType="Long" >
+        DELETE FROM it_template_specification where template_id = #{templateId}
     </delete>
 
     <select id="selectSpecIdByTemplateId" resultType="Long">

@@ -32,10 +32,10 @@ public interface TemplateSpecificationService {
     /**
      * 删除模板规格
      *
-     * @param id ID
+     * @param templateId 影响行数
      * @return 操作结果
      */
-    int deleteTemplateSpecification(Long id);
+    int deleteTemplateSpecificationByTemplateId(Long templateId);
 
     /**
      * 条件查询模板规格列表
