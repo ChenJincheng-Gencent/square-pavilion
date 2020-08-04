@@ -92,13 +92,26 @@ public class TemplateController {
     @GetMapping("/template/group")
     @ResponseBody
     @ApiOperation(value = "根据模板ID查询模板组合")
-    public RspDto<TemplateGroupDto> selectSpecificationGroupBySpecId(@RequestParam("templateId")
+    public RspDto<TemplateGroupVo> selectSpecificationGroupBySpecId(@RequestParam("templateId")
         @NotNull(message = "模板ID不能为空") Long templateId)  {
 
-        RspDto<TemplateGroupDto> templateGroupDto = templateService.selectTemplateGroupByTemplateId(templateId);
+        TemplateGroupDto templateGroupDto = templateService.selectTemplateGroupByTemplateId(templateId).getData();
         log.info("templateGroupDto: {}, templateId: {}", templateGroupDto, templateId);
+        TemplateGroupVo templateGroupVo = new TemplateGroupVo();
+        templateGroupVo.setTemplateDto(templateGroupDto.getTemplateDto());
+        List<BrandDto> brandDtoList = templateGroupDto.getBrandDtoList();
+        List<Select2Vo> select2VoList = new ArrayList<>();
+        if (ListUtil.isNotBlank(brandDtoList)) {
+            brandDtoList.forEach( y -> {
+                Select2Vo select2Vo = new Select2Vo();
+                select2Vo.setId(y.getId());
+                select2Vo.setText(y.getName());
+                select2VoList.add(select2Vo);
+            });
+        }
+        templateGroupVo.setBrandDtoList(select2VoList);
 
-        return templateGroupDto;
+        return new RspDto<>(templateGroupVo);
 
     }
 
