@@ -101,7 +101,7 @@ public class TemplateController {
         templateGroupDto.setBrandDtoList(brandDtoList);
         List<SpecificationDto> specificationDtoList = new ArrayList<>();
         if (ListUtil.isNotBlank(templateGroupVo.getSpecificationDtoList())) {
-            templateGroupVo.getExtraAttributesDtoList().forEach( x -> {
+            templateGroupVo.getSpecificationDtoList().forEach( x -> {
                 SpecificationDto specificationDto = new SpecificationDto();
                 specificationDto.setId(x.getId());
                 specificationDtoList.add(specificationDto);

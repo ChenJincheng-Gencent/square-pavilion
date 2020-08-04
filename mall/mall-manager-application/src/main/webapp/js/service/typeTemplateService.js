@@ -11,7 +11,7 @@ app.service('typeTemplateService',function($http){
 	}
 	//查询实体
 	this.findOne=function(id){
-		return $http.get('../manager/v1/template/group?id='+id);
+		return $http.get('../manager/v1/template/group?templateId='+id);
 	}
 	//增加 
 	this.add=function(entity){
