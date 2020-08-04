@@ -97,7 +97,7 @@ public class TemplateQueryApiImpl implements TemplateQueryApi {
         List<TemplateGroupDto> templateGroupDtoList = new ArrayList<>();
         templateDtoList.forEach(x -> {
             TemplateGroupDto templateGroupDto = new TemplateGroupDto();
-            templateGroupDto.setTemplateDto(templateDto);
+            templateGroupDto.setTemplateDto(x);
 
             List<Long> brandIds = templateBrandService.selectBrandIdByTemplateId(x.getId());
             if (ListUtil.isNotBlank(brandIds)) {

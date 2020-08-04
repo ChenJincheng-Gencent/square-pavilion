@@ -92,6 +92,17 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public TemplateDto selectTemplateById(Long id) {
-        return null;
+        if (null == id) {
+            log.info("id is null.");
+            return null;
+        }
+        TemplateEo templateEo = templateDao.selectTemplateById(id);
+        if (null == templateEo) {
+            log.error("templateEo is null. id: {}", id);
+            return null;
+        }
+        TemplateDto templateDto = new TemplateDto();
+        BeanUtils.copyProperties(templateEo, templateDto);
+        return templateDto;
     }
 }
