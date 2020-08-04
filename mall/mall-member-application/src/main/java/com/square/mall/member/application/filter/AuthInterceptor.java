@@ -5,7 +5,6 @@ import com.square.mall.common.util.JwtUtil;
 import com.square.mall.common.util.StringUtil;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -30,12 +29,12 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     /**
      * 可直接访问的url
      */
-    private static Set<String> uriWhiteSet = new HashSet<>();
+    private final static Set<String> URI_WHITE_SET = new HashSet<>();
 
     static {
-        uriWhiteSet.add("/error");
-        uriWhiteSet.add("/member/v1/login");
-        uriWhiteSet.add("/member/v1/auth/code");
+        URI_WHITE_SET.add("/error");
+        URI_WHITE_SET.add("/member/v1/login");
+        URI_WHITE_SET.add("/member/v1/auth/code");
     }
 
     @Resource
@@ -50,7 +49,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             String uri = httpRequest.getRequestURI().replace(httpRequest.getContextPath(), "");
             log.info("uri: " + uri);
             // 可直接访问的uri
-            if (uriWhiteSet.contains(uri)) {
+            if (URI_WHITE_SET.contains(uri)) {
                 log.info("可直接访问的uri = {}", uri);
                 isOk = true;
                 return isOk;
