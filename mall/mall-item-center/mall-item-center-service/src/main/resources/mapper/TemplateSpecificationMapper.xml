@@ -37,7 +37,7 @@
     </select>
 
     <insert id="insertTemplateSpecification" parameterType="com.square.mall.item.center.service.eo.TemplateSpecificationEo" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO it_template_specification (`id`, `template_id`, `spec_id`, ``create_time`, `update_time`)
+        INSERT INTO it_template_specification (`id`, `template_id`, `spec_id`, `create_time`, `update_time`)
         VALUES (#{id}, #{templateId}, #{specId}, now(), now())
     </insert>
 
