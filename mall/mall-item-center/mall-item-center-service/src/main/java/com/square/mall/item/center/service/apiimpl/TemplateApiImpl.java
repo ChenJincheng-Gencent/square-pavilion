@@ -127,4 +127,21 @@ public class TemplateApiImpl implements TemplateApi {
         }
         return RspDto.SUCCESS;
     }
+
+    @Override
+    public RspDto batchDeleteTemplateGroup(Long[] ids) {
+
+        if (null == ids) {
+            log.error("ids is null.");
+            return DatabaseUtil.getResult(DatabaseOptConstant.DATABASE_PARA_ILLEGAL, ModuleConstant.ITEM_CENTER);
+        }
+        for (Long id : ids) {
+            templateBrandService.deleteTemplateBrandByTemplateId(id);
+            templateSpecificationService.deleteTemplateSpecificationByTemplateId(id);
+            extraAttributesService.deleteExtraAttributesByTemplateId(id);
+            templateService.deleteTemplate(id);
+        }
+
+        return RspDto.SUCCESS;
+    }
 }
