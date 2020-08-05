@@ -49,4 +49,9 @@ public class TemplateServiceImpl implements TemplateService {
         return templateApi.updateTemplateGroup(templateGroupDto);
     }
 
+    @Override
+    public RspDto batchDeleteTemplateGroup(Long[] ids) {
+        return templateApi.batchDeleteTemplateGroup(ids);
+    }
+
 }

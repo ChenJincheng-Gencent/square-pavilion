@@ -3,7 +3,10 @@ package com.square.mall.manager.application.controller;
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.common.util.ListUtil;
-import com.square.mall.item.center.api.dto.*;
+import com.square.mall.item.center.api.dto.BrandDto;
+import com.square.mall.item.center.api.dto.SpecificationDto;
+import com.square.mall.item.center.api.dto.TemplateDto;
+import com.square.mall.item.center.api.dto.TemplateGroupDto;
 import com.square.mall.manager.application.service.TemplateService;
 import com.square.mall.manager.application.vo.Select2Vo;
 import com.square.mall.manager.application.vo.TemplateGroupVo;
@@ -211,6 +214,19 @@ public class TemplateController {
         templateGroupDto.setExtraAttributesDtoList(templateGroupVo.getExtraAttributesDtoList());
        return templateService.updateTemplateGroup(templateGroupDto);
 
+    }
+
+    /**
+     * 批量删除模板组合
+     *
+     * @param ids 模板ID数组
+     * @return 响应
+     */
+    @DeleteMapping("/template/group/batch")
+    @ResponseBody
+    @ApiOperation(value = "批量删除模板组合")
+    public RspDto deleteTemplateGroup(Long[] ids) {
+        return templateService.batchDeleteTemplateGroup(ids);
     }
 
 

@@ -51,5 +51,13 @@ public interface TemplateService {
      */
     RspDto updateTemplateGroup(TemplateGroupDto templateGroupDto);
 
+    /**
+     * 批量删除模板组合
+     *
+     * @param ids 模板ID数组
+     * @return 响应
+     */
+    RspDto batchDeleteTemplateGroup(Long[] ids);
+
 
 }
