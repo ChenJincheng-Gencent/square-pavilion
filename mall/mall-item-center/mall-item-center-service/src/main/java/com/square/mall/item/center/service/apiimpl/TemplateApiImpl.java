@@ -122,6 +122,7 @@ public class TemplateApiImpl implements TemplateApi {
         List<ExtraAttributesDto> extraAttributesDtoList = templateGroupDto.getExtraAttributesDtoList();
         if (ListUtil.isNotBlank(extraAttributesDtoList)) {
             extraAttributesDtoList.forEach( x -> {
+                x.setTemplateId(templateDto.getId());
                 extraAttributesService.insertExtraAttributes(x);
             });
         }
