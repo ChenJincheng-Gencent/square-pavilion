@@ -111,6 +111,19 @@ public class TemplateController {
         }
         templateGroupVo.setBrandDtoList(select2VoList);
 
+        List<SpecificationDto> specificationDtoList = templateGroupDto.getSpecificationDtoList();
+        List<Select2Vo> select2VoList1 = new ArrayList<>();
+        if (ListUtil.isNotBlank(specificationDtoList)) {
+            specificationDtoList.forEach( y -> {
+                Select2Vo select2Vo = new Select2Vo();
+                select2Vo.setId(y.getId());
+                select2Vo.setText(y.getName());
+                select2VoList1.add(select2Vo);
+            });
+        }
+        templateGroupVo.setSpecificationDtoList(select2VoList1);
+        templateGroupVo.setExtraAttributesDtoList(templateGroupDto.getExtraAttributesDtoList());
+
         return new RspDto<>(templateGroupVo);
 
     }
