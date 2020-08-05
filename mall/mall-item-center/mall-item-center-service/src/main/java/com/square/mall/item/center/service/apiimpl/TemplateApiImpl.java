@@ -114,6 +114,7 @@ public class TemplateApiImpl implements TemplateApi {
                 TemplateSpecificationDto templateSpecificationDto = new TemplateSpecificationDto();
                 templateSpecificationDto.setSpecId(x.getId());
                 templateSpecificationDto.setTemplateId(templateDto.getId());
+                templateSpecificationService.insertTemplateSpecification(templateSpecificationDto);
             });
         }
 
