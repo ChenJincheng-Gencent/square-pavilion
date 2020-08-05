@@ -61,7 +61,14 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public int deleteTemplate(Long id) {
-        return 0;
+
+        if (null == id) {
+            log.error("id is null.");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+
+        return templateDao.deleteTemplate(id);
+
     }
 
     @Override
