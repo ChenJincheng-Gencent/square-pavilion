@@ -7,6 +7,8 @@ import com.square.mall.manager.application.service.CategoryService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 分类Service实现类
  *
@@ -20,7 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryQueryApi categoryQueryApi;
 
     @Override
-    public RspDto<CategoryDto> selectCategoryByParentId(Long parentId) {
+    public RspDto<List<CategoryDto>> selectCategoryByParentId(Long parentId) {
         return categoryQueryApi.selectCategoryByParentId(parentId);
     }
 

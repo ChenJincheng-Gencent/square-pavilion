@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * 分类Controller
@@ -35,20 +36,20 @@ public class CategoryController {
     private CategoryService categoryService;
 
     /**
-     * 根据上级ID查询分类
+     * 根据上级ID查询分类列表
      *
      * @param parentId 上级ID
-     * @return 分类
+     * @return 分类列表
      */
-    @GetMapping("/category/parent")
+    @GetMapping("/category/list")
     @ResponseBody
-    @ApiOperation(value = "根据上级ID查询分类")
-    public RspDto<CategoryDto> selectBrandById(@RequestParam("parentId") @NotNull(message = "上级ID不能为空") Long parentId)  {
+    @ApiOperation(value = "根据上级ID查询分类列表")
+    public RspDto<List<CategoryDto>> selectBrandById(@RequestParam("parentId") @NotNull(message = "上级ID不能为空") Long parentId)  {
 
-        RspDto<CategoryDto> categoryDto = categoryService.selectCategoryByParentId(parentId);
-        log.info("categoryDto: {}, parentId: {}", categoryDto, parentId);
+        RspDto<List<CategoryDto>> categoryDtoList = categoryService.selectCategoryByParentId(parentId);
+        log.info("categoryDtoList: {}, parentId: {}", categoryDtoList, parentId);
 
-        return categoryDto;
+        return categoryDtoList;
 
     }
 
