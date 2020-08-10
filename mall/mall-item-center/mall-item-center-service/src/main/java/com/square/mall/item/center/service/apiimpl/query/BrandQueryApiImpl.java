@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- *  品牌查询API实现类
+ * 品牌查询API实现类
  *
  * @author Gencent
  * @date 2020/7/23
