@@ -3,6 +3,8 @@ package com.square.mall.item.center.service.dao;
 import com.square.mall.item.center.service.eo.CategoryEo;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 分类Dao
  *
@@ -37,11 +39,11 @@ public interface CategoryDao {
 
 
     /**
-     * 根据上级ID查询分类
+     * 根据上级ID查询分类列表
      *
      * @param parentId 上级ID
-     * @return 分类
+     * @return 分类列表
      */
-    CategoryEo selectCategoryByParentId(@Param("parentId") Long parentId);
+    List<CategoryEo> selectCategoryByParentId(@Param("parentId") Long parentId);
 
 }

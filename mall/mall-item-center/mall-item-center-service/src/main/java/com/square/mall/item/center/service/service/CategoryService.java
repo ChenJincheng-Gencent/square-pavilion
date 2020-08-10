@@ -2,6 +2,8 @@ package com.square.mall.item.center.service.service;
 
 import com.square.mall.item.center.api.dto.CategoryDto;
 
+import java.util.List;
+
 /**
  * 分类Service
  *
@@ -11,10 +13,10 @@ import com.square.mall.item.center.api.dto.CategoryDto;
 public interface CategoryService {
 
     /**
-     * 根据上级ID查询分类
+     * 根据上级ID查询分类列表
      *
      * @param parentId 上级ID
-     * @return 分类
+     * @return 分类列表
      */
-    CategoryDto selectCategoryByParentId(Long parentId);
+    List<CategoryDto> selectCategoryByParentId(Long parentId);
 }

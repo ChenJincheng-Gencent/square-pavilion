@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 分类查询API实现类
@@ -23,7 +24,7 @@ public class CategoryQueryApiImpl implements CategoryQueryApi {
     private CategoryService categoryService;
 
     @Override
-    public RspDto<CategoryDto> selectCategoryByParentId(Long parentId) {
+    public RspDto<List<CategoryDto>> selectCategoryByParentId(Long parentId) {
 
         return new RspDto<>(categoryService.selectCategoryByParentId(parentId));
     }
