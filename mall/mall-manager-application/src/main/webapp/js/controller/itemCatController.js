@@ -41,7 +41,7 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 		}				
 		serviceObject.success(
 			function(response){
-				if(response.success){
+				if(response.flag){
 					//重新查询 
 		        	$scope.reloadList();//重新加载
 				}else{
@@ -53,13 +53,13 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 	
 	 
 	//批量删除 
-	$scope.delete=function(){
+	$scope.dele=function(){			
 		//获取选中的复选框			
-		itemCatService.delete( $scope.selectIds ).success(
+		itemCatService.dele( $scope.selectIds ).success(
 			function(response){
-				if(response.success){
+				if(response.flag){
 					$scope.reloadList();//刷新列表
-					$scope.selectIds=[];
+					$scope.selectIds = [];
 				}						
 			}		
 		);				
@@ -76,5 +76,46 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 			}			
 		);
 	}
+	
+	// 根据父ID查询分类
+	$scope.findByParentId =function(parentId){
+		itemCatService.findByParentId(parentId).success(function(response){
+			$scope.list=response;
+		});
+	}
+	
+	// 定义一个变量记录当前是第几级分类
+	$scope.grade = 1;
+	
+	$scope.setGrade = function(value){
+		$scope.grade = value;
+	}
+	
+	$scope.selectList = function(p_entity){
+		
+		if($scope.grade == 1){
+			$scope.entity_1 = null;
+			$scope.entity_2 = null;
+		}
+		if($scope.grade == 2){
+			$scope.entity_1 = p_entity;
+			$scope.entity_2 = null;
+		}
+		if($scope.grade == 3){
+			$scope.entity_2 = p_entity;
+		}
+		
+		$scope.findByParentId(p_entity.id);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
     
 });	
