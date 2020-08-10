@@ -29,4 +29,9 @@ public class CategoryQueryApiImpl implements CategoryQueryApi {
         return new RspDto<>(categoryService.selectCategoryByParentId(parentId));
     }
 
+    @Override
+    public RspDto<CategoryDto> selectCategory(Long id) {
+        return new RspDto<>(categoryService.selectCategory(id));
+    }
+
 }

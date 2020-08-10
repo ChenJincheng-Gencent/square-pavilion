@@ -56,6 +56,12 @@
         DELETE FROM it_category where id = #{id}
     </delete>
 
+    <select id="selectCategory" resultMap="CategoryMap">
+        SELECT
+        <include refid="need_column"/>
+        FROM it_category WHERE id = #{id}
+    </select>
+
     <select id="selectCategoryByParentId" resultMap="CategoryMap">
         SELECT
         <include refid="need_column"/>

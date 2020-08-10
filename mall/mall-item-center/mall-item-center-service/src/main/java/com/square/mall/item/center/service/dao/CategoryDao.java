@@ -46,4 +46,12 @@ public interface CategoryDao {
      */
     List<CategoryEo> selectCategoryByParentId(@Param("parentId") Long parentId);
 
+    /**
+     * 根据ID查询分类
+     *
+     * @param id ID
+     * @return 分类
+     */
+    CategoryEo selectCategory(@Param("id") Long id);
+
 }

@@ -20,4 +20,12 @@ public interface CategoryQueryApi {
      * @return 分类列表
      */
     RspDto<List<CategoryDto>> selectCategoryByParentId(Long parentId);
+
+    /**
+     * 根据ID查询分类
+     *
+     * @param id ID
+     * @return 分类
+     */
+    RspDto<CategoryDto> selectCategory(Long id);
 }

@@ -50,4 +50,23 @@ public class CategoryServiceImpl implements CategoryService {
 
     }
 
+    @Override
+    public CategoryDto selectCategory(Long id) {
+
+        if (null == id) {
+            log.error("id is null.");
+            return null;
+        }
+        CategoryEo categoryEo = categoryDao.selectCategory(id);
+        if (null == categoryEo) {
+            log.error("categoryEo is null. id: {}", id);
+            return null;
+        }
+        CategoryDto categoryDto = new CategoryDto();
+        BeanUtils.copyProperties(categoryEo, categoryDto);
+
+        return categoryDto;
+
+    }
+
 }

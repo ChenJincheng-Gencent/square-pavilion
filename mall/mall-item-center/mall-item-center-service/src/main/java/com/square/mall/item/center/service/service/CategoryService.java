@@ -1,6 +1,8 @@
 package com.square.mall.item.center.service.service;
 
 import com.square.mall.item.center.api.dto.CategoryDto;
+import com.square.mall.item.center.service.eo.CategoryEo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,4 +21,12 @@ public interface CategoryService {
      * @return 分类列表
      */
     List<CategoryDto> selectCategoryByParentId(Long parentId);
+
+    /**
+     * 根据ID查询分类
+     *
+     * @param id ID
+     * @return 分类
+     */
+    CategoryDto selectCategory(Long id);
 }
