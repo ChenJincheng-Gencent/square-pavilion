@@ -33,8 +33,13 @@ app.controller('baseController' ,function($scope){
 	
 	$scope.jsonToString=function(jsonString,key){
 		
-		var json= JSON.parse(jsonString);
+		//var json= JSON.parse(jsonString);
+		var json = jsonString;
 		var value="";
+
+		if (null === json || '' === json || "undefined" === json) {
+			return value;
+		}
 		
 		for(var i=0;i<json.length;i++){
 			if(i>0){

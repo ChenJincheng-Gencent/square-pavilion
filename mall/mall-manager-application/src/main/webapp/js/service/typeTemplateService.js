@@ -23,7 +23,7 @@ app.service('typeTemplateService',function($http){
 	}
 	//删除
 	this.delete=function(ids){
-		return $http.delete('../manager/v1/template/batch?ids='+ids);
+		return $http.delete('../manager/v1/template/group/batch?ids='+ids);
 	}
 	//搜索
 	this.search=function(pageNum,pageSize,searchEntity){

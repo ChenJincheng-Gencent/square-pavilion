@@ -67,8 +67,8 @@
                             </div>
                             <div class="box-tools pull-right">
                                 <div class="has-feedback">
-							                  分类模板名称：<input  >									
-									<button class="btn btn-default">查询</button>                                    
+							                  分类模板名称：<input  ng-model="searchEntity.name">>
+									<button class="btn btn-default" ng-click="reloadList()">查询</button>
                                 </div>
                             </div>
                             <!--工具栏/-->
@@ -93,8 +93,8 @@
 			                              <td><input  type="checkbox" ng-click="updateSelection($event, entity.templateDto.id)" ></td>
 				                          <td>{{entity.templateDto.id}}</td>
 									      <td>{{entity.templateDto.name}}</td>
-									      <td>{{jsonToString(entity.brandDtoList,'name')}}</td>
-									      <td>{{jsonToString(entity.specificationDtoList,'name')}}</td>
+									      <td>{{jsonToString(entity.brandDtoList,'text')}}</td>
+									      <td>{{jsonToString(entity.specificationDtoList,'text')}}</td>
 									      <td>{{jsonToString(entity.extraAttributesDtoList,'name')}}</td>
 		                                  <td class="text-center">                                           
 		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" ng-click="findOne(entity.templateDto.id)">修改</button>
