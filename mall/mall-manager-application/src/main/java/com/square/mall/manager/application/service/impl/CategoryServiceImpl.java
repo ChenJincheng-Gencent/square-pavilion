@@ -26,4 +26,9 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryQueryApi.selectCategoryByParentId(parentId);
     }
 
+    @Override
+    public RspDto<CategoryDto> selectCategoryById(Long id) {
+        return categoryQueryApi.selectCategoryById(id);
+    }
+
 }

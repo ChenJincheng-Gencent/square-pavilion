@@ -21,4 +21,12 @@ public interface CategoryService {
      */
     RspDto<List<CategoryDto>> selectCategoryByParentId(Long parentId);
 
+    /**
+     * 根据ID查询分类
+     *
+     * @param id ID
+     * @return 分类
+     */
+    RspDto<CategoryDto> selectCategoryById(Long id);
+
 }

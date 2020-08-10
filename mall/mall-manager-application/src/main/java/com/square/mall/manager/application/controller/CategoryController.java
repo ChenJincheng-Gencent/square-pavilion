@@ -53,4 +53,22 @@ public class CategoryController {
 
     }
 
+    /**
+     * 根据ID查询分类
+     *
+     * @param id ID
+     * @return 分类列表
+     */
+    @GetMapping("/category")
+    @ResponseBody
+    @ApiOperation(value = "根据ID查询分类")
+    public RspDto<CategoryDto> selectCategoryById(@RequestParam("id") @NotNull(message = "ID不能为空") Long id)  {
+
+        RspDto<CategoryDto> categoryDto = categoryService.selectCategoryById(id);
+        log.info("categoryDto: {}, id: {}", categoryDto, id);
+
+        return categoryDto;
+
+    }
+
 }
