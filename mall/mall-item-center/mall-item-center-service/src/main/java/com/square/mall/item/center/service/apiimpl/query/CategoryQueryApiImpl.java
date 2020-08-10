@@ -30,8 +30,8 @@ public class CategoryQueryApiImpl implements CategoryQueryApi {
     }
 
     @Override
-    public RspDto<CategoryDto> selectCategory(Long id) {
-        return new RspDto<>(categoryService.selectCategory(id));
+    public RspDto<CategoryDto> selectCategoryById(Long id) {
+        return new RspDto<>(categoryService.selectCategoryById(id));
     }
 
 }

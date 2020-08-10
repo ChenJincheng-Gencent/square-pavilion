@@ -27,5 +27,5 @@ public interface CategoryQueryApi {
      * @param id ID
      * @return 分类
      */
-    RspDto<CategoryDto> selectCategory(Long id);
+    RspDto<CategoryDto> selectCategoryById(Long id);
 }

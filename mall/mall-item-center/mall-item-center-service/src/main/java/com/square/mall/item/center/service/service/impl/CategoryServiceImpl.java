@@ -51,13 +51,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryDto selectCategory(Long id) {
+    public CategoryDto selectCategoryById(Long id) {
 
         if (null == id) {
             log.error("id is null.");
             return null;
         }
-        CategoryEo categoryEo = categoryDao.selectCategory(id);
+        CategoryEo categoryEo = categoryDao.selectCategoryById(id);
         if (null == categoryEo) {
             log.error("categoryEo is null. id: {}", id);
             return null;

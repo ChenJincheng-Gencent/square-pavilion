@@ -52,6 +52,6 @@ public interface CategoryDao {
      * @param id ID
      * @return 分类
      */
-    CategoryEo selectCategory(@Param("id") Long id);
+    CategoryEo selectCategoryById(@Param("id") Long id);
 
 }

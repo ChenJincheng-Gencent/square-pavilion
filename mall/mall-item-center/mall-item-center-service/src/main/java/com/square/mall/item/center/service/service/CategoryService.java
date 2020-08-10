@@ -28,5 +28,5 @@ public interface CategoryService {
      * @param id ID
      * @return 分类
      */
-    CategoryDto selectCategory(Long id);
+    CategoryDto selectCategoryById(Long id);
 }
