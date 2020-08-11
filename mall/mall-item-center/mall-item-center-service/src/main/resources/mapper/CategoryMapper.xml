@@ -40,7 +40,7 @@
         VALUES (#{id}, #{name}, #{parentId}, {templateId}, now(), now())
     </insert>
 
-    <insert id="updateCategoryByParentId" parameterType="com.square.mall.item.center.service.eo.CategoryEo">
+    <insert id="updateCategory" parameterType="com.square.mall.item.center.service.eo.CategoryEo">
         UPDATE it_category SET
         <if test="name != null and name !=''">
             name = #{name},
