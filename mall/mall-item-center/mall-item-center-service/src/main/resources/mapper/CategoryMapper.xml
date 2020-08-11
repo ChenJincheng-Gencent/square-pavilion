@@ -45,11 +45,14 @@
         <if test="name != null and name !=''">
             name = #{name},
         </if>
-        <if test="templateId">
+        <if test="parentId != null">
+            parent_id = #{parentId},
+        </if>
+        <if test="templateId != null">
             template_id = #{templateId},
         </if>
         update_time = now()
-        WHERE parent_id = #{parentId}
+        WHERE id = #{id}
     </insert>
 
     <delete id="deleteCategory" parameterType="Long" >

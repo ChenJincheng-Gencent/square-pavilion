@@ -1,5 +1,6 @@
 package com.square.mall.item.center.service.service.impl;
 
+import com.square.mall.common.util.DatabaseOptConstant;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.CategoryDto;
 import com.square.mall.item.center.service.dao.CategoryDao;
@@ -66,6 +67,38 @@ public class CategoryServiceImpl implements CategoryService {
         BeanUtils.copyProperties(categoryEo, categoryDto);
 
         return categoryDto;
+
+    }
+
+    @Override
+    public int insertCategory(CategoryDto categoryDto) {
+
+        if (null == categoryDto) {
+            log.error("categoryDto is null.");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+
+        CategoryEo categoryEo = new CategoryEo();
+        BeanUtils.copyProperties(categoryDto, categoryEo);
+        int success = categoryDao.insertCategory(categoryEo);
+        categoryDto.setId(categoryEo.getId());
+
+        return success;
+
+    }
+
+    @Override
+    public int updateCategory(CategoryDto categoryDto) {
+
+        if (null == categoryDto || null == categoryDto.getId()) {
+            log.error("categoryDto or id is null.");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+
+        CategoryEo categoryEo = new CategoryEo();
+        BeanUtils.copyProperties(categoryDto, categoryEo);
+
+        return categoryDao.updateCategory(categoryEo);
 
     }
 

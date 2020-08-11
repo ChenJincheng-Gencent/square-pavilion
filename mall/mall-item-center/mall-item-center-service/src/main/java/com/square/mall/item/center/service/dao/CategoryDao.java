@@ -22,12 +22,12 @@ public interface CategoryDao {
     int insertCategory(CategoryEo categoryEo);
 
     /**
-     * 根据上级ID更新分类
+     * 更新分类
      *
      * @param categoryEo 分类
      * @return 是否成功，1成功，0失败
      */
-    int updateCategoryByParentId(CategoryEo categoryEo);
+    int updateCategory(CategoryEo categoryEo);
 
     /**
      * 删除分类

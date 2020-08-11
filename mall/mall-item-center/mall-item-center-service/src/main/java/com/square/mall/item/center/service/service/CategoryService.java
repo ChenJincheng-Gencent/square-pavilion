@@ -1,8 +1,6 @@
 package com.square.mall.item.center.service.service;
 
 import com.square.mall.item.center.api.dto.CategoryDto;
-import com.square.mall.item.center.service.eo.CategoryEo;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -29,4 +27,21 @@ public interface CategoryService {
      * @return 分类
      */
     CategoryDto selectCategoryById(Long id);
+
+    /**
+     * 插入分类
+     *
+     * @param categoryDto 分类
+     * @return 是否成功，1成功，0失败
+     */
+    int insertCategory(CategoryDto categoryDto);
+
+    /**
+     * 更新分类
+     *
+     * @param categoryDto 分类
+     * @return 是否成功，1成功，0失败
+     */
+    int updateCategory(CategoryDto categoryDto);
+
 }
