@@ -51,4 +51,9 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryQueryApi.selectPageCategoryByCondition(categoryDto, pageNum, pageSize);
     }
 
+    @Override
+    public RspDto batchDeleteCategory(Long[] ids) {
+        return categoryApi.batchDeleteCategory(ids);
+    }
+
 }

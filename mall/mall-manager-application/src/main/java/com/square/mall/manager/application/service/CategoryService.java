@@ -56,4 +56,12 @@ public interface CategoryService {
      */
     PageRspDto<List<CategoryDto>> selectPageCategoryByCondition(CategoryDto categoryDto, Integer pageNum, Integer pageSize);
 
+    /**
+     * 删除分类列表
+     *
+     * @param ids ID数组
+     * @return 响应
+     */
+    RspDto batchDeleteCategory(Long[] ids);
+
 }

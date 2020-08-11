@@ -120,5 +120,18 @@ public class CategoryController {
 
     }
 
+    /**
+     * 批量删除分类列表
+     *
+     * @param ids ID数组
+     * @return 响应
+     */
+    @DeleteMapping("/category/batch")
+    @ResponseBody
+    @ApiOperation(value = "批量删除分类列表")
+    public RspDto deleteCategory(Long[] ids) {
+        return categoryService.batchDeleteCategory(ids);
+    }
+
 
 }
