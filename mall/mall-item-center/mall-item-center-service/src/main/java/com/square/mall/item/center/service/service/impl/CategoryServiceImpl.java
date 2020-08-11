@@ -1,5 +1,8 @@
 package com.square.mall.item.center.service.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.util.DatabaseOptConstant;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.CategoryDto;
@@ -100,6 +103,26 @@ public class CategoryServiceImpl implements CategoryService {
 
         return categoryDao.updateCategory(categoryEo);
 
+    }
+
+    @Override
+    public PageRspDto<List<CategoryDto>> selectPageCategoryByCondition(CategoryDto categoryDto, Integer pageNum, Integer pageSize) {
+        pageNum = null == pageNum ? 1 : pageNum;
+        pageSize = null == pageSize ? 10 : pageSize;
+        String orderBy = "create_time" + " desc";
+        PageHelper.startPage(pageNum, pageSize, orderBy);
+        CategoryEo categoryEo = new CategoryEo();
+        BeanUtils.copyProperties(categoryDto, categoryEo);
+        Page<CategoryEo> page = (Page<CategoryEo>) categoryDao.selectCategoryByCondition(categoryEo);
+        List<CategoryDto> categoryDtoList = new ArrayList<>();
+        if (ListUtil.isNotBlank(page.getResult())) {
+            page.getResult().forEach( x -> {
+                CategoryDto categoryDtoTemp = new CategoryDto();
+                BeanUtils.copyProperties(x, categoryDtoTemp);
+                categoryDtoList.add(categoryDtoTemp);
+            });
+        }
+        return new PageRspDto<>(page.getTotal(), categoryDtoList);
     }
 
 }

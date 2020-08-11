@@ -1,5 +1,6 @@
 package com.square.mall.item.center.service.apiimpl.query;
 
+import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.item.center.api.dto.CategoryDto;
 import com.square.mall.item.center.api.query.CategoryQueryApi;
@@ -32,6 +33,11 @@ public class CategoryQueryApiImpl implements CategoryQueryApi {
     @Override
     public RspDto<CategoryDto> selectCategoryById(Long id) {
         return new RspDto<>(categoryService.selectCategoryById(id));
+    }
+
+    @Override
+    public PageRspDto<List<CategoryDto>> selectPageCategoryByCondition(CategoryDto categoryDto, Integer pageNum, Integer pageSize) {
+        return categoryService.selectPageCategoryByCondition(categoryDto, pageNum, pageSize);
     }
 
 }

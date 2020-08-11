@@ -54,4 +54,12 @@ public interface CategoryDao {
      */
     CategoryEo selectCategoryById(@Param("id") Long id);
 
+    /**
+     * 条件查询分类列表
+     *
+     * @param categoryEo 查询条件
+     * @return 分类列表
+     */
+    List<CategoryEo> selectCategoryByCondition(CategoryEo categoryEo);
+
 }
