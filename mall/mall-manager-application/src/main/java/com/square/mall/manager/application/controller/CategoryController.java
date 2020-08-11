@@ -9,12 +9,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -69,6 +67,35 @@ public class CategoryController {
 
         return categoryDto;
 
+    }
+
+    /**
+     * 插入分类
+     *
+     * @param categoryDto 分类
+     * @return 数据库ID
+     */
+    @PostMapping("/category")
+    @ResponseBody
+    @ApiOperation(value = "插入分类")
+    public RspDto insertCategory(@RequestBody @Valid CategoryDto categoryDto) {
+        RspDto<Long> id = categoryService.insertCategory(categoryDto);
+        log.info("id: {}, categoryDto: {}", id.getData(), categoryDto);
+        return id;
+    }
+
+    /**
+     * 更新分类
+     *
+     * @param categoryDto 分类
+     * @return 响应
+     */
+    @PutMapping("/category")
+    @ResponseBody
+    @ApiOperation(value = "更新分类")
+    public RspDto updateCategory(@RequestBody @Valid CategoryDto categoryDto) {
+
+        return categoryService.updateCategory(categoryDto);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.square.mall.manager.application.service.impl;
 
 import com.square.mall.common.dto.RspDto;
+import com.square.mall.item.center.api.CategoryApi;
 import com.square.mall.item.center.api.dto.CategoryDto;
 import com.square.mall.item.center.api.query.CategoryQueryApi;
 import com.square.mall.manager.application.service.CategoryService;
@@ -21,6 +22,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Reference
     private CategoryQueryApi categoryQueryApi;
 
+    @Reference
+    private CategoryApi categoryApi;
+
     @Override
     public RspDto<List<CategoryDto>> selectCategoryByParentId(Long parentId) {
         return categoryQueryApi.selectCategoryByParentId(parentId);
@@ -29,6 +33,16 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public RspDto<CategoryDto> selectCategoryById(Long id) {
         return categoryQueryApi.selectCategoryById(id);
+    }
+
+    @Override
+    public RspDto<Long> insertCategory(CategoryDto categoryDto) {
+        return categoryApi.insertCategory(categoryDto);
+    }
+
+    @Override
+    public RspDto updateCategory(CategoryDto categoryDto) {
+        return categoryApi.updateCategory(categoryDto);
     }
 
 }

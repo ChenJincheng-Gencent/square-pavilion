@@ -29,4 +29,20 @@ public interface CategoryService {
      */
     RspDto<CategoryDto> selectCategoryById(Long id);
 
+    /**
+     * 插入分类
+     *
+     * @param categoryDto 分类
+     * @return 数据库ID
+     */
+    RspDto<Long> insertCategory(CategoryDto categoryDto);
+
+    /**
+     * 更新分类
+     *
+     * @param categoryDto 分类
+     * @return 响应
+     */
+    RspDto updateCategory(CategoryDto categoryDto);
+
 }
