@@ -130,6 +130,7 @@ public class CategoryController {
     @ResponseBody
     @ApiOperation(value = "批量删除分类列表")
     public RspDto deleteCategory(Long[] ids) {
+        log.info("ids: {}", ids);
         return categoryService.batchDeleteCategory(ids);
     }
 
