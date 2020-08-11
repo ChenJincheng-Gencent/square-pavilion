@@ -1,5 +1,6 @@
 package com.square.mall.manager.application.service;
 
+import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.item.center.api.dto.CategoryDto;
 
@@ -44,5 +45,15 @@ public interface CategoryService {
      * @return 响应
      */
     RspDto updateCategory(CategoryDto categoryDto);
+
+    /**
+     * 分页条件查询分类列表
+     *
+     * @param categoryDto 查询条件
+     * @param pageNum 当前页
+     * @param pageSize 分页大小
+     * @return 分类列表
+     */
+    PageRspDto<List<CategoryDto>> selectPageCategoryByCondition(CategoryDto categoryDto, Integer pageNum, Integer pageSize);
 
 }

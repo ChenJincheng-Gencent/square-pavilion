@@ -1,5 +1,6 @@
 package com.square.mall.manager.application.service.impl;
 
+import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.item.center.api.CategoryApi;
 import com.square.mall.item.center.api.dto.CategoryDto;
@@ -43,6 +44,11 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public RspDto updateCategory(CategoryDto categoryDto) {
         return categoryApi.updateCategory(categoryDto);
+    }
+
+    @Override
+    public PageRspDto<List<CategoryDto>> selectPageCategoryByCondition(CategoryDto categoryDto, Integer pageNum, Integer pageSize) {
+        return categoryQueryApi.selectPageCategoryByCondition(categoryDto, pageNum, pageSize);
     }
 
 }

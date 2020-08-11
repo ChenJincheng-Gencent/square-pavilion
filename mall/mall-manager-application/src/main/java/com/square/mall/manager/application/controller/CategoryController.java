@@ -1,5 +1,6 @@
 package com.square.mall.manager.application.controller;
 
+import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.item.center.api.dto.CategoryDto;
 import com.square.mall.manager.application.service.CategoryService;
@@ -42,7 +43,7 @@ public class CategoryController {
     @GetMapping("/category/list")
     @ResponseBody
     @ApiOperation(value = "根据上级ID查询分类列表")
-    public RspDto<List<CategoryDto>> selectBrandById(@RequestParam("parentId") @NotNull(message = "上级ID不能为空") Long parentId)  {
+    public RspDto<List<CategoryDto>> selectCategoryByParentId(@RequestParam("parentId") @NotNull(message = "上级ID不能为空") Long parentId)  {
 
         RspDto<List<CategoryDto>> categoryDtoList = categoryService.selectCategoryByParentId(parentId);
         log.info("categoryDtoList: {}, parentId: {}", categoryDtoList, parentId);
@@ -97,5 +98,27 @@ public class CategoryController {
 
         return categoryService.updateCategory(categoryDto);
     }
+
+    /**
+     * 分页条件查询品牌列表
+     *
+     * @param categoryDto 查询条件
+     * @param pageNum 当前页
+     * @param pageSize 分页大小
+     * @return 品牌列表
+     */
+    @PostMapping("/category/list/page/condition")
+    @ResponseBody
+    @ApiOperation(value = "分页条件查询品牌列表")
+    public PageRspDto<List<CategoryDto>> selectPageCategoryByCondition(@RequestBody CategoryDto categoryDto,
+        @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize)  {
+
+        PageRspDto<List<CategoryDto>> categoryDtoList = categoryService.selectPageCategoryByCondition(categoryDto, pageNum, pageSize);
+        log.info("categoryDtoList: {}, categoryDto: {}, pageNum: {}, pageSize: {}", categoryDtoList, categoryDto, pageNum, pageSize);
+
+        return categoryDtoList;
+
+    }
+
 
 }
