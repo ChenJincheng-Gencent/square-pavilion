@@ -26,4 +26,12 @@ public interface CategoryApi {
      * @return 响应
      */
     RspDto updateCategory(CategoryDto categoryDto);
+
+    /**
+     * 批量删除分类
+     *
+     * @param ids ID数组
+     * @return 响应
+     */
+    RspDto batchDeleteCategory(Long[] ids);
 }

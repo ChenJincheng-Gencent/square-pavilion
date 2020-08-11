@@ -62,4 +62,12 @@ public interface CategoryDao {
      */
     List<CategoryEo> selectCategoryByCondition(CategoryEo categoryEo);
 
+    /**
+     * 批量删除分类
+     *
+     * @param ids ID数组
+     * @return 响应
+     */
+    int batchDeleteCategory(Long[] ids);
+
 }

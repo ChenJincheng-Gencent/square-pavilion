@@ -37,4 +37,10 @@ public class CategoryApiImpl implements CategoryApi {
         int success = categoryService.updateCategory(categoryDto);
         return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
     }
+
+    @Override
+    public RspDto batchDeleteCategory(Long[] ids) {
+        int success = categoryService.batchDeleteCategory(ids);
+        return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
+    }
 }

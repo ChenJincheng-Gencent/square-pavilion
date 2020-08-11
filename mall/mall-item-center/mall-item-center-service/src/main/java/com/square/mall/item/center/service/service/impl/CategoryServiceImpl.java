@@ -125,4 +125,13 @@ public class CategoryServiceImpl implements CategoryService {
         return new PageRspDto<>(page.getTotal(), categoryDtoList);
     }
 
+    @Override
+    public int batchDeleteCategory(Long[] ids) {
+        if (null == ids) {
+            log.error("ids is null");
+            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+        }
+        return categoryDao.batchDeleteCategory(ids) >= 1 ? 1 : 0;
+    }
+
 }
