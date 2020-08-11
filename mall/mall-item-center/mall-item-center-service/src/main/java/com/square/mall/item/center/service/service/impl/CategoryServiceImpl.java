@@ -127,8 +127,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public int batchDeleteCategory(Long[] ids) {
-        if (null == ids) {
-            log.error("ids is null");
+        if (null == ids || ids.length <= 0) {
+            log.error("ids is blank.");
             return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
         }
         return categoryDao.batchDeleteCategory(ids) >= 1 ? 1 : 0;

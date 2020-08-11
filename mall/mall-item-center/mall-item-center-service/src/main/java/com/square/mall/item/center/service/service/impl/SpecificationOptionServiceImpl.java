@@ -77,8 +77,8 @@ public class SpecificationOptionServiceImpl implements SpecificationOptionServic
     @Override
     public int batchDeleteSpecificationOption(Long[] ids) {
 
-        if (null == ids) {
-            log.error("ids is null.");
+        if (null == ids || ids.length <= 0) {
+            log.error("ids is blank.");
             return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
         }
         return specificationOptionDao.batchDeleteSpecificationOption(ids) >= 1 ? 1: 0;
