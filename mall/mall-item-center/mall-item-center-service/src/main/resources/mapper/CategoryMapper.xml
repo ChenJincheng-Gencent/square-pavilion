@@ -37,7 +37,7 @@
 
     <insert id="insertCategory" parameterType="com.square.mall.item.center.service.eo.CategoryEo" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO it_category (`id`, `name`, `parent_id`, `template_id`, `create_time`, `update_time`)
-        VALUES (#{id}, #{name}, #{parentId}, {templateId}, now(), now())
+        VALUES (#{id}, #{name}, #{parentId}, #{templateId}, now(), now())
     </insert>
 
     <insert id="updateCategory" parameterType="com.square.mall.item.center.service.eo.CategoryEo">
