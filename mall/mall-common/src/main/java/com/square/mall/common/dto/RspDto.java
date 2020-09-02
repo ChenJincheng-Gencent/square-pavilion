@@ -55,11 +55,6 @@ public class RspDto<T> implements Serializable {
         this.data = data;
     }
 
-    public RspDto(String code, String msg) {
-        this.code = code;
-        this.msg = msg;
-    }
-
     public RspDto(ErrorCode errorCode) {
         this.code = errorCode.getCode();
         this.msg = errorCode.getMsg();
