@@ -18,7 +18,7 @@ public class DatabaseUtil {
      * @param moduleName 模块名称
      * @return 数据库操作结果
      */
-    public static<T> RspDto<T> getResult(int value, T data, String moduleName) {
+    public static<T> RspDto getResult(int value, T data, String moduleName) {
 
         switch (value) {
             case DatabaseOptConstant.DATABASE_OPT_FAILED:
