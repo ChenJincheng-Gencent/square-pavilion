@@ -12,7 +12,7 @@ spring:
 
 dubbo:
   application:
-    name: member-application-consumer
+    name: item-application-consumer
   consumer:
     check: false
   registry:
