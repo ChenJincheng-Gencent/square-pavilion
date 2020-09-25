@@ -34,13 +34,13 @@ public class RspDto<T> implements Serializable {
     /**
      * 错误码
      */
-    @ApiModelProperty(name = "code", value = "错误码")
+    @ApiModelProperty(name = "code", value = "错误码", example = "0")
     private String code;
 
     /**
      * 错误描述
      */
-    @ApiModelProperty(name = "msg", value = "错误描述")
+    @ApiModelProperty(name = "msg", value = "错误描述", example = "成功")
     private String msg;
 
     /**
