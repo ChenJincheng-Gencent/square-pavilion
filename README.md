@@ -32,7 +32,7 @@ Swagger2|API文档工具|2.9.2
 &emsp;&emsp;业务中台层再分为三层：业务核心层、业务协作层和业务实体层。其中业务核心层有mall-trade-center（交易中心）、mall-inventory-center（库存中心）、mall-logistics-center（物流中心）；业务协作层有mall-promotion-center（营销中心）、mall-evaluation-center（评价中心）、mall-ticket-center（工单中心）；；  
 &emsp;&emsp;能力服务层有mall-search-service（搜索服务）、mall-mq-service（MQ服务）、mall-message-service（消息服务）、mall-payment-service（支付服务）、mall-identity-service（认证服务）；  
 &emsp;&emsp;基本组件层有mall-common（公共组件）、mall-job（定时任务组件）、mall-cache（缓存组件）、mall-modules(模块组件)以及mall-doc（文档组件）。  
-![Aaron Swartz](https://raw.githubusercontent.com/ChenJincheng-Gencent/square-pavilion/master/mall/mall-doc/%E6%9E%B6%E6%9E%84/Square%20Pavilion%E6%9E%B6%E6%9E%84%E5%9B%BE.png "Square Pavilion架构图")
+![Aaron Swartz](raw.githubusercontent.com/ChenJincheng-Gencent/square-pavilion/master/mall/mall-doc/%E6%9E%B6%E6%9E%84/Square%20Pavilion%E6%9E%B6%E6%9E%84%E5%9B%BE.png "Square Pavilion架构图")
 
 ## 四、架构设计思想和分层业务模型
 &emsp;&emsp;基本组件层为技术收敛的通用能力，与具体业务无关，形式为jar包。目前设计的主要有定时任务和缓存组件。每个平台都可直接引入使用，而不需要重复建设，可扩展其他组件；  
