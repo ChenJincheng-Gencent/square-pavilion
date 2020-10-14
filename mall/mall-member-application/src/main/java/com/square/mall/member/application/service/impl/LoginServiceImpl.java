@@ -46,7 +46,7 @@ public class LoginServiceImpl implements LoginService {
         String rawAuthCode = cacheService.getCache("login:auth:" + mobile, String.class);
         if (!authCode.equals(rawAuthCode)) {
             log.error("验证码错误！authCode: {}, rawAuthCode: {}", authCode, rawAuthCode);
-            return new RspDto<>(ErrorCode.ME_APP_ME_AUTH_CODE_ERROR);
+            return new RspDto<>(ErrorCode.ME_APP_AUTH_CODE_ERROR);
         }
 
         Long memberId;
