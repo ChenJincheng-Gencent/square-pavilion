@@ -13,6 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>14</java.version>
+        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <dubbo.version>2.7.0</dubbo.version>
         <lombok.version>1.18.8</lombok.version>
         <mybatis.starter.version>2.1.0</mybatis.starter.version>
@@ -50,6 +51,18 @@
         <version>2.3.1.RELEASE</version>
         <relativePath/>
     </parent>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
 
