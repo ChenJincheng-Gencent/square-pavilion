@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @date 2020/7/10
  */
 @Service
-@Profile("member-application-mock")
+@Profile("local")
 @Primary
 public class MemberServiceMockImpl implements MemberService {
 

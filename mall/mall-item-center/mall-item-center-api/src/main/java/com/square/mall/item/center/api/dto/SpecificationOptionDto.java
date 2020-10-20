@@ -44,11 +44,13 @@ public class SpecificationOptionDto implements Serializable {
     /**
      * 排序
      */
+    @ApiModelProperty(name = "sort", value = "排序")
     private Integer sort;
 
     /**
      * 规格ID
      */
+    @ApiModelProperty(name = "specId", value = "规格ID")
     private Long specId;
 
 }

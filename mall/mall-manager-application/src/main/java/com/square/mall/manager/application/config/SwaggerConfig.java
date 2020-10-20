@@ -26,7 +26,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableKnife4j
 @Import(BeanValidatorPluginsConfiguration.class)
-@Profile({"local", "dev", "test","stage"})
+@Profile({"local", "dev", "test", "stage"})
 public class SwaggerConfig {
 
     @Bean

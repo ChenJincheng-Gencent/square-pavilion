@@ -7,16 +7,16 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 	$scope.findAll=function(){
 		itemCatService.findAll().success(
 			function(response){
-				$scope.list=response;
+				$scope.list=response.data;
 			}			
 		);
 	}    
 	
 	//分页
-	$scope.findPage=function(page,rows){			
-		itemCatService.findPage(page,rows).success(
+	$scope.findPage=function(pageNum,pageSize){
+		itemCatService.findPage(pageNum,pageSize).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.data;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
@@ -26,7 +26,7 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 	$scope.findOne=function(id){				
 		itemCatService.findOne(id).success(
 			function(response){
-				$scope.entity= response;					
+				$scope.entity= response.data;
 			}
 		);				
 	}
@@ -37,15 +37,17 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 		if($scope.entity.id!=null){//如果有ID
 			serviceObject=itemCatService.update( $scope.entity ); //修改  
 		}else{
+			$scope.entity.parentId=$scope.parentId;//赋予上级ID
 			serviceObject=itemCatService.add( $scope.entity  );//增加 
 		}				
 		serviceObject.success(
 			function(response){
-				if(response.flag){
-					//重新查询 
+				if("0"=== response.code){
+					//重新查询
+					$scope.findByParentId($scope.parentId);//重新加载
 		        	$scope.reloadList();//重新加载
 				}else{
-					alert(response.message);
+					alert(response.msg);
 				}
 			}		
 		);				
@@ -53,11 +55,11 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 	
 	 
 	//批量删除 
-	$scope.dele=function(){			
+	$scope.delete=function(){
 		//获取选中的复选框			
-		itemCatService.dele( $scope.selectIds ).success(
+		itemCatService.delete( $scope.selectIds ).success(
 			function(response){
-				if(response.flag){
+				if("0"=== response.code){
 					$scope.reloadList();//刷新列表
 					$scope.selectIds = [];
 				}						
@@ -68,10 +70,10 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 	$scope.searchEntity={};//定义搜索对象 
 	
 	//搜索
-	$scope.search=function(page,rows){			
-		itemCatService.search(page,rows,$scope.searchEntity).success(
+	$scope.search=function(pageNum,pageSize){
+		itemCatService.search(pageNum,pageSize,$scope.searchEntity).success(
 			function(response){
-				$scope.list=response.rows;	
+				$scope.list=response.data;
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 			}			
 		);
@@ -79,8 +81,9 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 	
 	// 根据父ID查询分类
 	$scope.findByParentId =function(parentId){
+		$scope.parentId=parentId;//记住上级ID
 		itemCatService.findByParentId(parentId).success(function(response){
-			$scope.list=response;
+			$scope.list=response.data;
 		});
 	}
 	
