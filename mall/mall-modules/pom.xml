@@ -14,6 +14,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>14</java.version>
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+        <spring-cloud-alibaba.version>2.2.0.RELEASE</spring-cloud-alibaba.version>
         <dubbo.version>2.7.0</dubbo.version>
         <lombok.version>1.18.8</lombok.version>
         <mybatis.starter.version>2.1.0</mybatis.starter.version>
@@ -60,6 +61,12 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
             </dependency>
         </dependencies>
     </dependencyManagement>
