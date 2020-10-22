@@ -33,6 +33,8 @@ dubbo:
     port: 20888
 
 spring:
+  application:
+    name: mall-item-center
   main:
     allow-bean-definition-overriding: true
   cloud:
