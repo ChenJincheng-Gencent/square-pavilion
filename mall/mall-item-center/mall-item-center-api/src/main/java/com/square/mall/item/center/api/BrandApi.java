@@ -2,6 +2,11 @@ package com.square.mall.item.center.api;
 
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.item.center.api.dto.BrandDto;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 /**
  * 品牌API
@@ -9,6 +14,8 @@ import com.square.mall.item.center.api.dto.BrandDto;
  * @author Gencent
  * @date 2020/7/24
  */
+@Component
+@FeignClient(name="brand")
 public interface BrandApi {
 
     /**
@@ -17,6 +24,7 @@ public interface BrandApi {
      * @param brandDto 品牌
      * @return 数据库ID
      */
+    @PostMapping("/brand")
     RspDto<Long> insertBrand(BrandDto brandDto);
 
     /**
@@ -25,6 +33,7 @@ public interface BrandApi {
      * @param brandDto 品牌
      * @return 响应
      */
+    @PutMapping("/brand")
     RspDto updateBrand(BrandDto brandDto);
 
     /**
@@ -33,6 +42,7 @@ public interface BrandApi {
      * @param id 数据库ID
      * @return 响应
      */
+    @DeleteMapping("/brand")
     RspDto deleteBrand(Long id);
 
     /**
@@ -41,5 +51,6 @@ public interface BrandApi {
      * @param ids ID数组
      * @return 响应
      */
+    @DeleteMapping("/brand/batch")
     RspDto batchDeleteBrand(Long[] ids);
 }

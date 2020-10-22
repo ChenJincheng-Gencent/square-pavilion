@@ -3,6 +3,10 @@ package com.square.mall.item.center.api.query;
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.item.center.api.dto.BrandDto;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -12,6 +16,8 @@ import java.util.List;
  * @author Gencent
  * @date 2020/7/24
  */
+@Component
+@FeignClient(name="brand")
 public interface BrandQueryApi {
 
     /**
@@ -20,6 +26,7 @@ public interface BrandQueryApi {
      * @param brandDto 查询条件
      * @return 品牌数据列表
      */
+    @PostMapping("/brand/list/condition")
     RspDto<List<BrandDto>> selectBrandByCondition(BrandDto brandDto);
 
     /**
@@ -30,6 +37,7 @@ public interface BrandQueryApi {
      * @param pageSize 分页大小
      * @return 品牌列表
      */
+    @PostMapping("/brand/list/page/condition")
     PageRspDto<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageNum, Integer pageSize);
 
     /**
@@ -37,6 +45,7 @@ public interface BrandQueryApi {
      * @param id ID
      * @return 品牌
      */
+    @GetMapping("/brand/id")
     RspDto<BrandDto> selectBrandById(Long id);
 
     /**
@@ -44,6 +53,7 @@ public interface BrandQueryApi {
      *
      * @return 品牌列表
      */
+    @GetMapping("/brand/all")
     RspDto<List<BrandDto>> selectBrandAll();
 
 }
