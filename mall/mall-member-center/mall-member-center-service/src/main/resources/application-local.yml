@@ -36,6 +36,13 @@ dubbo:
 spring:
   main:
     allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://nacos-registry:8848
+      config:
+        server-addr: http://nacos-registry:8848
+        file-extension: yaml
 
 #kafka配置
 kafka:
