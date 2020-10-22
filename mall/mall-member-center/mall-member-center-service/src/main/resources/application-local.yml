@@ -34,6 +34,8 @@ dubbo:
     port: 20887
 
 spring:
+  application:
+    name: mall-member-center
   main:
     allow-bean-definition-overriding: true
   cloud:
