@@ -6,6 +6,8 @@ logging:
   config: classpath:logback-spring.xml
 
 spring:
+  application:
+    name: mall-member-application
   main:
     allow-bean-definition-overriding: true
   cloud:
