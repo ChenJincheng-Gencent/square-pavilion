@@ -2,9 +2,8 @@ package com.square.mall.member.center.api;
 
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.member.center.api.dto.MemberDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 会员API
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
  * @author Gencent
  * @date 2019/8/26
  */
+@FeignClient(name = "mall-member-center")
 public interface MemberApi {
 
     /**
@@ -21,7 +21,7 @@ public interface MemberApi {
      * @return 数据库ID
      */
     @PostMapping("/member")
-    RspDto<Long> insertMember(MemberDto memberDto);
+    RspDto<Long> insertMember(@RequestBody MemberDto memberDto);
 
     /**
      * 根据手机号码更新会员信息
@@ -30,7 +30,7 @@ public interface MemberApi {
      * @return 响应
      */
     @PutMapping("/member")
-    RspDto updateMemberByMobile(MemberDto memberDto);
+    RspDto updateMemberByMobile(@RequestBody MemberDto memberDto);
 
     /**
      * 根据手机号码查询会员信息
@@ -39,6 +39,6 @@ public interface MemberApi {
      * @return 会员信息
      */
     @GetMapping("/member")
-    RspDto<MemberDto> selectMemberByMobile(String mobile);
+    RspDto<MemberDto> selectMemberByMobile(@RequestParam("mobile") String mobile);
 
 }

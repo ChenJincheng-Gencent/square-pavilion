@@ -4,6 +4,7 @@ import com.square.mall.common.dto.RspDto;
 import com.square.mall.member.center.api.dto.LoginDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * 登录信息API
@@ -21,6 +22,6 @@ public interface LoginApi {
      * @return 数据库ID
      */
     @PostMapping("/login")
-    RspDto<Long> insertLogin(LoginDto loginDto);
+    RspDto<Long> insertLogin(@RequestBody LoginDto loginDto);
 
 }
