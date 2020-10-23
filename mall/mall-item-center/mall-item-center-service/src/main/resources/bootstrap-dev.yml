@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: mall-item-center
   cloud:
     nacos:
       discovery:
