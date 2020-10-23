@@ -23,7 +23,7 @@ public class BrandController {
      * @return 数据库ID
      */
     @PostMapping("/brand")
-    public RspDto<Long> insertBrand(BrandDto brandDto) {
+    public RspDto<Long> insertBrand(@RequestBody BrandDto brandDto) {
         int success = brandService.insertBrand(brandDto);
         return DatabaseUtil.getResult(success, brandDto.getId(), ModuleConstant.ITEM_CENTER);
     }
@@ -36,7 +36,7 @@ public class BrandController {
      * @return 响应
      */
     @PutMapping("/brand")
-    public RspDto updateBrand(BrandDto brandDto) {
+    public RspDto updateBrand(@RequestBody BrandDto brandDto) {
         int success = brandService.updateBrand(brandDto);
         return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
     }
@@ -49,7 +49,7 @@ public class BrandController {
      * @return 响应
      */
     @DeleteMapping("/brand")
-    public RspDto deleteBrand(Long id) {
+    public RspDto deleteBrand(@RequestParam("id") Long id) {
         int success = brandService.deleteBrand(id);
         return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
     }
@@ -62,7 +62,7 @@ public class BrandController {
      * @return 响应
      */
     @DeleteMapping("/brand/batch")
-    public RspDto batchDeleteBrand(Long[] ids) {
+    public RspDto batchDeleteBrand(@RequestParam("ids") Long[] ids) {
         int success = brandService.batchDeleteBrand(ids);
         return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
     }

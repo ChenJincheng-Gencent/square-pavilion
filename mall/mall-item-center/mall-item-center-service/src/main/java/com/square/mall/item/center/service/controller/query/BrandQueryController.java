@@ -4,10 +4,7 @@ import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
 import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.service.service.BrandService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -26,7 +23,7 @@ public class BrandQueryController {
      * @return 品牌数据列表
      */
     @PostMapping("/brand/list/condition")
-    public RspDto<List<BrandDto>> selectBrandByCondition(BrandDto brandDto) {
+    public RspDto<List<BrandDto>> selectBrandByCondition(@RequestBody BrandDto brandDto) {
         return new RspDto<>(brandService.selectBrandByCondition(brandDto));
     }
 
@@ -39,7 +36,8 @@ public class BrandQueryController {
      * @return 品牌列表
      */
     @PostMapping("/brand/list/page/condition")
-    public PageRspDto<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageNum, Integer pageSize) {
+    public PageRspDto<List<BrandDto>> selectPageBrandByCondition(@RequestBody BrandDto brandDto, @RequestParam("pageNum") Integer pageNum,
+                                                                 @RequestParam("pageSize") Integer pageSize) {
         return brandService.selectPageBrandByCondition(brandDto, pageNum, pageSize);
     }
 
@@ -50,7 +48,7 @@ public class BrandQueryController {
      * @return 品牌
      */
     @GetMapping("/brand/id")
-    public RspDto<BrandDto> selectBrandById(Long id) {
+    public RspDto<BrandDto> selectBrandById(@RequestParam("id") Long id) {
         return new RspDto<>(brandService.selectBrandById(id));
     }
 
