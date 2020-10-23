@@ -1,22 +1,31 @@
-# Apollo配置
-app:
-  id: IDS
-
-apollo:
-  bootstrap:
-    enabled: true
-    namespaces: DEPT2.line-diagram
-  meta: http://10.0.
-
-
-#mybatis
-mybatis:
-  mapper-locations: classpath:mapper/*Mapper.xml
+server:
+  port: 9324
 
 #log
 logging:
   config: classpath:logback-spring.xml
 
+spring:
+  main:
+    allow-bean-definition-overriding: true
 
+#kafka配置
+kafka:
+  bootstrap:
+    server: 10.0.
+  report:
+    topic: IDS
+    groupId: operation-dev
+    auto:
+      offset:
+        reset: earliest
 
-
+redis:
+  manager:
+    application:
+      host: 192.168.117.128
+      port: 6379
+      password: cjc1573
+      timeout: 2000
+      index: 4
+      workModel: single
