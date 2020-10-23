@@ -7,6 +7,9 @@ import com.square.mall.item.center.api.query.BrandQueryApi;
 import com.square.mall.item.center.service.service.BrandService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -18,7 +21,7 @@ import java.util.List;
  * @date 2020/7/23
  */
 @Slf4j
-@Service
+@RestController
 public class BrandQueryApiImpl implements BrandQueryApi {
 
     @Resource
