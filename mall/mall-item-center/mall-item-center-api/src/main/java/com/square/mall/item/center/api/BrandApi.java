@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @FeignClient(name="brand")
+@Component
 public interface BrandApi {
 
     /**

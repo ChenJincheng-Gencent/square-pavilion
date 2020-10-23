@@ -20,6 +20,7 @@ import java.util.List;
  */
 
 @FeignClient(name="brand/query")
+@Component
 public interface BrandQueryApi {
 
     /**
