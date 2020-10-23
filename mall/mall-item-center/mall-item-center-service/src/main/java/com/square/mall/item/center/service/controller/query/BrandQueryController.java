@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
-@RequestMapping("/brand/query")
+@RequestMapping("/brand")
 public class BrandQueryController {
 
     @Resource
@@ -22,7 +22,7 @@ public class BrandQueryController {
      * @param brandDto 查询条件
      * @return 品牌数据列表
      */
-    @PostMapping("/brand/list/condition")
+    @PostMapping("/list/condition")
     public RspDto<List<BrandDto>> selectBrandByCondition(@RequestBody BrandDto brandDto) {
         return new RspDto<>(brandService.selectBrandByCondition(brandDto));
     }
@@ -35,7 +35,7 @@ public class BrandQueryController {
      * @param pageSize 分页大小
      * @return 品牌列表
      */
-    @PostMapping("/brand/list/page/condition")
+    @PostMapping("/list/page/condition")
     public PageRspDto<List<BrandDto>> selectPageBrandByCondition(@RequestBody BrandDto brandDto, @RequestParam("pageNum") Integer pageNum,
                                                                  @RequestParam("pageSize") Integer pageSize) {
         return brandService.selectPageBrandByCondition(brandDto, pageNum, pageSize);
@@ -47,7 +47,7 @@ public class BrandQueryController {
      * @param id ID
      * @return 品牌
      */
-    @GetMapping("/brand/id")
+    @GetMapping("/id")
     public RspDto<BrandDto> selectBrandById(@RequestParam("id") Long id) {
         return new RspDto<>(brandService.selectBrandById(id));
     }
@@ -58,7 +58,7 @@ public class BrandQueryController {
      *
      * @return 品牌列表
      */
-    @GetMapping("/brand/all")
+    @GetMapping("/all")
     public RspDto<List<BrandDto>> selectBrandAll() {
         return new RspDto<>(brandService.selectBrandAll());
     }

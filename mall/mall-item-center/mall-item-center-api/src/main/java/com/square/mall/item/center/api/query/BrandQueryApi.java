@@ -19,7 +19,7 @@ import java.util.List;
  * @date 2020/7/24
  */
 
-@FeignClient(name="mall-item-center")
+@FeignClient(name="BrandQueryApi")
 @Component
 public interface BrandQueryApi {
 
