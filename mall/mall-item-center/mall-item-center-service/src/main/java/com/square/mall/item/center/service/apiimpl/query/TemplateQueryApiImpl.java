@@ -10,7 +10,6 @@ import com.square.mall.item.center.api.dto.TemplateGroupDto;
 import com.square.mall.item.center.api.query.TemplateQueryApi;
 import com.square.mall.item.center.service.service.*;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import java.util.List;
  * @date 2020/7/31
  */
 @Slf4j
-@Service
+
 public class TemplateQueryApiImpl implements TemplateQueryApi {
 
     @Resource

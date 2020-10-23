@@ -1,7 +1,10 @@
 package com.square.mall.item.center.service.apiimpl;
 
 import com.square.mall.common.dto.RspDto;
-import com.square.mall.common.util.*;
+import com.square.mall.common.util.DatabaseOptConstant;
+import com.square.mall.common.util.DatabaseUtil;
+import com.square.mall.common.util.ListUtil;
+import com.square.mall.common.util.ModuleConstant;
 import com.square.mall.item.center.api.SpecificationApi;
 import com.square.mall.item.center.api.dto.SpecificationDto;
 import com.square.mall.item.center.api.dto.SpecificationGroupDto;
@@ -9,7 +12,6 @@ import com.square.mall.item.center.api.dto.SpecificationOptionDto;
 import com.square.mall.item.center.service.service.SpecificationOptionService;
 import com.square.mall.item.center.service.service.SpecificationService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -21,7 +23,7 @@ import java.util.List;
  * @author Gencent
  * @date 2020/7/27
  */
-@Service
+
 @Slf4j
 @Transactional(rollbackFor = Exception.class)
 public class SpecificationApiImpl implements SpecificationApi {

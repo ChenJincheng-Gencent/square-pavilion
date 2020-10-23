@@ -12,7 +12,6 @@ import com.square.mall.item.center.service.service.TemplateBrandService;
 import com.square.mall.item.center.service.service.TemplateService;
 import com.square.mall.item.center.service.service.TemplateSpecificationService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -24,7 +23,7 @@ import java.util.List;
  * @author Gencent
  * @date 2020/7/28
  */
-@Service
+
 @Slf4j
 @Transactional(rollbackFor = Exception.class)
 public class TemplateApiImpl implements TemplateApi {

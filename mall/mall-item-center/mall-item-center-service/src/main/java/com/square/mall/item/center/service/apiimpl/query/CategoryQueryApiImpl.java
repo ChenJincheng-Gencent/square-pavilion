@@ -6,7 +6,6 @@ import com.square.mall.item.center.api.dto.CategoryDto;
 import com.square.mall.item.center.api.query.CategoryQueryApi;
 import com.square.mall.item.center.service.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -18,7 +17,6 @@ import java.util.List;
  * @date 2020/8/10
  */
 @Slf4j
-@Service
 public class CategoryQueryApiImpl implements CategoryQueryApi {
 
     @Resource

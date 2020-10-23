@@ -7,7 +7,6 @@ import com.square.mall.item.center.api.CategoryApi;
 import com.square.mall.item.center.api.dto.CategoryDto;
 import com.square.mall.item.center.service.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -19,7 +18,6 @@ import javax.annotation.Resource;
  * @date 2020/8/11
  */
 @Slf4j
-@Service
 @Transactional(rollbackFor = Exception.class)
 public class CategoryApiImpl implements CategoryApi {
 

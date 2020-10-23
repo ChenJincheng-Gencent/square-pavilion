@@ -2,7 +2,6 @@ package com.square.mall.item.center.service.apiimpl.query;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
-import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.SpecificationDto;
 import com.square.mall.item.center.api.dto.SpecificationGroupDto;
 import com.square.mall.item.center.api.dto.SpecificationOptionDto;
@@ -10,10 +9,8 @@ import com.square.mall.item.center.api.query.SpecificationQueryApi;
 import com.square.mall.item.center.service.service.SpecificationOptionService;
 import com.square.mall.item.center.service.service.SpecificationService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +20,6 @@ import java.util.List;
  * @date 2020/7/28
  */
 @Slf4j
-@Service
 public class SpecificationQueryApiImpl implements SpecificationQueryApi {
 
     @Resource
