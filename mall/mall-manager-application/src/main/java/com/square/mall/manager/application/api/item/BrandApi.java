@@ -17,7 +17,6 @@ import java.util.List;
  */
 
 @FeignClient(name="mall-item-center")
-@Component
 public interface BrandApi {
 
     /**
