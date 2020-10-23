@@ -2,9 +2,9 @@ package com.square.mall.manager.application.service.impl;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
-import com.square.mall.item.center.api.BrandApi;
 import com.square.mall.item.center.api.dto.BrandDto;
-import com.square.mall.item.center.api.query.BrandQueryApi;
+import com.square.mall.manager.application.api.item.BrandApi;
+import com.square.mall.manager.application.api.item.query.BrandQueryApi;
 import com.square.mall.manager.application.service.BrandService;
 import org.springframework.stereotype.Service;
 
