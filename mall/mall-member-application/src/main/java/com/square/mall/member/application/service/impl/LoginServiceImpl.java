@@ -6,14 +6,13 @@ import com.square.mall.common.util.ErrorCode;
 import com.square.mall.common.util.JwtUtil;
 import com.square.mall.common.util.SequenceUtil;
 import com.square.mall.common.util.SmsUtil;
+import com.square.mall.member.application.api.LoginApi;
+import com.square.mall.member.application.api.MemberApi;
 import com.square.mall.member.application.service.LoginService;
-import com.square.mall.member.center.api.LoginApi;
-import com.square.mall.member.center.api.MemberApi;
+
 import com.square.mall.member.center.api.dto.LoginDto;
 import com.square.mall.member.center.api.dto.MemberDto;
-import com.square.mall.member.center.api.query.MemberQueryApi;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,16 +27,13 @@ import javax.annotation.Resource;
 @Slf4j
 public class LoginServiceImpl implements LoginService {
 
-    @Reference
+    @Resource
     private MemberApi memberApi;
-
-    @Reference
-    private MemberQueryApi memberQueryApi;
 
     @Resource
     private CacheService cacheService;
 
-    @Reference
+    @Resource
     private LoginApi loginApi;
 
     @Override
@@ -50,7 +46,7 @@ public class LoginServiceImpl implements LoginService {
         }
 
         Long memberId;
-        MemberDto oldMemberDto = memberQueryApi.selectMemberByMobile(mobile).getData();
+        MemberDto oldMemberDto = memberApi.selectMemberByMobile(mobile).getData();
         log.info("oldMemberDto: {}, mobile: {}", oldMemberDto, mobile);
         if (null == oldMemberDto) {
             log.warn("该用户第一次注册。mobile: {}", mobile);
