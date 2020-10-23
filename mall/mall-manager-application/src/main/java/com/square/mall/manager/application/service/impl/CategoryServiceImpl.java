@@ -6,7 +6,6 @@ import com.square.mall.item.center.api.CategoryApi;
 import com.square.mall.item.center.api.dto.CategoryDto;
 import com.square.mall.item.center.api.query.CategoryQueryApi;
 import com.square.mall.manager.application.service.CategoryService;
-import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,10 +19,10 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    @Reference
+
     private CategoryQueryApi categoryQueryApi;
 
-    @Reference
+
     private CategoryApi categoryApi;
 
     @Override

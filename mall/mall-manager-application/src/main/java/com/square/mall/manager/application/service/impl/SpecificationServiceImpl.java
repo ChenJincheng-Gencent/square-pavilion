@@ -7,7 +7,6 @@ import com.square.mall.item.center.api.dto.SpecificationDto;
 import com.square.mall.item.center.api.dto.SpecificationGroupDto;
 import com.square.mall.item.center.api.query.SpecificationQueryApi;
 import com.square.mall.manager.application.service.SpecificationService;
-import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,10 +20,10 @@ import java.util.List;
 @Service
 public class SpecificationServiceImpl implements SpecificationService {
 
-    @Reference
+
     private SpecificationApi specificationApi;
 
-    @Reference
+
     private SpecificationQueryApi specificationQueryApi;
 
     @Override

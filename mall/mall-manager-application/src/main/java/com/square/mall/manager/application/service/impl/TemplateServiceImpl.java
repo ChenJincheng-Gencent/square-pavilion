@@ -8,7 +8,6 @@ import com.square.mall.item.center.api.dto.TemplateGroupDto;
 import com.square.mall.item.center.api.query.TemplateQueryApi;
 import com.square.mall.manager.application.service.TemplateService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,10 +22,10 @@ import java.util.List;
 @Service
 public class TemplateServiceImpl implements TemplateService {
 
-    @Reference
+
     private TemplateQueryApi templateQueryApi;
 
-    @Reference
+
     private TemplateApi templateApi;
 
     @Override
