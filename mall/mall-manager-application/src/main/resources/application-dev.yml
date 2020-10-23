@@ -5,7 +5,7 @@ server:
 logging:
   config: classpath:logback-spring.xml
 
-mall-manager-application:
+mall-item-center:
   ribbon:
     ConnectTimeout: 250 #单位ms,请求连接超时时间
     ReadTimeout: 1000 #单位ms,请求处理的超时时间

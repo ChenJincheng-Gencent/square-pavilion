@@ -6,6 +6,3 @@ spring:
       config:
         server-addr: 192.168.117.128:8848,192.168.117.129:8848,192.168.117.130:8848
         file-extension: yaml
-logging:
-  level:
-    root: debug
