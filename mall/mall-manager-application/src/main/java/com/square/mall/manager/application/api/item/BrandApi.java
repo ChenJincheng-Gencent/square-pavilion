@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * @date 2020/7/24
  */
 
-@FeignClient(name="brand")
+@FeignClient(name="mall-item-center")
 @Component
 public interface BrandApi {
 
