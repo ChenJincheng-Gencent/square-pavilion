@@ -9,23 +9,6 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
-
-dubbo:
-  application:
-    name: member-application-consumer
-  consumer:
-    check: false
-  registry:
-    address: zookeeper://192.168.117.128:2181,192.168.117.129:2181,192.168.117.130:2181
-    ##address: N/A
-    file: dubbo-registry/dubbo-registry.properties
-    check: false
-  protocol:
-    name: dubbo
-    port: 20880
-  reference:
-    loadbalance: roundrobin
-
 #kafka配置
 kafka:
   bootstrap:
