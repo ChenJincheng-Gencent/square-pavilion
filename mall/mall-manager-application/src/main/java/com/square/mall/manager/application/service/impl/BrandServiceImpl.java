@@ -6,9 +6,9 @@ import com.square.mall.item.center.api.BrandApi;
 import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.api.query.BrandQueryApi;
 import com.square.mall.manager.application.service.BrandService;
-import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -20,10 +20,10 @@ import java.util.List;
 @Service
 public class BrandServiceImpl implements BrandService {
 
-    @Reference
+    @Resource
     private BrandApi brandApi;
 
-    @Reference
+    @Resource
     private BrandQueryApi brandQueryApi;
 
     @Override
