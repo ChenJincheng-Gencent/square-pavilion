@@ -15,7 +15,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 
 @SpringBootApplication(exclude = MongoAutoConfiguration.class)
-@EnableDubbo
 @EnableDiscoveryClient
 @EnableFeignClients
 public class ItemCenterApplication {
