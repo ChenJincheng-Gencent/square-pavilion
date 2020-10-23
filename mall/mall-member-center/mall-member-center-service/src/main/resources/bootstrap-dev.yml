@@ -1,10 +1,12 @@
 spring:
+  application:
+    name: mall-member-center
   cloud:
     nacos:
       discovery:
-        server-addr: http://localhost:8848
+        server-addr: 192.168.117.128:8848,192.168.117.129:8848,192.168.117.130:8848
       config:
-        server-addr: http://localhost:8848
+        server-addr: 192.168.117.128:8848,192.168.117.129:8848,192.168.117.130:8848
         file-extension: yaml
 logging:
   level:

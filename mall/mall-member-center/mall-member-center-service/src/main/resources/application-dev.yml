@@ -1,13 +1,15 @@
-# Apollo配置
-app:
-  id: IDS
+server:
+  port: 9327
 
-apollo:
-  bootstrap:
-    enabled: true
-    namespaces: DEPT2.line-diagram
-  meta: http://10.0.
-
+mysql:
+  member:
+    dataSource:
+      url: jdbc:mysql://192.168.117.130:3306/sp_member?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      userName: root
+      password: cjc1573
+      driverClassName: com.mysql.jdbc.Driver
+      validationQuery: select 1
+      maxPoolSize: 30
 
 #mybatis
 mybatis:
@@ -17,6 +19,32 @@ mybatis:
 logging:
   config: classpath:logback-spring.xml
 
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+#kafka配置
+kafka:
+  bootstrap:
+    server: 10.0.
+  report:
+    topic: IDS
+    groupId: operation-dev
+    auto:
+      offset:
+        reset: earliest
 
 
-
+redis:
+  member:
+    host: 192.168.117.128
+    port: 6379
+    password: cjc1573
+    timeout: 2000
+    index: 7
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
+      max-total: 10
