@@ -6,7 +6,6 @@ import com.square.mall.common.util.ModuleConstant;
 import com.square.mall.member.center.api.AddressApi;
 import com.square.mall.member.center.api.dto.AddressDto;
 import com.square.mall.member.center.service.service.AddressService;
-import org.apache.dubbo.config.annotation.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -17,7 +16,7 @@ import javax.annotation.Resource;
  * @author Gencent
  * @date 2020/7/20
  */
-@Service
+
 @Transactional(rollbackFor = Exception.class)
 public class AddressApiImpl implements AddressApi {
 

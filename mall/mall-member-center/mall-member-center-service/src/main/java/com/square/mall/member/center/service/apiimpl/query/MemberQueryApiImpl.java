@@ -6,7 +6,6 @@ import com.square.mall.member.center.api.dto.MemberDto;
 import com.square.mall.member.center.api.query.MemberQueryApi;
 import com.square.mall.member.center.service.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Service;
 
 import javax.annotation.Resource;
 
@@ -16,7 +15,7 @@ import javax.annotation.Resource;
  * @date 2020/7/13
  *
  */
-@Service
+
 @Slf4j
 public class MemberQueryApiImpl implements MemberQueryApi {
 

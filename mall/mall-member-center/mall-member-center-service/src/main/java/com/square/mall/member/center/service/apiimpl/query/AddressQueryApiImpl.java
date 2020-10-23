@@ -4,7 +4,6 @@ import com.square.mall.common.dto.RspDto;
 import com.square.mall.member.center.api.dto.AddressDto;
 import com.square.mall.member.center.api.query.AddressQueryApi;
 import com.square.mall.member.center.service.service.AddressService;
-import org.apache.dubbo.config.annotation.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
  * @author Gencent
  * @date 2020/7/20
  */
-@Service
+
 public class AddressQueryApiImpl implements AddressQueryApi {
 
     @Resource

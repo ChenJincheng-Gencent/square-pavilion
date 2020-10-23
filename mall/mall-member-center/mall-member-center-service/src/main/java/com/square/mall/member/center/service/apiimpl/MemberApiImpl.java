@@ -7,7 +7,6 @@ import com.square.mall.member.center.api.MemberApi;
 import com.square.mall.member.center.api.dto.MemberDto;
 import com.square.mall.member.center.service.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -19,7 +18,7 @@ import javax.annotation.Resource;
  * @date 2019/8/19
  */
 @Slf4j
-@Service
+
 @Transactional(rollbackFor = Exception.class)
 public class MemberApiImpl implements MemberApi {
 
