@@ -50,7 +50,7 @@ public interface ItemApi {
      * @param itemDto 查询条件
      * @return 商品列表
      */
-    @GetMapping("/item/list/condition")
+    @PostMapping("/item/list/condition")
     RspDto<List<ItemDto>> selectItemByCondition(@RequestBody ItemDto itemDto);
 
     /**
@@ -61,7 +61,7 @@ public interface ItemApi {
      * @param pageSize 分页大小
      * @return 商品列表
      */
-    @GetMapping("/item/list/page/condition")
+    @PostMapping("/item/list/page/condition")
     PageRspDto<List<ItemDto>> selectPageItemByCondition(@RequestBody ItemDto itemDto, @RequestParam("pageNum") Integer pageNum,
                                                         @RequestParam("pageSize") Integer pageSize);
 

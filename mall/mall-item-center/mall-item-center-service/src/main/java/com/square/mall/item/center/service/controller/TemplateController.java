@@ -219,7 +219,7 @@ public class TemplateController {
      * @param pageSize 分页大小
      * @return 模板组合列表
      */
-    @GetMapping("/group/list/page/condition")
+    @PostMapping("/group/list/page/condition")
     public PageRspDto<List<TemplateGroupDto>> selectPageTemplateGroupByCondition(@RequestBody TemplateDto templateDto,
                                  @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize) {
 

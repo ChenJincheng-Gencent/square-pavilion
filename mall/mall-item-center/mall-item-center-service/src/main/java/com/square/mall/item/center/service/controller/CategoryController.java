@@ -92,7 +92,7 @@ public class CategoryController {
      * @param pageSize 分页大小
      * @return 分类列表
      */
-    @GetMapping("list/page/condition")
+    @PostMapping("list/page/condition")
     public PageRspDto<List<CategoryDto>> selectPageCategoryByCondition(@RequestBody CategoryDto categoryDto,
                                @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize) {
         return categoryService.selectPageCategoryByCondition(categoryDto, pageNum, pageSize);

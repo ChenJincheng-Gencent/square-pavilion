@@ -62,7 +62,7 @@ public interface TemplateApi {
      * @param pageSize 分页大小
      * @return 模板组合列表
      */
-    @GetMapping("/template/group/list/page/condition")
+    @PostMapping("/template/group/list/page/condition")
     PageRspDto<List<TemplateGroupDto>> selectPageTemplateGroupByCondition(@RequestBody TemplateDto templateDto,
                                   @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize);
 

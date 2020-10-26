@@ -67,7 +67,7 @@ public class ItemController {
      * @param itemDto 查询条件
      * @return 商品列表
      */
-    @GetMapping("list/condition")
+    @PostMapping("list/condition")
     public RspDto<List<ItemDto>> selectItemByCondition(@RequestBody ItemDto itemDto) {
         return new RspDto<>(itemService.selectItemByCondition(itemDto));
     }
@@ -80,7 +80,7 @@ public class ItemController {
      * @param pageSize 分页大小
      * @return 商品列表
      */
-    @GetMapping("/list/page/condition")
+    @PostMapping("/list/page/condition")
     public PageRspDto<List<ItemDto>> selectPageItemByCondition(@RequestBody ItemDto itemDto, @RequestParam("pageNum") Integer pageNum,
                                                        @RequestParam("pageSize") Integer pageSize) {
         return itemService.selectPageItemByCondition(itemDto, pageNum, pageSize);

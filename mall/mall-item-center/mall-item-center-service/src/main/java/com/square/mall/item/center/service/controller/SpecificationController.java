@@ -141,7 +141,7 @@ public class SpecificationController {
      * @param pageSize 分页大小
      * @return 规格列表
      */
-    @GetMapping("/list/page/condition")
+    @PostMapping("/list/page/condition")
     public PageRspDto<List<SpecificationDto>> selectPageSpecificationByCondition(@RequestBody SpecificationDto specificationDto,
                                  @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize) {
         return specificationService.selectPageSpecificationByCondition(specificationDto, pageNum, pageSize);
@@ -174,7 +174,7 @@ public class SpecificationController {
      * @param specificationDto 查询条件
      * @return 规格列表
      */
-    @GetMapping("/list/condition")
+    @PostMapping("/list/condition")
     public RspDto<List<SpecificationDto>> selectSpecificationByCondition(@RequestBody SpecificationDto specificationDto) {
         return new RspDto<>(specificationService.selectSpecificationByCondition(specificationDto));
     }

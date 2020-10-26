@@ -62,7 +62,7 @@ public interface SpecificationApi {
      * @param pageSize 分页大小
      * @return 规格列表
      */
-    @GetMapping("/specification/list/page/condition")
+    @PostMapping("/specification/list/page/condition")
     PageRspDto<List<SpecificationDto>> selectPageSpecificationByCondition(@RequestBody SpecificationDto specificationDto,
                                   @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize);
 
@@ -89,7 +89,7 @@ public interface SpecificationApi {
      * @param specificationDto 查询条件
      * @return 规格列表
      */
-    @GetMapping("/specification/list/condition")
+    @PostMapping("/specification/list/condition")
     RspDto<List<SpecificationDto>> selectSpecificationByCondition(@RequestBody SpecificationDto specificationDto);
 
 }
