@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 品牌Controller
+ *
+ * @author Gencent
+ * @date 2020/10/26
+ */
 @RestController
 @RequestMapping("/brand")
 public class BrandController {
