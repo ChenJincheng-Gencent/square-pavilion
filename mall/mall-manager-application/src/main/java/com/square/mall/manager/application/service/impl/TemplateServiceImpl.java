@@ -2,14 +2,14 @@ package com.square.mall.manager.application.service.impl;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
-import com.square.mall.item.center.api.TemplateApi;
 import com.square.mall.item.center.api.dto.TemplateDto;
 import com.square.mall.item.center.api.dto.TemplateGroupDto;
-import com.square.mall.item.center.api.query.TemplateQueryApi;
+import com.square.mall.manager.application.api.item.TemplateApi;
 import com.square.mall.manager.application.service.TemplateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -23,9 +23,7 @@ import java.util.List;
 public class TemplateServiceImpl implements TemplateService {
 
 
-    private TemplateQueryApi templateQueryApi;
-
-
+    @Resource
     private TemplateApi templateApi;
 
     @Override
@@ -35,12 +33,12 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public RspDto<TemplateGroupDto> selectTemplateGroupByTemplateId(Long templateId) {
-        return templateQueryApi.selectTemplateGroupByTemplateId(templateId);
+        return templateApi.selectTemplateGroupByTemplateId(templateId);
     }
 
     @Override
     public PageRspDto<List<TemplateGroupDto>> selectPageTemplateGroupByCondition(TemplateDto templateDto, Integer pageNum, Integer pageSize) {
-        return templateQueryApi.selectPageTemplateGroupByCondition(templateDto, pageNum, pageSize);
+        return templateApi.selectPageTemplateGroupByCondition(templateDto, pageNum, pageSize);
     }
 
     @Override

@@ -2,12 +2,14 @@ package com.square.mall.manager.application.service.impl;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
-import com.square.mall.item.center.api.CategoryApi;
+
 import com.square.mall.item.center.api.dto.CategoryDto;
-import com.square.mall.item.center.api.query.CategoryQueryApi;
+
+import com.square.mall.manager.application.api.item.CategoryApi;
 import com.square.mall.manager.application.service.CategoryService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -19,20 +21,17 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-
-    private CategoryQueryApi categoryQueryApi;
-
-
+    @Resource
     private CategoryApi categoryApi;
 
     @Override
     public RspDto<List<CategoryDto>> selectCategoryByParentId(Long parentId) {
-        return categoryQueryApi.selectCategoryByParentId(parentId);
+        return categoryApi.selectCategoryByParentId(parentId);
     }
 
     @Override
     public RspDto<CategoryDto> selectCategoryById(Long id) {
-        return categoryQueryApi.selectCategoryById(id);
+        return categoryApi.selectCategoryById(id);
     }
 
     @Override
@@ -47,7 +46,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public PageRspDto<List<CategoryDto>> selectPageCategoryByCondition(CategoryDto categoryDto, Integer pageNum, Integer pageSize) {
-        return categoryQueryApi.selectPageCategoryByCondition(categoryDto, pageNum, pageSize);
+        return categoryApi.selectPageCategoryByCondition(categoryDto, pageNum, pageSize);
     }
 
     @Override
