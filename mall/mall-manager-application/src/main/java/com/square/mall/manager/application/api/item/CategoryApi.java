@@ -70,7 +70,7 @@ public interface CategoryApi {
      * @param pageSize 分页大小
      * @return 分类列表
      */
-    @GetMapping("/category/list/page/condition")
+    @PostMapping("/category/list/page/condition")
     PageRspDto<List<CategoryDto>> selectPageCategoryByCondition(@RequestBody CategoryDto categoryDto, @RequestParam("pageNum") Integer pageNum,
                                                                 @RequestParam("pageSize") Integer pageSize);
 }
