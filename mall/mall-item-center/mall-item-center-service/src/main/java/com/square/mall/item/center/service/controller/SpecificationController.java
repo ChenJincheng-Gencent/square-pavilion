@@ -168,4 +168,15 @@ public class SpecificationController {
         return new RspDto<>(specificationService.selectSpecificationAll());
     }
 
+    /**
+     * 条件查询规格列表
+     *
+     * @param specificationDto 查询条件
+     * @return 规格列表
+     */
+    @GetMapping("/list/condition")
+    public RspDto<List<SpecificationDto>> selectSpecificationByCondition(@RequestBody SpecificationDto specificationDto) {
+        return new RspDto<>(specificationService.selectSpecificationByCondition(specificationDto));
+    }
+
 }

@@ -83,4 +83,13 @@ public interface SpecificationApi {
     @GetMapping("/specification/list/all")
     RspDto<List<SpecificationDto>> selectSpecificationAll();
 
+    /**
+     * 条件查询规格列表
+     *
+     * @param specificationDto 查询条件
+     * @return 规格列表
+     */
+    @GetMapping("/specification/list/condition")
+    RspDto<List<SpecificationDto>> selectSpecificationByCondition(@RequestBody SpecificationDto specificationDto);
+
 }
