@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.square.mall.trade.center.service.dao.ShoppingCartDao">
+
+    <resultMap id="ShoppingCartMap" type="com.square.mall.trade.center.service.eo.ShoppingCartEo">
+        <id column="id" property="id"/>
+        <result column="member_id" property="memberId"/>
+        <result column="item_id" property="itemId"/>
+        <result column="item_num" property="itemNum"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <sql id="need_column">
+        `id`, `member_id`, `item_id`, `item_num`, `status`
+    </sql>
+
+    <insert id="insertShoppingCart" parameterType="com.square.mall.trade.center.service.eo.ShoppingCartEo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tr_shopping_cart (`id`, `member_id`, `item_id`, `item_num`, `status`, `create_time`, `update_time`)
+        VALUES (#{id}, #{memberId}, #{itemId}, #{itemNum}, #{status}, now(), now())
+    </insert>
+
+    <insert id="updateShoppingCart" parameterType="com.square.mall.trade.center.service.eo.ShoppingCartEo">
+        UPDATE tr_shopping_cart SET
+        <if test="memberId != null">
+            member_id = #{memberId},
+        </if>
+        <if test="itemId != null">
+            item_id = #{itemId},
+        </if>
+        <if test="itemNum != null">
+            item_num = #{itemNum},
+        </if>
+        <if test="status != null">
+            status = #{status},
+        </if>
+        update_time = now()
+        WHERE id = #{id}
+    </insert>
+
+    <delete id="deleteShoppingCart" parameterType="Long" >
+        DELETE tr_shopping_cart WHERE id = #{id}
+    </delete>
+
+    <select id="selectItemNumByMemberAndItemId" resultType="int">
+        SELECT COUNT(1) FROM tr_shopping_cart WHERE memberId = #{memberId} AND itemId = #{itemId}
+    </select>
+
+    <select id="selectShoppingCartList" resultMap="ShoppingCartMap">
+        SELECT * FROM tr_shopping_cart WHERE memberId = #{memberId}
+    </select>
+
+</mapper>
+
