@@ -1,9 +1,10 @@
 package com.square.mall.trade.center.service;
 
-import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * 交易中心服务启动类
@@ -13,7 +14,8 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
  */
 
 @SpringBootApplication(exclude = MongoAutoConfiguration.class)
-@EnableDubbo
+@EnableDiscoveryClient
+@EnableFeignClients
 public class TradeCenterApplication {
 
     public static void main(String[] args) {
