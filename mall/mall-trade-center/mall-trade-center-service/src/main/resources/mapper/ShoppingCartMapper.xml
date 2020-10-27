@@ -37,8 +37,15 @@
         WHERE id = #{id}
     </insert>
 
-    <delete id="deleteShoppingCart" parameterType="Long" >
-        DELETE tr_shopping_cart WHERE id = #{id}
+    <delete id="deleteShoppingCart">
+        DELETE tr_shopping_cart WHERE member_id = #{memberId} AND item_id = #{itemId}
+    </delete>
+
+    <delete id="batchDeleteShoppingCartList">
+        DELETE tr_shopping_cart WHERE member_id = #{memberId} AND
+        <foreach collection="itemIds" item="itemId" index="index" open="(" separator="," close=")">
+        #{itemId}
+        </foreach>
     </delete>
 
     <select id="selectItemNumByMemberAndItemId" resultType="int">

@@ -32,16 +32,27 @@ public interface ShoppingCartService {
     /**
      * 删除购物车
      *
-     * @param id 数据库ID
+     * @param memberId 会员ID
+     * @param itemId 商品ID
      * @return 是否成功，1成功，0失败
      */
-    int deleteShoppingCart(Long id);
+    int deleteShoppingCart(Long memberId, Long itemId);
+
+    /**
+     * 删除购物车
+     *
+     * @param memberId 会员ID
+     * @param itemIds 商品ID列表
+     * @return 是否成功，1成功，0失败
+     */
+    int batchDeleteShoppingCartList(Long memberId, Long[] itemIds);
 
     /**
      * 根据会员ID和商品ID查询商品数量
      *
      * @param memberId 会员ID
      * @param itemId 商品I
+     * @return 商品数量
      */
     Integer selectItemNumByMemberAndItemId(Long memberId, Long itemId);
 
