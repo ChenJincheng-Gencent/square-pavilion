@@ -41,12 +41,26 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public int updateShoppingCart(ShoppingCartDto shoppingCartDto) {
-        return 0;
+
+        if (null == shoppingCartDto) {
+            log.error("shoppingCartDto is null.");
+            return 0;
+        }
+        ShoppingCartEo shoppingCartEo = new ShoppingCartEo();
+        BeanUtils.copyProperties(shoppingCartDto, shoppingCartEo);
+        return shoppingCartDao.updateShoppingCart(shoppingCartEo);
     }
 
     @Override
     public int deleteShoppingCart(Long id) {
-        return 0;
+
+        if (null == id) {
+            log.error("id is null.");
+            return 0;
+        }
+
+        return shoppingCartDao.deleteShoppingCart(id);
+
     }
 
     @Override
