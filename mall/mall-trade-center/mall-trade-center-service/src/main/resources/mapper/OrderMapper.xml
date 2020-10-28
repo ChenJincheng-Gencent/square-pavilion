@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.square.mall.item.center.service.dao.ItemDao">
+<mapper namespace="com.square.mall.item.center.service.dao.OrderDao">
 
-    <resultMap id="ItemMap" type="com.square.mall.item.center.service.eo.ItemEo">
+    <resultMap id="OrderMap" type="com.square.mall.trade.center.service.eo.OrderEo">
         <id column="id" property="id"/>
     </resultMap>
 
