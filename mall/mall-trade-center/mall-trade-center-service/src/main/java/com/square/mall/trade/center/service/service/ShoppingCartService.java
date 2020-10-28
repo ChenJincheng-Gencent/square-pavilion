@@ -71,4 +71,13 @@ public interface ShoppingCartService {
      */
     List<ShoppingCartDto> selectShoppingCartList(Long memberId);
 
+    /**
+     * 根据会员ID和商品ID查询购物车
+     *
+     * @param memberId 会员ID
+     * @param itemId 商品ID
+     * @return 购物车
+     */
+    ShoppingCartDto selectShoppingCart(Long memberId, Long itemId);
+
 }

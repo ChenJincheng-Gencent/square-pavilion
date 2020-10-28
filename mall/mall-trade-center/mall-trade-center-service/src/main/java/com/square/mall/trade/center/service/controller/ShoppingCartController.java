@@ -5,6 +5,7 @@ import com.square.mall.common.util.DatabaseUtil;
 import com.square.mall.common.util.ModuleConstant;
 import com.square.mall.trade.center.api.dto.ShoppingCartDto;
 import com.square.mall.trade.center.service.service.ShoppingCartService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/shopping/cart")
+@Slf4j
 public class ShoppingCartController {
 
     @Resource
@@ -44,6 +46,19 @@ public class ShoppingCartController {
             shoppingCartService.insertShoppingCart(shoppingCartDto);
         }
         return DatabaseUtil.getResult(0, ModuleConstant.TRADE_CENTER);
+    }
+
+    @PutMapping("")
+    public RspDto updateShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
+        ShoppingCartDto oldShoppingCartDto = shoppingCartService.selectShoppingCart(shoppingCartDto.getMemberId(), shoppingCartDto
+            .getItemId());
+        if (null == oldShoppingCartDto) {
+            log.error("oldShoppingCartDto is null. memberId: {}, itemId: {}", shoppingCartDto.getMemberId(), shoppingCartDto
+                .getItemId());
+            return RspDto.FAILED;
+        }
+        shoppingCartService.updateShoppingCart(shoppingCartDto);
+        return RspDto.SUCCESS;
     }
 
     /**

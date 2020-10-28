@@ -46,6 +46,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             log.error("shoppingCartDto is null.");
             return 0;
         }
+
         ShoppingCartEo shoppingCartEo = new ShoppingCartEo();
         BeanUtils.copyProperties(shoppingCartDto, shoppingCartEo);
         return shoppingCartDao.updateShoppingCart(shoppingCartEo);
@@ -111,6 +112,22 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         }
 
         return shoppingCartDtoList;
+    }
+
+    @Override
+    public ShoppingCartDto selectShoppingCart(Long memberId, Long itemId) {
+
+        if (null == memberId || null == itemId) {
+            log.error("memberId or itemId is null.");
+            return null;
+        }
+
+        ShoppingCartDto shoppingCartDto = new ShoppingCartDto();
+        ShoppingCartEo shoppingCartEo = shoppingCartDao.selectShoppingCart(memberId, itemId);
+        if (null != shoppingCartEo) {
+            BeanUtils.copyProperties(shoppingCartEo, shoppingCartDto);
+        }
+        return shoppingCartDto;
     }
 
 }

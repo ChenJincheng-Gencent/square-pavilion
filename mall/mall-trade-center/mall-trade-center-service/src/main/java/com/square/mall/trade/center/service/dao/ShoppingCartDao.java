@@ -1,5 +1,6 @@
 package com.square.mall.trade.center.service.dao;
 
+import com.square.mall.trade.center.api.dto.ShoppingCartDto;
 import com.square.mall.trade.center.service.eo.ShoppingCartEo;
 import org.apache.ibatis.annotations.Param;
 
@@ -71,6 +72,15 @@ public interface ShoppingCartDao {
      * @return 购物车列表
      */
     List<ShoppingCartEo> selectShoppingCartList(@Param("memberId") Long memberId);
+
+    /**
+     * 根据会员ID和商品ID查询购物车
+     *
+     * @param memberId 会员ID
+     * @param itemId 商品ID
+     * @return 购物车
+     */
+    ShoppingCartEo selectShoppingCart(@Param("memberId") Long memberId, @Param("itemId") Long itemId);
 
 
 }

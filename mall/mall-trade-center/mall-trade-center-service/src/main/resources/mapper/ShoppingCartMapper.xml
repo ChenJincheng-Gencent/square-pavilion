@@ -60,5 +60,9 @@
         SELECT * FROM tr_shopping_cart WHERE memberId = #{memberId}
     </select>
 
+    <select id="selectShoppingCart" resultMap="ShoppingCartMap">
+        SELECT * FROM tr_shopping_cart WHERE memberId = #{memberId} AND itemId = #{itemId}
+    </select>
+
 </mapper>
 
