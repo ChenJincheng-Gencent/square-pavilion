@@ -1,7 +1,6 @@
 package com.square.mall.trade.center.service.service;
 
 import com.square.mall.trade.center.api.dto.ShoppingCartDto;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -46,6 +45,14 @@ public interface ShoppingCartService {
      * @return 是否成功，1成功，0失败
      */
     int batchDeleteShoppingCartList(Long memberId, Long[] itemIds);
+
+    /**
+     * 根据会员ID删除购物车列表
+     *
+     * @param memberId 会员ID
+     * @return 是否成功，1成功，0失败
+     */
+    int deleteAllShoppingCartList(Long memberId);
 
     /**
      * 根据会员ID和商品ID查询商品数量

@@ -48,6 +48,10 @@
         </foreach>
     </delete>
 
+    <delete id="deleteAllShoppingCartList">
+        DELETE tr_shopping_cart WHERE member_id = #{memberId}
+    </delete>
+
     <select id="selectItemNumByMemberAndItemId" resultType="int">
         SELECT COUNT(1) FROM tr_shopping_cart WHERE memberId = #{memberId} AND itemId = #{itemId}
     </select>

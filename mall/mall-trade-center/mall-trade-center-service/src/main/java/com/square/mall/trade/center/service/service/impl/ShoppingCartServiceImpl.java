@@ -65,7 +65,26 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public int batchDeleteShoppingCartList(Long memberId, Long[] itemIds) {
-        return 0;
+
+        if (null == memberId || null == itemIds) {
+            log.error("memberId or itemIds is null.");
+            return 0;
+        }
+
+        return shoppingCartDao.batchDeleteShoppingCartList(memberId, itemIds);
+
+    }
+
+    @Override
+    public int deleteAllShoppingCartList(Long memberId) {
+
+        if (null == memberId) {
+            log.error("memberId is null.");
+            return 0;
+        }
+
+        return shoppingCartDao.deleteAllShoppingCartList(memberId);
+
     }
 
     @Override
