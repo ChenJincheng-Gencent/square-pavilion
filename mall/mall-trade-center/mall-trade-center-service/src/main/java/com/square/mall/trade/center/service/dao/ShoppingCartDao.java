@@ -1,6 +1,5 @@
 package com.square.mall.trade.center.service.dao;
 
-import com.square.mall.trade.center.api.dto.ShoppingCartDto;
 import com.square.mall.trade.center.service.eo.ShoppingCartEo;
 import org.apache.ibatis.annotations.Param;
 
