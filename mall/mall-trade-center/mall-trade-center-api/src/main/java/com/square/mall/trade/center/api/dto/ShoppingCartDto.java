@@ -1,6 +1,5 @@
 package com.square.mall.trade.center.api.dto;
 
-import com.square.mall.common.eo.BaseEo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

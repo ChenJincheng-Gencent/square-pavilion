@@ -48,6 +48,12 @@ public class ShoppingCartController {
         return DatabaseUtil.getResult(0, ModuleConstant.TRADE_CENTER);
     }
 
+    /**
+     * 更新购物车
+     *
+     * @param shoppingCartDto 购物车
+     * @return 响应
+     */
     @PutMapping("")
     public RspDto updateShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
         ShoppingCartDto oldShoppingCartDto = shoppingCartService.selectShoppingCart(shoppingCartDto.getMemberId(), shoppingCartDto
@@ -97,6 +103,18 @@ public class ShoppingCartController {
     @DeleteMapping("/batch")
     public RspDto batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId, @RequestParam("itemIds") Long[] itemIds) {
         shoppingCartService.batchDeleteShoppingCartList(memberId, itemIds);
+        return RspDto.SUCCESS;
+    }
+
+    /**
+     * 根据会员ID和商品ID列表批量删除购物车
+     *
+     * @param memberId 会员ID
+     * @return 响应
+     */
+    @DeleteMapping("/all")
+    public RspDto batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId) {
+        shoppingCartService.deleteAllShoppingCartList(memberId);
         return RspDto.SUCCESS;
     }
 
