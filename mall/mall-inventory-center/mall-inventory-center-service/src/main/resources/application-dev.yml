@@ -1,0 +1,49 @@
+server:
+  port: 9328
+mysql:
+  item:
+    dataSource:
+      url: jdbc:mysql://192.168.117.130:3306/sp_inventory?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      userName: root
+      password: cjc1573
+      driverClassName: com.mysql.cj.jdbc.Driver
+      validationQuery: select 1
+      maxPoolSize: 30
+
+#mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+#log
+logging:
+  config: classpath:logback-spring.xml
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+#kafka配置
+kafka:
+  bootstrap:
+    server: 10.0.
+  report:
+    topic: IDS
+    groupId: operation-dev
+    auto:
+      offset:
+        reset: earliest
+
+
+redis:
+  item:
+    host: 192.168.117.128
+    port: 6379
+    password: cjc1573
+    timeout: 2000
+    index: 8
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
+      max-total: 10
