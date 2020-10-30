@@ -55,18 +55,39 @@ public class ItemEo extends BaseEo {
      */
     private Integer isHot;
 
+    /**
+     * 商品SKU
+     */
     private String sku;
 
+    /**
+     * 品牌ID
+     */
     private Long brandId;
 
+    /**
+     * 一级分类ID
+     */
     private Long firstCategoryId;
 
+    /**
+     * 二级分类ID
+     */
     private Long secondCategoryId;
 
+    /**
+     * 三级分类ID
+     */
     private Long thirdCategoryId;
 
+    /**
+     * 模板ID
+     */
     private Long templateId;
 
+    /**
+     * 是否开启规格
+     */
     private Integer isEnableSpec;
 
 
