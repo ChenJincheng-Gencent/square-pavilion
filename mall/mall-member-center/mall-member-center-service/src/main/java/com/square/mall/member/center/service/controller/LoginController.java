@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
+/**
+ * 登录Controller
+ *
+ * @author Gencent
+ * @date 2020/11/11
+ */
 @RestController
 @RequestMapping("/login")
 public class LoginController {

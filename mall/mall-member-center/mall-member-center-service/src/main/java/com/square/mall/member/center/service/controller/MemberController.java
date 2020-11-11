@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+/**
+ * 会员Controller
+ *
+ * @author Gencent
+ * @date 2020/11/11
+ */
 @RestController
 @RequestMapping("/member")
 @Slf4j

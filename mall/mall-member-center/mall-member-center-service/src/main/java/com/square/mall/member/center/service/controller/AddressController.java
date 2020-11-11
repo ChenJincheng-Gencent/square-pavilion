@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 收货地址Controller
+ *
+ * @author Gencent
+ * @date 2020/11/11
+ */
 @RestController
 @RequestMapping("/address")
 public class AddressController {
