@@ -22,7 +22,7 @@ public interface ShoppingCartApi {
      * @param shoppingCartDto 购物车
      * @return 响应
      */
-    @PostMapping("")
+    @PostMapping("/shopping/cart")
     RspDto addShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto);
 
     /**
@@ -31,7 +31,7 @@ public interface ShoppingCartApi {
      * @param shoppingCartDto 购物车
      * @return 响应
      */
-    @PutMapping("")
+    @PutMapping("/shopping/cart")
     RspDto updateShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto);
 
     /**
@@ -40,7 +40,7 @@ public interface ShoppingCartApi {
      * @param memberId 会员ID
      * @return 购物车列表
      */
-    @GetMapping("/list/member-id")
+    @GetMapping("/shopping/cart/list/member-id")
     RspDto<List<ShoppingCartDto>> getShoppingCartList(@RequestParam("memberId") Long memberId);
 
     /**
@@ -50,7 +50,7 @@ public interface ShoppingCartApi {
      * @param itemId 商品ID
      * @return 响应
      */
-    @DeleteMapping("")
+    @DeleteMapping("/shopping/cart")
     RspDto deleteShoppingCart(@RequestParam("memberId") Long memberId, @RequestParam("itemId") Long itemId);
 
     /**
@@ -60,7 +60,7 @@ public interface ShoppingCartApi {
      * @param itemIds 商品ID列表
      * @return 响应
      */
-    @DeleteMapping("/batch")
+    @DeleteMapping("/shopping/cart/batch")
     RspDto batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId, @RequestParam("itemIds") Long[] itemIds);
 
     /**
@@ -69,7 +69,7 @@ public interface ShoppingCartApi {
      * @param memberId 会员ID
      * @return 响应
      */
-    @DeleteMapping("/all")
+    @DeleteMapping("/shopping/cart/all")
     RspDto batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId);
 
 
