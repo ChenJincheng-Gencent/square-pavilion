@@ -113,7 +113,7 @@ public class ShoppingCartController {
      * @return 响应
      */
     @DeleteMapping("/all")
-    public RspDto batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId) {
+    public RspDto deleteAllShoppingCartList(@RequestParam("memberId") Long memberId) {
         shoppingCartService.deleteAllShoppingCartList(memberId);
         return RspDto.SUCCESS;
     }

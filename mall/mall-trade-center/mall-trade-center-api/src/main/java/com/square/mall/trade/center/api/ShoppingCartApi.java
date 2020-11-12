@@ -70,7 +70,7 @@ public interface ShoppingCartApi {
      * @return 响应
      */
     @DeleteMapping("/shopping/cart/all")
-    RspDto batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId);
+    RspDto deleteAllShoppingCartList(@RequestParam("memberId") Long memberId);
 
 
 }
