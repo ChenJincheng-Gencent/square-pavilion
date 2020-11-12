@@ -4,12 +4,10 @@ import com.square.mall.common.dto.RspDto;
 import com.square.mall.trade.application.service.ShoppingCartService;
 import com.square.mall.trade.center.api.dto.ShoppingCartDto;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 购物车Controller
@@ -35,5 +33,70 @@ public class ShoppingCartController {
     public RspDto addShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
         return shoppingCartService.addShoppingCart(shoppingCartDto);
     }
+
+    /**
+     * 更新购物车
+     *
+     * @param shoppingCartDto 购物车
+     * @return 响应
+     */
+    @PutMapping("")
+    public RspDto updateShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
+
+        return shoppingCartService.updateShoppingCart(shoppingCartDto);
+
+    }
+
+    /**
+     * 根据会员ID查询购物车列表
+     *
+     * @param memberId 会员ID
+     * @return 购物车列表
+     */
+    @GetMapping("/list/member-id")
+    public RspDto<List<ShoppingCartDto>> getShoppingCartList(@RequestParam("memberId") Long memberId) {
+        return shoppingCartService.getShoppingCartList(memberId);
+    }
+
+    /**
+     * 根据会员ID和商品ID删除购物车
+     *
+     * @param memberId 会员ID
+     * @param itemId 商品ID
+     * @return 响应
+     */
+    @DeleteMapping("")
+    public RspDto deleteShoppingCart(@RequestParam("memberId") Long memberId, @RequestParam("itemId") Long itemId) {
+        return shoppingCartService.deleteShoppingCart(memberId, itemId);
+    }
+
+    /**
+     * 根据会员ID和商品ID列表批量删除购物车
+     *
+     * @param memberId 会员ID
+     * @param itemIds 商品ID列表
+     * @return 响应
+     */
+    @DeleteMapping("/batch")
+    public RspDto batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId, @RequestParam("itemIds") Long[] itemIds) {
+        return shoppingCartService.batchDeleteShoppingCartList(memberId, itemIds);
+    }
+
+    /**
+     * 根据会员ID和商品ID列表批量删除购物车
+     *
+     * @param memberId 会员ID
+     * @return 响应
+     */
+    @DeleteMapping("/all")
+    public RspDto deleteAllShoppingCartList(@RequestParam("memberId") Long memberId) {
+        return shoppingCartService.deleteAllShoppingCartList(memberId);
+    }
+
+
+
+
+
+
 
 }
