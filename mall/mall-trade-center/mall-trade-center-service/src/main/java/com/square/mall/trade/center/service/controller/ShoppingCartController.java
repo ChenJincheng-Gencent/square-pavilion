@@ -1,8 +1,7 @@
 package com.square.mall.trade.center.service.controller;
 
 import com.square.mall.common.dto.RspDto;
-import com.square.mall.common.util.DatabaseUtil;
-import com.square.mall.common.util.ModuleConstant;
+import com.square.mall.trade.center.api.ShoppingCartApi;
 import com.square.mall.trade.center.api.dto.ShoppingCartDto;
 import com.square.mall.trade.center.service.service.ShoppingCartService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/shopping/cart")
 @Slf4j
-public class ShoppingCartController {
+public class ShoppingCartController implements ShoppingCartApi {
 
     @Resource
     private ShoppingCartService shoppingCartService;
@@ -32,10 +31,11 @@ public class ShoppingCartController {
      * @return 响应
      */
     @PostMapping("")
-    public RspDto addShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
+    @Override
+    public RspDto<Void> addShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
 
         if (null == shoppingCartDto || null == shoppingCartDto.getItemId() || null == shoppingCartDto.getMemberId()) {
-            return RspDto.FAILED;
+            return RspDto.FAILURE;
         }
         Integer itemNum = shoppingCartService.selectItemNumByMemberAndItemId(shoppingCartDto.getMemberId(), shoppingCartDto
             .getItemId());
@@ -45,7 +45,7 @@ public class ShoppingCartController {
         }else {
             shoppingCartService.insertShoppingCart(shoppingCartDto);
         }
-        return DatabaseUtil.getResult(0, ModuleConstant.TRADE_CENTER);
+        return RspDto.SUCCESS;
     }
 
     /**
@@ -55,13 +55,14 @@ public class ShoppingCartController {
      * @return 响应
      */
     @PutMapping("")
-    public RspDto updateShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
+    @Override
+    public RspDto<Void> updateShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
         ShoppingCartDto oldShoppingCartDto = shoppingCartService.selectShoppingCart(shoppingCartDto.getMemberId(), shoppingCartDto
             .getItemId());
         if (null == oldShoppingCartDto) {
             log.error("oldShoppingCartDto is null. memberId: {}, itemId: {}", shoppingCartDto.getMemberId(), shoppingCartDto
                 .getItemId());
-            return RspDto.FAILED;
+            return RspDto.FAILURE;
         }
         shoppingCartService.updateShoppingCart(shoppingCartDto);
         return RspDto.SUCCESS;
@@ -74,6 +75,7 @@ public class ShoppingCartController {
      * @return 购物车列表
      */
     @GetMapping("/list/member-id")
+    @Override
     public RspDto<List<ShoppingCartDto>> getShoppingCartList(@RequestParam("memberId") Long memberId) {
 
         List<ShoppingCartDto> shoppingCartDtoList = shoppingCartService.selectShoppingCartList(memberId);
@@ -88,7 +90,8 @@ public class ShoppingCartController {
      * @return 响应
      */
     @DeleteMapping("")
-    public RspDto deleteShoppingCart(@RequestParam("memberId") Long memberId, @RequestParam("itemId") Long itemId) {
+    @Override
+    public RspDto<Void> deleteShoppingCart(@RequestParam("memberId") Long memberId, @RequestParam("itemId") Long itemId) {
         shoppingCartService.deleteShoppingCart(memberId, itemId);
         return RspDto.SUCCESS;
     }
@@ -101,7 +104,8 @@ public class ShoppingCartController {
      * @return 响应
      */
     @DeleteMapping("/batch")
-    public RspDto batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId, @RequestParam("itemIds") Long[] itemIds) {
+    @Override
+    public RspDto<Void> batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId, @RequestParam("itemIds") Long[] itemIds) {
         shoppingCartService.batchDeleteShoppingCartList(memberId, itemIds);
         return RspDto.SUCCESS;
     }
@@ -113,7 +117,8 @@ public class ShoppingCartController {
      * @return 响应
      */
     @DeleteMapping("/all")
-    public RspDto deleteAllShoppingCartList(@RequestParam("memberId") Long memberId) {
+    @Override
+    public RspDto<Void> deleteAllShoppingCartList(@RequestParam("memberId") Long memberId) {
         shoppingCartService.deleteAllShoppingCartList(memberId);
         return RspDto.SUCCESS;
     }
