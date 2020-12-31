@@ -23,7 +23,7 @@ public enum ErrorCode {
     /**
      * 失败
      */
-    FAILED("-1", "请求处理失败"),
+    FAILURE("-1", "请求处理失败"),
 
 
     /*----------------------------------------------会员应用----------------------------------------------------------*/
@@ -105,12 +105,12 @@ public enum ErrorCode {
     /**
      * 错误码
      */
-    private String code;
+    private final String code;
 
     /**
      * 错误描述
      */
-    private String msg;
+    private final String msg;
 
 
 }

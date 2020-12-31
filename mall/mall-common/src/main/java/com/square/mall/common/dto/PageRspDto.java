@@ -26,12 +26,12 @@ public class PageRspDto<T> implements Serializable {
     /**
      * 成功
      */
-    public static final PageRspDto SUCCESS = new PageRspDto(ErrorCode.SUCCESS);
+    public static final PageRspDto<Void> SUCCESS = new PageRspDto<>(ErrorCode.SUCCESS);
 
     /**
      * 失败
      */
-    public static final PageRspDto FAILED = new PageRspDto(ErrorCode.FAILED);
+    public static final PageRspDto<Void> FAILURE = new PageRspDto<>(ErrorCode.FAILURE);
 
 
 
