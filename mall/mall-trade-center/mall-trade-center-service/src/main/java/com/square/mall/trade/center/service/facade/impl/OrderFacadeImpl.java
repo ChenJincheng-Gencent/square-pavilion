@@ -1,8 +1,11 @@
 package com.square.mall.trade.center.service.facade.impl;
 
 import com.square.mall.trade.center.service.facade.OrderFacade;
+import com.square.mall.trade.center.service.service.OrderService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
 
 /**
  * 订单门面实现类
@@ -13,4 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class OrderFacadeImpl implements OrderFacade {
+
+    @Resource
+    private OrderService orderService;
+
 }
