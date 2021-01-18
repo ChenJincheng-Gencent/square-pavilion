@@ -1,6 +1,8 @@
 package com.square.mall.common.util;
 
 import com.alibaba.fastjson.JSON;
+import com.square.mall.common.dto.SmsSendReq;
+import com.square.mall.common.dto.SmsSendRsp;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;

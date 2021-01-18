@@ -1,10 +1,11 @@
-package com.square.mall.common.util;
+package com.square.mall.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
+ * 短信发送请求
  *
  * @author Gencent
  * @date 2020/7/18
