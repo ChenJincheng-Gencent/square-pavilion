@@ -1,4 +1,4 @@
-package com.square.mall.common.util;
+package com.square.mall.common.enums;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

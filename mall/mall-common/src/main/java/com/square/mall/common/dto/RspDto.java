@@ -1,6 +1,6 @@
 package com.square.mall.common.dto;
 
-import com.square.mall.common.util.ErrorCode;
+import com.square.mall.common.enums.ErrorCode;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;

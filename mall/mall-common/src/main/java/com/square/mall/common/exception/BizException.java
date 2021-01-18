@@ -1,6 +1,6 @@
 package com.square.mall.common.exception;
 
-import com.square.mall.common.util.ErrorCode;
+import com.square.mall.common.enums.ErrorCode;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

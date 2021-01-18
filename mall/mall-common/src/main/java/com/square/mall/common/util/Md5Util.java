@@ -1,5 +1,6 @@
 package com.square.mall.common.util;
 
+import com.square.mall.common.constant.CommonConstant;
 import lombok.extern.slf4j.Slf4j;
 
 import java.nio.charset.StandardCharsets;

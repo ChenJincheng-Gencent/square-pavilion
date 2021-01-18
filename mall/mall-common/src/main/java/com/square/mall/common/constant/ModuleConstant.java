@@ -1,4 +1,4 @@
-package com.square.mall.common.util;
+package com.square.mall.common.constant;
 
 /**
  * 模块名常量类

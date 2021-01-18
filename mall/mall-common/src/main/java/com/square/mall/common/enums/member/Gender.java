@@ -1,38 +1,33 @@
-package com.square.mall.common.util.item;
+package com.square.mall.common.enums.member;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 审核状态
+ * 性别
  *
  * @author Gencent
- * @date 2020/10/30
+ * @date 2020/7/13
  */
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public enum AuditStatus {
+public enum Gender {
 
     /**
-     * 草稿
+     * 未知
      */
-    DRAFT(0, "草稿"),
+    UNKNOWN(0, "未知"),
 
     /**
-     * 待审核
+     * 男
      */
-    UNAUDITED(1, "待审核"),
+    MAN(1, "男"),
 
     /**
-     * 审核通过
+     * 女
      */
-    PASS(2, "审核通过"),
-
-    /**
-     * 审核不通过
-     */
-    NO_PASS(3, "审核不通过");
+    WOMAN(2, "女");
 
     /**
      * 枚举值

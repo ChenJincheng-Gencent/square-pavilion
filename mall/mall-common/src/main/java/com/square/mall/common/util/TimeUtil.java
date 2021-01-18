@@ -1,5 +1,7 @@
 package com.square.mall.common.util;
 
+import com.square.mall.common.constant.CommonConstant;
+import com.square.mall.common.constant.TimePatternConstant;
 import lombok.extern.slf4j.Slf4j;
 
 import java.text.ParseException;

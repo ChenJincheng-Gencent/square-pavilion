@@ -1,4 +1,4 @@
-package com.square.mall.common.util.trade;
+package com.square.mall.common.enums.trade;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

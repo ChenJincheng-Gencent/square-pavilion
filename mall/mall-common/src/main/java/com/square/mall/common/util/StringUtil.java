@@ -1,7 +1,7 @@
 package com.square.mall.common.util;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
+import com.square.mall.common.constant.CommonConstant;
+import com.square.mall.common.constant.SymbolConstant;
 
 /**
  * 字符串工具类

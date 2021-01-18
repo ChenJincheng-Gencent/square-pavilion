@@ -1,33 +1,38 @@
-package com.square.mall.common.util.trade;
+package com.square.mall.common.enums.item;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 支付状态
+ * 审核状态
  *
  * @author Gencent
  * @date 2020/10/30
  */
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public enum PayStatus {
+public enum AuditStatus {
 
     /**
-     * 未支付
+     * 草稿
      */
-    UNPAID(0, "未支付"),
+    DRAFT(0, "草稿"),
 
     /**
-     * 支付成功
+     * 待审核
      */
-    SUCCESS(1, "支付成功"),
+    UNAUDITED(1, "待审核"),
 
     /**
-     * 支付失败
+     * 审核通过
      */
-    FAILED(2, "支付失败");
+    PASS(2, "审核通过"),
+
+    /**
+     * 审核不通过
+     */
+    NO_PASS(3, "审核不通过");
 
     /**
      * 枚举值

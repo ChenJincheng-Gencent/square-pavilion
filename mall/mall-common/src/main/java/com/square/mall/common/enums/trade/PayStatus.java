@@ -1,33 +1,33 @@
-package com.square.mall.common.util.item;
+package com.square.mall.common.enums.trade;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 上下架状态
+ * 支付状态
  *
  * @author Gencent
  * @date 2020/10/30
  */
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public enum OnShelfStatus {
+public enum PayStatus {
 
     /**
-     * 下架
+     * 未支付
      */
-    OFF_SHELF(0, "下架"),
+    UNPAID(0, "未支付"),
 
     /**
-     * 上架
+     * 支付成功
      */
-    ON_SHELF(1, "上架"),
+    SUCCESS(1, "支付成功"),
 
     /**
-     * 隐藏
+     * 支付失败
      */
-    HIDE(2, "隐藏");
+    FAILED(2, "支付失败");
 
     /**
      * 枚举值

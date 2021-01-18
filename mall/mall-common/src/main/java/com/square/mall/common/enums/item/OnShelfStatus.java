@@ -1,33 +1,33 @@
-package com.square.mall.common.util.member;
+package com.square.mall.common.enums.item;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 性别
+ * 上下架状态
  *
  * @author Gencent
- * @date 2020/7/13
+ * @date 2020/10/30
  */
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public enum Gender {
+public enum OnShelfStatus {
 
     /**
-     * 未知
+     * 下架
      */
-    UNKNOWN(0, "未知"),
+    OFF_SHELF(0, "下架"),
 
     /**
-     * 男
+     * 上架
      */
-    MAN(1, "男"),
+    ON_SHELF(1, "上架"),
 
     /**
-     * 女
+     * 隐藏
      */
-    WOMAN(2, "女");
+    HIDE(2, "隐藏");
 
     /**
      * 枚举值

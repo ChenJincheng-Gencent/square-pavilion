@@ -1,4 +1,4 @@
-package com.square.mall.common.util;
+package com.square.mall.common.constant;
 
 /**
  * 通用常量类
