@@ -1,6 +1,7 @@
 package com.square.mall.common.util;
 
 import com.alibaba.fastjson.JSON;
+import com.square.mall.common.constant.CommonConstant;
 import com.square.mall.common.dto.SmsSendReq;
 import com.square.mall.common.dto.SmsSendRsp;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 /**
  *  短信工具类
@@ -20,7 +22,7 @@ import java.net.URL;
 @Slf4j
 public class SmsUtil {
 
-    private static final String CHARSET = "utf-8";
+
 
     /**
      * 短信平台请求地址
@@ -79,19 +81,19 @@ public class SmsUtil {
             // 发送POST请求必须设置如下两行
             connection.setDoOutput(true);
             connection.setDoInput(true);
-            connection.setRequestProperty("Charset", CHARSET);
+            connection.setRequestProperty("Charset", CommonConstant.ENCODE_UTF_8);
             connection.setRequestProperty("Content-Type", "application/json");
 
             connection.connect();
             OutputStream os = connection.getOutputStream();
-            os.write(postContent.getBytes(CHARSET));
+            os.write(postContent.getBytes(StandardCharsets.UTF_8));
             os.flush();
 
             StringBuilder sb = new StringBuilder();
             int httpRspCode = connection.getResponseCode();
             if (httpRspCode == HttpURLConnection.HTTP_OK) {
                 // 开始获取数据
-                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), CHARSET));
+                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
                 String line = null;
                 while ((line = br.readLine()) != null) {
                     sb.append(line);
