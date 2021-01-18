@@ -17,8 +17,14 @@ public class BizException extends RuntimeException {
 
     private static final long serialVersionUID = 6147256750452161408L;
 
+    /**
+     * 错误码
+     */
     private String code;
 
+    /**
+     * 错误描述
+     */
     private String msg;
 
 
