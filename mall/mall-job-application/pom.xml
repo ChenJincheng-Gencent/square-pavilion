@@ -37,6 +37,16 @@
             <artifactId>mall-cache</artifactId>
             <version>${mall-cache.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.shardingsphere.elasticjob</groupId>
+            <artifactId>elasticjob-lite-core</artifactId>
+            <version>3.0.0-RC1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shardingsphere.elasticjob</groupId>
+            <artifactId>elasticjob-error-handler-email</artifactId>
+            <version>3.0.0-RC1</version>
+        </dependency>
     </dependencies>
 
     <build>

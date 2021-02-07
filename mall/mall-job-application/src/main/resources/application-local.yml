@@ -32,3 +32,21 @@ redis:
       timeout: 2000
       index: 1
       workModel: single
+
+elasticjob:
+  regCenter:
+  jobs:
+    jobErrorHandlerType: EMAIL
+  props:
+    email:
+      host: host
+      port: 465
+      username: username
+      password: password
+      useSsl: true
+      subject: ElasticJob error message
+      from: from@xxx.xx
+      to: to1@xxx.xx,to2@xxx.xx
+      cc: cc@xxx.xx
+      bcc: bcc@xxx.xx
+      debug: false
