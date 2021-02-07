@@ -35,6 +35,10 @@ redis:
 
 elasticjob:
   regCenter:
+    serverLists: localhost:6181
+    namespace: mall-job-application
+  tracing:
+    type: RDB
   jobs:
     jobErrorHandlerType: EMAIL
   props:
