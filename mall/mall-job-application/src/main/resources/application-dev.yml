@@ -1,0 +1,22 @@
+# Apollo配置
+app:
+  id: IDS
+
+apollo:
+  bootstrap:
+    enabled: true
+    namespaces: DEPT2.line-diagram
+  meta: http://10.0.
+
+
+#mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+#log
+logging:
+  config: classpath:logback-spring.xml
+
+
+
+
