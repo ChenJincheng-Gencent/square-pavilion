@@ -89,7 +89,7 @@ public class ScheduledTaskBeanProcessor implements ApplicationListener<Applicati
 
 
 
-        JobConfiguration jobConfiguration = JobConfiguration.newBuilder(taskName, shardingTotalCount).build();
+        JobConfiguration jobConfiguration = JobConfiguration.newBuilder(taskName, shardingTotalCount).cron(cron).build();
         return jobConfiguration;
     }
 
