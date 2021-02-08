@@ -10,7 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- *
+ * zk配置
+ * @author Gencent
+ * @date 2021/2/8
  */
 @Configuration
 @Getter
@@ -25,14 +27,12 @@ public class ZookeeperConfig {
 
     @Bean
     public ZookeeperConfiguration zkConfig() {
-        ZookeeperConfiguration configuration = new ZookeeperConfiguration(serverLists, nameSpace);
-        return configuration;
+        return new ZookeeperConfiguration(serverLists, nameSpace);
     }
 
 
     @Bean(initMethod = "init")
-    public ZookeeperRegistryCenter zookeeperRegistryCenter(ZookeeperConfiguration configuration) {
-        log.info("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+    public ZookeeperRegistryCenter zkRegistryCenter(ZookeeperConfiguration configuration) {
         return new ZookeeperRegistryCenter(configuration);
     }
 }

@@ -4,13 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.shardingsphere.elasticjob.infra.listener.ElasticJobListener;
 import org.apache.shardingsphere.elasticjob.infra.listener.ShardingContexts;
 
-/**
- *〈ScheduledTaskListener〉<br>
- *
- * @author number68
- * @date 2019/4/24
- * @since 0.1
- */
+
 @Slf4j
 public class SimpleJobListener implements ElasticJobListener {
 
