@@ -52,6 +52,7 @@ public class ScheduledTaskBeanProcessor implements ApplicationListener<Applicati
     private JobConfiguration createJobConfiguration(ElasticJob taskBean, Class<ElasticJob> taskClass) {
         ScheduledTask conf = taskClass.getAnnotation(ScheduledTask.class);
         String taskName = conf.name();
+        log.info("taskName: {}", taskName);
         String cron = getEnvironmentStringValue(taskName, TaskConstants.CRON, conf.cron());
         int shardingTotalCount =
                 getEnvironmentIntValue(taskName, TaskConstants.SHARDING_TOTAL_COUNT, conf.shardingTotalCount());
