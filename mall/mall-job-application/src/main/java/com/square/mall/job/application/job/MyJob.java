@@ -4,6 +4,7 @@ import com.square.mall.job.application.annotation.ScheduledTask;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shardingsphere.elasticjob.api.ShardingContext;
 import org.apache.shardingsphere.elasticjob.simple.job.SimpleJob;
+import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,7 +13,8 @@ import java.util.Date;
  *
  */
 @Slf4j
-@ScheduledTask(name = "MyJob", cron = "*/5 * * * * ?", shardingTotalCount = 2, overwrite = true)
+@Component
+@ScheduledTask(name = "MyJob", cron = "*/5 * * * * ?", shardingTotalCount = 1, overwrite = true)
 public class MyJob implements SimpleJob {
 
     @Override

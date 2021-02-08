@@ -39,9 +39,11 @@ public class ScheduledTaskBeanProcessor implements ApplicationListener<Applicati
         ConfigurableApplicationContext ctx = event.getApplicationContext();
         Map<String, Object> beanMap = ctx.getBeansWithAnnotation(ScheduledTask.class);
         try {
+
             for (Object confBean : beanMap.values()) {
+                log.info("aaaaaaaaaaaaaaaaaaaaaaaaaa");
                 new ScheduleJobBootstrap(zookeeperRegistryCenter, (ElasticJob)confBean,
-                    createJobConfiguration((Class<ElasticJob>)(confBean.getClass()))).schedule();
+                        createJobConfiguration((Class<ElasticJob>)(confBean.getClass()))).schedule();
             }
         } catch (Exception e) {
             log.error("Exception: ", e);

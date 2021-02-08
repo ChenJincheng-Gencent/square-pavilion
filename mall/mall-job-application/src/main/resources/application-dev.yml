@@ -50,7 +50,12 @@ elasticjob:
   tracing:
     type: RDB
   jobs:
-    jobErrorHandlerType: EMAIL
+    simpleJob:
+      elasticJobClass: com.square.mall.job.application.job.MyJob
+      cron: 0/1 * * * * ?
+      shardingTotalCount: 3
+      shardingItemParameters: 0=Beijing,1=Shanghai,2=Guangzhou
+      jobErrorHandlerType: EMAIL
   props:
     email:
       host: host
