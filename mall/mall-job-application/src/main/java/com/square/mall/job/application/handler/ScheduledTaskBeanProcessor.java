@@ -41,7 +41,7 @@ public class ScheduledTaskBeanProcessor implements ApplicationListener<Applicati
         try {
             for (Object confBean : beanMap.values()) {
                 new ScheduleJobBootstrap(zookeeperRegistryCenter, (ElasticJob)confBean,
-                    createJobConfiguration((ElasticJob)confBean, (Class<ElasticJob>)(confBean.getClass()))).schedule();
+                    createJobConfiguration((Class<ElasticJob>)(confBean.getClass()))).schedule();
             }
         } catch (Exception e) {
             log.error("Exception: ", e);
@@ -49,45 +49,32 @@ public class ScheduledTaskBeanProcessor implements ApplicationListener<Applicati
 
     }
 
-    private JobConfiguration createJobConfiguration(ElasticJob taskBean, Class<ElasticJob> taskClass) {
+    private JobConfiguration createJobConfiguration(Class<ElasticJob> taskClass) {
+
         ScheduledTask conf = taskClass.getAnnotation(ScheduledTask.class);
         String taskName = conf.name();
         log.info("taskName: {}", taskName);
         String cron = getEnvironmentStringValue(taskName, TaskConstants.CRON, conf.cron());
-        int shardingTotalCount =
-                getEnvironmentIntValue(taskName, TaskConstants.SHARDING_TOTAL_COUNT, conf.shardingTotalCount());
-        String shardingItemParameters =
-                getEnvironmentStringValue(taskName, TaskConstants.SHARDING_ITEM_PARAMETERS, conf.shardingItemParameters());
-
+        log.info("cron: {}", cron);
+        int shardingTotalCount = getEnvironmentIntValue(taskName, TaskConstants.SHARDING_TOTAL_COUNT, conf.shardingTotalCount());
+        String shardingItemParameters = getEnvironmentStringValue(taskName, TaskConstants.SHARDING_ITEM_PARAMETERS, conf.shardingItemParameters());
         String description = getEnvironmentStringValue(taskName, TaskConstants.DESCRIPTION, conf.description());
         String jobParameter = getEnvironmentStringValue(taskName, TaskConstants.JOB_PARAMETER, conf.jobParameter());
-        String jobExceptionHandler =
-                getEnvironmentStringValue(taskName, TaskConstants.JOB_EXCEPTION_HANDLER, conf.jobExceptionHandler());
-        String executorServiceHandler =
-                getEnvironmentStringValue(taskName, TaskConstants.EXECUTOR_SERVICE_HANDLER, conf.executorServiceHandler());
+        String jobExceptionHandler = getEnvironmentStringValue(taskName, TaskConstants.JOB_EXCEPTION_HANDLER, conf.jobExceptionHandler());
+        String executorServiceHandler = getEnvironmentStringValue(taskName, TaskConstants.EXECUTOR_SERVICE_HANDLER, conf.executorServiceHandler());
         String jobShardingStrategyClass = getEnvironmentStringValue(taskName, TaskConstants.JOB_SHARDING_STRATEGY_CLASS,
             conf.jobShardingStrategyClass());
         String eventTraceRdbDataSource = getEnvironmentStringValue(taskName, TaskConstants.EVENT_TRACE_RDB_DATA_SOURCE,
             conf.eventTraceRdbDataSource());
-
         boolean failover = getEnvironmentBooleanValue(taskName, TaskConstants.FAILOVER, conf.failover());
         boolean misfire = getEnvironmentBooleanValue(taskName, TaskConstants.MISFIRE, conf.misfire());
         boolean overwrite = getEnvironmentBooleanValue(taskName, TaskConstants.OVERWRITE, conf.overwrite());
         boolean disabled = getEnvironmentBooleanValue(taskName, TaskConstants.DISABLED, conf.disabled());
-
-        boolean monitorExecution =
-                getEnvironmentBooleanValue(taskName, TaskConstants.MONITOR_EXECUTION, conf.monitorExecution());
+        boolean monitorExecution = getEnvironmentBooleanValue(taskName, TaskConstants.MONITOR_EXECUTION, conf.monitorExecution());
         int monitorPort = getEnvironmentIntValue(taskName, TaskConstants.MONITOR_PORT, conf.monitorPort());
-
-        boolean streamingProcess =
-                getEnvironmentBooleanValue(taskName, TaskConstants.STREAMING_PROCESS, conf.streamingProcess());
-
-        int maxTimeDiffSeconds =
-                getEnvironmentIntValue(taskName, TaskConstants.MAX_TIME_DIFF_SECONDS, conf.maxTimeDiffSeconds());
-        int reconcileIntervalMinutes =
-                getEnvironmentIntValue(taskName, TaskConstants.RECONCILE_INTERVAL_MINUTES, conf.reconcileIntervalMinutes());
-
-
+        boolean streamingProcess = getEnvironmentBooleanValue(taskName, TaskConstants.STREAMING_PROCESS, conf.streamingProcess());
+        int maxTimeDiffSeconds = getEnvironmentIntValue(taskName, TaskConstants.MAX_TIME_DIFF_SECONDS, conf.maxTimeDiffSeconds());
+        int reconcileIntervalMinutes = getEnvironmentIntValue(taskName, TaskConstants.RECONCILE_INTERVAL_MINUTES, conf.reconcileIntervalMinutes());
 
         JobConfiguration jobConfiguration = JobConfiguration.newBuilder(taskName, shardingTotalCount).cron(cron).build();
         return jobConfiguration;
