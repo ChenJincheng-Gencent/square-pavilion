@@ -1,4 +1,4 @@
-package com.square.mall.share.application;
+package com.square.mall.job.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,6 +18,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class JobApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ShareApplication.class, args);
+        SpringApplication.run(JobApplication.class, args);
     }
 }

@@ -12,10 +12,10 @@ spring:
 mysql:
   job:
     dataSource:
-      url: jdbc:mysql://192.168.117.130:3306/sp_member?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      url: jdbc:mysql://192.168.117.130:3306/sp_job?useUnicode=true&characterEncoding=utf-8&useSSL=false
       userName: root
       password: cjc1573
-      driverClassName: com.mysql.jdbc.Driver
+      driverClassName: com.mysql.cj.jdbc.Driver
       validationQuery: select 1
       maxPoolSize: 30
 
@@ -45,7 +45,7 @@ redis:
 
 elasticjob:
   regCenter:
-    serverLists: localhost:6181
+    serverLists: 192.168.117.128:2181,192.168.117.129:2181,192.168.117.130:2181
     namespace: mall-job-application
   tracing:
     type: RDB
