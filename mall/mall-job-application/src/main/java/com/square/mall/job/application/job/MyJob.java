@@ -1,8 +1,18 @@
 package com.square.mall.job.application.job;
 
+import com.square.mall.job.application.annotation.ScheduledTask;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shardingsphere.elasticjob.api.ShardingContext;
 import org.apache.shardingsphere.elasticjob.simple.job.SimpleJob;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ *
+ */
+@Slf4j
+@ScheduledTask(name = "MyJob", cron = "*/5 * * * * ?", shardingTotalCount = 2, overwrite = true)
 public class MyJob implements SimpleJob {
 
     @Override
@@ -19,5 +29,8 @@ public class MyJob implements SimpleJob {
                 break;
             // case n: ...
         }
+        log.info(String.format("Item777777777777: %s | Time: %s | Thread: %s | %s",
+                context.getShardingItem(), new SimpleDateFormat("HH:mm:ss").format(new Date()), Thread
+                    .currentThread().getId(), "SIMPLE"));
     }
 }
