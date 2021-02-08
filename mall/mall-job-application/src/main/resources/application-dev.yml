@@ -44,7 +44,7 @@ redis:
       workModel: single
 
 elasticjob:
-  regCenter:
+  zookeeper:
     serverLists: 192.168.117.128:2181,192.168.117.129:2181,192.168.117.130:2181
     namespace: mall-job-application
   tracing:
