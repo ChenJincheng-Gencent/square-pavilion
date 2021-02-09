@@ -35,6 +35,11 @@ public enum ErrorCode {
     PARA_ILLEGAL(900001, "参数非法"),
 
     /**
+     * 重复请求
+     */
+    REPEAT_QUEST(900002, "系统正在为您处理上一次提交的内容，请稍候再提交"),
+
+    /**
      * 系统错误
      */
     SYSTEM_ERROR(999999,"系统错误");
