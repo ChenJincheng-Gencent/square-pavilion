@@ -22,7 +22,7 @@ import java.security.NoSuchAlgorithmException;
 @Slf4j
 public class AesUtil {
 
-    private static final String ALGORITHM = "AES";
+    private static final String Algorithm = "AES";
 
 	public static void main(String[] args) {
 		String cltk = "{\"addressDetail\":\"xx软件园\",\"area\":\"浑南新区\",\"city\":\"沈阳市\",\"consignee\":\"xx\",\"contact\":\"15940130000\",\"mobileNo\":\"15940130000\",\"monthlyId\":\"165223\",\"province\":\"辽宁省\"}";
@@ -158,7 +158,7 @@ public class AesUtil {
     }
 
     private static Key toKey(byte[] key) throws IllegalArgumentException {
-        return new SecretKeySpec(key, ALGORITHM);
+        return new SecretKeySpec(key, Algorithm);
     }
 
 }
