@@ -2,7 +2,8 @@ package com.square.mall.trade.application.aop;
 
 import com.alibaba.fastjson.JSON;
 import com.square.mall.cache.api.CacheService;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonRes;
+import com.square.mall.common.enums.ErrorCode;
 import com.square.mall.common.util.Md5Util;
 import com.square.mall.common.util.UserInfoUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -81,7 +82,7 @@ public class RepeatDataAop {
                 HttpServletRequest request = attributes.getRequest();
                 method = request.getMethod();
                 if (REQUEST_METHOD.contains(method) && repeatDataValidator(request, joinPoint)) {
-                    return new RspDto<>("-1", "系统正在为您处理上一次提交的内容，请稍候再提交。");
+                    return new CommonRes<>(ErrorCode.REPEAT_QUEST);
                 }
             }
         } catch (Exception e) {

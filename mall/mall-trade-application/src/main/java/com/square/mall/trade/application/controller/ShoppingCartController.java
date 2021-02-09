@@ -1,6 +1,6 @@
 package com.square.mall.trade.application.controller;
 
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.trade.application.service.ShoppingCartService;
 import com.square.mall.trade.center.api.dto.ShoppingCartDto;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +30,7 @@ public class ShoppingCartController {
      * @return 响应
      */
     @PostMapping("/addShoppingCart")
-    public RspDto addShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
+    public CommonRes<Void> addShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
         return shoppingCartService.addShoppingCart(shoppingCartDto);
     }
 
@@ -41,7 +41,7 @@ public class ShoppingCartController {
      * @return 响应
      */
     @PutMapping("/updateShoppingCart")
-    public RspDto updateShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
+    public CommonRes<Void> updateShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
 
         return shoppingCartService.updateShoppingCart(shoppingCartDto);
 
@@ -54,7 +54,7 @@ public class ShoppingCartController {
      * @return 购物车列表
      */
     @GetMapping("/getShoppingCartList")
-    public RspDto<List<ShoppingCartDto>> getShoppingCartList(@RequestParam("memberId") Long memberId) {
+    public CommonRes<List<ShoppingCartDto>> getShoppingCartList(@RequestParam("memberId") Long memberId) {
         return shoppingCartService.getShoppingCartList(memberId);
     }
 
@@ -66,7 +66,7 @@ public class ShoppingCartController {
      * @return 响应
      */
     @DeleteMapping("/deleteShoppingCart")
-    public RspDto<Void> deleteShoppingCart(@RequestParam("memberId") Long memberId, @RequestParam("itemId") Long itemId) {
+    public CommonRes<Void> deleteShoppingCart(@RequestParam("memberId") Long memberId, @RequestParam("itemId") Long itemId) {
         return shoppingCartService.deleteShoppingCart(memberId, itemId);
     }
 
@@ -78,7 +78,7 @@ public class ShoppingCartController {
      * @return 响应
      */
     @DeleteMapping("/batch")
-    public RspDto batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId, @RequestParam("itemIds") Long[] itemIds) {
+    public CommonRes batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId, @RequestParam("itemIds") Long[] itemIds) {
         return shoppingCartService.batchDeleteShoppingCartList(memberId, itemIds);
     }
 
@@ -89,7 +89,7 @@ public class ShoppingCartController {
      * @return 响应
      */
     @DeleteMapping("/all")
-    public RspDto deleteAllShoppingCartList(@RequestParam("memberId") Long memberId) {
+    public CommonRes deleteAllShoppingCartList(@RequestParam("memberId") Long memberId) {
         return shoppingCartService.deleteAllShoppingCartList(memberId);
     }
 
