@@ -1,5 +1,5 @@
 server:
-  port: 9324
+  port: 9400
 
 #log
 logging:
