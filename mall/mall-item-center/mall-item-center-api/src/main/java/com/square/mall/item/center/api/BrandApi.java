@@ -16,7 +16,7 @@ import java.util.List;
  * @date 2020/7/24
  */
 
-@FeignClient(name="mall-item-center")
+@FeignClient(contextId = "item-brand", name="mall-item-center")
 public interface BrandApi {
 
     /**
