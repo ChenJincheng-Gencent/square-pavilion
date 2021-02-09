@@ -1,6 +1,6 @@
 package com.square.mall.member.application.service;
 
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.member.center.api.dto.MemberDto;
 
 /**
@@ -17,7 +17,7 @@ public interface MemberService {
      * @param mobile 手机号
      * @return 会员信息
      */
-    RspDto<MemberDto> selectMemberByMobile(String mobile);
+    CommonRes<MemberDto> selectMemberByMobile(String mobile);
 
     /**
      * 插入会员信息
@@ -25,7 +25,7 @@ public interface MemberService {
      * @param memberDto 会员信息
      * @return 数据库ID
      */
-    RspDto<Long> insertMember(MemberDto memberDto);
+    CommonRes<Long> insertMember(MemberDto memberDto);
 
     /**
      * 根据手机号码更新会员信息
@@ -33,6 +33,6 @@ public interface MemberService {
      * @param memberDto 会员信息
      * @return 响应
      */
-    RspDto updateMemberByMobile(MemberDto memberDto);
+    CommonRes<Void> updateMemberByMobile(MemberDto memberDto);
 
 }

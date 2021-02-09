@@ -1,6 +1,6 @@
 package com.square.mall.member.application.service;
 
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.member.center.api.dto.AddressDto;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public interface AddressService {
      * @param memberId 会员ID
      * @return 收货地址列表
      */
-    RspDto<List<AddressDto>> selectAddressByMemberId(Long memberId);
+    CommonRes<List<AddressDto>> selectAddressByMemberId(Long memberId);
 
     /**
      * 插入收货地址
@@ -27,7 +27,7 @@ public interface AddressService {
      * @param addressDto 收货地址
      * @return 数据库ID
      */
-    RspDto<Long> insertAddress(AddressDto addressDto);
+    CommonRes<Long> insertAddress(AddressDto addressDto);
 
     /**
      * 根据ID更新会员信息
@@ -35,7 +35,7 @@ public interface AddressService {
      * @param addressDto 收货地址
      * @return 响应
      */
-    RspDto updateAddress(AddressDto addressDto);
+    CommonRes<Void> updateAddress(AddressDto addressDto);
 
     /**
      * 删除收货地址
@@ -43,5 +43,5 @@ public interface AddressService {
      * @param id 数据库ID
      * @return 响应
      */
-    RspDto deleteAddress(Long id);
+    CommonRes<Void> deleteAddress(Long id);
 }

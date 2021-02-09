@@ -2,7 +2,8 @@ package com.square.mall.member.application.aop;
 
 import com.alibaba.fastjson.JSON;
 import com.square.mall.cache.api.CacheService;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonRes;
+import com.square.mall.common.enums.ErrorCode;
 import com.square.mall.common.util.Md5Util;
 import com.square.mall.common.util.UserInfoUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -17,13 +18,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.beans.PropertyDescriptor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 重复表单验证
@@ -86,7 +82,7 @@ public class RepeatDataAop {
                 HttpServletRequest request = attributes.getRequest();
                 method = request.getMethod();
                 if (REQUEST_METHOD.contains(method) && repeatDataValidator(request, joinPoint)) {
-                    return new RspDto<>("-1", "系统正在为您处理上一次提交的内容，请稍候再提交。");
+                    return new CommonRes<>(ErrorCode.REPEAT_QUEST);
                 }
             }
         } catch (Exception e) {
@@ -102,6 +98,7 @@ public class RepeatDataAop {
         } finally {
             if (REQUEST_METHOD.contains(method)) {
                 cacheService.delCache(REPEAT_DATA_GROUP, CACHE_KEY.get());
+                CACHE_KEY.remove();
             }
         }
         return obj;

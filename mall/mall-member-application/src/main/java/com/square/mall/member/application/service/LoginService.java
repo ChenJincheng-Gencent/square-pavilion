@@ -1,6 +1,7 @@
 package com.square.mall.member.application.service;
 
-import com.square.mall.common.dto.RspDto;
+
+import com.square.mall.common.dto.CommonRes;
 
 /**
  * 登录Service
@@ -17,7 +18,7 @@ public interface LoginService {
      * @param authCode 验证码
      * @return token
      */
-    RspDto<String> login(String mobile, String authCode);
+    CommonRes<String> login(String mobile, String authCode);
 
     /**
      *  登出
@@ -25,7 +26,7 @@ public interface LoginService {
      * @param mobile 手机号
      * @return 响应
      */
-    RspDto loginOut(String mobile);
+    CommonRes<Void> loginOut(String mobile);
 
     /**
      * 生成短信验证码
@@ -33,6 +34,6 @@ public interface LoginService {
      * @param mobile 手机号
      * @return 响应
      */
-    RspDto generateAuthCode(String mobile);
+    CommonRes<Void> generateAuthCode(String mobile);
 
 }

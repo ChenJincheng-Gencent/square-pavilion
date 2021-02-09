@@ -1,11 +1,12 @@
 package com.square.mall.member.application.service.impl;
 
 import com.square.mall.cache.api.CacheService;
-import com.square.mall.common.dto.RspDto;
-import com.square.mall.common.util.ErrorCode;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.common.util.JwtUtil;
 import com.square.mall.common.util.SequenceUtil;
 import com.square.mall.common.util.SmsUtil;
+import com.square.mall.member.application.enums.MemberApplicationBizCode;
+import com.square.mall.member.application.exception.MemberApplicationBizException;
 import com.square.mall.member.application.service.LoginService;
 
 import com.square.mall.member.center.api.LoginApi;
@@ -37,12 +38,12 @@ public class LoginServiceImpl implements LoginService {
     private LoginApi loginApi;
 
     @Override
-    public RspDto<String> login(String mobile, String authCode) {
+    public CommonRes<String> login(String mobile, String authCode) {
 
         String rawAuthCode = cacheService.getCache("login:auth:" + mobile, String.class);
         if (!authCode.equals(rawAuthCode)) {
             log.error("验证码错误！authCode: {}, rawAuthCode: {}", authCode, rawAuthCode);
-            return new RspDto<>(ErrorCode.ME_APP_AUTH_CODE_ERROR);
+            throw new MemberApplicationBizException(MemberApplicationBizCode.AUTH_CODE_ERROR);
         }
 
         Long memberId;
@@ -63,23 +64,23 @@ public class LoginServiceImpl implements LoginService {
         loginDto.setMobile(mobile);
         loginDto.setToken(token);
         loginApi.insertLogin(loginDto);
-        return new RspDto<>(token);
+        return new CommonRes<>(token);
     }
 
     @Override
-    public RspDto loginOut(String mobile) {
+    public CommonRes<Void> loginOut(String mobile) {
         cacheService.delCache("login:auth:token:" + mobile);
-        return RspDto.SUCCESS;
+        return CommonRes.SUCCESS;
     }
 
     @Override
-    public RspDto generateAuthCode(String mobile) {
+    public CommonRes<Void> generateAuthCode(String mobile) {
 
         String authCode = SequenceUtil.getRandNum(6);
         String msg = "【四方阁平台】 "+ authCode +" (四方阁平台验证码，请完成验证)，如非本人操作，请忽略本短信。";
         SmsUtil.sendMessage(mobile, msg);
-        cacheService.setCache("login:auth:"+mobile, authCode,60);
-        return RspDto.SUCCESS;
+        cacheService.setCache("login:auth:" + mobile, authCode,60);
+        return CommonRes.SUCCESS;
     }
 
 }

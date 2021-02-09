@@ -1,9 +1,9 @@
 package com.square.mall.member.application.service.impl;
 
-import com.square.mall.common.dto.RspDto;
-import com.square.mall.common.util.member.MemberLevel;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.member.application.service.MemberService;
 import com.square.mall.member.center.api.dto.MemberDto;
+import com.square.mall.member.center.api.enums.MemberLevel;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -19,24 +19,24 @@ import org.springframework.stereotype.Service;
 public class MemberServiceMockImpl implements MemberService {
 
     @Override
-    public RspDto<MemberDto> selectMemberByMobile(String mobile) {
+    public CommonRes<MemberDto> selectMemberByMobile(String mobile) {
         MemberDto memberDto = new MemberDto();
         memberDto.setEmail("402634287@qq.com");
         memberDto.setGender(1);
         memberDto.setLevel(MemberLevel.STAR.getValue());
         memberDto.setMobile("150xxxxxxxx");
         memberDto.setName("Gencent");
-        return new RspDto<>(memberDto);
+        return new CommonRes<>(memberDto);
     }
 
     @Override
-    public RspDto<Long> insertMember(MemberDto memberDto) {
-        return new RspDto<>(0L);
+    public CommonRes<Long> insertMember(MemberDto memberDto) {
+        return new CommonRes<>(0L);
     }
 
     @Override
-    public RspDto updateMemberByMobile(MemberDto memberDto) {
-        return RspDto.SUCCESS;
+    public CommonRes<Void> updateMemberByMobile(MemberDto memberDto) {
+        return CommonRes.SUCCESS;
     }
 
 }

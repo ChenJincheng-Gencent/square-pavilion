@@ -1,6 +1,6 @@
 package com.square.mall.member.application.controller;
 
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.member.application.service.AddressService;
 import com.square.mall.member.application.vo.ModAddressVo;
 import com.square.mall.member.center.api.dto.AddressDto;
@@ -47,9 +47,9 @@ public class AddressController {
     @ApiOperation(value = "根据会员ID获取收货地址列表")
     @ApiImplicitParam(name = "memberId", value = "会员ID", paramType = "query", dataTypeClass = Long.class,
         required = true, example = "11")
-    public RspDto selectAddressByMemberId(@RequestParam("memberId") @NotNull(message = "会员ID不能为空") Long memberId) {
+    public CommonRes<List<AddressDto>> selectAddressByMemberId(@RequestParam("memberId") @NotNull(message = "会员ID不能为空") Long memberId) {
 
-        RspDto<List<AddressDto>> addressDtoList = addressService.selectAddressByMemberId(memberId);
+        CommonRes<List<AddressDto>> addressDtoList = addressService.selectAddressByMemberId(memberId);
         log.info("AddressDtoList: {}, memberId: {}", addressDtoList, memberId);
 
         return addressDtoList;
@@ -65,8 +65,8 @@ public class AddressController {
     @PostMapping("/address")
     @ResponseBody
     @ApiOperation(value = "插入收货地址")
-    public RspDto insertAddress(@RequestBody @Valid AddressDto addressDto) {
-        RspDto<Long> id = addressService.insertAddress(addressDto);
+    public CommonRes<Long> insertAddress(@RequestBody @Valid AddressDto addressDto) {
+        CommonRes<Long> id = addressService.insertAddress(addressDto);
         log.info("id: {}, addressDto: {}", id.getData(), addressDto);
         return id;
     }
@@ -80,7 +80,7 @@ public class AddressController {
     @PutMapping("/address")
     @ResponseBody
     @ApiOperation(value = "更新收货地址")
-    public RspDto updateAddress(@RequestBody @Valid ModAddressVo modAddressVo) {
+    public CommonRes<Void> updateAddress(@RequestBody @Valid ModAddressVo modAddressVo) {
         AddressDto addressDto = new AddressDto();
         BeanUtils.copyProperties(modAddressVo, addressDto);
         return addressService.updateAddress(addressDto);
@@ -95,7 +95,7 @@ public class AddressController {
     @DeleteMapping("/address")
     @ResponseBody
     @ApiOperation(value = "删除收货地址")
-    public RspDto deleteAddress(@RequestParam("id") @NotNull(message = "ID不能为空") Long id) {
+    public CommonRes<Void> deleteAddress(@RequestParam("id") @NotNull(message = "ID不能为空") Long id) {
         return addressService.deleteAddress(id);
     }
 

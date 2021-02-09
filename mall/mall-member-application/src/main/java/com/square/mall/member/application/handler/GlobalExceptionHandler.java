@@ -1,7 +1,7 @@
 package com.square.mall.member.application.handler;
 
-import com.square.mall.common.dto.RspDto;
-import com.square.mall.common.util.ErrorCode;
+import com.square.mall.common.dto.CommonRes;
+import com.square.mall.common.enums.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -57,7 +57,7 @@ public class GlobalExceptionHandler {
             ServletRequestBindingException.class,
             BindException.class})
     @ResponseBody
-    public RspDto handleValidationException(Exception e) {
+    public CommonRes<Void> handleValidationException(Exception e) {
         String logMsg = getErrorLogMsg(e);
         String msg;
         if (e instanceof MethodArgumentNotValidException) {
@@ -82,8 +82,7 @@ public class GlobalExceptionHandler {
             return handleUnknownException(e);
         }
         log.error("参数校验不通过, {}, msg: {}", logMsg, msg);
-        return new RspDto(ErrorCode.ME_APP_PARA_ILLEGAL.getCode(), ErrorCode.ME_APP_PARA_ILLEGAL.getMsg()
-            + ":" + msg);
+        return new CommonRes<>(ErrorCode.PARA_ILLEGAL.getCode(), ErrorCode.PARA_ILLEGAL.getMsg() + ":" + msg);
     }
 
 
@@ -92,11 +91,10 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public RspDto handleUnknownException(Exception e) {
+    public CommonRes<Void> handleUnknownException(Exception e) {
         String logMsg = getErrorLogMsg(e);
-        // 未知异常
         log.error("捕获到未经处理的未知异常, {}", logMsg, e);
-        return RspDto.FAILED;
+        return new CommonRes<>(ErrorCode.SYSTEM_ERROR);
     }
 
 
