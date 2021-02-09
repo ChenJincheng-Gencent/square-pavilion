@@ -20,7 +20,7 @@ public class BizException extends RuntimeException {
     /**
      * 错误码
      */
-    private String code;
+    private Integer code;
 
     /**
      * 错误描述
@@ -48,7 +48,7 @@ public class BizException extends RuntimeException {
         this.code = errorCode.getCode();
     }
 
-    public BizException(String code, String msg) {
+    public BizException(Integer code, String msg) {
         super(msg);
         this.msg = msg;
         this.code = code;

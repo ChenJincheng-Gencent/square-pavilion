@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * 通用返回DTO
+ * 通用返回体
  *
  * @author Gencent
  * @date 2019/8/26
@@ -19,25 +19,25 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(description = "通用返回消息体")
-public class RspDto<T> implements Serializable {
+public class CommonRes<T> implements Serializable {
 
     private static final long serialVersionUID = 5244335969680099007L;
 
     /**
      * 成功
      */
-    public static final RspDto<Void> SUCCESS = new RspDto<>(ErrorCode.SUCCESS);
+    public static final CommonRes<Void> SUCCESS = new CommonRes<>(ErrorCode.SUCCESS);
 
     /**
      * 失败
      */
-    public static final RspDto<Void> FAILURE = new RspDto<>(ErrorCode.FAILURE);
+    public static final CommonRes<Void> FAILURE = new CommonRes<>(ErrorCode.FAILURE);
 
     /**
      * 错误码
      */
     @ApiModelProperty(name = "code", value = "错误码", example = "0")
-    private String code;
+    private Integer code;
 
     /**
      * 错误描述
@@ -51,18 +51,18 @@ public class RspDto<T> implements Serializable {
     @ApiModelProperty(name = "data", value = "数据")
     private T data;
 
-    public RspDto(T data){
+    public CommonRes(T data){
         this.code = ErrorCode.SUCCESS.getCode();
         this.msg = ErrorCode.SUCCESS.getMsg();
         this.data = data;
     }
 
-    public RspDto(String code, String msg) {
+    public CommonRes(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
-    public RspDto(ErrorCode errorCode) {
+    public CommonRes(ErrorCode errorCode) {
         this.code = errorCode.getCode();
         this.msg = errorCode.getMsg();
     }

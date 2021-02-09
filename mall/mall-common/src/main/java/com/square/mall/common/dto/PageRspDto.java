@@ -39,7 +39,7 @@ public class PageRspDto<T> implements Serializable {
      * 错误码
      */
     @ApiModelProperty(name = "code", value = "错误码")
-    private String code;
+    private Integer code;
 
     /**
      * 错误描述
