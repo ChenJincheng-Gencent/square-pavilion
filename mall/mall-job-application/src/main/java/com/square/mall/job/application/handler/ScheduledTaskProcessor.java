@@ -15,6 +15,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.Map;
 
@@ -29,10 +30,10 @@ import java.util.Map;
 @Order(1)
 public class ScheduledTaskProcessor implements ApplicationListener<ApplicationStartedEvent> {
 
-    @Autowired
+    @Resource
     private ZookeeperRegistryCenter zkRegistryCenter;
 
-    @Autowired
+    @Resource
     private DataSource jobDataSource;
 
 
