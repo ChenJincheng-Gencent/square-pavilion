@@ -57,10 +57,24 @@ public class ScheduledTaskProcessor implements ApplicationListener<ApplicationSt
 
         JobConfiguration jobConfig = JobConfiguration.newBuilder(taskName, shardingTotalCount).cron(cron)
             .jobErrorHandlerType("EMAIL").build();
-        //setEmailProperties(jobConfig);
+        //设置邮件的配置
+        setEmailProperties(jobConfig);
         return jobConfig;
     }
 
+    /**
+     * 设置邮件的配置
+     *
+     * @param jobConfig 任务配置
+     */
+    private static void setEmailProperties(final JobConfiguration jobConfig) {
 
+        jobConfig.getProps().setProperty(EmailPropertiesConstants.HOST, "host");
+        jobConfig.getProps().setProperty(EmailPropertiesConstants.PORT, "465");
+        jobConfig.getProps().setProperty(EmailPropertiesConstants.USERNAME, "username");
+        jobConfig.getProps().setProperty(EmailPropertiesConstants.PASSWORD, "password");
+        jobConfig.getProps().setProperty(EmailPropertiesConstants.FROM, "from@xxx.xx");
+        jobConfig.getProps().setProperty(EmailPropertiesConstants.TO, "to1@xxx.xx,to1@xxx.xx");
+    }
 
 }
