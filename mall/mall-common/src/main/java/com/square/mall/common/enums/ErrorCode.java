@@ -24,6 +24,15 @@ public enum ErrorCode {
      */
     FAILURE(-1, "请求处理失败"),
 
+    /**
+     * 参数为空
+     */
+    PARA_IS_NULL(900000, "参数为空"),
+
+    /**
+     * 参数非法
+     */
+    PARA_ILLEGAL(900001, "参数非法"),
 
     /**
      * 系统错误
