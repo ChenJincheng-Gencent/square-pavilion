@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Gencent
  * @date 2020/7/24
  */
-
 @SpringBootApplication
-@EnableDubbo
+@EnableDiscoveryClient
+@EnableFeignClients(basePackages = {"com.square.mall"})
 public class ItemApplication {
 
     public static void main(String[] args) {
