@@ -1,6 +1,6 @@
 package com.square.mall.member.center.api;
 
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.member.center.api.dto.AddressDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +23,7 @@ public interface AddressApi {
      * @return 数据库ID
      */
     @PostMapping("/address")
-    RspDto<Long> insertAddress(@RequestBody AddressDto addressDto);
+    CommonRes<Long> insertAddress(@RequestBody AddressDto addressDto);
 
     /**
      * 根据ID更新会员信息
@@ -32,7 +32,7 @@ public interface AddressApi {
      * @return 响应
      */
     @PutMapping("/address")
-    RspDto updateAddress(@RequestBody AddressDto addressDto);
+    CommonRes<Void> updateAddress(@RequestBody AddressDto addressDto);
 
     /**
      * 删除地址
@@ -41,7 +41,7 @@ public interface AddressApi {
      * @return 响应
      */
     @DeleteMapping("/address")
-    RspDto deleteAddress(@RequestParam("id") Long id);
+    CommonRes<Void> deleteAddress(@RequestParam("id") Long id);
 
     /**
      * 根据会员ID查询收货地址列表
@@ -50,6 +50,6 @@ public interface AddressApi {
      * @return 收货地址列表
      */
     @GetMapping("/address/list")
-    RspDto<List<AddressDto>> selectAddressByMemberId(@RequestParam("memberId") Long memberId);
+    CommonRes<List<AddressDto>> selectAddressByMemberId(@RequestParam("memberId") Long memberId);
 
 }

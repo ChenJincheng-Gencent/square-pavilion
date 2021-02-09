@@ -1,6 +1,5 @@
 package com.square.mall.member.center.service.service.impl;
 
-import com.square.mall.common.util.DatabaseOptConstant;
 import com.square.mall.common.util.StringUtil;
 import com.square.mall.member.center.api.dto.MemberDto;
 import com.square.mall.member.center.service.dao.MemberDao;
@@ -50,13 +49,13 @@ public class MemberServiceImpl implements MemberService {
 
         if (null == memberDto || StringUtil.isBlank(memberDto.getMobile())) {
             log.error("memberDto or mobile is null or blank.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
 
         MemberEo oldMemberEo = memberDao.selectMemberByMobile(memberDto.getMobile());
         if (null != oldMemberEo) {
             log.error("oldMemberEo already exist. mobile: {}", memberDto.getMobile());
-            return DatabaseOptConstant.DATABASE_DATA_ALREADY_EXIST;
+            return 0;
         }
         MemberEo memberEo = new MemberEo();
         BeanUtils.copyProperties(memberDto, memberEo);
@@ -71,13 +70,13 @@ public class MemberServiceImpl implements MemberService {
 
         if (null == memberDto || StringUtil.isBlank(memberDto.getMobile())) {
             log.error("memberDto or mobile is null or blank.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
 
         MemberEo oldMemberEo = memberDao.selectMemberByMobile(memberDto.getMobile());
         if (null == oldMemberEo) {
             log.error("oldMemberEo is null. mobile: {}", memberDto.getMobile());
-            return DatabaseOptConstant.DATABASE_DATA_NOT_EXIST;
+            return 0;
         }
         MemberEo memberEo = new MemberEo();
         BeanUtils.copyProperties(memberDto, memberEo);

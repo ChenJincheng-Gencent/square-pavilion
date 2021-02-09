@@ -1,8 +1,6 @@
 package com.square.mall.member.center.service.controller;
 
-import com.square.mall.common.dto.RspDto;
-import com.square.mall.common.util.DatabaseUtil;
-import com.square.mall.common.util.ModuleConstant;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.common.util.StringUtil;
 import com.square.mall.member.center.api.dto.MemberDto;
 import com.square.mall.member.center.service.service.MemberService;
@@ -32,9 +30,9 @@ public class MemberController {
      * @return 数据库ID
      */
     @PostMapping("")
-    public RspDto<Long> insertMember(@RequestBody MemberDto memberDto) {
+    public CommonRes<Long> insertMember(@RequestBody MemberDto memberDto) {
         int success = memberService.insertMember(memberDto);
-        return DatabaseUtil.getResult(success, memberDto.getId(), ModuleConstant.MEMBER_CENTER);
+        return new CommonRes<>(memberDto.getId());
     }
 
     /**
@@ -44,9 +42,9 @@ public class MemberController {
      * @return 响应
      */
     @PutMapping("")
-    public RspDto updateMemberByMobile(@RequestBody MemberDto memberDto) {
+    public CommonRes<Void> updateMemberByMobile(@RequestBody MemberDto memberDto) {
         int success = memberService.updateMemberByMobile(memberDto);
-        return DatabaseUtil.getResult(success, ModuleConstant.MEMBER_CENTER);
+        return CommonRes.SUCCESS;
     }
 
     /**
@@ -56,14 +54,14 @@ public class MemberController {
      * @return 会员信息
      */
     @GetMapping("")
-    public RspDto<MemberDto> selectMemberByMobile(@RequestParam("mobile") String mobile) {
+    public CommonRes<MemberDto> selectMemberByMobile(@RequestParam("mobile") String mobile) {
 
         if (StringUtil.isBlank(mobile)) {
             log.error("mobile is blank.");
             return null;
         }
 
-        return new RspDto<>(memberService.selectMemberByMobile(mobile));
+        return new CommonRes<>(memberService.selectMemberByMobile(mobile));
     }
 
 }

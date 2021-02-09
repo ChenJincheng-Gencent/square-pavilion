@@ -1,6 +1,6 @@
 package com.square.mall.member.center.service.controller;
 
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.member.center.api.dto.LoginDto;
 import com.square.mall.member.center.service.service.LoginService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +30,7 @@ public class LoginController {
      * @return token
      */
     @PostMapping("")
-    public RspDto<Long> insertLogin(@RequestBody LoginDto loginDto) {
-        return new RspDto<>(loginService.insertLogin(loginDto));
+    public CommonRes<Long> insertLogin(@RequestBody LoginDto loginDto) {
+        return new CommonRes<>(loginService.insertLogin(loginDto));
     }
 }

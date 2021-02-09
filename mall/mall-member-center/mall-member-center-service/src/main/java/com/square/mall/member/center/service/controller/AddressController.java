@@ -1,8 +1,6 @@
 package com.square.mall.member.center.service.controller;
 
-import com.square.mall.common.dto.RspDto;
-import com.square.mall.common.util.DatabaseUtil;
-import com.square.mall.common.util.ModuleConstant;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.member.center.api.dto.AddressDto;
 import com.square.mall.member.center.service.service.AddressService;
 import org.springframework.web.bind.annotation.*;
@@ -30,9 +28,9 @@ public class AddressController {
      * @return 数据库ID
      */
     @PostMapping("")
-    public RspDto<Long> insertAddress(@RequestBody AddressDto addressDto) {
+    public CommonRes<Long> insertAddress(@RequestBody AddressDto addressDto) {
         int success = addressService.insertAddress(addressDto);
-        return DatabaseUtil.getResult(success, addressDto.getId(), ModuleConstant.MEMBER_CENTER);
+        return new CommonRes<>(addressDto.getId());
     }
 
     /**
@@ -42,9 +40,9 @@ public class AddressController {
      * @return 响应
      */
     @PutMapping("")
-    public RspDto updateAddress(@RequestBody AddressDto addressDto) {
+    public CommonRes<Void> updateAddress(@RequestBody AddressDto addressDto) {
         int success = addressService.updateAddress(addressDto);
-        return DatabaseUtil.getResult(success, ModuleConstant.MEMBER_CENTER);
+        return CommonRes.SUCCESS;
     }
 
     /**
@@ -54,9 +52,9 @@ public class AddressController {
      * @return 响应
      */
     @DeleteMapping("")
-    public RspDto deleteAddress(@RequestParam("id") Long id) {
+    public CommonRes<Void> deleteAddress(@RequestParam("id") Long id) {
         int success = addressService.deleteAddress(id);
-        return DatabaseUtil.getResult(success, ModuleConstant.MEMBER_CENTER);
+        return CommonRes.SUCCESS;
     }
 
     /**
@@ -66,7 +64,7 @@ public class AddressController {
      * @return 收货地址列表
      */
     @GetMapping("/list")
-    public RspDto<List<AddressDto>> selectAddressByMemberId(@RequestParam("memberId") Long memberId) {
-        return new RspDto<>(addressService.selectAddressByMemberId(memberId));
+    public CommonRes<List<AddressDto>> selectAddressByMemberId(@RequestParam("memberId") Long memberId) {
+        return new CommonRes<>(addressService.selectAddressByMemberId(memberId));
     }
 }
