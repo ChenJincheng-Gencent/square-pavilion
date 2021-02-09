@@ -7,6 +7,7 @@ import org.apache.shardingsphere.elasticjob.api.JobConfiguration;
 import org.apache.shardingsphere.elasticjob.error.handler.email.EmailPropertiesConstants;
 import org.apache.shardingsphere.elasticjob.lite.api.bootstrap.impl.ScheduleJobBootstrap;
 import org.apache.shardingsphere.elasticjob.reg.zookeeper.ZookeeperRegistryCenter;
+import org.apache.shardingsphere.elasticjob.tracing.api.TracingConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
@@ -14,6 +15,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 
+import javax.sql.DataSource;
 import java.util.Map;
 
 /**
@@ -26,6 +28,9 @@ public class ScheduledTaskProcessor implements ApplicationListener<ApplicationSt
 
     @Autowired
     private ZookeeperRegistryCenter zkRegistryCenter;
+
+    @Autowired
+    private DataSource jobDataSource;
 
 
     @Override
@@ -55,8 +60,12 @@ public class ScheduledTaskProcessor implements ApplicationListener<ApplicationSt
         log.info("cron: {}", cron);
         int shardingTotalCount = conf.shardingTotalCount();
 
+        // 定义日志数据库事件溯源配置
+        TracingConfiguration<DataSource> tracingConfig = new TracingConfiguration<>("RDB", jobDataSource);
+
         JobConfiguration jobConfig = JobConfiguration.newBuilder(taskName, shardingTotalCount).cron(cron)
             .jobErrorHandlerType("EMAIL").build();
+        jobConfig.getExtraConfigurations().add(tracingConfig);
         //设置邮件的配置
         setEmailProperties(jobConfig);
         return jobConfig;
