@@ -14,7 +14,7 @@ import java.util.List;
  * @author Gencent
  * @date 2020/7/24
  */
-@FeignClient(name="mall-item-center")
+@FeignClient(contextId = "item-item", name="mall-item-center")
 public interface ItemApi {
 
     /**
