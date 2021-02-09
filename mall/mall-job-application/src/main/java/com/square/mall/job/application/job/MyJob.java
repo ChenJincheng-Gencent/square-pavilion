@@ -1,13 +1,12 @@
 package com.square.mall.job.application.job;
 
 import com.square.mall.common.dto.RspDto;
+import com.square.mall.item.center.api.BrandApi;
 import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.job.application.annotation.ScheduledTask;
-import com.square.mall.job.application.api.item.BrandApi;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shardingsphere.elasticjob.api.ShardingContext;
 import org.apache.shardingsphere.elasticjob.simple.job.SimpleJob;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -19,7 +18,6 @@ import java.util.List;
  * @date 2021/2/8
  */
 @Slf4j
-@Component
 @ScheduledTask(name = "MyJob", cron = "*/5 * * * * ?", shardingTotalCount = 2, overwrite = true)
 public class MyJob implements SimpleJob {
 
