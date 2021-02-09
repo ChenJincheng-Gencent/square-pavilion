@@ -1,6 +1,6 @@
 package com.square.mall.trade.center.api;
 
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.trade.center.api.dto.ShoppingCartDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +23,7 @@ public interface ShoppingCartApi {
      * @return 响应
      */
     @PostMapping("/shopping/cart")
-    RspDto<Void> addShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto);
+    CommonRes<Void> addShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto);
 
     /**
      * 更新购物车
@@ -32,7 +32,7 @@ public interface ShoppingCartApi {
      * @return 响应
      */
     @PutMapping("/shopping/cart")
-    RspDto<Void> updateShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto);
+    CommonRes<Void> updateShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto);
 
     /**
      * 根据会员ID查询购物车列表
@@ -41,7 +41,7 @@ public interface ShoppingCartApi {
      * @return 购物车列表
      */
     @GetMapping("/shopping/cart/list/member-id")
-    RspDto<List<ShoppingCartDto>> getShoppingCartList(@RequestParam("memberId") Long memberId);
+    CommonRes<List<ShoppingCartDto>> getShoppingCartList(@RequestParam("memberId") Long memberId);
 
     /**
      * 根据会员ID和商品ID删除购物车
@@ -51,7 +51,7 @@ public interface ShoppingCartApi {
      * @return 响应
      */
     @DeleteMapping("/shopping/cart")
-    RspDto<Void> deleteShoppingCart(@RequestParam("memberId") Long memberId, @RequestParam("itemId") Long itemId);
+    CommonRes<Void> deleteShoppingCart(@RequestParam("memberId") Long memberId, @RequestParam("itemId") Long itemId);
 
     /**
      * 根据会员ID和商品ID列表批量删除购物车
@@ -61,7 +61,7 @@ public interface ShoppingCartApi {
      * @return 响应
      */
     @DeleteMapping("/shopping/cart/batch")
-    RspDto<Void> batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId, @RequestParam("itemIds") Long[] itemIds);
+    CommonRes<Void> batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId, @RequestParam("itemIds") Long[] itemIds);
 
     /**
      * 根据会员ID和商品ID列表批量删除购物车
@@ -70,7 +70,7 @@ public interface ShoppingCartApi {
      * @return 响应
      */
     @DeleteMapping("/shopping/cart/all")
-    RspDto<Void> deleteAllShoppingCartList(@RequestParam("memberId") Long memberId);
+    CommonRes<Void> deleteAllShoppingCartList(@RequestParam("memberId") Long memberId);
 
 
 }

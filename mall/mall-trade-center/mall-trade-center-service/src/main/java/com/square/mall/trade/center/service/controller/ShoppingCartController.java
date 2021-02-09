@@ -1,6 +1,7 @@
 package com.square.mall.trade.center.service.controller;
 
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonRes;
+import com.square.mall.common.enums.ErrorCode;
 import com.square.mall.trade.center.api.ShoppingCartApi;
 import com.square.mall.trade.center.api.dto.ShoppingCartDto;
 import com.square.mall.trade.center.service.service.ShoppingCartService;
@@ -32,10 +33,10 @@ public class ShoppingCartController implements ShoppingCartApi {
      */
     @PostMapping("")
     @Override
-    public RspDto<Void> addShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
+    public CommonRes<Void> addShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
 
         if (null == shoppingCartDto || null == shoppingCartDto.getItemId() || null == shoppingCartDto.getMemberId()) {
-            return RspDto.FAILURE;
+            return new CommonRes<>(ErrorCode.PARA_IS_NULL);
         }
         Integer itemNum = shoppingCartService.selectItemNumByMemberAndItemId(shoppingCartDto.getMemberId(), shoppingCartDto
             .getItemId());
@@ -45,7 +46,7 @@ public class ShoppingCartController implements ShoppingCartApi {
         }else {
             shoppingCartService.insertShoppingCart(shoppingCartDto);
         }
-        return RspDto.SUCCESS;
+        return CommonRes.SUCCESS;
     }
 
     /**
@@ -56,16 +57,16 @@ public class ShoppingCartController implements ShoppingCartApi {
      */
     @PutMapping("")
     @Override
-    public RspDto<Void> updateShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
+    public CommonRes<Void> updateShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
         ShoppingCartDto oldShoppingCartDto = shoppingCartService.selectShoppingCart(shoppingCartDto.getMemberId(), shoppingCartDto
             .getItemId());
         if (null == oldShoppingCartDto) {
             log.error("oldShoppingCartDto is null. memberId: {}, itemId: {}", shoppingCartDto.getMemberId(), shoppingCartDto
                 .getItemId());
-            return RspDto.FAILURE;
+            return CommonRes.FAILURE;
         }
         shoppingCartService.updateShoppingCart(shoppingCartDto);
-        return RspDto.SUCCESS;
+        return CommonRes.SUCCESS;
     }
 
     /**
@@ -76,10 +77,10 @@ public class ShoppingCartController implements ShoppingCartApi {
      */
     @GetMapping("/list/member-id")
     @Override
-    public RspDto<List<ShoppingCartDto>> getShoppingCartList(@RequestParam("memberId") Long memberId) {
+    public CommonRes<List<ShoppingCartDto>> getShoppingCartList(@RequestParam("memberId") Long memberId) {
 
         List<ShoppingCartDto> shoppingCartDtoList = shoppingCartService.selectShoppingCartList(memberId);
-        return new RspDto<>(shoppingCartDtoList);
+        return new CommonRes<>(shoppingCartDtoList);
     }
 
     /**
@@ -91,9 +92,9 @@ public class ShoppingCartController implements ShoppingCartApi {
      */
     @DeleteMapping("")
     @Override
-    public RspDto<Void> deleteShoppingCart(@RequestParam("memberId") Long memberId, @RequestParam("itemId") Long itemId) {
+    public CommonRes<Void> deleteShoppingCart(@RequestParam("memberId") Long memberId, @RequestParam("itemId") Long itemId) {
         shoppingCartService.deleteShoppingCart(memberId, itemId);
-        return RspDto.SUCCESS;
+        return CommonRes.SUCCESS;
     }
 
     /**
@@ -105,9 +106,9 @@ public class ShoppingCartController implements ShoppingCartApi {
      */
     @DeleteMapping("/batch")
     @Override
-    public RspDto<Void> batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId, @RequestParam("itemIds") Long[] itemIds) {
+    public CommonRes<Void> batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId, @RequestParam("itemIds") Long[] itemIds) {
         shoppingCartService.batchDeleteShoppingCartList(memberId, itemIds);
-        return RspDto.SUCCESS;
+        return CommonRes.SUCCESS;
     }
 
     /**
@@ -118,9 +119,9 @@ public class ShoppingCartController implements ShoppingCartApi {
      */
     @DeleteMapping("/all")
     @Override
-    public RspDto<Void> deleteAllShoppingCartList(@RequestParam("memberId") Long memberId) {
+    public CommonRes<Void> deleteAllShoppingCartList(@RequestParam("memberId") Long memberId) {
         shoppingCartService.deleteAllShoppingCartList(memberId);
-        return RspDto.SUCCESS;
+        return CommonRes.SUCCESS;
     }
 
 

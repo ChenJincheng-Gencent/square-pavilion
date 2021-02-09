@@ -1,6 +1,6 @@
 package com.square.mall.trade.center.api;
 
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.trade.center.api.dto.PaymentDto;
 import org.springframework.cloud.openfeign.FeignClient;
 
@@ -19,6 +19,6 @@ public interface PayApi {
      * @param paymentDto 支付信息
      * @return 响应
      */
-    RspDto afterPayNotify(PaymentDto paymentDto);
+    CommonRes afterPayNotify(PaymentDto paymentDto);
 
 }
