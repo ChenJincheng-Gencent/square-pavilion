@@ -1,5 +1,5 @@
 server:
-  port: 9321
+  port: 9600
 
 #log
 logging:
@@ -47,20 +47,3 @@ elasticjob:
   zookeeper:
     serverLists: 192.168.117.128:2181,192.168.117.129:2181,192.168.117.130:2181
     namespace: mall-job-application
-  tracing:
-    type: RDB
-  jobs:
-    jobErrorHandlerType: EMAIL
-  props:
-    email:
-      host: host
-      port: 465
-      username: username
-      password: password
-      useSsl: true
-      subject: ElasticJob error message
-      from: from@xxx.xx
-      to: to1@xxx.xx,to2@xxx.xx
-      cc: cc@xxx.xx
-      bcc: bcc@xxx.xx
-      debug: false
