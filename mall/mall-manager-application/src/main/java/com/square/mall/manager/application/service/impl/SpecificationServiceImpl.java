@@ -2,9 +2,9 @@ package com.square.mall.manager.application.service.impl;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
+import com.square.mall.item.center.api.SpecificationApi;
 import com.square.mall.item.center.api.dto.SpecificationDto;
 import com.square.mall.item.center.api.dto.SpecificationGroupDto;
-import com.square.mall.manager.application.api.item.SpecificationApi;
 import com.square.mall.manager.application.service.SpecificationService;
 import org.springframework.stereotype.Service;
 

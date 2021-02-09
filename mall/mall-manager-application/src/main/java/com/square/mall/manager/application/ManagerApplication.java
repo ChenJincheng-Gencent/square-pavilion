@@ -11,10 +11,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author Gencent
  * @date 2020/7/24
  */
-
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients(basePackages = {"com.square.mall"})
 public class ManagerApplication {
 
     public static void main(String[] args) {

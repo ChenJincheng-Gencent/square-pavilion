@@ -29,7 +29,7 @@ public interface SpecificationService {
      * @param specificationGroupDto 规格组合
      * @return 响应
      */
-    RspDto updateSpecificationGroup(SpecificationGroupDto specificationGroupDto);
+    RspDto<Void> updateSpecificationGroup(SpecificationGroupDto specificationGroupDto);
 
     /**
      * 删除规格组合
@@ -37,7 +37,7 @@ public interface SpecificationService {
      * @param ids 规格ID数组
      * @return 响应
      */
-    RspDto batchDeleteSpecificationGroup(Long[] ids);
+    RspDto<Void> batchDeleteSpecificationGroup(Long[] ids);
 
     /**
      * 条件查询规格

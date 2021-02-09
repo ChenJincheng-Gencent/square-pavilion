@@ -2,9 +2,9 @@ package com.square.mall.manager.application.service.impl;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
+import com.square.mall.item.center.api.TemplateApi;
 import com.square.mall.item.center.api.dto.TemplateDto;
 import com.square.mall.item.center.api.dto.TemplateGroupDto;
-import com.square.mall.manager.application.api.item.TemplateApi;
 import com.square.mall.manager.application.service.TemplateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

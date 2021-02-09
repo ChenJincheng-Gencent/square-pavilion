@@ -44,7 +44,7 @@ public interface CategoryService {
      * @param categoryDto 分类
      * @return 响应
      */
-    RspDto updateCategory(CategoryDto categoryDto);
+    RspDto<Void> updateCategory(CategoryDto categoryDto);
 
     /**
      * 分页条件查询分类列表
@@ -62,6 +62,6 @@ public interface CategoryService {
      * @param ids ID数组
      * @return 响应
      */
-    RspDto batchDeleteCategory(Long[] ids);
+    RspDto<Void> batchDeleteCategory(Long[] ids);
 
 }

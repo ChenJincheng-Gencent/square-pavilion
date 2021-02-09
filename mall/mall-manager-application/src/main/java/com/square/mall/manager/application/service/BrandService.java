@@ -28,7 +28,7 @@ public interface BrandService {
      * @param brandDto 品牌
      * @return 响应
      */
-    RspDto updateBrand(BrandDto brandDto);
+    RspDto<Void> updateBrand(BrandDto brandDto);
 
     /**
      * 删除品牌

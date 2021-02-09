@@ -133,7 +133,7 @@ public class BrandController {
 
         List<BrandDto> brandDtoList = brandService.selectBrandAll().getData();
         if (ListUtil.isBlank(brandDtoList)) {
-            return RspDto.SUCCESS;
+            return new RspDto<>(null);
         }
         List<Select2Vo> select2VoList = new ArrayList<>();
         brandDtoList.forEach( x -> {

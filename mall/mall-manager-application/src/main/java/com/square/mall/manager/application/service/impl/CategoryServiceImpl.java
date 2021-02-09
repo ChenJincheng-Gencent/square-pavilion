@@ -3,9 +3,9 @@ package com.square.mall.manager.application.service.impl;
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
 
+import com.square.mall.item.center.api.CategoryApi;
 import com.square.mall.item.center.api.dto.CategoryDto;
 
-import com.square.mall.manager.application.api.item.CategoryApi;
 import com.square.mall.manager.application.service.CategoryService;
 import org.springframework.stereotype.Service;
 
