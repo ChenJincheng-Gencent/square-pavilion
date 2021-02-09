@@ -29,7 +29,7 @@ public class ShoppingCartController {
      * @param shoppingCartDto 购物车
      * @return 响应
      */
-    @PostMapping("")
+    @PostMapping("/addShoppingCart")
     public RspDto addShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
         return shoppingCartService.addShoppingCart(shoppingCartDto);
     }
@@ -40,7 +40,7 @@ public class ShoppingCartController {
      * @param shoppingCartDto 购物车
      * @return 响应
      */
-    @PutMapping("")
+    @PutMapping("/updateShoppingCart")
     public RspDto updateShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
 
         return shoppingCartService.updateShoppingCart(shoppingCartDto);
@@ -53,7 +53,7 @@ public class ShoppingCartController {
      * @param memberId 会员ID
      * @return 购物车列表
      */
-    @GetMapping("/list/member-id")
+    @GetMapping("/getShoppingCartList")
     public RspDto<List<ShoppingCartDto>> getShoppingCartList(@RequestParam("memberId") Long memberId) {
         return shoppingCartService.getShoppingCartList(memberId);
     }
@@ -65,8 +65,8 @@ public class ShoppingCartController {
      * @param itemId 商品ID
      * @return 响应
      */
-    @DeleteMapping("")
-    public RspDto deleteShoppingCart(@RequestParam("memberId") Long memberId, @RequestParam("itemId") Long itemId) {
+    @DeleteMapping("/deleteShoppingCart")
+    public RspDto<Void> deleteShoppingCart(@RequestParam("memberId") Long memberId, @RequestParam("itemId") Long itemId) {
         return shoppingCartService.deleteShoppingCart(memberId, itemId);
     }
 
