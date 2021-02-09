@@ -1,9 +1,9 @@
 package com.square.mall.member.application.service.impl;
 
 import com.square.mall.common.dto.RspDto;
-import com.square.mall.member.application.api.AddressApi;
 import com.square.mall.member.application.service.AddressService;
 
+import com.square.mall.member.center.api.AddressApi;
 import com.square.mall.member.center.api.dto.AddressDto;
 import org.springframework.stereotype.Service;
 

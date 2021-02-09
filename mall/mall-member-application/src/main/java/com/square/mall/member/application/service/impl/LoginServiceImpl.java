@@ -6,10 +6,10 @@ import com.square.mall.common.util.ErrorCode;
 import com.square.mall.common.util.JwtUtil;
 import com.square.mall.common.util.SequenceUtil;
 import com.square.mall.common.util.SmsUtil;
-import com.square.mall.member.application.api.LoginApi;
-import com.square.mall.member.application.api.MemberApi;
 import com.square.mall.member.application.service.LoginService;
 
+import com.square.mall.member.center.api.LoginApi;
+import com.square.mall.member.center.api.MemberApi;
 import com.square.mall.member.center.api.dto.LoginDto;
 import com.square.mall.member.center.api.dto.MemberDto;
 import lombok.extern.slf4j.Slf4j;
