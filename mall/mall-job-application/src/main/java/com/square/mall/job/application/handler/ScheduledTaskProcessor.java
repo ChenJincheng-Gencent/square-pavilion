@@ -20,6 +20,9 @@ import java.util.Map;
 
 /**
  * 定时任务处理器
+ *
+ * @author Gencent
+ * @date 2021/2/9
  */
 @Configuration
 @Slf4j
@@ -51,6 +54,12 @@ public class ScheduledTaskProcessor implements ApplicationListener<ApplicationSt
 
     }
 
+    /**
+     * 创建任务配置
+     *
+     * @param taskClass 任务class
+     * @return 任务配置
+     */
     private JobConfiguration createJobConfiguration(Class<ElasticJob> taskClass) {
 
         ScheduledTask conf = taskClass.getAnnotation(ScheduledTask.class);

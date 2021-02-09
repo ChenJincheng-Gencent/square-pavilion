@@ -141,8 +141,4 @@ public @interface ScheduledTask {
      */
     String jobExceptionHandler() default "ScheduledTaskExceptionHandler";
 
-    /**
-     * 自定义业务处理线程池
-     */
-    String executorServiceHandler() default "com.dangdang.ddframe.job.executor.handler.impl.DefaultExecutorServiceHandler";
 }
