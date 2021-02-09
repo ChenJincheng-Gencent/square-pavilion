@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * 通用分页返回DTO
+ * 通用分页返回体
  *
  * @author Gencent
  * @date 2020/7/24
@@ -19,19 +19,19 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(description = "通用分页返回消息体")
-public class PageRspDto<T> implements Serializable {
+public class CommonPageRes<T> implements Serializable {
 
     private static final long serialVersionUID = -8255510440938304460L;
 
     /**
      * 成功
      */
-    public static final PageRspDto<Void> SUCCESS = new PageRspDto<>(ErrorCode.SUCCESS);
+    public static final CommonPageRes<Void> SUCCESS = new CommonPageRes<>(ErrorCode.SUCCESS);
 
     /**
      * 失败
      */
-    public static final PageRspDto<Void> FAILURE = new PageRspDto<>(ErrorCode.FAILURE);
+    public static final CommonPageRes<Void> FAILURE = new CommonPageRes<>(ErrorCode.FAILURE);
 
 
 
@@ -59,14 +59,14 @@ public class PageRspDto<T> implements Serializable {
     @ApiModelProperty(name = "data", value = "数据")
     private T data;
 
-    public PageRspDto(Long total, T data) {
+    public CommonPageRes(Long total, T data) {
         this.code = ErrorCode.SUCCESS.getCode();
         this.msg = ErrorCode.SUCCESS.getMsg();
         this.total = total;
         this.data = data;
     }
 
-    public PageRspDto(ErrorCode errorCode) {
+    public CommonPageRes(ErrorCode errorCode) {
         this.code = errorCode.getCode();
         this.msg = errorCode.getMsg();
     }
