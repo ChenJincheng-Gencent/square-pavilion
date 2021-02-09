@@ -1,6 +1,6 @@
 package com.square.mall.job.application.job;
 
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.BrandApi;
 import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.job.application.annotation.ScheduledTask;
@@ -28,7 +28,7 @@ public class MyJob implements SimpleJob {
     public void execute(ShardingContext context) {
 
         log.info("MyJob 定时任务执行开始");
-        RspDto<List<BrandDto>> brandRspDto = brandApi.selectBrandAll();
+        CommonRes<List<BrandDto>> brandRspDto = brandApi.selectBrandAll();
         log.info("brandDtoList: {}", brandRspDto.getData());
         log.info("MyJob 定时任务执行结束");
 
