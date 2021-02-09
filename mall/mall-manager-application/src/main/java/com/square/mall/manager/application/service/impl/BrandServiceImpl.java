@@ -1,7 +1,7 @@
 package com.square.mall.manager.application.service.impl;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.BrandApi;
 import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.manager.application.service.BrandService;
@@ -23,37 +23,37 @@ public class BrandServiceImpl implements BrandService {
     private BrandApi brandApi;
 
     @Override
-    public RspDto<Long> insertBrand(BrandDto brandDto) {
+    public CommonRes<Long> insertBrand(BrandDto brandDto) {
         return brandApi.insertBrand(brandDto);
     }
 
     @Override
-    public RspDto updateBrand(BrandDto brandDto) {
+    public CommonRes<Void> updateBrand(BrandDto brandDto) {
         return brandApi.updateBrand(brandDto);
     }
 
     @Override
-    public RspDto batchDeleteBrand(Long[] ids) {
+    public CommonRes<Void> batchDeleteBrand(Long[] ids) {
         return brandApi.batchDeleteBrand(ids);
     }
 
     @Override
-    public RspDto<List<BrandDto>> selectBrandByCondition(BrandDto brandDto) {
+    public CommonRes<List<BrandDto>> selectBrandByCondition(BrandDto brandDto) {
         return brandApi.selectBrandByCondition(brandDto);
     }
 
     @Override
-    public PageRspDto<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageNum, Integer pageSize) {
+    public CommonPageRes<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageNum, Integer pageSize) {
         return brandApi.selectPageBrandByCondition(brandDto, pageNum, pageSize);
     }
 
     @Override
-    public RspDto<BrandDto> selectBrandById(Long id) {
+    public CommonRes<BrandDto> selectBrandById(Long id) {
         return brandApi.selectBrandById(id);
     }
 
     @Override
-    public RspDto<List<BrandDto>> selectBrandAll() {
+    public CommonRes<List<BrandDto>> selectBrandAll() {
         return brandApi.selectBrandAll();
     }
 }

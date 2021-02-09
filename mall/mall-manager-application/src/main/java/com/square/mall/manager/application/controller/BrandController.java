@@ -1,7 +1,7 @@
 package com.square.mall.manager.application.controller;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.manager.application.service.BrandService;
@@ -50,10 +50,10 @@ public class BrandController {
     @PostMapping("/brand/list/page/condition")
     @ResponseBody
     @ApiOperation(value = "分页条件查询品牌列表")
-    public PageRspDto<List<BrandDto>> selectPageBrandByCondition(@RequestBody BrandDto brandDto,
-        @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize)  {
+    public CommonPageRes<List<BrandDto>> selectPageBrandByCondition(@RequestBody BrandDto brandDto,
+                                                                    @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize)  {
 
-        PageRspDto<List<BrandDto>> brandDtoList = brandService.selectPageBrandByCondition(brandDto, pageNum, pageSize);
+        CommonPageRes<List<BrandDto>> brandDtoList = brandService.selectPageBrandByCondition(brandDto, pageNum, pageSize);
         log.info("brandDtoList: {}, brandDto: {}, pageNum: {}, pageSize: {}", brandDtoList, brandDto, pageNum, pageSize);
 
         return brandDtoList;
@@ -69,8 +69,8 @@ public class BrandController {
     @PostMapping("/brand")
     @ResponseBody
     @ApiOperation(value = "插入品牌")
-    public RspDto insertBrand(@RequestBody @Valid BrandDto brandDto) {
-        RspDto<Long> id = brandService.insertBrand(brandDto);
+    public CommonRes insertBrand(@RequestBody @Valid BrandDto brandDto) {
+        CommonRes<Long> id = brandService.insertBrand(brandDto);
         log.info("id: {}, brandDto: {}", id.getData(), brandDto);
         return id;
     }
@@ -84,7 +84,7 @@ public class BrandController {
     @PutMapping("/brand")
     @ResponseBody
     @ApiOperation(value = "更新品牌")
-    public RspDto updateBrand(@RequestBody @Valid ModBrandVo modBrandVo) {
+    public CommonRes updateBrand(@RequestBody @Valid ModBrandVo modBrandVo) {
         BrandDto brandDto = new BrandDto();
         BeanUtils.copyProperties(modBrandVo, brandDto);
         return brandService.updateBrand(brandDto);
@@ -99,7 +99,7 @@ public class BrandController {
     @DeleteMapping("/brand/batch")
     @ResponseBody
     @ApiOperation(value = "批量删除品牌")
-    public RspDto deleteBrand(Long[] ids) {
+    public CommonRes deleteBrand(Long[] ids) {
         return brandService.batchDeleteBrand(ids);
     }
 
@@ -112,9 +112,9 @@ public class BrandController {
     @GetMapping("/brand")
     @ResponseBody
     @ApiOperation(value = "根据ID查询品牌")
-    public RspDto<BrandDto> selectBrandById(@RequestParam("id") @NotNull(message = "ID不能为空") Long id)  {
+    public CommonRes<BrandDto> selectBrandById(@RequestParam("id") @NotNull(message = "ID不能为空") Long id)  {
 
-        RspDto<BrandDto> brandDto = brandService.selectBrandById(id);
+        CommonRes<BrandDto> brandDto = brandService.selectBrandById(id);
         log.info("brandDto: {}, id: {}", brandDto, id);
 
         return brandDto;
@@ -129,11 +129,11 @@ public class BrandController {
     @GetMapping("/brand/all")
     @ResponseBody
     @ApiOperation(value = "查询所有品牌列表")
-    public RspDto<List<Select2Vo>> selectBrandAll()  {
+    public CommonRes<List<Select2Vo>> selectBrandAll()  {
 
         List<BrandDto> brandDtoList = brandService.selectBrandAll().getData();
         if (ListUtil.isBlank(brandDtoList)) {
-            return new RspDto<>(null);
+            return new CommonRes<>(null);
         }
         List<Select2Vo> select2VoList = new ArrayList<>();
         brandDtoList.forEach( x -> {
@@ -143,7 +143,7 @@ public class BrandController {
             select2VoList.add(select2Vo);
         });
 
-        return new RspDto<>(select2VoList);
+        return new CommonRes<>(select2VoList);
 
     }
 

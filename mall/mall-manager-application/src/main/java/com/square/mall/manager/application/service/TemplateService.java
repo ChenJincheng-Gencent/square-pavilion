@@ -1,8 +1,7 @@
 package com.square.mall.manager.application.service;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
-import com.square.mall.item.center.api.dto.SpecificationGroupDto;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.dto.TemplateDto;
 import com.square.mall.item.center.api.dto.TemplateGroupDto;
 
@@ -22,7 +21,7 @@ public interface TemplateService {
      * @param templateGroupDto 模板组合
      * @return 数据库ID
      */
-    RspDto<Long> insertTemplateGroup(TemplateGroupDto templateGroupDto);
+    CommonRes<Long> insertTemplateGroup(TemplateGroupDto templateGroupDto);
 
     /**
      * 根据模板ID查询模板组合
@@ -30,7 +29,7 @@ public interface TemplateService {
      * @param templateId 模板ID
      * @return 模板组合
      */
-    RspDto<TemplateGroupDto> selectTemplateGroupByTemplateId(Long templateId);
+    CommonRes<TemplateGroupDto> selectTemplateGroupByTemplateId(Long templateId);
 
     /**
      * 分页条件查询模板组合列表
@@ -40,8 +39,8 @@ public interface TemplateService {
      * @param pageSize 分页大小
      * @return 模板组合列表
      */
-    PageRspDto<List<TemplateGroupDto>> selectPageTemplateGroupByCondition(TemplateDto templateDto, Integer pageNum,
-        Integer pageSize);
+    CommonPageRes<List<TemplateGroupDto>> selectPageTemplateGroupByCondition(TemplateDto templateDto, Integer pageNum,
+                                                                             Integer pageSize);
 
     /**
      * 更新模板组合
@@ -49,7 +48,7 @@ public interface TemplateService {
      * @param templateGroupDto 模板组合
      * @return 响应
      */
-    RspDto updateTemplateGroup(TemplateGroupDto templateGroupDto);
+    CommonRes<Void> updateTemplateGroup(TemplateGroupDto templateGroupDto);
 
     /**
      * 批量删除模板组合
@@ -57,7 +56,7 @@ public interface TemplateService {
      * @param ids 模板ID数组
      * @return 响应
      */
-    RspDto batchDeleteTemplateGroup(Long[] ids);
+    CommonRes<Void> batchDeleteTemplateGroup(Long[] ids);
 
 
 }

@@ -1,7 +1,7 @@
 package com.square.mall.manager.application.service;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.dto.CategoryDto;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public interface CategoryService {
      * @param parentId 上级ID
      * @return 分类列表
      */
-    RspDto<List<CategoryDto>> selectCategoryByParentId(Long parentId);
+    CommonRes<List<CategoryDto>> selectCategoryByParentId(Long parentId);
 
     /**
      * 根据ID查询分类
@@ -28,7 +28,7 @@ public interface CategoryService {
      * @param id ID
      * @return 分类
      */
-    RspDto<CategoryDto> selectCategoryById(Long id);
+    CommonRes<CategoryDto> selectCategoryById(Long id);
 
     /**
      * 插入分类
@@ -36,7 +36,7 @@ public interface CategoryService {
      * @param categoryDto 分类
      * @return 数据库ID
      */
-    RspDto<Long> insertCategory(CategoryDto categoryDto);
+    CommonRes<Long> insertCategory(CategoryDto categoryDto);
 
     /**
      * 更新分类
@@ -44,7 +44,7 @@ public interface CategoryService {
      * @param categoryDto 分类
      * @return 响应
      */
-    RspDto<Void> updateCategory(CategoryDto categoryDto);
+    CommonRes<Void> updateCategory(CategoryDto categoryDto);
 
     /**
      * 分页条件查询分类列表
@@ -54,7 +54,7 @@ public interface CategoryService {
      * @param pageSize 分页大小
      * @return 分类列表
      */
-    PageRspDto<List<CategoryDto>> selectPageCategoryByCondition(CategoryDto categoryDto, Integer pageNum, Integer pageSize);
+    CommonPageRes<List<CategoryDto>> selectPageCategoryByCondition(CategoryDto categoryDto, Integer pageNum, Integer pageSize);
 
     /**
      * 删除分类列表
@@ -62,6 +62,6 @@ public interface CategoryService {
      * @param ids ID数组
      * @return 响应
      */
-    RspDto<Void> batchDeleteCategory(Long[] ids);
+    CommonRes<Void> batchDeleteCategory(Long[] ids);
 
 }

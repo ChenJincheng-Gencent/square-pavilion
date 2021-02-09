@@ -1,7 +1,7 @@
 package com.square.mall.manager.application.controller;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.SpecificationDto;
 import com.square.mall.item.center.api.dto.SpecificationGroupDto;
@@ -49,10 +49,10 @@ public class SpecificationController {
     @PostMapping("/specification/list/page/condition")
     @ResponseBody
     @ApiOperation(value = "分页条件查询规格列表")
-    public PageRspDto<List<SpecificationDto>> selectPageSpecificationByCondition(@RequestBody SpecificationDto specificationDto,
-        @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize)  {
+    public CommonPageRes<List<SpecificationDto>> selectPageSpecificationByCondition(@RequestBody SpecificationDto specificationDto,
+                                                                                    @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize)  {
 
-        PageRspDto<List<SpecificationDto>> specificationDtoList = specificationService.selectPageSpecificationByCondition(specificationDto, pageNum, pageSize);
+        CommonPageRes<List<SpecificationDto>> specificationDtoList = specificationService.selectPageSpecificationByCondition(specificationDto, pageNum, pageSize);
         log.info("specificationDtoList: {}, specificationDto: {}, pageNum: {}, pageSize: {}", specificationDtoList, specificationDto, pageNum, pageSize);
 
         return specificationDtoList;
@@ -68,8 +68,8 @@ public class SpecificationController {
     @PostMapping("/specification/group")
     @ResponseBody
     @ApiOperation(value = "插入规格组合")
-    public RspDto insertSpecificationGroup(@RequestBody @Valid SpecificationGroupDto specificationGroupDto) {
-        RspDto<Long> id = specificationService.insertSpecificationGroup(specificationGroupDto);
+    public CommonRes<Long> insertSpecificationGroup(@RequestBody @Valid SpecificationGroupDto specificationGroupDto) {
+        CommonRes<Long> id = specificationService.insertSpecificationGroup(specificationGroupDto);
         log.info("id: {}, specificationGroupDto: {}", id.getData(), specificationGroupDto);
         return id;
     }
@@ -83,7 +83,7 @@ public class SpecificationController {
     @PutMapping("/specification/group")
     @ResponseBody
     @ApiOperation(value = "更新规格组合")
-    public RspDto updateSpecification(@RequestBody @Valid SpecificationGroupDto specificationGroupDto) {
+    public CommonRes<Void> updateSpecification(@RequestBody @Valid SpecificationGroupDto specificationGroupDto) {
 
         return specificationService.updateSpecificationGroup(specificationGroupDto);
     }
@@ -97,7 +97,7 @@ public class SpecificationController {
     @DeleteMapping("/specification/group/batch")
     @ResponseBody
     @ApiOperation(value = "批量删除规格组合")
-    public RspDto deleteSpecificationGroup(Long[] ids) {
+    public CommonRes<Void> deleteSpecificationGroup(Long[] ids) {
         return specificationService.batchDeleteSpecificationGroup(ids);
     }
 
@@ -110,10 +110,10 @@ public class SpecificationController {
     @GetMapping("/specification/group")
     @ResponseBody
     @ApiOperation(value = "根据规格ID查询规格组合")
-    public RspDto<SpecificationGroupDto> selectSpecificationGroupBySpecId(@RequestParam("specId")
+    public CommonRes<SpecificationGroupDto> selectSpecificationGroupBySpecId(@RequestParam("specId")
         @NotNull(message = "规格ID不能为空") Long specId)  {
 
-        RspDto<SpecificationGroupDto> specificationGroupDto = specificationService.selectSpecificationGroupBySpecId(specId);
+        CommonRes<SpecificationGroupDto> specificationGroupDto = specificationService.selectSpecificationGroupBySpecId(specId);
         log.info("specificationGroupDto: {}, specId: {}", specificationGroupDto, specId);
 
         return specificationGroupDto;
@@ -128,11 +128,11 @@ public class SpecificationController {
     @GetMapping("/specification/all")
     @ResponseBody
     @ApiOperation(value = "查询所有规格列表")
-    public RspDto<List<Select2Vo>> selectSpecificationAll()  {
+    public CommonRes<List<Select2Vo>> selectSpecificationAll()  {
 
         List<SpecificationDto> specificationDtoList = specificationService.selectSpecificationAll().getData();
         if (ListUtil.isBlank(specificationDtoList)) {
-            return RspDto.SUCCESS;
+            return new CommonRes<>(null);
         }
         List<Select2Vo> select2VoList = new ArrayList<>();
         specificationDtoList.forEach( x -> {
@@ -142,7 +142,7 @@ public class SpecificationController {
             select2VoList.add(select2Vo);
         });
 
-        return new RspDto<>(select2VoList);
+        return new CommonRes<>(select2VoList);
 
     }
 

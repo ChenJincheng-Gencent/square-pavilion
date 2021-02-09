@@ -1,7 +1,7 @@
 package com.square.mall.manager.application.controller;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.api.dto.SpecificationDto;
@@ -52,10 +52,10 @@ public class TemplateController {
     @PostMapping("/template/group/list/page/condition")
     @ResponseBody
     @ApiOperation(value = "分页条件查询模板组合列表")
-    public PageRspDto<List<TemplateGroupVo>> selectPageSpecificationByCondition(@RequestBody TemplateDto templateDto,
-        @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize)  {
+    public CommonPageRes<List<TemplateGroupVo>> selectPageSpecificationByCondition(@RequestBody TemplateDto templateDto,
+                                                                                   @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize)  {
 
-        PageRspDto<List<TemplateGroupDto>> listPageRspDto = templateService.selectPageTemplateGroupByCondition(templateDto,
+        CommonPageRes<List<TemplateGroupDto>> listPageRspDto = templateService.selectPageTemplateGroupByCondition(templateDto,
             pageNum, pageSize);
         log.info("listPageRspDto: {}, templateDto: {}, pageNum: {}, pageSize: {}", listPageRspDto, templateDto,
             pageNum, pageSize);
@@ -95,7 +95,7 @@ public class TemplateController {
             });
         }
 
-        return new PageRspDto<>(listPageRspDto.getTotal(), templateGroupVoList);
+        return new CommonPageRes<>(listPageRspDto.getTotal(), templateGroupVoList);
 
     }
 
@@ -108,7 +108,7 @@ public class TemplateController {
     @GetMapping("/template/group")
     @ResponseBody
     @ApiOperation(value = "根据模板ID查询模板组合")
-    public RspDto<TemplateGroupVo> selectSpecificationGroupBySpecId(@RequestParam("templateId")
+    public CommonRes<TemplateGroupVo> selectSpecificationGroupBySpecId(@RequestParam("templateId")
         @NotNull(message = "模板ID不能为空") Long templateId)  {
 
         TemplateGroupDto templateGroupDto = templateService.selectTemplateGroupByTemplateId(templateId).getData();
@@ -140,7 +140,7 @@ public class TemplateController {
         templateGroupVo.setSpecificationDtoList(select2VoList1);
         templateGroupVo.setExtraAttributesDtoList(templateGroupDto.getExtraAttributesDtoList());
 
-        return new RspDto<>(templateGroupVo);
+        return new CommonRes<>(templateGroupVo);
 
     }
 
@@ -153,7 +153,7 @@ public class TemplateController {
     @PostMapping("/template/group")
     @ResponseBody
     @ApiOperation(value = "插入模板组合")
-    public RspDto insertTemplateGroup(@RequestBody @Valid TemplateGroupVo templateGroupVo) {
+    public CommonRes<Long> insertTemplateGroup(@RequestBody @Valid TemplateGroupVo templateGroupVo) {
         TemplateGroupDto templateGroupDto = new TemplateGroupDto();
         templateGroupDto.setTemplateDto(templateGroupVo.getTemplateDto());
         List<BrandDto> brandDtoList = new ArrayList<>();
@@ -175,7 +175,7 @@ public class TemplateController {
         }
         templateGroupDto.setSpecificationDtoList(specificationDtoList);
         templateGroupDto.setExtraAttributesDtoList(templateGroupVo.getExtraAttributesDtoList());
-        RspDto<Long> id = templateService.insertTemplateGroup(templateGroupDto);
+        CommonRes<Long> id = templateService.insertTemplateGroup(templateGroupDto);
         log.info("id: {}, templateDto: {}", id.getData(), templateGroupDto);
         return id;
     }
@@ -189,7 +189,7 @@ public class TemplateController {
     @PutMapping("/template/group")
     @ResponseBody
     @ApiOperation(value = "更新模板组合")
-    public RspDto updateTemplateGroup(@RequestBody @Valid TemplateGroupVo templateGroupVo) {
+    public CommonRes<Void> updateTemplateGroup(@RequestBody @Valid TemplateGroupVo templateGroupVo) {
 
         TemplateGroupDto templateGroupDto = new TemplateGroupDto();
         templateGroupDto.setTemplateDto(templateGroupVo.getTemplateDto());
@@ -225,7 +225,7 @@ public class TemplateController {
     @DeleteMapping("/template/group/batch")
     @ResponseBody
     @ApiOperation(value = "批量删除模板组合")
-    public RspDto deleteTemplateGroup(Long[] ids) {
+    public CommonRes<Void> deleteTemplateGroup(Long[] ids) {
         return templateService.batchDeleteTemplateGroup(ids);
     }
 

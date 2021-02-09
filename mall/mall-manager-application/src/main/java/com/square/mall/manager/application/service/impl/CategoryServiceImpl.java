@@ -1,7 +1,7 @@
 package com.square.mall.manager.application.service.impl;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
 
 import com.square.mall.item.center.api.CategoryApi;
 import com.square.mall.item.center.api.dto.CategoryDto;
@@ -25,32 +25,32 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryApi categoryApi;
 
     @Override
-    public RspDto<List<CategoryDto>> selectCategoryByParentId(Long parentId) {
+    public CommonRes<List<CategoryDto>> selectCategoryByParentId(Long parentId) {
         return categoryApi.selectCategoryByParentId(parentId);
     }
 
     @Override
-    public RspDto<CategoryDto> selectCategoryById(Long id) {
+    public CommonRes<CategoryDto> selectCategoryById(Long id) {
         return categoryApi.selectCategoryById(id);
     }
 
     @Override
-    public RspDto<Long> insertCategory(CategoryDto categoryDto) {
+    public CommonRes<Long> insertCategory(CategoryDto categoryDto) {
         return categoryApi.insertCategory(categoryDto);
     }
 
     @Override
-    public RspDto updateCategory(CategoryDto categoryDto) {
+    public CommonRes<Void> updateCategory(CategoryDto categoryDto) {
         return categoryApi.updateCategory(categoryDto);
     }
 
     @Override
-    public PageRspDto<List<CategoryDto>> selectPageCategoryByCondition(CategoryDto categoryDto, Integer pageNum, Integer pageSize) {
+    public CommonPageRes<List<CategoryDto>> selectPageCategoryByCondition(CategoryDto categoryDto, Integer pageNum, Integer pageSize) {
         return categoryApi.selectPageCategoryByCondition(categoryDto, pageNum, pageSize);
     }
 
     @Override
-    public RspDto batchDeleteCategory(Long[] ids) {
+    public CommonRes<Void> batchDeleteCategory(Long[] ids) {
         return categoryApi.batchDeleteCategory(ids);
     }
 

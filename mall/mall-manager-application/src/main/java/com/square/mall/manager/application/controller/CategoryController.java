@@ -1,7 +1,7 @@
 package com.square.mall.manager.application.controller;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.dto.CategoryDto;
 import com.square.mall.manager.application.service.CategoryService;
 import io.swagger.annotations.Api;
@@ -43,9 +43,9 @@ public class CategoryController {
     @GetMapping("/category/list")
     @ResponseBody
     @ApiOperation(value = "根据上级ID查询分类列表")
-    public RspDto<List<CategoryDto>> selectCategoryByParentId(@RequestParam("parentId") @NotNull(message = "上级ID不能为空") Long parentId)  {
+    public CommonRes<List<CategoryDto>> selectCategoryByParentId(@RequestParam("parentId") @NotNull(message = "上级ID不能为空") Long parentId)  {
 
-        RspDto<List<CategoryDto>> categoryDtoList = categoryService.selectCategoryByParentId(parentId);
+        CommonRes<List<CategoryDto>> categoryDtoList = categoryService.selectCategoryByParentId(parentId);
         log.info("categoryDtoList: {}, parentId: {}", categoryDtoList, parentId);
 
         return categoryDtoList;
@@ -61,9 +61,9 @@ public class CategoryController {
     @GetMapping("/category")
     @ResponseBody
     @ApiOperation(value = "根据ID查询分类")
-    public RspDto<CategoryDto> selectCategoryById(@RequestParam("id") @NotNull(message = "ID不能为空") Long id)  {
+    public CommonRes<CategoryDto> selectCategoryById(@RequestParam("id") @NotNull(message = "ID不能为空") Long id)  {
 
-        RspDto<CategoryDto> categoryDto = categoryService.selectCategoryById(id);
+        CommonRes<CategoryDto> categoryDto = categoryService.selectCategoryById(id);
         log.info("categoryDto: {}, id: {}", categoryDto, id);
 
         return categoryDto;
@@ -79,8 +79,8 @@ public class CategoryController {
     @PostMapping("/category")
     @ResponseBody
     @ApiOperation(value = "插入分类")
-    public RspDto insertCategory(@RequestBody @Valid CategoryDto categoryDto) {
-        RspDto<Long> id = categoryService.insertCategory(categoryDto);
+    public CommonRes<Long> insertCategory(@RequestBody @Valid CategoryDto categoryDto) {
+        CommonRes<Long> id = categoryService.insertCategory(categoryDto);
         log.info("id: {}, categoryDto: {}", id.getData(), categoryDto);
         return id;
     }
@@ -94,7 +94,7 @@ public class CategoryController {
     @PutMapping("/category")
     @ResponseBody
     @ApiOperation(value = "更新分类")
-    public RspDto updateCategory(@RequestBody @Valid CategoryDto categoryDto) {
+    public CommonRes<Void> updateCategory(@RequestBody @Valid CategoryDto categoryDto) {
 
         return categoryService.updateCategory(categoryDto);
     }
@@ -110,10 +110,10 @@ public class CategoryController {
     @PostMapping("/category/list/page/condition")
     @ResponseBody
     @ApiOperation(value = "分页条件查询品牌列表")
-    public PageRspDto<List<CategoryDto>> selectPageCategoryByCondition(@RequestBody CategoryDto categoryDto,
-        @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize)  {
+    public CommonPageRes<List<CategoryDto>> selectPageCategoryByCondition(@RequestBody CategoryDto categoryDto,
+                                                                          @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize)  {
 
-        PageRspDto<List<CategoryDto>> categoryDtoList = categoryService.selectPageCategoryByCondition(categoryDto, pageNum, pageSize);
+        CommonPageRes<List<CategoryDto>> categoryDtoList = categoryService.selectPageCategoryByCondition(categoryDto, pageNum, pageSize);
         log.info("categoryDtoList: {}, categoryDto: {}, pageNum: {}, pageSize: {}", categoryDtoList, categoryDto, pageNum, pageSize);
 
         return categoryDtoList;
@@ -129,7 +129,7 @@ public class CategoryController {
     @DeleteMapping("/category/batch")
     @ResponseBody
     @ApiOperation(value = "批量删除分类列表")
-    public RspDto deleteCategory(Long[] ids) {
+    public CommonRes<Void> deleteCategory(Long[] ids) {
         log.info("ids: {}", ids);
         return categoryService.batchDeleteCategory(ids);
     }
