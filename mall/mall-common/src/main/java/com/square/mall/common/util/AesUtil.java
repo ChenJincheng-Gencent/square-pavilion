@@ -22,15 +22,15 @@ import java.security.NoSuchAlgorithmException;
 @Slf4j
 public class AesUtil {
 
-    private static final String Algorithm = "AES";
+    private static final String ALGORITHM = "AES";
 
 	public static void main(String[] args) {
-		String cltk = "{\"addressDetail\":\"东软软件园\",\"area\":\"浑南新区\",\"city\":\"沈阳市\",\"consignee\":\"刘航\",\"contact\":\"15940132259\",\"mobileNo\":\"15940132259\",\"monthlyId\":\"165223\",\"province\":\"辽宁省\"}";
-		String key = "jkQWpwub6S3zwZvr";
+		String cltk = "{\"addressDetail\":\"xx软件园\",\"area\":\"浑南新区\",\"city\":\"沈阳市\",\"consignee\":\"xx\",\"contact\":\"15940130000\",\"mobileNo\":\"15940130000\",\"monthlyId\":\"165223\",\"province\":\"辽宁省\"}";
+		String key = "jkkHpwub6S3z32vr";
 		String encrypt = encrypt(cltk, key);
-		System.out.println("加密后：" + encrypt.length() + " " + encrypt);
+		log.info("加密后：" + encrypt.length() + " " + encrypt);
 		String decryptToken = decryptToken(encrypt, key);
-		System.out.println("解密后：" + decryptToken);
+		log.info("解密后：" + decryptToken);
 	}
 
     /**
@@ -82,17 +82,17 @@ public class AesUtil {
      */
     public static String decryptToken(String str, String password) {
 
-        log.info("decryptToken---------解密-----------密文：{}，秘钥：{}", str, password);
+        log.info("解密密文：{}，秘钥：{}", str, password);
 
         // 长token解密得到明文token
         String realToken = "";
         try {
-            realToken = decryptECB(str, password);
+            realToken = decryptEcb(str, password);
         } catch (Exception e) {
             log.error("decrypt password failed, ", e);
         }
 
-        log.info("decryptToken---------解密-----------明文：{}", realToken);
+        log.info("解密明文：{}", realToken);
 
         return realToken;
     }
@@ -102,21 +102,21 @@ public class AesUtil {
      */
     public static String decryptExcludeSpecialChars(String str, String password) {
 
-        log.info("decryptToken---------解密-----------密文：{}，秘钥：{}", str, password);
+        log.info("解密密文：{}，秘钥：{}", str, password);
 
         String decryptStr = "";
         try {
-            decryptStr = decryptECBExcludeSpecialChars(str, password);
+            decryptStr = decryptEcbExcludeSpecialChars(str, password);
         } catch (Exception e) {
             log.error("decrypt password failed, ", e);
         }
 
-        log.info("decryptStr---------解密-----------明文：{}", decryptStr);
+        log.info("解密明文：{}", decryptStr);
 
         return decryptStr;
     }
 
-    private static String decryptECB(String data, String key) throws Exception {
+    private static String decryptEcb(String data, String key) throws Exception {
         if (StringUtil.isBlank(key) || key.length() < 16) {
             return null;
         }
@@ -134,7 +134,7 @@ public class AesUtil {
         return new String(result);
     }
 
-    private static String decryptECBExcludeSpecialChars(String data, String key) throws Exception {
+    private static String decryptEcbExcludeSpecialChars(String data, String key) throws Exception {
 
         if (StringUtil.isBlank(key) || key.length() < 16) {
             return null;
@@ -158,7 +158,7 @@ public class AesUtil {
     }
 
     private static Key toKey(byte[] key) throws IllegalArgumentException {
-        return new SecretKeySpec(key, Algorithm);
+        return new SecretKeySpec(key, ALGORITHM);
     }
 
 }
