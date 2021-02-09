@@ -1,6 +1,6 @@
 package com.square.mall.item.center.service.service.impl;
 
-import com.square.mall.common.dto.PageRspDto;
+import com.square.mall.common.dto.CommonPageRes;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.ExtraAttributesDto;
 import com.square.mall.item.center.service.dao.ExtraAttributesDao;
@@ -60,7 +60,7 @@ public class ExtraAttributesServiceImpl implements ExtraAttributesService {
     }
 
     @Override
-    public PageRspDto<List<ExtraAttributesDto>> selectPageExtraAttributesByCondition(ExtraAttributesDto extraAttributesDto, Integer pageNum, Integer pageSize) {
+    public CommonPageRes<List<ExtraAttributesDto>> selectPageExtraAttributesByCondition(ExtraAttributesDto extraAttributesDto, Integer pageNum, Integer pageSize) {
         return null;
     }
 

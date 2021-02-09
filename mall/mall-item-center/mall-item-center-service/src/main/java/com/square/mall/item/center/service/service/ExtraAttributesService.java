@@ -1,7 +1,6 @@
 package com.square.mall.item.center.service.service;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.item.center.api.dto.BrandDto;
+import com.square.mall.common.dto.CommonPageRes;
 import com.square.mall.item.center.api.dto.ExtraAttributesDto;
 import org.apache.ibatis.annotations.Param;
 
@@ -55,7 +54,7 @@ public interface ExtraAttributesService {
      * @param pageSize 分页大小
      * @return 扩展属性列表
      */
-    PageRspDto<List<ExtraAttributesDto>> selectPageExtraAttributesByCondition(ExtraAttributesDto extraAttributesDto, Integer pageNum, Integer pageSize);
+    CommonPageRes<List<ExtraAttributesDto>> selectPageExtraAttributesByCondition(ExtraAttributesDto extraAttributesDto, Integer pageNum, Integer pageSize);
 
     /**
      * 根据名称查询扩展属性

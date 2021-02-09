@@ -1,7 +1,6 @@
 package com.square.mall.item.center.service.service;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.item.center.api.dto.BrandDto;
+import com.square.mall.common.dto.CommonPageRes;
 import com.square.mall.item.center.api.dto.CategoryDto;
 
 import java.util.List;
@@ -54,7 +53,7 @@ public interface CategoryService {
      * @param pageSize 分页大小
      * @return 分类列表
      */
-    PageRspDto<List<CategoryDto>> selectPageCategoryByCondition(CategoryDto categoryDto, Integer pageNum, Integer pageSize);
+    CommonPageRes<List<CategoryDto>> selectPageCategoryByCondition(CategoryDto categoryDto, Integer pageNum, Integer pageSize);
 
     /**
      * 批量删除分类

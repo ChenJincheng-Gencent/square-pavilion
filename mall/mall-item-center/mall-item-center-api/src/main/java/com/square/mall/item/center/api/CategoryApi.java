@@ -1,7 +1,7 @@
 package com.square.mall.item.center.api;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.dto.CategoryDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,7 @@ public interface CategoryApi {
      * @return 数据库ID
      */
     @PostMapping("/category")
-    RspDto<Long> insertCategory(@RequestBody CategoryDto categoryDto);
+    CommonRes<Long> insertCategory(@RequestBody CategoryDto categoryDto);
 
     /**
      * 更新分类
@@ -33,7 +33,7 @@ public interface CategoryApi {
      * @return 响应
      */
     @PutMapping("/category")
-    RspDto updateCategory(@RequestBody CategoryDto categoryDto);
+    CommonRes<Void> updateCategory(@RequestBody CategoryDto categoryDto);
 
     /**
      * 批量删除分类
@@ -42,7 +42,7 @@ public interface CategoryApi {
      * @return 响应
      */
     @DeleteMapping("/category/batch/ids")
-    RspDto batchDeleteCategory(@RequestParam("ids") Long[] ids);
+    CommonRes<Void> batchDeleteCategory(@RequestParam("ids") Long[] ids);
 
     /**
      * 根据上级ID查询分类列表
@@ -51,7 +51,7 @@ public interface CategoryApi {
      * @return 分类列表
      */
     @GetMapping("/category/list/parent-id")
-    RspDto<List<CategoryDto>> selectCategoryByParentId(@RequestParam("parentId") Long parentId);
+    CommonRes<List<CategoryDto>> selectCategoryByParentId(@RequestParam("parentId") Long parentId);
 
     /**
      * 根据ID查询分类
@@ -60,7 +60,7 @@ public interface CategoryApi {
      * @return 分类
      */
     @GetMapping("/category/id")
-    RspDto<CategoryDto> selectCategoryById(@RequestParam("id") Long id);
+    CommonRes<CategoryDto> selectCategoryById(@RequestParam("id") Long id);
 
     /**
      * 分页条件查询分类列表
@@ -71,6 +71,6 @@ public interface CategoryApi {
      * @return 分类列表
      */
     @PostMapping("/category/list/page/condition")
-    PageRspDto<List<CategoryDto>> selectPageCategoryByCondition(@RequestBody CategoryDto categoryDto, @RequestParam("pageNum") Integer pageNum,
-                                                                @RequestParam("pageSize") Integer pageSize);
+    CommonPageRes<List<CategoryDto>> selectPageCategoryByCondition(@RequestBody CategoryDto categoryDto, @RequestParam("pageNum") Integer pageNum,
+                                                                   @RequestParam("pageSize") Integer pageSize);
 }

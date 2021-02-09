@@ -1,7 +1,7 @@
 package com.square.mall.item.center.api;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.dto.SpecificationDto;
 import com.square.mall.item.center.api.dto.SpecificationGroupDto;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -25,7 +25,7 @@ public interface SpecificationApi {
      * @return 数据库ID
      */
     @PostMapping("/specification/group")
-    RspDto<Long> insertSpecificationGroup(@RequestBody SpecificationGroupDto specificationGroupDto);
+    CommonRes<Long> insertSpecificationGroup(@RequestBody SpecificationGroupDto specificationGroupDto);
 
     /**
      * 更新规格组合
@@ -34,7 +34,7 @@ public interface SpecificationApi {
      * @return 响应
      */
     @PutMapping("/specification/group")
-    RspDto updateSpecificationGroup(@RequestBody SpecificationGroupDto specificationGroupDto);
+    CommonRes<Void> updateSpecificationGroup(@RequestBody SpecificationGroupDto specificationGroupDto);
 
     /**
      * 批量删除规格组合
@@ -43,7 +43,7 @@ public interface SpecificationApi {
      * @return 响应
      */
     @DeleteMapping("/specification/group/batch/ids")
-    RspDto batchDeleteSpecificationGroup(@RequestParam("ids") Long[] ids);
+    CommonRes<Void> batchDeleteSpecificationGroup(@RequestParam("ids") Long[] ids);
 
     /**
      * 根据规格ID查询规格组合
@@ -52,7 +52,7 @@ public interface SpecificationApi {
      * @return 规格组合
      */
     @GetMapping("/specification/group/spec-id")
-    RspDto<SpecificationGroupDto> selectSpecificationGroupBySpecId(@RequestParam("specId") Long specId);
+    CommonRes<SpecificationGroupDto> selectSpecificationGroupBySpecId(@RequestParam("specId") Long specId);
 
     /**
      * 分页条件查询规格列表
@@ -63,8 +63,8 @@ public interface SpecificationApi {
      * @return 规格列表
      */
     @PostMapping("/specification/list/page/condition")
-    PageRspDto<List<SpecificationDto>> selectPageSpecificationByCondition(@RequestBody SpecificationDto specificationDto,
-                                  @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize);
+    CommonPageRes<List<SpecificationDto>> selectPageSpecificationByCondition(@RequestBody SpecificationDto specificationDto,
+                                                                             @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize);
 
     /**
      * 根据ID查询规格
@@ -73,7 +73,7 @@ public interface SpecificationApi {
      * @return 规格
      */
     @GetMapping("/specification/id")
-    RspDto<SpecificationDto> selectSpecificationById(@RequestParam("id") Long id);
+    CommonRes<SpecificationDto> selectSpecificationById(@RequestParam("id") Long id);
 
     /**
      * 查询所有规格列表
@@ -81,7 +81,7 @@ public interface SpecificationApi {
      * @return 规格列表
      */
     @GetMapping("/specification/list/all")
-    RspDto<List<SpecificationDto>> selectSpecificationAll();
+    CommonRes<List<SpecificationDto>> selectSpecificationAll();
 
     /**
      * 条件查询规格列表
@@ -90,6 +90,6 @@ public interface SpecificationApi {
      * @return 规格列表
      */
     @PostMapping("/specification/list/condition")
-    RspDto<List<SpecificationDto>> selectSpecificationByCondition(@RequestBody SpecificationDto specificationDto);
+    CommonRes<List<SpecificationDto>> selectSpecificationByCondition(@RequestBody SpecificationDto specificationDto);
 
 }

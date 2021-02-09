@@ -1,6 +1,6 @@
 package com.square.mall.item.center.service.service.impl;
 
-import com.square.mall.common.dto.PageRspDto;
+import com.square.mall.common.dto.CommonPageRes;
 import com.square.mall.item.center.api.dto.TemplateSpecificationDto;
 import com.square.mall.item.center.service.dao.TemplateSpecificationDao;
 import com.square.mall.item.center.service.eo.TemplateSpecificationEo;
@@ -59,7 +59,7 @@ public class TemplateSpecificationServiceImpl implements TemplateSpecificationSe
     }
 
     @Override
-    public PageRspDto<List<TemplateSpecificationDto>> selectPageTemplateSpecificationByCondition(TemplateSpecificationDto templateSpecificationDto, Integer pageNum, Integer pageSize) {
+    public CommonPageRes<List<TemplateSpecificationDto>> selectPageTemplateSpecificationByCondition(TemplateSpecificationDto templateSpecificationDto, Integer pageNum, Integer pageSize) {
         return null;
     }
 

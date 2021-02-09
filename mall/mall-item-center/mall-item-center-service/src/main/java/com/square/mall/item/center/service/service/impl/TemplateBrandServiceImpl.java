@@ -1,6 +1,6 @@
 package com.square.mall.item.center.service.service.impl;
 
-import com.square.mall.common.dto.PageRspDto;
+import com.square.mall.common.dto.CommonPageRes;
 import com.square.mall.item.center.api.dto.TemplateBrandDto;
 import com.square.mall.item.center.service.dao.TemplateBrandDao;
 import com.square.mall.item.center.service.eo.TemplateBrandEo;
@@ -67,7 +67,7 @@ public class TemplateBrandServiceImpl implements TemplateBrandService {
     }
 
     @Override
-    public PageRspDto<List<TemplateBrandDto>> selectPageTemplateBrandByCondition(TemplateBrandDto templateBrandDto, Integer pageNum, Integer pageSize) {
+    public CommonPageRes<List<TemplateBrandDto>> selectPageTemplateBrandByCondition(TemplateBrandDto templateBrandDto, Integer pageNum, Integer pageSize) {
         return null;
     }
 

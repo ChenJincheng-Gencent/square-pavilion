@@ -1,6 +1,6 @@
 package com.square.mall.item.center.service.service;
 
-import com.square.mall.common.dto.PageRspDto;
+import com.square.mall.common.dto.CommonPageRes;
 import com.square.mall.item.center.api.dto.BrandDto;
 
 import java.util.List;
@@ -61,7 +61,7 @@ public interface BrandService {
      * @param pageSize 分页大小
      * @return 品牌列表
      */
-    PageRspDto<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageNum, Integer pageSize);
+    CommonPageRes<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageNum, Integer pageSize);
 
     /**
      * 根据名称查询品牌

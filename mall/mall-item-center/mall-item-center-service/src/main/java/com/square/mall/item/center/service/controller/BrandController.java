@@ -1,7 +1,7 @@
 package com.square.mall.item.center.service.controller;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.service.service.BrandService;
 import org.springframework.web.bind.annotation.*;
@@ -29,8 +29,8 @@ public class BrandController {
      * @return 品牌数据列表
      */
     @PostMapping("/list/condition")
-    public RspDto<List<BrandDto>> selectBrandByCondition(@RequestBody BrandDto brandDto) {
-        return new RspDto<>(brandService.selectBrandByCondition(brandDto));
+    public CommonRes<List<BrandDto>> selectBrandByCondition(@RequestBody BrandDto brandDto) {
+        return new CommonRes<>(brandService.selectBrandByCondition(brandDto));
     }
 
     /**
@@ -42,8 +42,8 @@ public class BrandController {
      * @return 品牌列表
      */
     @PostMapping("/list/page/condition")
-    public PageRspDto<List<BrandDto>> selectPageBrandByCondition(@RequestBody BrandDto brandDto, @RequestParam("pageNum") Integer pageNum,
-                                                                 @RequestParam("pageSize") Integer pageSize) {
+    public CommonPageRes<List<BrandDto>> selectPageBrandByCondition(@RequestBody BrandDto brandDto, @RequestParam("pageNum") Integer pageNum,
+                                                                    @RequestParam("pageSize") Integer pageSize) {
         return brandService.selectPageBrandByCondition(brandDto, pageNum, pageSize);
     }
 
@@ -54,8 +54,8 @@ public class BrandController {
      * @return 品牌
      */
     @GetMapping("/id")
-    public RspDto<BrandDto> selectBrandById(@RequestParam("id") Long id) {
-        return new RspDto<>(brandService.selectBrandById(id));
+    public CommonRes<BrandDto> selectBrandById(@RequestParam("id") Long id) {
+        return new CommonRes<>(brandService.selectBrandById(id));
     }
 
 
@@ -65,8 +65,8 @@ public class BrandController {
      * @return 品牌列表
      */
     @GetMapping("/all")
-    public RspDto<List<BrandDto>> selectBrandAll() {
-        return new RspDto<>(brandService.selectBrandAll());
+    public CommonRes<List<BrandDto>> selectBrandAll() {
+        return new CommonRes<>(brandService.selectBrandAll());
     }
 
     /**
@@ -76,9 +76,9 @@ public class BrandController {
      * @return 数据库ID
      */
     @PostMapping("")
-    public RspDto<Long> insertBrand(@RequestBody BrandDto brandDto) {
+    public CommonRes<Long> insertBrand(@RequestBody BrandDto brandDto) {
         int success = brandService.insertBrand(brandDto);
-        return new RspDto<>(brandDto.getId());
+        return new CommonRes<>(brandDto.getId());
     }
 
 
@@ -89,9 +89,9 @@ public class BrandController {
      * @return 响应
      */
     @PutMapping("")
-    public RspDto<Void> updateBrand(@RequestBody BrandDto brandDto) {
+    public CommonRes<Void> updateBrand(@RequestBody BrandDto brandDto) {
         int success = brandService.updateBrand(brandDto);
-        return RspDto.SUCCESS;
+        return CommonRes.SUCCESS;
     }
 
 
@@ -102,9 +102,9 @@ public class BrandController {
      * @return 响应
      */
     @DeleteMapping("")
-    public RspDto<Void> deleteBrand(@RequestParam("id") Long id) {
+    public CommonRes<Void> deleteBrand(@RequestParam("id") Long id) {
         int success = brandService.deleteBrand(id);
-        return RspDto.SUCCESS;
+        return CommonRes.SUCCESS;
     }
 
 
@@ -115,9 +115,9 @@ public class BrandController {
      * @return 响应
      */
     @DeleteMapping("/batch")
-    public RspDto<Void> batchDeleteBrand(@RequestParam("ids") Long[] ids) {
+    public CommonRes<Void> batchDeleteBrand(@RequestParam("ids") Long[] ids) {
         int success = brandService.batchDeleteBrand(ids);
-        return RspDto.SUCCESS;
+        return CommonRes.SUCCESS;
     }
 
 }

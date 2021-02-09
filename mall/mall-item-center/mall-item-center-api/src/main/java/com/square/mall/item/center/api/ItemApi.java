@@ -1,7 +1,7 @@
 package com.square.mall.item.center.api;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.dto.ItemDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,7 @@ public interface ItemApi {
      * @return 数据库ID
      */
     @PostMapping("/item")
-    RspDto<Long> insertItem(@RequestBody ItemDto itemDto);
+    CommonRes<Long> insertItem(@RequestBody ItemDto itemDto);
 
     /**
      * 更新商品
@@ -33,7 +33,7 @@ public interface ItemApi {
      * @return 响应
      */
     @PutMapping("/item")
-    RspDto updateItem(@RequestBody ItemDto itemDto);
+    CommonRes<Void> updateItem(@RequestBody ItemDto itemDto);
 
     /**
      * 删除商品
@@ -42,7 +42,7 @@ public interface ItemApi {
      * @return 响应
      */
     @DeleteMapping("/item")
-    RspDto deleteItem(@RequestParam("id") Long id);
+    CommonRes<Void> deleteItem(@RequestParam("id") Long id);
 
     /**
      * 条件查询商品列表
@@ -51,7 +51,7 @@ public interface ItemApi {
      * @return 商品列表
      */
     @PostMapping("/item/list/condition")
-    RspDto<List<ItemDto>> selectItemByCondition(@RequestBody ItemDto itemDto);
+    CommonRes<List<ItemDto>> selectItemByCondition(@RequestBody ItemDto itemDto);
 
     /**
      * 分页条件查询商品列表
@@ -62,8 +62,8 @@ public interface ItemApi {
      * @return 商品列表
      */
     @PostMapping("/item/list/page/condition")
-    PageRspDto<List<ItemDto>> selectPageItemByCondition(@RequestBody ItemDto itemDto, @RequestParam("pageNum") Integer pageNum,
-                                                        @RequestParam("pageSize") Integer pageSize);
+    CommonPageRes<List<ItemDto>> selectPageItemByCondition(@RequestBody ItemDto itemDto, @RequestParam("pageNum") Integer pageNum,
+                                                           @RequestParam("pageSize") Integer pageSize);
 
 
 }

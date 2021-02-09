@@ -1,7 +1,7 @@
 package com.square.mall.item.center.service.controller;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.dto.CategoryDto;
 import com.square.mall.item.center.service.service.CategoryService;
 import org.springframework.web.bind.annotation.*;
@@ -30,9 +30,9 @@ public class CategoryController {
      * @return 数据库ID
      */
     @PostMapping("")
-    public RspDto<Long> insertCategory(@RequestBody CategoryDto categoryDto) {
+    public CommonRes<Long> insertCategory(@RequestBody CategoryDto categoryDto) {
         int success = categoryService.insertCategory(categoryDto);
-        return new RspDto<>(categoryDto.getId());
+        return new CommonRes<>(categoryDto.getId());
     }
 
     /**
@@ -42,9 +42,9 @@ public class CategoryController {
      * @return 响应
      */
     @PutMapping("")
-    public RspDto<Void> updateCategory(@RequestBody CategoryDto categoryDto) {
+    public CommonRes<Void> updateCategory(@RequestBody CategoryDto categoryDto) {
         int success = categoryService.updateCategory(categoryDto);
-        return RspDto.SUCCESS;
+        return CommonRes.SUCCESS;
     }
 
     /**
@@ -54,9 +54,9 @@ public class CategoryController {
      * @return 响应
      */
     @DeleteMapping("/batch/ids")
-    public RspDto<Void> batchDeleteCategory(@RequestParam("ids") Long[] ids) {
+    public CommonRes<Void> batchDeleteCategory(@RequestParam("ids") Long[] ids) {
         int success = categoryService.batchDeleteCategory(ids);
-        return RspDto.SUCCESS;
+        return CommonRes.SUCCESS;
     }
 
     /**
@@ -66,9 +66,9 @@ public class CategoryController {
      * @return 分类列表
      */
     @GetMapping("/list/parent-id")
-    public RspDto<List<CategoryDto>> selectCategoryByParentId(@RequestParam("parentId") Long parentId) {
+    public CommonRes<List<CategoryDto>> selectCategoryByParentId(@RequestParam("parentId") Long parentId) {
 
-        return new RspDto<>(categoryService.selectCategoryByParentId(parentId));
+        return new CommonRes<>(categoryService.selectCategoryByParentId(parentId));
     }
 
     /**
@@ -78,8 +78,8 @@ public class CategoryController {
      * @return 分类
      */
     @GetMapping("/id")
-    public RspDto<CategoryDto> selectCategoryById(@RequestParam("id") Long id) {
-        return new RspDto<>(categoryService.selectCategoryById(id));
+    public CommonRes<CategoryDto> selectCategoryById(@RequestParam("id") Long id) {
+        return new CommonRes<>(categoryService.selectCategoryById(id));
     }
 
     /**
@@ -91,8 +91,8 @@ public class CategoryController {
      * @return 分类列表
      */
     @PostMapping("list/page/condition")
-    public PageRspDto<List<CategoryDto>> selectPageCategoryByCondition(@RequestBody CategoryDto categoryDto,
-                               @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize) {
+    public CommonPageRes<List<CategoryDto>> selectPageCategoryByCondition(@RequestBody CategoryDto categoryDto,
+                                                                          @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize) {
         return categoryService.selectPageCategoryByCondition(categoryDto, pageNum, pageSize);
     }
 

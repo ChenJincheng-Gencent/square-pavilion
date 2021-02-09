@@ -1,7 +1,7 @@
 package com.square.mall.item.center.api;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.dto.TemplateDto;
 import com.square.mall.item.center.api.dto.TemplateGroupDto;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -25,7 +25,7 @@ public interface TemplateApi {
      * @return 数据库ID
      */
     @PostMapping("/template/group")
-    RspDto<Long> insertTemplateGroup(@RequestBody TemplateGroupDto templateGroupDto);
+    CommonRes<Long> insertTemplateGroup(@RequestBody TemplateGroupDto templateGroupDto);
 
     /**
      * 更新模板组合
@@ -34,7 +34,7 @@ public interface TemplateApi {
      * @return 响应
      */
     @PutMapping("/template/group")
-    RspDto updateTemplateGroup(@RequestBody TemplateGroupDto templateGroupDto);
+    CommonRes<Void> updateTemplateGroup(@RequestBody TemplateGroupDto templateGroupDto);
 
     /**
      * 批量删除模板组合
@@ -43,7 +43,7 @@ public interface TemplateApi {
      * @return 响应
      */
     @DeleteMapping("/template/group/batch/ids")
-    RspDto batchDeleteTemplateGroup(@RequestParam("ids") Long[] ids);
+    CommonRes<Void> batchDeleteTemplateGroup(@RequestParam("ids") Long[] ids);
 
     /**
      * 根据模板ID查询模板组合
@@ -52,7 +52,7 @@ public interface TemplateApi {
      * @return 模板组合
      */
     @GetMapping("/template/group/template-id")
-    RspDto<TemplateGroupDto> selectTemplateGroupByTemplateId(@RequestParam("templateId") Long templateId);
+    CommonRes<TemplateGroupDto> selectTemplateGroupByTemplateId(@RequestParam("templateId") Long templateId);
 
     /**
      * 分页条件查询模板组合列表
@@ -63,8 +63,8 @@ public interface TemplateApi {
      * @return 模板组合列表
      */
     @PostMapping("/template/group/list/page/condition")
-    PageRspDto<List<TemplateGroupDto>> selectPageTemplateGroupByCondition(@RequestBody TemplateDto templateDto,
-                                  @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize);
+    CommonPageRes<List<TemplateGroupDto>> selectPageTemplateGroupByCondition(@RequestBody TemplateDto templateDto,
+                                                                             @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize);
 
 
 }

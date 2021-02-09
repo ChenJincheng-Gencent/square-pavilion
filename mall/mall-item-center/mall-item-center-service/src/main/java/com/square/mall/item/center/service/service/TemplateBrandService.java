@@ -1,6 +1,6 @@
 package com.square.mall.item.center.service.service;
 
-import com.square.mall.common.dto.PageRspDto;
+import com.square.mall.common.dto.CommonPageRes;
 import com.square.mall.item.center.api.dto.TemplateBrandDto;
 import org.apache.ibatis.annotations.Param;
 
@@ -54,7 +54,7 @@ public interface TemplateBrandService {
      * @param pageSize 分页大小
      * @return 模板品牌列表
      */
-    PageRspDto<List<TemplateBrandDto>> selectPageTemplateBrandByCondition(TemplateBrandDto templateBrandDto, Integer pageNum, Integer pageSize);
+    CommonPageRes<List<TemplateBrandDto>> selectPageTemplateBrandByCondition(TemplateBrandDto templateBrandDto, Integer pageNum, Integer pageSize);
 
     /**
      * 根据名称查询模板品牌

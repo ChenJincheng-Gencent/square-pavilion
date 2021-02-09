@@ -1,6 +1,6 @@
 package com.square.mall.item.center.service.controller;
 
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.dto.SpecificationOptionDto;
 import com.square.mall.item.center.service.service.SpecificationOptionService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +25,7 @@ public class SpecificationOptionController {
     private SpecificationOptionService specificationOptionService;
 
     @GetMapping("/list/spec-id")
-    public RspDto<List<SpecificationOptionDto>> selectSpecificationOptionBySpecId(@RequestParam("specId") Long specId) {
-        return new RspDto<>(specificationOptionService.selectSpecificationOptionBySpecId(specId));
+    public CommonRes<List<SpecificationOptionDto>> selectSpecificationOptionBySpecId(@RequestParam("specId") Long specId) {
+        return new CommonRes<>(specificationOptionService.selectSpecificationOptionBySpecId(specId));
     }
 }

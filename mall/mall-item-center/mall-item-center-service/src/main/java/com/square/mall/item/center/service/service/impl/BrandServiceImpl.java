@@ -2,7 +2,7 @@ package com.square.mall.item.center.service.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.square.mall.common.dto.PageRspDto;
+import com.square.mall.common.dto.CommonPageRes;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.common.util.StringUtil;
 import com.square.mall.item.center.api.dto.BrandDto;
@@ -119,7 +119,7 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public PageRspDto<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageNum, Integer pageSize) {
+    public CommonPageRes<List<BrandDto>> selectPageBrandByCondition(BrandDto brandDto, Integer pageNum, Integer pageSize) {
 
         pageNum = null == pageNum ? 1 : pageNum;
         pageSize = null == pageSize ? 10 : pageSize;
@@ -136,7 +136,7 @@ public class BrandServiceImpl implements BrandService {
                 brandDtoList.add(brandDtoTemp);
             });
         }
-        return new PageRspDto<>(page.getTotal(), brandDtoList);
+        return new CommonPageRes<>(page.getTotal(), brandDtoList);
     }
 
     @Override

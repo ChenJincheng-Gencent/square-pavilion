@@ -1,6 +1,6 @@
 package com.square.mall.item.center.service.service;
 
-import com.square.mall.common.dto.PageRspDto;
+import com.square.mall.common.dto.CommonPageRes;
 import com.square.mall.item.center.api.dto.ItemDto;
 import org.apache.ibatis.annotations.Param;
 
@@ -54,7 +54,7 @@ public interface ItemService {
      * @param pageSize 分页大小
      * @return 商品列表
      */
-    PageRspDto<List<ItemDto>> selectPageItemByCondition(ItemDto itemDto, Integer pageNum, Integer pageSize);
+    CommonPageRes<List<ItemDto>> selectPageItemByCondition(ItemDto itemDto, Integer pageNum, Integer pageSize);
 
     /**
      * 根据名称查询商品

@@ -2,7 +2,7 @@ package com.square.mall.item.center.service.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.square.mall.common.dto.PageRspDto;
+import com.square.mall.common.dto.CommonPageRes;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.CategoryDto;
 import com.square.mall.item.center.service.dao.CategoryDao;
@@ -105,7 +105,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public PageRspDto<List<CategoryDto>> selectPageCategoryByCondition(CategoryDto categoryDto, Integer pageNum, Integer pageSize) {
+    public CommonPageRes<List<CategoryDto>> selectPageCategoryByCondition(CategoryDto categoryDto, Integer pageNum, Integer pageSize) {
         pageNum = null == pageNum ? 1 : pageNum;
         pageSize = null == pageSize ? 10 : pageSize;
         String orderBy = "create_time" + " desc";
@@ -121,7 +121,7 @@ public class CategoryServiceImpl implements CategoryService {
                 categoryDtoList.add(categoryDtoTemp);
             });
         }
-        return new PageRspDto<>(page.getTotal(), categoryDtoList);
+        return new CommonPageRes<>(page.getTotal(), categoryDtoList);
     }
 
     @Override

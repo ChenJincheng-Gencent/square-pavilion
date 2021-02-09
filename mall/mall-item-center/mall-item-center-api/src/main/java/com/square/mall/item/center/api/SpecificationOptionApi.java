@@ -1,6 +1,6 @@
 package com.square.mall.item.center.api;
 
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.dto.SpecificationOptionDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +24,6 @@ public interface SpecificationOptionApi {
      * @return 规格选项列表
      */
     @GetMapping("/specification/option/list/spec-id")
-    RspDto<List<SpecificationOptionDto>> selectSpecificationOptionBySpecId(@RequestParam("specId") Long specId);
+    CommonRes<List<SpecificationOptionDto>> selectSpecificationOptionBySpecId(@RequestParam("specId") Long specId);
 
 }

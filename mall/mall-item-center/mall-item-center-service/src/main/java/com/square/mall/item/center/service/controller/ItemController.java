@@ -1,7 +1,7 @@
 package com.square.mall.item.center.service.controller;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.dto.ItemDto;
 import com.square.mall.item.center.service.service.ItemService;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +29,9 @@ public class ItemController {
      * @return 数据库ID
      */
     @PostMapping("")
-    public RspDto<Long> insertItem(@RequestBody ItemDto itemDto) {
+    public CommonRes<Long> insertItem(@RequestBody ItemDto itemDto) {
         int success = itemService.insertItem(itemDto);
-        return new RspDto<>(itemDto.getId());
+        return new CommonRes<>(itemDto.getId());
     }
 
     /**
@@ -41,9 +41,9 @@ public class ItemController {
      * @return 响应
      */
     @PutMapping("")
-    public RspDto<Void> updateItem(ItemDto itemDto) {
+    public CommonRes<Void> updateItem(ItemDto itemDto) {
         int success = itemService.updateItem(itemDto);
-        return RspDto.SUCCESS;
+        return CommonRes.SUCCESS;
     }
 
 
@@ -54,9 +54,9 @@ public class ItemController {
      * @return 响应
      */
     @DeleteMapping("")
-    public RspDto<Void> deleteItem(Long id) {
+    public CommonRes<Void> deleteItem(Long id) {
         int success = itemService.deleteItem(id);
-        return RspDto.SUCCESS;
+        return CommonRes.SUCCESS;
     }
 
     /**
@@ -66,8 +66,8 @@ public class ItemController {
      * @return 商品列表
      */
     @PostMapping("list/condition")
-    public RspDto<List<ItemDto>> selectItemByCondition(@RequestBody ItemDto itemDto) {
-        return new RspDto<>(itemService.selectItemByCondition(itemDto));
+    public CommonRes<List<ItemDto>> selectItemByCondition(@RequestBody ItemDto itemDto) {
+        return new CommonRes<>(itemService.selectItemByCondition(itemDto));
     }
 
     /**
@@ -79,8 +79,8 @@ public class ItemController {
      * @return 商品列表
      */
     @PostMapping("/list/page/condition")
-    public PageRspDto<List<ItemDto>> selectPageItemByCondition(@RequestBody ItemDto itemDto, @RequestParam("pageNum") Integer pageNum,
-                                                       @RequestParam("pageSize") Integer pageSize) {
+    public CommonPageRes<List<ItemDto>> selectPageItemByCondition(@RequestBody ItemDto itemDto, @RequestParam("pageNum") Integer pageNum,
+                                                                  @RequestParam("pageSize") Integer pageSize) {
         return itemService.selectPageItemByCondition(itemDto, pageNum, pageSize);
     }
 

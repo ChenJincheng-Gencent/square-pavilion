@@ -1,10 +1,9 @@
 package com.square.mall.item.center.api;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.dto.BrandDto;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public interface BrandApi {
      * @return 数据库ID
      */
     @PostMapping("/brand")
-    RspDto<Long> insertBrand(@RequestBody BrandDto brandDto);
+    CommonRes<Long> insertBrand(@RequestBody BrandDto brandDto);
 
     /**
      * 更新品牌
@@ -35,7 +34,7 @@ public interface BrandApi {
      * @return 响应
      */
     @PutMapping("/brand")
-    RspDto updateBrand(@RequestBody BrandDto brandDto);
+    CommonRes<Void> updateBrand(@RequestBody BrandDto brandDto);
 
     /**
      * 删除品牌
@@ -44,7 +43,7 @@ public interface BrandApi {
      * @return 响应
      */
     @DeleteMapping("/brand")
-    RspDto deleteBrand(@RequestParam("id") Long id);
+    CommonRes<Void> deleteBrand(@RequestParam("id") Long id);
 
     /**
      * 批量删除品牌
@@ -53,7 +52,7 @@ public interface BrandApi {
      * @return 响应
      */
     @DeleteMapping("/brand/batch")
-    RspDto batchDeleteBrand(@RequestParam("ids") Long[] ids);
+    CommonRes<Void> batchDeleteBrand(@RequestParam("ids") Long[] ids);
 
     /**
      * 条件查询品牌列表
@@ -62,7 +61,7 @@ public interface BrandApi {
      * @return 品牌数据列表
      */
     @PostMapping("/brand/list/condition")
-    RspDto<List<BrandDto>> selectBrandByCondition(@RequestBody BrandDto brandDto);
+    CommonRes<List<BrandDto>> selectBrandByCondition(@RequestBody BrandDto brandDto);
 
     /**
      * 分页条件查询品牌列表
@@ -73,8 +72,8 @@ public interface BrandApi {
      * @return 品牌列表
      */
     @PostMapping("/brand/list/page/condition")
-    PageRspDto<List<BrandDto>> selectPageBrandByCondition(@RequestBody BrandDto brandDto, @RequestParam("pageNum") Integer pageNum,
-                                                          @RequestParam("pageSize") Integer pageSize);
+    CommonPageRes<List<BrandDto>> selectPageBrandByCondition(@RequestBody BrandDto brandDto, @RequestParam("pageNum") Integer pageNum,
+                                                             @RequestParam("pageSize") Integer pageSize);
 
     /**
      * 根据ID查询品牌
@@ -82,7 +81,7 @@ public interface BrandApi {
      * @return 品牌
      */
     @GetMapping("/brand/id")
-    RspDto<BrandDto> selectBrandById(@RequestParam("id") Long id);
+    CommonRes<BrandDto> selectBrandById(@RequestParam("id") Long id);
 
     /**
      * 查询所有品牌列表
@@ -90,6 +89,6 @@ public interface BrandApi {
      * @return 品牌列表
      */
     @GetMapping("/brand/all")
-    RspDto<List<BrandDto>> selectBrandAll();
+    CommonRes<List<BrandDto>> selectBrandAll();
 
 }
