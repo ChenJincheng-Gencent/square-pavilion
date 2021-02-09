@@ -73,7 +73,7 @@ public class ScheduledTaskProcessor implements ApplicationListener<ApplicationSt
         TracingConfiguration<DataSource> tracingConfig = new TracingConfiguration<>("RDB", jobDataSource);
 
         JobConfiguration jobConfig = JobConfiguration.newBuilder(taskName, shardingTotalCount).cron(cron)
-            .jobErrorHandlerType("EMAIL").build();
+            .jobErrorHandlerType("EMAIL").jobListenerTypes("simpleJobListener").build();
         jobConfig.getExtraConfigurations().add(tracingConfig);
         //设置邮件的配置
         setEmailProperties(jobConfig);
