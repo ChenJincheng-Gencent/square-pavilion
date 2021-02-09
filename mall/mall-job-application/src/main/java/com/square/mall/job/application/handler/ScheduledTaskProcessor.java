@@ -4,6 +4,7 @@ import com.square.mall.job.application.annotation.ScheduledTask;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shardingsphere.elasticjob.api.ElasticJob;
 import org.apache.shardingsphere.elasticjob.api.JobConfiguration;
+import org.apache.shardingsphere.elasticjob.error.handler.email.EmailPropertiesConstants;
 import org.apache.shardingsphere.elasticjob.lite.api.bootstrap.impl.ScheduleJobBootstrap;
 import org.apache.shardingsphere.elasticjob.reg.zookeeper.ZookeeperRegistryCenter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,12 @@ public class ScheduledTaskProcessor implements ApplicationListener<ApplicationSt
         log.info("cron: {}", cron);
         int shardingTotalCount = conf.shardingTotalCount();
 
-        return JobConfiguration.newBuilder(taskName, shardingTotalCount).cron(cron).build();
+        JobConfiguration jobConfig = JobConfiguration.newBuilder(taskName, shardingTotalCount).cron(cron)
+            .jobErrorHandlerType("EMAIL").build();
+        //setEmailProperties(jobConfig);
+        return jobConfig;
     }
+
+
 
 }
