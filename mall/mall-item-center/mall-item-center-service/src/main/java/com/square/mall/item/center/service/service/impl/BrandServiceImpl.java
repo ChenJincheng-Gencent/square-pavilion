@@ -3,7 +3,6 @@ package com.square.mall.item.center.service.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.util.DatabaseOptConstant;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.common.util.StringUtil;
 import com.square.mall.item.center.api.dto.BrandDto;
@@ -36,13 +35,13 @@ public class BrandServiceImpl implements BrandService {
 
         if (null == brandDto || StringUtil.isBlank(brandDto.getName())) {
             log.error("brandDto or name is null or blank.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
 
         }
         BrandEo oldBrandEo = brandDao.selectBrandByName(brandDto.getName());
         if (null != oldBrandEo) {
             log.error("oldBrandEo already exist. brandDto: {}", brandDto);
-            return DatabaseOptConstant.DATABASE_DATA_ALREADY_EXIST;
+            return 0;
         }
         BrandEo brandEo = new BrandEo();
         BeanUtils.copyProperties(brandDto, brandEo);
@@ -57,17 +56,17 @@ public class BrandServiceImpl implements BrandService {
 
         if (null == brandDto || null == brandDto.getId()) {
             log.error("brandDto or id is null");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         BrandEo oldBrandEo = brandDao.selectBrandById(brandDto.getId());
         if (null == oldBrandEo) {
             log.error("oldBrandEo is null. id: {}", brandDto.getId());
-            return DatabaseOptConstant.DATABASE_DATA_NOT_EXIST;
+            return 0;
         }
         BrandEo oldBrandEo2 = brandDao.selectBrandByName(brandDto.getName());
         if (null != oldBrandEo2 && !oldBrandEo2.getId().equals(brandDto.getId())) {
             log.error("oldBrandEo2 already exist. brandDto: {}", brandDto);
-            return DatabaseOptConstant.DATABASE_DATA_ALREADY_EXIST;
+            return 0;
         }
         BrandEo brandEo = new BrandEo();
         BeanUtils.copyProperties(brandDto, brandEo);
@@ -80,13 +79,13 @@ public class BrandServiceImpl implements BrandService {
 
         if (null == id) {
             log.error("id is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
 
         BrandEo brandEo = brandDao.selectBrandById(id);
         if (null == brandEo) {
             log.error("brandEo is null. id: {}", id);
-            return DatabaseOptConstant.DATABASE_DATA_NOT_EXIST;
+            return 0;
         }
 
         return brandDao.deleteBrand(id);
@@ -97,7 +96,7 @@ public class BrandServiceImpl implements BrandService {
     public int batchDeleteBrand(Long[] ids) {
         if (null == ids || ids.length <= 0) {
             log.error("ids is blank.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         return brandDao.batchDeleteBrand(ids) >= 1 ? 1 : 0;
     }

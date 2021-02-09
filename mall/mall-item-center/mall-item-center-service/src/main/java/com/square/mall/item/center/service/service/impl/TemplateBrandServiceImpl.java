@@ -1,7 +1,6 @@
 package com.square.mall.item.center.service.service.impl;
 
 import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.util.DatabaseOptConstant;
 import com.square.mall.item.center.api.dto.TemplateBrandDto;
 import com.square.mall.item.center.service.dao.TemplateBrandDao;
 import com.square.mall.item.center.service.eo.TemplateBrandEo;
@@ -31,7 +30,7 @@ public class TemplateBrandServiceImpl implements TemplateBrandService {
 
         if (null == templateBrandDto) {
             log.error("templateBrandDto is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
 
         TemplateBrandEo templateBrandEo = new TemplateBrandEo();
@@ -53,7 +52,7 @@ public class TemplateBrandServiceImpl implements TemplateBrandService {
 
         if (null == templateId) {
             log.error("templateId is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
 
         int success = templateBrandDao.deleteTemplateBrandByTemplateId(templateId);

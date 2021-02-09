@@ -2,8 +2,6 @@ package com.square.mall.item.center.service.controller;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
-import com.square.mall.common.util.DatabaseUtil;
-import com.square.mall.common.util.ModuleConstant;
 import com.square.mall.item.center.api.dto.CategoryDto;
 import com.square.mall.item.center.service.service.CategoryService;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +32,7 @@ public class CategoryController {
     @PostMapping("")
     public RspDto<Long> insertCategory(@RequestBody CategoryDto categoryDto) {
         int success = categoryService.insertCategory(categoryDto);
-        return DatabaseUtil.getResult(success, categoryDto.getId(), ModuleConstant.INVENTORY_CENTER);
+        return new RspDto<>(categoryDto.getId());
     }
 
     /**
@@ -44,9 +42,9 @@ public class CategoryController {
      * @return 响应
      */
     @PutMapping("")
-    public RspDto updateCategory(@RequestBody CategoryDto categoryDto) {
+    public RspDto<Void> updateCategory(@RequestBody CategoryDto categoryDto) {
         int success = categoryService.updateCategory(categoryDto);
-        return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
+        return RspDto.SUCCESS;
     }
 
     /**
@@ -56,9 +54,9 @@ public class CategoryController {
      * @return 响应
      */
     @DeleteMapping("/batch/ids")
-    public RspDto batchDeleteCategory(@RequestParam("ids") Long[] ids) {
+    public RspDto<Void> batchDeleteCategory(@RequestParam("ids") Long[] ids) {
         int success = categoryService.batchDeleteCategory(ids);
-        return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
+        return RspDto.SUCCESS;
     }
 
     /**

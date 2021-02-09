@@ -1,11 +1,9 @@
 package com.square.mall.item.center.service.controller;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
-import com.square.mall.common.util.DatabaseOptConstant;
-import com.square.mall.common.util.DatabaseUtil;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
+import com.square.mall.common.enums.ErrorCode;
 import com.square.mall.common.util.ListUtil;
-import com.square.mall.common.util.ModuleConstant;
 import com.square.mall.item.center.api.dto.*;
 import com.square.mall.item.center.service.service.*;
 import lombok.extern.slf4j.Slf4j;
@@ -51,11 +49,11 @@ public class TemplateController {
      * @return 数据库ID
      */
     @PostMapping("/group")
-    public RspDto<Long> insertTemplateGroup(@RequestBody TemplateGroupDto templateGroupDto) {
+    public CommonRes<Long> insertTemplateGroup(@RequestBody TemplateGroupDto templateGroupDto) {
 
         if (null == templateGroupDto) {
             log.error("templateGroupDto is null.");
-            return DatabaseUtil.getResult(DatabaseOptConstant.DATABASE_PARA_ILLEGAL, ModuleConstant.ITEM_CENTER);
+            return new CommonRes<>(ErrorCode.PARA_IS_NULL);
         }
 
         TemplateDto templateDto = templateGroupDto.getTemplateDto();
@@ -88,7 +86,7 @@ public class TemplateController {
                 extraAttributesService.insertExtraAttributes(x);
             });
         }
-        return new RspDto<>(templateDto.getId());
+        return new CommonRes<>(templateDto.getId());
     }
 
     /**
@@ -98,18 +96,15 @@ public class TemplateController {
      * @return 响应
      */
     @PutMapping("/group")
-    public RspDto updateTemplateGroup(@RequestBody TemplateGroupDto templateGroupDto) {
+    public CommonRes<Void> updateTemplateGroup(@RequestBody TemplateGroupDto templateGroupDto) {
 
         if (null == templateGroupDto) {
             log.error("templateGroupDto is null.");
-            return DatabaseUtil.getResult(DatabaseOptConstant.DATABASE_PARA_ILLEGAL, ModuleConstant.ITEM_CENTER);
+            return new CommonRes<>(ErrorCode.PARA_IS_NULL);
         }
 
         TemplateDto templateDto = templateGroupDto.getTemplateDto();
         int success = templateService.updateTemplate(templateDto);
-        if (DatabaseOptConstant.DATABASE_OPT_SUCCESS != success) {
-            return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
-        }
 
         templateBrandService.deleteTemplateBrandByTemplateId(templateDto.getId());
         List<BrandDto> brandDtoList = templateGroupDto.getBrandDtoList();
@@ -141,7 +136,7 @@ public class TemplateController {
                 extraAttributesService.insertExtraAttributes(x);
             });
         }
-        return RspDto.SUCCESS;
+        return CommonRes.SUCCESS;
     }
 
     /**
@@ -151,11 +146,11 @@ public class TemplateController {
      * @return 响应
      */
     @DeleteMapping("/group/batch/ids")
-    public RspDto batchDeleteTemplateGroup(@RequestParam("ids") Long[] ids) {
+    public CommonRes<Void> batchDeleteTemplateGroup(@RequestParam("ids") Long[] ids) {
 
         if (null == ids) {
             log.error("ids is null.");
-            return DatabaseUtil.getResult(DatabaseOptConstant.DATABASE_PARA_ILLEGAL, ModuleConstant.ITEM_CENTER);
+            return new CommonRes<>(ErrorCode.PARA_IS_NULL);
         }
         for (Long id : ids) {
             templateBrandService.deleteTemplateBrandByTemplateId(id);
@@ -164,7 +159,7 @@ public class TemplateController {
             templateService.deleteTemplate(id);
         }
 
-        return RspDto.SUCCESS;
+        return CommonRes.SUCCESS;
     }
 
     /**
@@ -174,12 +169,12 @@ public class TemplateController {
      * @return 模板组合
      */
     @GetMapping("/group/template-id")
-    public RspDto<TemplateGroupDto> selectTemplateGroupByTemplateId(@RequestParam("templateId") Long templateId) {
+    public CommonRes<TemplateGroupDto> selectTemplateGroupByTemplateId(@RequestParam("templateId") Long templateId) {
 
         TemplateDto templateDto = templateService.selectTemplateById(templateId);
         if (null == templateDto) {
             log.error("templateDto is null. templateId: {}", templateId);
-            return RspDto.SUCCESS;
+            return new CommonRes<>(null);
         }
 
         TemplateGroupDto templateGroupDto = new TemplateGroupDto();
@@ -207,7 +202,7 @@ public class TemplateController {
 
         templateGroupDto.setExtraAttributesDtoList(extraAttributesService.selectExtraAttributesByTemplateId(templateId));
 
-        return new RspDto<>(templateGroupDto);
+        return new CommonRes<>(templateGroupDto);
 
     }
 
@@ -220,15 +215,15 @@ public class TemplateController {
      * @return 模板组合列表
      */
     @PostMapping("/group/list/page/condition")
-    public PageRspDto<List<TemplateGroupDto>> selectPageTemplateGroupByCondition(@RequestBody TemplateDto templateDto,
-                                 @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize) {
+    public CommonPageRes<List<TemplateGroupDto>> selectPageTemplateGroupByCondition(@RequestBody TemplateDto templateDto,
+                                @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize) {
 
-        PageRspDto<List<TemplateDto>> listPageRspDto = templateService.selectPageTemplateByCondition(templateDto, pageNum,
+        CommonPageRes<List<TemplateDto>> listPageRspDto = templateService.selectPageTemplateByCondition(templateDto, pageNum,
                 pageSize);
         List<TemplateDto> templateDtoList = listPageRspDto.getData();
         if (ListUtil.isBlank(templateDtoList)) {
             log.error("templateDtoList is blank. templateDto: {}, pageNum: {}, pageSize: {}", templateDto, pageNum, pageSize);
-            return new PageRspDto<>(listPageRspDto.getTotal(), null);
+            return new CommonPageRes<>(listPageRspDto.getTotal(), null);
         }
 
         List<TemplateGroupDto> templateGroupDtoList = new ArrayList<>();
@@ -260,7 +255,7 @@ public class TemplateController {
             templateGroupDtoList.add(templateGroupDto);
         });
 
-        return new PageRspDto<>(listPageRspDto.getTotal(), templateGroupDtoList);
+        return new CommonPageRes<>(listPageRspDto.getTotal(), templateGroupDtoList);
 
     }
 }

@@ -3,7 +3,6 @@ package com.square.mall.item.center.service.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.util.DatabaseOptConstant;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.CategoryDto;
 import com.square.mall.item.center.service.dao.CategoryDao;
@@ -78,7 +77,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         if (null == categoryDto) {
             log.error("categoryDto is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
 
         CategoryEo categoryEo = new CategoryEo();
@@ -95,7 +94,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         if (null == categoryDto || null == categoryDto.getId()) {
             log.error("categoryDto or id is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
 
         CategoryEo categoryEo = new CategoryEo();
@@ -129,7 +128,7 @@ public class CategoryServiceImpl implements CategoryService {
     public int batchDeleteCategory(Long[] ids) {
         if (null == ids || ids.length <= 0) {
             log.error("ids is blank.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         return categoryDao.batchDeleteCategory(ids) >= 1 ? 1 : 0;
     }

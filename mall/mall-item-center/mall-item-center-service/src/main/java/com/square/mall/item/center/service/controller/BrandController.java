@@ -2,8 +2,6 @@ package com.square.mall.item.center.service.controller;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
-import com.square.mall.common.util.DatabaseUtil;
-import com.square.mall.common.util.ModuleConstant;
 import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.service.service.BrandService;
 import org.springframework.web.bind.annotation.*;
@@ -80,7 +78,7 @@ public class BrandController {
     @PostMapping("")
     public RspDto<Long> insertBrand(@RequestBody BrandDto brandDto) {
         int success = brandService.insertBrand(brandDto);
-        return DatabaseUtil.getResult(success, brandDto.getId(), ModuleConstant.ITEM_CENTER);
+        return new RspDto<>(brandDto.getId());
     }
 
 
@@ -91,9 +89,9 @@ public class BrandController {
      * @return 响应
      */
     @PutMapping("")
-    public RspDto updateBrand(@RequestBody BrandDto brandDto) {
+    public RspDto<Void> updateBrand(@RequestBody BrandDto brandDto) {
         int success = brandService.updateBrand(brandDto);
-        return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
+        return RspDto.SUCCESS;
     }
 
 
@@ -104,9 +102,9 @@ public class BrandController {
      * @return 响应
      */
     @DeleteMapping("")
-    public RspDto deleteBrand(@RequestParam("id") Long id) {
+    public RspDto<Void> deleteBrand(@RequestParam("id") Long id) {
         int success = brandService.deleteBrand(id);
-        return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
+        return RspDto.SUCCESS;
     }
 
 
@@ -117,9 +115,9 @@ public class BrandController {
      * @return 响应
      */
     @DeleteMapping("/batch")
-    public RspDto batchDeleteBrand(@RequestParam("ids") Long[] ids) {
+    public RspDto<Void> batchDeleteBrand(@RequestParam("ids") Long[] ids) {
         int success = brandService.batchDeleteBrand(ids);
-        return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
+        return RspDto.SUCCESS;
     }
 
 }

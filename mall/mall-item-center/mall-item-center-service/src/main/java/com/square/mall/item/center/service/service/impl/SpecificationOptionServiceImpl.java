@@ -1,6 +1,5 @@
 package com.square.mall.item.center.service.service.impl;
 
-import com.square.mall.common.util.DatabaseOptConstant;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.common.util.StringUtil;
 import com.square.mall.item.center.api.dto.SpecificationOptionDto;
@@ -32,7 +31,7 @@ public class SpecificationOptionServiceImpl implements SpecificationOptionServic
     public int insertSpecificationOption(SpecificationOptionDto specificationOptionDto) {
         if (null == specificationOptionDto || StringUtil.isBlank(specificationOptionDto.getName())) {
             log.error("specificationOptionDto or name is null or blank.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         SpecificationOptionEo specificationOptionEo = new SpecificationOptionEo();
         BeanUtils.copyProperties(specificationOptionDto, specificationOptionEo);
@@ -44,13 +43,13 @@ public class SpecificationOptionServiceImpl implements SpecificationOptionServic
 
         if (null == specificationOptionDto || null == specificationOptionDto.getId()) {
             log.error("specificationOptionDto or id is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         SpecificationOptionEo oldSpecificationOptionEo = specificationOptionDao
             .selectSpecificationOptionById(specificationOptionDto.getId());
         if (null == oldSpecificationOptionEo) {
             log.error("oldSpecificationOptionEo is null. id: {}", specificationOptionDto.getId());
-            return DatabaseOptConstant.DATABASE_DATA_NOT_EXIST;
+            return 0;
         }
         SpecificationOptionEo specificationOptionEo = new SpecificationOptionEo();
         BeanUtils.copyProperties(specificationOptionDto, specificationOptionEo);
@@ -63,12 +62,12 @@ public class SpecificationOptionServiceImpl implements SpecificationOptionServic
 
         if (null == id) {
             log.error("id is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         SpecificationOptionEo oldSpecificationOptionEo = specificationOptionDao.selectSpecificationOptionById(id);
         if (null == oldSpecificationOptionEo) {
             log.error("oldSpecificationOptionEo is null. id: {}", id);
-            return DatabaseOptConstant.DATABASE_DATA_NOT_EXIST;
+            return 0;
         }
         return specificationOptionDao.deleteSpecificationOption(id);
 
@@ -79,7 +78,7 @@ public class SpecificationOptionServiceImpl implements SpecificationOptionServic
 
         if (null == ids || ids.length <= 0) {
             log.error("ids is blank.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         return specificationOptionDao.batchDeleteSpecificationOption(ids) >= 1 ? 1: 0;
     }
@@ -89,7 +88,7 @@ public class SpecificationOptionServiceImpl implements SpecificationOptionServic
 
         if (null == specId) {
             log.error("specId is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         return specificationOptionDao.deleteSpecificationOptionBySpecId(specId) >= 1 ? 1 : 0;
 

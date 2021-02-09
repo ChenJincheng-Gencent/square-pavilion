@@ -1,11 +1,9 @@
 package com.square.mall.item.center.service.controller;
 
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.dto.RspDto;
-import com.square.mall.common.util.DatabaseOptConstant;
-import com.square.mall.common.util.DatabaseUtil;
+import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.dto.CommonRes;
+import com.square.mall.common.enums.ErrorCode;
 import com.square.mall.common.util.ListUtil;
-import com.square.mall.common.util.ModuleConstant;
 import com.square.mall.item.center.api.dto.SpecificationDto;
 import com.square.mall.item.center.api.dto.SpecificationGroupDto;
 import com.square.mall.item.center.api.dto.SpecificationOptionDto;
@@ -41,11 +39,11 @@ public class SpecificationController {
      * @return 数据库ID
      */
     @PostMapping("/group")
-    public RspDto<Long> insertSpecificationGroup(@RequestBody SpecificationGroupDto specificationGroupDto) {
+    public CommonRes<Long> insertSpecificationGroup(@RequestBody SpecificationGroupDto specificationGroupDto) {
 
         if (null == specificationGroupDto) {
             log.error("specificationGroupDto is null.");
-            return DatabaseUtil.getResult(DatabaseOptConstant.DATABASE_PARA_ILLEGAL, ModuleConstant.ITEM_CENTER);
+            return new CommonRes<>(ErrorCode.PARA_IS_NULL);
         }
 
         SpecificationDto specificationDto = specificationGroupDto.getSpecificationDto();
@@ -57,8 +55,7 @@ public class SpecificationController {
                 specificationOptionService.insertSpecificationOption(x);
             });
         }
-        return DatabaseUtil.getResult(DatabaseOptConstant.DATABASE_OPT_SUCCESS, specificationDto.getId(), ModuleConstant
-                .ITEM_CENTER);
+        return new CommonRes<>(specificationDto.getId());
     }
 
     /**
@@ -68,17 +65,14 @@ public class SpecificationController {
      * @return 响应
      */
     @PutMapping("/group")
-    public RspDto updateSpecificationGroup(@RequestBody SpecificationGroupDto specificationGroupDto) {
+    public CommonRes<Void> updateSpecificationGroup(@RequestBody SpecificationGroupDto specificationGroupDto) {
 
         if (null == specificationGroupDto) {
             log.error("specificationGroupDto is null.");
-            return DatabaseUtil.getResult(DatabaseOptConstant.DATABASE_PARA_ILLEGAL, ModuleConstant.ITEM_CENTER);
+            return new CommonRes<>(ErrorCode.PARA_IS_NULL);
         }
         SpecificationDto specificationDto = specificationGroupDto.getSpecificationDto();
         int success = specificationService.updateSpecification(specificationDto);
-        if (DatabaseOptConstant.DATABASE_OPT_SUCCESS != success) {
-            return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
-        }
         Long specId = specificationDto.getId();
         specificationOptionService.deleteSpecificationOptionBySpecId(specId);
         List<SpecificationOptionDto> specificationOptionDtoList = specificationGroupDto.getSpecificationOptionDtoList();
@@ -89,7 +83,7 @@ public class SpecificationController {
             });
         }
 
-        return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
+        return CommonRes.SUCCESS;
 
     }
 
@@ -100,17 +94,17 @@ public class SpecificationController {
      * @return 响应
      */
     @DeleteMapping("/group/batch/ids")
-    public RspDto batchDeleteSpecificationGroup(@RequestParam("ids") Long[] ids) {
+    public CommonRes<Void> batchDeleteSpecificationGroup(@RequestParam("ids") Long[] ids) {
 
         if (null == ids) {
             log.error("ids is null.");
-            return DatabaseUtil.getResult(DatabaseOptConstant.DATABASE_PARA_ILLEGAL, ModuleConstant.ITEM_CENTER);
+            return new CommonRes<>(ErrorCode.PARA_IS_NULL);
         }
         for (Long id : ids) {
             specificationOptionService.deleteSpecificationOptionBySpecId(id);
             specificationService.deleteSpecification(id);
         }
-        return DatabaseUtil.getResult(DatabaseOptConstant.DATABASE_OPT_SUCCESS, ModuleConstant.ITEM_CENTER);
+        return CommonRes.SUCCESS;
     }
 
     /**
@@ -120,17 +114,17 @@ public class SpecificationController {
      * @return 规格组合
      */
     @GetMapping("/group/spec-id")
-    public RspDto<SpecificationGroupDto> selectSpecificationGroupBySpecId(@RequestParam("specId") Long specId) {
+    public CommonRes<SpecificationGroupDto> selectSpecificationGroupBySpecId(@RequestParam("specId") Long specId) {
         SpecificationDto specificationDto = specificationService.selectSpecificationById(specId);
         if (null == specificationDto) {
             log.error("specificationDto is null. specId: {}", specId);
-            return new RspDto<>(null);
+            return new CommonRes<>(null);
         }
         SpecificationGroupDto specificationGroupDto = new SpecificationGroupDto();
         specificationGroupDto.setSpecificationDto(specificationDto);
         List<SpecificationOptionDto> optionDtoList = specificationOptionService.selectSpecificationOptionBySpecId(specId);
         specificationGroupDto.setSpecificationOptionDtoList(optionDtoList);
-        return new RspDto<>(specificationGroupDto);
+        return new CommonRes<>(specificationGroupDto);
     }
 
     /**
@@ -142,8 +136,8 @@ public class SpecificationController {
      * @return 规格列表
      */
     @PostMapping("/list/page/condition")
-    public PageRspDto<List<SpecificationDto>> selectPageSpecificationByCondition(@RequestBody SpecificationDto specificationDto,
-                                 @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize) {
+    public CommonPageRes<List<SpecificationDto>> selectPageSpecificationByCondition(@RequestBody SpecificationDto specificationDto,
+                                @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize) {
         return specificationService.selectPageSpecificationByCondition(specificationDto, pageNum, pageSize);
     }
 
@@ -154,8 +148,8 @@ public class SpecificationController {
      * @return 规格
      */
     @GetMapping("/id")
-    public RspDto<SpecificationDto> selectSpecificationById(@RequestParam("id") Long id) {
-        return new RspDto<>(specificationService.selectSpecificationById(id));
+    public CommonRes<SpecificationDto> selectSpecificationById(@RequestParam("id") Long id) {
+        return new CommonRes<>(specificationService.selectSpecificationById(id));
     }
 
     /**
@@ -164,8 +158,8 @@ public class SpecificationController {
      * @return 规格列表
      */
     @GetMapping("/list/all")
-    public RspDto<List<SpecificationDto>> selectSpecificationAll() {
-        return new RspDto<>(specificationService.selectSpecificationAll());
+    public CommonRes<List<SpecificationDto>> selectSpecificationAll() {
+        return new CommonRes<>(specificationService.selectSpecificationAll());
     }
 
     /**
@@ -175,8 +169,8 @@ public class SpecificationController {
      * @return 规格列表
      */
     @PostMapping("/list/condition")
-    public RspDto<List<SpecificationDto>> selectSpecificationByCondition(@RequestBody SpecificationDto specificationDto) {
-        return new RspDto<>(specificationService.selectSpecificationByCondition(specificationDto));
+    public CommonRes<List<SpecificationDto>> selectSpecificationByCondition(@RequestBody SpecificationDto specificationDto) {
+        return new CommonRes<>(specificationService.selectSpecificationByCondition(specificationDto));
     }
 
 }

@@ -2,8 +2,7 @@ package com.square.mall.item.center.service.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.util.DatabaseOptConstant;
+import com.square.mall.common.dto.CommonPageRes;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.common.util.StringUtil;
 import com.square.mall.item.center.api.dto.SpecificationDto;
@@ -36,12 +35,12 @@ public class SpecificationServiceImpl implements SpecificationService {
 
         if (null == specificationDto || StringUtil.isBlank(specificationDto.getName())) {
             log.error("specificationDto or name is null or blank.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         SpecificationEo oldSpecificationEo = specificationDao.selectSpecificationByName(specificationDto.getName());
         if (null != oldSpecificationEo) {
             log.error("oldSpecificationEo already exist. name: {}", specificationDto.getName());
-            return DatabaseOptConstant.DATABASE_DATA_ALREADY_EXIST;
+            return 0;
         }
         SpecificationEo specificationEo = new SpecificationEo();
         BeanUtils.copyProperties(specificationDto, specificationEo);
@@ -55,7 +54,7 @@ public class SpecificationServiceImpl implements SpecificationService {
     public int updateSpecification(SpecificationDto specificationDto) {
 
         if (null == specificationDto || StringUtil.isBlank(specificationDto.getName())) {
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         SpecificationEo specificationEo = new SpecificationEo();
         BeanUtils.copyProperties(specificationDto, specificationEo);
@@ -67,7 +66,7 @@ public class SpecificationServiceImpl implements SpecificationService {
 
         if (null == id) {
             log.error("id is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         return specificationDao.deleteSpecification(id);
     }
@@ -94,8 +93,8 @@ public class SpecificationServiceImpl implements SpecificationService {
     }
 
     @Override
-    public PageRspDto<List<SpecificationDto>> selectPageSpecificationByCondition(SpecificationDto specificationDto,
-        Integer pageNum, Integer pageSize) {
+    public CommonPageRes<List<SpecificationDto>> selectPageSpecificationByCondition(SpecificationDto specificationDto,
+                                                                                    Integer pageNum, Integer pageSize) {
 
         pageNum = null == pageNum ? 1 : pageNum;
         pageSize = null == pageSize ? 10 : pageSize;
@@ -114,7 +113,7 @@ public class SpecificationServiceImpl implements SpecificationService {
                 specificationDtoList.add(specificationDtoTemp);
             });
         }
-        return new PageRspDto<>(page.getTotal(), specificationDtoList);
+        return new CommonPageRes<>(page.getTotal(), specificationDtoList);
     }
 
     @Override

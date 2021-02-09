@@ -2,8 +2,7 @@ package com.square.mall.item.center.service.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.util.DatabaseOptConstant;
+import com.square.mall.common.dto.CommonPageRes;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.TemplateDto;
 import com.square.mall.item.center.service.dao.TemplateDao;
@@ -35,7 +34,7 @@ public class TemplateServiceImpl implements TemplateService {
 
         if (null == templateDto) {
             log.error("templateDto is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
 
         TemplateEo templateEo = new TemplateEo();
@@ -52,7 +51,7 @@ public class TemplateServiceImpl implements TemplateService {
 
         if (null == templateDto) {
             log.error("templateDto is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         TemplateEo templateEo = new TemplateEo();
         BeanUtils.copyProperties(templateDto, templateEo);
@@ -64,7 +63,7 @@ public class TemplateServiceImpl implements TemplateService {
 
         if (null == id) {
             log.error("id is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
 
         return templateDao.deleteTemplate(id);
@@ -77,7 +76,7 @@ public class TemplateServiceImpl implements TemplateService {
     }
 
     @Override
-    public PageRspDto<List<TemplateDto>> selectPageTemplateByCondition(TemplateDto templateDto, Integer pageNum, Integer pageSize) {
+    public CommonPageRes<List<TemplateDto>> selectPageTemplateByCondition(TemplateDto templateDto, Integer pageNum, Integer pageSize) {
 
         pageNum = null == pageNum ? 1 : pageNum;
         pageSize = null == pageSize ? 10 : pageSize;
@@ -96,7 +95,7 @@ public class TemplateServiceImpl implements TemplateService {
                 templateDtoList.add(templateDtoTemp);
             });
         }
-        return new PageRspDto<>(page.getTotal(), templateDtoList);
+        return new CommonPageRes<>(page.getTotal(), templateDtoList);
     }
 
     @Override

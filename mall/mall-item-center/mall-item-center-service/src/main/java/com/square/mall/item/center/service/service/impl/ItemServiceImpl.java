@@ -3,7 +3,6 @@ package com.square.mall.item.center.service.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.util.DatabaseOptConstant;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.common.util.StringUtil;
 import com.square.mall.item.center.api.dto.ItemDto;
@@ -35,13 +34,13 @@ public class ItemServiceImpl implements ItemService {
     public int insertItem(ItemDto itemDto) {
         if (null == itemDto || StringUtil.isBlank(itemDto.getName())) {
             log.error("itemDto or name is null or blank.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
 
         }
         ItemEo oldItemEo = itemDao.selectItemByName(itemDto.getName());
         if (null != oldItemEo) {
             log.error("oldItemEo already exist. itemDto: {}", itemDto);
-            return DatabaseOptConstant.DATABASE_DATA_ALREADY_EXIST;
+            return 0;
         }
         ItemEo itemEo = new ItemEo();
         BeanUtils.copyProperties(itemDto, itemEo);
@@ -52,14 +51,15 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public int updateItem(ItemDto itemDto) {
+
         if (null == itemDto || null == itemDto.getId()) {
             log.error("itemDto or id is null");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         ItemEo oldItemEo = itemDao.selectItemById(itemDto.getId());
         if (null == oldItemEo) {
             log.error("oldItemEo is null. id: {}", itemDto.getId());
-            return DatabaseOptConstant.DATABASE_DATA_NOT_EXIST;
+            return 0;
         }
         ItemEo itemEo = new ItemEo();
         return itemDao.updateItem(itemEo);
@@ -69,13 +69,13 @@ public class ItemServiceImpl implements ItemService {
     public int deleteItem(Long id) {
         if (null == id) {
             log.error("id is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
 
         ItemEo itemEo = itemDao.selectItemById(id);
         if (null == itemEo) {
             log.error("itemEo is null. id: {}", id);
-            return DatabaseOptConstant.DATABASE_DATA_NOT_EXIST;
+            return 0;
         }
 
         return itemDao.deleteItem(id);

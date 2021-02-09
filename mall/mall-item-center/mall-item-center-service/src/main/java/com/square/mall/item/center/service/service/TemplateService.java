@@ -1,6 +1,6 @@
 package com.square.mall.item.center.service.service;
 
-import com.square.mall.common.dto.PageRspDto;
+import com.square.mall.common.dto.CommonPageRes;
 import com.square.mall.item.center.api.dto.TemplateDto;
 import org.apache.ibatis.annotations.Param;
 
@@ -54,7 +54,7 @@ public interface TemplateService {
      * @param pageSize 分页大小
      * @return 模板列表
      */
-    PageRspDto<List<TemplateDto>> selectPageTemplateByCondition(TemplateDto templateDto, Integer pageNum, Integer pageSize);
+    CommonPageRes<List<TemplateDto>> selectPageTemplateByCondition(TemplateDto templateDto, Integer pageNum, Integer pageSize);
 
     /**
      * 根据名称查询模板

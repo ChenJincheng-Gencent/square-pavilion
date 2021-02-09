@@ -1,7 +1,6 @@
 package com.square.mall.item.center.service.service.impl;
 
 import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.util.DatabaseOptConstant;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.ExtraAttributesDto;
 import com.square.mall.item.center.service.dao.ExtraAttributesDao;
@@ -32,7 +31,7 @@ public class ExtraAttributesServiceImpl implements ExtraAttributesService {
     public int insertExtraAttributes(ExtraAttributesDto extraAttributesDto) {
         if (null == extraAttributesDto) {
             log.error("extraAttributesDto is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         ExtraAttributesEo extraAttributesEo = new ExtraAttributesEo();
         BeanUtils.copyProperties(extraAttributesDto, extraAttributesEo);
@@ -50,7 +49,7 @@ public class ExtraAttributesServiceImpl implements ExtraAttributesService {
     public int deleteExtraAttributesByTemplateId(Long templateId) {
         if (null == templateId) {
             log.error("templateId is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         return extraAttributesDao.deleteExtraAttributesByTemplateId(templateId);
     }

@@ -2,8 +2,6 @@ package com.square.mall.item.center.service.controller;
 
 import com.square.mall.common.dto.PageRspDto;
 import com.square.mall.common.dto.RspDto;
-import com.square.mall.common.util.DatabaseUtil;
-import com.square.mall.common.util.ModuleConstant;
 import com.square.mall.item.center.api.dto.ItemDto;
 import com.square.mall.item.center.service.service.ItemService;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +31,7 @@ public class ItemController {
     @PostMapping("")
     public RspDto<Long> insertItem(@RequestBody ItemDto itemDto) {
         int success = itemService.insertItem(itemDto);
-        return DatabaseUtil.getResult(success, itemDto.getId(), ModuleConstant.ITEM_CENTER);
+        return new RspDto<>(itemDto.getId());
     }
 
     /**
@@ -43,9 +41,9 @@ public class ItemController {
      * @return 响应
      */
     @PutMapping("")
-    public RspDto updateItem(ItemDto itemDto) {
+    public RspDto<Void> updateItem(ItemDto itemDto) {
         int success = itemService.updateItem(itemDto);
-        return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
+        return RspDto.SUCCESS;
     }
 
 
@@ -56,9 +54,9 @@ public class ItemController {
      * @return 响应
      */
     @DeleteMapping("")
-    public RspDto deleteItem(Long id) {
+    public RspDto<Void> deleteItem(Long id) {
         int success = itemService.deleteItem(id);
-        return DatabaseUtil.getResult(success, ModuleConstant.ITEM_CENTER);
+        return RspDto.SUCCESS;
     }
 
     /**

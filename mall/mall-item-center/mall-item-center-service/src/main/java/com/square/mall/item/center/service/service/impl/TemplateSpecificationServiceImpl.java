@@ -1,7 +1,6 @@
 package com.square.mall.item.center.service.service.impl;
 
 import com.square.mall.common.dto.PageRspDto;
-import com.square.mall.common.util.DatabaseOptConstant;
 import com.square.mall.item.center.api.dto.TemplateSpecificationDto;
 import com.square.mall.item.center.service.dao.TemplateSpecificationDao;
 import com.square.mall.item.center.service.eo.TemplateSpecificationEo;
@@ -30,7 +29,7 @@ public class TemplateSpecificationServiceImpl implements TemplateSpecificationSe
     public int insertTemplateSpecification(TemplateSpecificationDto templateSpecificationDto) {
         if (null == templateSpecificationDto) {
             log.error("templateSpecificationDto is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         TemplateSpecificationEo templateSpecificationEo = new TemplateSpecificationEo();
         BeanUtils.copyProperties(templateSpecificationDto, templateSpecificationEo);
@@ -49,7 +48,7 @@ public class TemplateSpecificationServiceImpl implements TemplateSpecificationSe
 
         if (null == templateId) {
             log.error("templateId is null.");
-            return DatabaseOptConstant.DATABASE_PARA_ILLEGAL;
+            return 0;
         }
         return templateSpecificationDao.deleteTemplateSpecificationByTemplateId(templateId);
     }

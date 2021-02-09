@@ -1,6 +1,6 @@
 package com.square.mall.item.center.service.service;
 
-import com.square.mall.common.dto.PageRspDto;
+import com.square.mall.common.dto.CommonPageRes;
 import com.square.mall.item.center.api.dto.SpecificationDto;
 
 import java.util.List;
@@ -52,8 +52,8 @@ public interface SpecificationService {
      * @param pageSize 分页大小
      * @return 规格列表
      */
-    PageRspDto<List<SpecificationDto>> selectPageSpecificationByCondition(SpecificationDto specificationDto,
-        Integer pageNum, Integer pageSize);
+    CommonPageRes<List<SpecificationDto>> selectPageSpecificationByCondition(SpecificationDto specificationDto,
+                                                                             Integer pageNum, Integer pageSize);
 
     /**
      * 根据ID查询规格
