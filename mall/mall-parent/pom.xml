@@ -15,8 +15,8 @@
         <java.version>14</java.version>
         <spring-cloud.version>2020.0.1</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
-        <nacos.discovery.version>2.2.3.RELEASE</nacos.discovery.version>
-        <nacos.config.version>2.2.3.RELEASE</nacos.config.version>
+        <nacos.discovery.version>2.2.5.RELEASE</nacos.discovery.version>
+        <nacos.config.version>2.2.5.RELEASE</nacos.config.version>
         <lombok.version>1.18.8</lombok.version>
         <mybatis.starter.version>2.1.0</mybatis.starter.version>
         <redis.starter.version>2.3.1.RELEASE</redis.starter.version>
