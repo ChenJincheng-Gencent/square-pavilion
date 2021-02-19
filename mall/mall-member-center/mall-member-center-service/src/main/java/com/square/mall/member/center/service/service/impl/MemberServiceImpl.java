@@ -17,7 +17,6 @@ import javax.annotation.Resource;
  * @author Gencent
  * @date 2019/8/19
  */
-
 @Service
 @Slf4j
 public class MemberServiceImpl implements MemberService {

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
- *  登录信息Service实现类
+ * 登录Service实现类
  *
  * @author Gencent
  * @date 2020/7/17
