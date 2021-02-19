@@ -37,11 +37,11 @@ public enum AuditStatus {
     /**
      * 枚举值
      */
-    private Integer value;
+    private final Integer value;
 
     /**
      * 描述
      */
-    private String desc;
+    private final String desc;
 
 }

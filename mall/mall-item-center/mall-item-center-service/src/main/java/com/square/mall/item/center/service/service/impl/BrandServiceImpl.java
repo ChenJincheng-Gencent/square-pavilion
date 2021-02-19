@@ -3,9 +3,13 @@ package com.square.mall.item.center.service.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.square.mall.common.dto.CommonPageRes;
+import com.square.mall.common.enums.ErrorCode;
+import com.square.mall.common.exception.BizException;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.common.util.StringUtil;
 import com.square.mall.item.center.api.dto.BrandDto;
+import com.square.mall.item.center.api.enums.ItemCenterBizCode;
+import com.square.mall.item.center.api.exception.ItemCenterBizException;
 import com.square.mall.item.center.service.dao.BrandDao;
 import com.square.mall.item.center.service.eo.BrandEo;
 import com.square.mall.item.center.service.service.BrandService;
@@ -35,13 +39,12 @@ public class BrandServiceImpl implements BrandService {
 
         if (null == brandDto || StringUtil.isBlank(brandDto.getName())) {
             log.error("brandDto or name is null or blank.");
-            return 0;
-
+            throw new BizException(ErrorCode.PARA_IS_NULL);
         }
         BrandEo oldBrandEo = brandDao.selectBrandByName(brandDto.getName());
         if (null != oldBrandEo) {
             log.error("oldBrandEo already exist. brandDto: {}", brandDto);
-            return 0;
+            throw new ItemCenterBizException(ItemCenterBizCode.MAX);
         }
         BrandEo brandEo = new BrandEo();
         BeanUtils.copyProperties(brandDto, brandEo);

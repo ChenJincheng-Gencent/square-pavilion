@@ -17,6 +17,11 @@ import lombok.NoArgsConstructor;
 public enum ItemCenterBizCode {
 
     /**
+     * 品牌已存在
+     */
+    BRAND_IS_EXISTED(11000000,"该品牌已存在"),
+
+    /**
      * 错误码段最大值
      */
     MAX(11999999,"最大值占位，在上方添加新枚举");
