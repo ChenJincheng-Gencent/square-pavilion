@@ -12,7 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author Gencent
  * @date 2019/8/31
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.square.mall"})
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = {"com.square.mall"})
 public class MemberApplication {
