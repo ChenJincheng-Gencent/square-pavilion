@@ -44,7 +44,7 @@ public class BrandServiceImpl implements BrandService {
         BrandEo oldBrandEo = brandDao.selectBrandByName(brandDto.getName());
         if (null != oldBrandEo) {
             log.error("oldBrandEo already exist. brandDto: {}", brandDto);
-            throw new ItemCenterBizException(ItemCenterBizCode.MAX);
+            throw new ItemCenterBizException(ItemCenterBizCode.BRAND_IS_EXISTED);
         }
         BrandEo brandEo = new BrandEo();
         BeanUtils.copyProperties(brandDto, brandEo);
