@@ -13,8 +13,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author Gencent
  * @date 2019/8/19
  */
-
-@SpringBootApplication(exclude = MongoAutoConfiguration.class)
+@SpringBootApplication(exclude = MongoAutoConfiguration.class, scanBasePackages = {"com.square.mall"})
 @EnableDiscoveryClient
 @EnableFeignClients
 public class MemberCenterApplication {
