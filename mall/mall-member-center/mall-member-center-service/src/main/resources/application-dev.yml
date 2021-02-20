@@ -7,7 +7,7 @@ mysql:
       url: jdbc:mysql://192.168.117.130:3306/sp_member?useUnicode=true&characterEncoding=utf-8&useSSL=false
       userName: root
       password: cjc1573
-      driverClassName: com.mysql.jdbc.Driver
+      driverClassName: com.mysql.cj.jdbc.Driver
       validationQuery: select 1
       maxPoolSize: 30
 
@@ -20,8 +20,17 @@ logging:
   config: classpath:logback-spring.xml
 
 spring:
+  application:
+    name: mall-member-center
   main:
     allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.117.128:8848,192.168.117.129:8848,192.168.117.130:8848
+      config:
+        server-addr: 192.168.117.128:8848,192.168.117.129:8848,192.168.117.130:8848
+        file-extension: yaml
 
 #kafka配置
 kafka:
