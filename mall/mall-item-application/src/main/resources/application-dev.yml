@@ -6,8 +6,17 @@ logging:
   config: classpath:logback-spring.xml
 
 spring:
+  application:
+    name: mall-item-application
   main:
     allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.117.128:8848,192.168.117.129:8848,192.168.117.130:8848
+      config:
+        server-addr: 192.168.117.128:8848,192.168.117.129:8848,192.168.117.130:8848
+        file-extension: yaml
 
 #kafka配置
 kafka:
