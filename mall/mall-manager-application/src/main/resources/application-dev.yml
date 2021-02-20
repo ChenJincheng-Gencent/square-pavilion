@@ -14,8 +14,17 @@ mall-item-center:
     MaxAutoRetries: 1 #对当前实例的重试次数
 
 spring:
+  application:
+    name: mall-member-center
   main:
     allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.117.128:8848,192.168.117.129:8848,192.168.117.130:8848
+      config:
+        server-addr: 192.168.117.128:8848,192.168.117.129:8848,192.168.117.130:8848
+        file-extension: yaml
 
 #kafka配置
 kafka:
