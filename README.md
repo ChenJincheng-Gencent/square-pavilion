@@ -12,9 +12,9 @@
 JDK|Java开发工具包|11
 Maven|构建工具|3.6.3
 IDEA|IDE软件|2020.1.2
-Spring Boot|容器+MVC框架|2.3.2.RELEASE
-Spring Cloud|微服务框架|Hoxton.SR8
-Spring Cloud Alibaba|微服务框架|2.2.3.RELEASE
+Spring Boot|容器+MVC框架|2.4.2.RELEASE
+Spring Cloud|微服务框架|2020.0.1
+Spring Cloud Alibaba|微服务框架|2.2.5.RELEASE
 MyBatis|ORM框架|2.1.0
 Elasticsearch|搜索引擎|7.3.1
 Redis|分布式缓存|5.0.5
@@ -23,6 +23,7 @@ Mysql|关系型数据库|5.7.27
 Lombok|简化对象封装工具|1.18.8
 Nacos|分布式注册配置中心|1.3.2
 Swagger2|API文档工具|2.9.2
+Elasticjob-lite|分布式定时任务|3.0.0-RC1
 
 
 ## 三、项目架构
