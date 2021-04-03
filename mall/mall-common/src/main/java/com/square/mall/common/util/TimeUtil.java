@@ -291,5 +291,17 @@ public class TimeUtil {
         return sdf.parse(timeStr);
     }
 
+    /**
+     * 当前时间到本月底23点59分59秒的秒数
+     * @return 秒数
+     */
+    public static long getDurationSecondsBetweenNowAndLastDayOfMonth() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime lastTimeOfDayOfMonth = now.with(TemporalAdjusters.lastDayOfMonth()).withHour(23)
+                .withMinute(59).withSecond(59);
+        Duration duration = Duration.between(now, lastTimeOfDayOfMonth);
+        return duration.getSeconds();
+    }
+
 
 }
