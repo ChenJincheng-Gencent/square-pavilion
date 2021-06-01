@@ -1,9 +1,10 @@
 package com.square.mall.common.util;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import org.springframework.context.annotation.Bean;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.concurrent.*;
 
 /**
@@ -34,6 +35,7 @@ import java.util.concurrent.*;
  * @date 2020/7/18
  */
 @Component
+@Slf4j
 public class ThreadPoolUtil {
 
     /**
@@ -76,15 +78,35 @@ public class ThreadPoolUtil {
      */
     private final static int KEEP_ALIVE_TIME = 10;
 
-    @Bean("AsyncThreadPool")
-    public Executor createAsyncThreadPool() {
-        return new ThreadPoolExecutor(
-                CORE_POOL_SIZE,
-                MAX_POOL_SIZE,
-                KEEP_ALIVE_TIME,
-                TimeUnit.MINUTES,
-                new ArrayBlockingQueue<>(QUEUE_CAPACITY),
-                this.asyncThreadFactory());
+    private final static Executor EXECUTOR = new ThreadPoolExecutor(
+            CORE_POOL_SIZE,
+            MAX_POOL_SIZE,
+            KEEP_ALIVE_TIME,
+            TimeUnit.MINUTES,
+            new ArrayBlockingQueue<>(QUEUE_CAPACITY),
+            asyncThreadFactory());
+
+
+    /**
+     * 在未来某个时间执行给定的命令
+     * 该命令可能在新的线程、已入池的线程或者正调用的线程中执行，这由 Executor 实现决定。
+     *
+     * @param command 命令
+     */
+    public static void execute(final Runnable command) {
+        EXECUTOR.execute(command);
+    }
+
+    /**
+     * 在未来某个时间执行给定的命令链表
+     * 该命令可能在新的线程、已入池的线程或者正调用的线程中执行，这由 Executor 实现决定。
+     *
+     * @param commands 命令链表
+     */
+    public static void execute(final List<Runnable> commands) {
+        for (Runnable command : commands) {
+            EXECUTOR.execute(command);
+        }
     }
 
     /**
@@ -92,10 +114,9 @@ public class ThreadPoolUtil {
      *
      * @return 线程工厂
      */
-    private ThreadFactory asyncThreadFactory() {
+    private static ThreadFactory asyncThreadFactory() {
         ThreadFactoryBuilder threadFactoryBuilder = new ThreadFactoryBuilder();
         return threadFactoryBuilder.setNameFormat("AsyncThread-%d").build();
     }
-
 
 }
