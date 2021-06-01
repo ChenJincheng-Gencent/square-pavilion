@@ -22,7 +22,6 @@
         <redis.starter.version>2.3.1.RELEASE</redis.starter.version>
         <fastjson.version>1.2.59</fastjson.version>
         <commons-lang3.version>3.9</commons-lang3.version>
-        <swagger2.version>2.9.2</swagger2.version>
         <knife4j.starter.version>2.0.7</knife4j.starter.version>
         <aspectjweaver.version>1.9.5</aspectjweaver.version>
         <jedis.version>3.3.0</jedis.version>
