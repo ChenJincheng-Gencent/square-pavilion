@@ -22,7 +22,7 @@ MongoDb|NoSql数据库|4.2
 Mysql|关系型数据库|5.7.27
 Lombok|简化对象封装工具|1.18.8
 Nacos|分布式注册配置中心|1.3.2
-Swagger2|API文档工具|2.9.2
+Knife4j|API文档工具|2.0.7
 Elasticjob-lite|分布式定时任务|3.0.0-RC1
 
 
