@@ -33,7 +33,7 @@ Elasticjob-lite|分布式定时任务|3.0.0-RC1
 &emsp;&emsp;应用层有mall-manager-application（管理应用）、mall-member-application（会员应用）、mall-item-application（商品应用）、mall-trade-application（交易应用）、mall-share-application（开放应用）以及mall-job-application（任务应用）；  
 &emsp;&emsp;业务中台层再分为三层：业务核心层、业务协作层和业务实体层。其中业务核心层有mall-trade-center（交易中心）、mall-shop-center（店铺中心）、mall-ticket-center（工单中心）；业务协作层有mall-promotion-center（营销中心）、mall-interaction-center（互动中心）；业务实体层有mall-item-center（商品中心）、mall-member-center（会员中心）、mall-inventory-center（库存中心）、mall-storage-center（仓储中心）、mall-logistics-center（物流中心）、mall-interface-center（接口中心）；
 &emsp;&emsp;能力服务层有mall-search-service（搜索服务）、mall-mq-service（MQ服务）、mall-message-service（消息服务）、mall-payment-service（支付服务）、mall-identity-service（认证服务）；  
-&emsp;&emsp;基本组件层有mall-common（公共组件）、mall-cache（缓存组件）、mall-modules(模块组件)以及mall-doc（文档组件）。  
+&emsp;&emsp;基本组件层有mall-common（公共组件）、mall-cache（缓存组件）、mall-parent(父组件)以及mall-doc（文档组件）。  
 ![avatar](https://raw.githubusercontent.com/ChenJincheng-Gencent/square-pavilion/master/mall/mall-doc/%E6%9E%B6%E6%9E%84/Square%20Pavilion%E6%9E%B6%E6%9E%84%E5%9B%BE.png "Square Pavilion架构图")
 
 ## 四、架构设计思想和分层业务模型
