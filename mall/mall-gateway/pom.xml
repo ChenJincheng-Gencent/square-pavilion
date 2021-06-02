@@ -17,6 +17,12 @@
             <groupId>com.square.mall</groupId>
             <artifactId>mall-cache</artifactId>
             <version>${mall-cache.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
