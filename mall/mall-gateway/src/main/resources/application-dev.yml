@@ -104,11 +104,11 @@ spring:
           filters:
             - StripPrefix=1
         - id: storage-center
-            uri: lb://mall-storage-center
-            predicates:
-              - Path=/storage-center/**
-            filters:
-              - StripPrefix=1
+          uri: lb://mall-storage-center
+          predicates:
+            - Path=/storage-center/**
+          filters:
+            - StripPrefix=1
         - id: interface-center
           uri: lb://mall-interface-center
           predicates:
@@ -116,11 +116,11 @@ spring:
           filters:
             - StripPrefix=1
         - id: shop-center
-            uri: lb://mall-shop-center
-            predicates:
-              - Path=/shop-center/**
-            filters:
-              - StripPrefix=1
+          uri: lb://mall-shop-center
+          predicates:
+            - Path=/shop-center/**
+          filters:
+            - StripPrefix=1
       discovery:
         locator:
           enabled: true
