@@ -1,0 +1,129 @@
+server:
+  port: 6100
+
+#log
+logging:
+  config: classpath:logback-spring.xml
+
+spring:
+  application:
+    name: mall-gateway
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.117.128:8848,192.168.117.129:8848,192.168.117.130:8848
+      config:
+        server-addr: 192.168.117.128:8848,192.168.117.129:8848,192.168.117.130:8848
+        file-extension: yaml
+    gateway:
+      routes:
+        - id: trade-application
+          uri: lb://mall-trade-application
+          predicates:
+            - Path=/trade-application/**
+          filters:
+            - StripPrefix=1
+        - id: member-application
+          uri: lb://mall-member-application
+          predicates:
+            - Path=/member-application/**
+          filters:
+            - StripPrefix=1
+        - id: item-application
+          uri: lb://mall-item-application
+          predicates:
+            - Path=/item-application/**
+          filters:
+            - StripPrefix=1
+        - id: manger-application
+          uri: lb://mall-manager-application
+          predicates:
+            - Path=/manager-application/**
+          filters:
+            - StripPrefix=1
+        - id: share-application
+          uri: lb://mall-share-application
+          predicates:
+            - Path=/share-application/**
+          filters:
+            - StripPrefix=1
+        - id: job-application
+          uri: lb://mall-job-application
+          predicates:
+            - Path=/job-application/**
+          filters:
+            - StripPrefix=1
+        - id: trade-center
+          uri: lb://mall-trade-center
+          predicates:
+            - Path=/trade-center/**
+          filters:
+            - StripPrefix=1
+        - id: member-center
+          uri: lb://mall-member-center
+          predicates:
+            - Path=/member-center/**
+          filters:
+            - StripPrefix=1
+        - id: item-center
+          uri: lb://mall-item-center
+          predicates:
+            - Path=/item-center/**
+          filters:
+            - StripPrefix=1
+        - id: inventory-center
+          uri: lb://mall-inventory-center
+          predicates:
+            - Path=/inventory-center/**
+          filters:
+            - StripPrefix=1
+        - id: promotion-center
+          uri: lb://mall-promotion-center
+          predicates:
+            - Path=/promotion-center/**
+          filters:
+            - StripPrefix=1
+        - id: ticket-center
+          uri: lb://mall-ticket-center
+          predicates:
+            - Path=/ticket-center/**
+          filters:
+            - StripPrefix=1
+        - id: logistics-center
+          uri: lb://mall-logistics-center
+          predicates:
+            - Path=/logistics-center/**
+          filters:
+            - StripPrefix=1
+        - id: interaction-center
+          uri: lb://mall-interaction-center
+          predicates:
+            - Path=/interaction-center/**
+          filters:
+            - StripPrefix=1
+        - id: storage-center
+            uri: lb://mall-storage-center
+            predicates:
+              - Path=/storage-center/**
+            filters:
+              - StripPrefix=1
+        - id: interface-center
+          uri: lb://mall-interface-center
+          predicates:
+            - Path=/interface-center/**
+          filters:
+            - StripPrefix=1
+        - id: shop-center
+            uri: lb://mall-shop-center
+            predicates:
+              - Path=/shop-center/**
+            filters:
+              - StripPrefix=1
+      discovery:
+        locator:
+          enabled: true
+      loadbalancer:
+        retry:
+          enabled: true
