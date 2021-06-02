@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.square.mall.item.center.service.dao.TemplateBrandDao">
+<mapper namespace="com.square.mall.item.center.biz.dao.TemplateBrandDao">
 
-    <resultMap id="TemplateBrandMap" type="com.square.mall.item.center.service.eo.TemplateBrandEo">
+    <resultMap id="TemplateBrandMap" type="com.square.mall.item.center.biz.eo.TemplateBrandEo">
         <id column="id" property="id"/>
         <result column="template_id" property="templateId"/>
         <result column="brand_id" property="brandId"/>
@@ -36,12 +36,12 @@
         FROM it_template_brand <include refid="select"/>
     </select>
 
-    <insert id="insertTemplateBrand" parameterType="com.square.mall.item.center.service.eo.TemplateBrandEo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertTemplateBrand" parameterType="com.square.mall.item.center.biz.eo.TemplateBrandEo" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO it_template_brand (`id`, `template_id`, `brand_id`, `create_time`, `update_time`)
         VALUES (#{id}, #{templateId}, #{brandId}, now(), now())
     </insert>
 
-    <insert id="updateTemplateBrand" parameterType="com.square.mall.item.center.service.eo.TemplateBrandEo">
+    <insert id="updateTemplateBrand" parameterType="com.square.mall.item.center.biz.eo.TemplateBrandEo">
         UPDATE it_template_brand SET
         <if test="templateId != null">
             template_id = #{templateId},

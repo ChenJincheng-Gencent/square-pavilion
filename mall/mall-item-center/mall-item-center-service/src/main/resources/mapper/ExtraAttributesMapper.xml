@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.square.mall.item.center.service.dao.ExtraAttributesDao">
+<mapper namespace="com.square.mall.item.center.biz.dao.ExtraAttributesDao">
 
-    <resultMap id="ExtraAttributesMap" type="com.square.mall.item.center.service.eo.ExtraAttributesEo">
+    <resultMap id="ExtraAttributesMap" type="com.square.mall.item.center.biz.eo.ExtraAttributesEo">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="template_id" property="templateId"/>
@@ -36,12 +36,12 @@
         FROM it_extra_attributes <include refid="select"/>
     </select>
 
-    <insert id="insertExtraAttributes" parameterType="com.square.mall.item.center.service.eo.ExtraAttributesEo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertExtraAttributes" parameterType="com.square.mall.item.center.biz.eo.ExtraAttributesEo" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO it_extra_attributes (`id`, `name`, `template_id`, `create_time`, `update_time`)
         VALUES (#{id}, #{name}, #{templateId}, now(), now())
     </insert>
 
-    <insert id="updateExtraAttributes" parameterType="com.square.mall.item.center.service.eo.ExtraAttributesEo">
+    <insert id="updateExtraAttributes" parameterType="com.square.mall.item.center.biz.eo.ExtraAttributesEo">
         UPDATE it_extra_attributes SET
         <if test="name != null and name !=''">
             name = #{name},

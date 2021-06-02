@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.square.mall.item.center.service.dao.CategoryDao">
+<mapper namespace="com.square.mall.item.center.biz.dao.CategoryDao">
 
-    <resultMap id="CategoryMap" type="com.square.mall.item.center.service.eo.CategoryEo">
+    <resultMap id="CategoryMap" type="com.square.mall.item.center.biz.eo.CategoryEo">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="parent_id" property="parentId"/>
@@ -48,12 +48,12 @@
         </foreach>
     </delete>
 
-    <insert id="insertCategory" parameterType="com.square.mall.item.center.service.eo.CategoryEo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertCategory" parameterType="com.square.mall.item.center.biz.eo.CategoryEo" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO it_category (`id`, `name`, `parent_id`, `template_id`, `create_time`, `update_time`)
         VALUES (#{id}, #{name}, #{parentId}, #{templateId}, now(), now())
     </insert>
 
-    <insert id="updateCategory" parameterType="com.square.mall.item.center.service.eo.CategoryEo">
+    <insert id="updateCategory" parameterType="com.square.mall.item.center.biz.eo.CategoryEo">
         UPDATE it_category SET
         <if test="name != null and name !=''">
             name = #{name},

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.square.mall.item.center.service.dao.SpecificationOptionDao">
+<mapper namespace="com.square.mall.item.center.biz.dao.SpecificationOptionDao">
 
-    <resultMap id="SpecificationOptionMap" type="com.square.mall.item.center.service.eo.SpecificationOptionEo">
+    <resultMap id="SpecificationOptionMap" type="com.square.mall.item.center.biz.eo.SpecificationOptionEo">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="sort" property="sort"/>
@@ -41,13 +41,13 @@
         FROM it_specification_option <include refid="select"/>
     </select>
 
-    <insert id="insertSpecificationOption" parameterType="com.square.mall.item.center.service.eo.SpecificationOptionEo"
+    <insert id="insertSpecificationOption" parameterType="com.square.mall.item.center.biz.eo.SpecificationOptionEo"
         useGeneratedKeys="true" keyProperty="id">
         INSERT INTO it_specification_option (`id`, `name`, `sort`, `spec_id`, `create_time`, `update_time`)
         VALUES (#{id}, #{name}, #{sort}, #{specId}, now(), now())
     </insert>
 
-    <insert id="updateSpecificationOption" parameterType="com.square.mall.item.center.service.eo.SpecificationOptionEo">
+    <insert id="updateSpecificationOption" parameterType="com.square.mall.item.center.biz.eo.SpecificationOptionEo">
         UPDATE it_specification_option SET
         <if test="name != null and name !=''">
             name = #{name},
