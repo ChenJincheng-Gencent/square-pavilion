@@ -39,8 +39,7 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.square.mall.item.center.biz"))
                 .paths(PathSelectors.any())
-
-                .build().securityContexts(CollectionUtils.newArrayList(securityContext(),securityContext1())).securitySchemes(CollectionUtils.newArrayList());
+                .build().securityContexts(CollectionUtils.newArrayList()).securitySchemes(CollectionUtils.newArrayList());
     }
 
     private ApiInfo groupApiInfo(){
@@ -54,30 +53,6 @@ public class SwaggerConfig {
                 .build();
     }
 
-    private SecurityContext securityContext() {
-        return SecurityContext.builder()
-                .securityReferences(defaultAuth())
-                .forPaths(PathSelectors.regex("/.*"))
-                .build();
-    }
-    private SecurityContext securityContext1() {
-        return SecurityContext.builder()
-                .securityReferences(defaultAuth1())
-                .forPaths(PathSelectors.regex("/.*"))
-                .build();
-    }
 
-    List<SecurityReference> defaultAuth() {
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        return CollectionUtils.newArrayList(new SecurityReference("BearerToken", authorizationScopes));
-    }
-    List<SecurityReference> defaultAuth1() {
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        return CollectionUtils.newArrayList(new SecurityReference("BearerToken1", authorizationScopes));
-    }
 
 }
