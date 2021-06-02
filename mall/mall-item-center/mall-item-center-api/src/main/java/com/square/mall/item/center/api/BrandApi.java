@@ -24,7 +24,7 @@ public interface BrandApi {
      * @param brandDto 品牌
      * @return 数据库ID
      */
-    @PostMapping("/brand")
+    @PostMapping("/brand/insertBrand")
     CommonRes<Long> insertBrand(@RequestBody BrandDto brandDto);
 
     /**
@@ -33,7 +33,7 @@ public interface BrandApi {
      * @param brandDto 品牌
      * @return 响应
      */
-    @PutMapping("/brand")
+    @PutMapping("/brand/updateBrand")
     CommonRes<Void> updateBrand(@RequestBody BrandDto brandDto);
 
     /**
@@ -42,7 +42,7 @@ public interface BrandApi {
      * @param id 数据库ID
      * @return 响应
      */
-    @DeleteMapping("/brand")
+    @DeleteMapping("/brand/deleteBrand")
     CommonRes<Void> deleteBrand(@RequestParam("id") Long id);
 
     /**
@@ -51,7 +51,7 @@ public interface BrandApi {
      * @param ids ID数组
      * @return 响应
      */
-    @DeleteMapping("/brand/batch")
+    @DeleteMapping("/brand/batchDeleteBrand")
     CommonRes<Void> batchDeleteBrand(@RequestParam("ids") Long[] ids);
 
     /**
@@ -60,7 +60,7 @@ public interface BrandApi {
      * @param brandDto 查询条件
      * @return 品牌数据列表
      */
-    @PostMapping("/brand/list/condition")
+    @PostMapping("/brand/selectBrandByCondition")
     CommonRes<List<BrandDto>> selectBrandByCondition(@RequestBody BrandDto brandDto);
 
     /**
@@ -71,7 +71,7 @@ public interface BrandApi {
      * @param pageSize 分页大小
      * @return 品牌列表
      */
-    @PostMapping("/brand/list/page/condition")
+    @PostMapping("/brand/selectPageBrandByCondition")
     CommonPageRes<List<BrandDto>> selectPageBrandByCondition(@RequestBody BrandDto brandDto, @RequestParam("pageNum") Integer pageNum,
                                                              @RequestParam("pageSize") Integer pageSize);
 
@@ -80,7 +80,7 @@ public interface BrandApi {
      * @param id ID
      * @return 品牌
      */
-    @GetMapping("/brand/id")
+    @GetMapping("/brand/selectBrandById")
     CommonRes<BrandDto> selectBrandById(@RequestParam("id") Long id);
 
     /**
@@ -88,7 +88,7 @@ public interface BrandApi {
      *
      * @return 品牌列表
      */
-    @GetMapping("/brand/all")
+    @GetMapping("/brand/selectBrandAll")
     CommonRes<List<BrandDto>> selectBrandAll();
 
 }
