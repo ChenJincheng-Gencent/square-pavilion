@@ -32,7 +32,7 @@ import java.util.List;
 public class SwaggerConfig {
 
     @Bean(value = "itemCenter")
-    @Order(value = 2)
+    @Order(value = 17)
     public Docket groupRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(groupApiInfo())
