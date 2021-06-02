@@ -45,6 +45,7 @@ Elasticjob-lite|分布式定时任务|3.0.0-RC1
 ## 五、端口号分配
 应用名|代码模块|端口号
 :--:|:--:|:--:
+网关|mall-gateway|6100-6199
 交易应用|mall-trade-application|9100-9199
 会员应用|mall-member-application|9200-9299
 商品应用|mall-item-application|9300-9399
