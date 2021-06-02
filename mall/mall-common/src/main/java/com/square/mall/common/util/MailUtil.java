@@ -2,6 +2,7 @@ package com.square.mall.common.util;
 
 import com.square.mall.common.constant.SymbolConstant;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -23,7 +24,7 @@ import java.util.Objects;
 @Component
 public class MailUtil {
 
-    @Resource
+    @Autowired(required = false)
     private JavaMailSender mailSender;
 
     private static JavaMailSender staticMailSender = null;
