@@ -37,55 +37,73 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(groupApiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.xiaominfo.swagger.service.order.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.square.mall.trade.application"))
                 .paths(PathSelectors.any())
-
-                .build().securityContexts(CollectionUtils.newArrayList(securityContext(),securityContext1())).securitySchemes(CollectionUtils.<SecurityScheme>newArrayList(apiKey(),apiKey1()));
+                .build()
+                .securityContexts(CollectionUtils.newArrayList(tokenSecurityContext(), ipSecurityContext(), userIdSecurityContext()))
+                .securitySchemes(CollectionUtils.<SecurityScheme>newArrayList(token(), ip(), userId()));
     }
 
     private ApiInfo groupApiInfo(){
         return new ApiInfoBuilder()
-                .title("swagger-bootstrap-ui很棒~~~！！！")
-                .description("<div style='font-size:14px;color:red;'>swagger-bootstrap-ui-demo RESTful APIs</div>")
-                .termsOfServiceUrl("http://www.group.com/")
-                .contact("group@qq.com")
+                .title("Square Pavilion Mall Trade Application")
+                .description("本项目用于提供交易相关业务的应用层功能")
+                .termsOfServiceUrl("localhost:6100")
+                .contact(new Contact("Gencent", "https://github.com/ChenJincheng-Gencent",
+                    "402634287@qq.com"))
                 .version("1.0")
                 .build();
     }
 
 
 
-    private ApiKey apiKey() {
-        return new ApiKey("BearerToken", "Authorization", "header");
+    private ApiKey token() {
+        return new ApiKey("Token", "Token", "header");
     }
-    private ApiKey apiKey1() {
-        return new ApiKey("BearerToken1", "Authorization-x", "header");
+    private ApiKey ip() {
+        return new ApiKey("Ip", "Ip", "header");
+    }
+    private ApiKey userId() {
+        return new ApiKey("UserId", "UserId", "header");
     }
 
-    private SecurityContext securityContext() {
+    private SecurityContext tokenSecurityContext() {
         return SecurityContext.builder()
-                .securityReferences(defaultAuth())
+                .securityReferences(tokenAuth())
                 .forPaths(PathSelectors.regex("/.*"))
                 .build();
     }
-    private SecurityContext securityContext1() {
+    private SecurityContext ipSecurityContext() {
         return SecurityContext.builder()
-                .securityReferences(defaultAuth1())
+                .securityReferences(ipAuth())
                 .forPaths(PathSelectors.regex("/.*"))
                 .build();
     }
 
-    List<SecurityReference> defaultAuth() {
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        return CollectionUtils.newArrayList(new SecurityReference("BearerToken", authorizationScopes));
+    private SecurityContext userIdSecurityContext() {
+        return SecurityContext.builder()
+                .securityReferences(userIdAuth())
+                .forPaths(PathSelectors.regex("/.*"))
+                .build();
     }
-    List<SecurityReference> defaultAuth1() {
+
+    List<SecurityReference> tokenAuth() {
         AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
-        return CollectionUtils.newArrayList(new SecurityReference("BearerToken1", authorizationScopes));
+        return CollectionUtils.newArrayList(new SecurityReference("Token", authorizationScopes));
+    }
+    List<SecurityReference> ipAuth() {
+        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+        authorizationScopes[0] = authorizationScope;
+        return CollectionUtils.newArrayList(new SecurityReference("Ip", authorizationScopes));
+    }
+    List<SecurityReference> userIdAuth() {
+        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+        authorizationScopes[0] = authorizationScope;
+        return CollectionUtils.newArrayList(new SecurityReference("UserId", authorizationScopes));
     }
 
 }

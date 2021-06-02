@@ -20,7 +20,7 @@ import org.springframework.web.servlet.config.annotation.*;
 @EnableWebMvc
 @RestController
 @ComponentScan(basePackages = {"com.square.mall.trade.application.controller"}, useDefaultFilters = false,
-    includeFilters = @ComponentScan.Filter(RestController.class))
+        includeFilters = @ComponentScan.Filter(RestController.class))
 public class ContextConfig implements WebMvcConfigurer {
 
     private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
@@ -32,7 +32,7 @@ public class ContextConfig implements WebMvcConfigurer {
         //注解扫描上下文
         AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
         //base package
-        applicationContext.scan("com.square.mall.member.application.controller");
+        applicationContext.scan("com.square.mall.trade.application.controller");
         //通过构造函数指定dispatcherServlet的上下文
         DispatcherServlet restDispatcherServlet = new DispatcherServlet(applicationContext);
 
