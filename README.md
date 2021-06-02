@@ -31,7 +31,7 @@ Elasticjob-lite|分布式定时任务|3.0.0-RC1
 &emsp;&emsp;Square pavilion采用微服务思想，实现分布式、高并发且易于拓展的中台框架。结合我所积累的中台实践，将该项目分为应用层、业务中台层、能力服务层及基本组件层四大层级。项目为电商项目，包含前台商城系统和后台管理系统。  
 &emsp;&emsp;从业务维度拆分，四大层级具体内容，如下所述：  
 &emsp;&emsp;应用层有mall-manager-application（管理应用）、mall-member-application（会员应用）、mall-item-application（商品应用）、mall-trade-application（交易应用）、mall-share-application（开放应用）以及mall-job-application（任务应用）；  
-&emsp;&emsp;业务中台层再分为三层：业务核心层、业务协作层和业务实体层。其中业务核心层有mall-trade-center（交易中心）、mall-inventory-center（库存中心）、mall-logistics-center（物流中心）；业务协作层有mall-promotion-center（营销中心）、mall-evaluation-center（评价中心）、mall-ticket-center（工单中心）；  
+&emsp;&emsp;业务中台层再分为三层：业务核心层、业务协作层和业务实体层。其中业务核心层有mall-trade-center（交易中心）、mall-shop-center（店铺中心）、mall-ticket-center（工单中心）；业务协作层有mall-promotion-center（营销中心）、mall-interaction-center（互动中心）；业务实体层有mall-item-center（商品中心）、mall-member-center（会员中心）、mall-inventory-center（库存中心）、mall-storage-center（仓储中心）、mall-logistics-center（物流中心）、mall-interface-center（接口中心）；
 &emsp;&emsp;能力服务层有mall-search-service（搜索服务）、mall-mq-service（MQ服务）、mall-message-service（消息服务）、mall-payment-service（支付服务）、mall-identity-service（认证服务）；  
 &emsp;&emsp;基本组件层有mall-common（公共组件）、mall-cache（缓存组件）、mall-modules(模块组件)以及mall-doc（文档组件）。  
 ![avatar](https://raw.githubusercontent.com/ChenJincheng-Gencent/square-pavilion/master/mall/mall-doc/%E6%9E%B6%E6%9E%84/Square%20Pavilion%E6%9E%B6%E6%9E%84%E5%9B%BE.png "Square Pavilion架构图")
@@ -57,9 +57,12 @@ Elasticjob-lite|分布式定时任务|3.0.0-RC1
 商品中心|mall-item-center|8300-8399
 库存中心|mall-inventory-center|8400-8499
 营销中心|mall-promotion-center|8500-8599
-工单中心|mall-ticket-center|8600-8699
+互动中心|mall-interaction-center|8600-8699
 物流中心|mall-logistics-center|8700-8799
-评价中心|mall-evaluation-center|8800-8899    
+仓储中心|mall-storage-center|8800-8899
+店铺中心|mall-shop-center|8900-8999
+接口中心|mall-interface-center|7100-7199
+工单中心|mall-ticket-center|7200-7299
 
 ## 六、Redis库分配
 0号库留做公共使用  
@@ -72,23 +75,30 @@ Elasticjob-lite|分布式定时任务|3.0.0-RC1
 分享应用|mall-share-application|5
 任务应用|mall-job-application|6
 交易中心|mall-trade-center|11
-会员中心|mall-member-center|12
-商品中心|mall-item-center|13
-库存中心|mall-inventory-center|14
-营销中心|mall-promotion-center|15
-工单中心|mall-ticket-center|16
-物流中心|mall-logistics-center|17    
-评价中心|mall-evaluation-center|18
+店铺中心|mall-shop-center|12
+工单中心|mall-ticket-center|13
+营销中心|mall-promotion-center|14
+互动中心|mall-interaction-center|15
+会员中心|mall-member-center|16
+商品中心|mall-item-center|17
+库存中心|mall-inventory-center|18
+物流中心|mall-logistics-center|19 
+仓储中心|mall-storage-center|20
+接口中心|mall-interface-center|21
+
 
 ## 七、Mysql库分配
 应用名|代码模块|库名
 :--:|:--:|:--:
+任务应用|mall-job-application|sp_job
 交易中心|mall-trade-center|sp_trade
+店铺中心|mall-shop-center|sp_shop
+工单中心|mall-ticket-center|sp_ticket
+营销中心|mall-promotion-center|sp_promotion
+互动中心|mall-interaction-center|sp_interaction
 会员中心|mall-member-center|sp_member
 商品中心|mall-item-center|sp_item
 库存中心|mall-inventory-center|sp_inventory
-营销中心|mall-promotion-center|sp_promotion
-工单中心|mall-ticket-center|sp_ticket
 物流中心|mall-logistics-center|sp_logistics
-评价中心|mall-evaluation-center|sp_evaluation
-任务应用|mall-job-application|sp_job
+仓储中心|mall-stoage-center|sp_stoage
+接口中心|mall-interface-center|sp_interface
