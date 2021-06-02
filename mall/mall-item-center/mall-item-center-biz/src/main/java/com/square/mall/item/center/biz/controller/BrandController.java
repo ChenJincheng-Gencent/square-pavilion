@@ -7,6 +7,7 @@ import com.square.mall.item.center.api.dto.BrandDto;
 import com.square.mall.item.center.biz.service.BrandService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -48,8 +49,9 @@ public class BrandController implements BrandApi {
      */
     @ApiOperation("分页条件查询品牌列表")
     @PostMapping("/selectPageBrandByCondition")
-    public CommonPageRes<List<BrandDto>> selectPageBrandByCondition(@RequestBody BrandDto brandDto, @RequestParam("pageNum") Integer pageNum,
-                                                                    @RequestParam("pageSize") Integer pageSize) {
+    public CommonPageRes<List<BrandDto>> selectPageBrandByCondition(@RequestBody BrandDto brandDto,
+                      @ApiParam(value="当前页") @RequestParam(name = "pageNum", required = false) Integer pageNum,
+                      @ApiParam(value="分页大小") @RequestParam(name = "pageSize", required = false) Integer pageSize) {
         return brandService.selectPageBrandByCondition(brandDto, pageNum, pageSize);
     }
 
@@ -61,7 +63,7 @@ public class BrandController implements BrandApi {
      */
     @ApiOperation("根据ID查询品牌")
     @GetMapping("/selectBrandById")
-    public CommonRes<BrandDto> selectBrandById(@RequestParam("id") Long id) {
+    public CommonRes<BrandDto> selectBrandById(@ApiParam(value="数据库ID",required = true) @RequestParam("id") Long id) {
         return new CommonRes<>(brandService.selectBrandById(id));
     }
 
@@ -95,7 +97,7 @@ public class BrandController implements BrandApi {
      * 更新品牌
      *
      * @param brandDto 品牌
-     * @return 响应
+     * @return 操作结果
      */
     @ApiOperation("更新品牌")
     @PutMapping("/updateBrand")
@@ -109,11 +111,11 @@ public class BrandController implements BrandApi {
      * 删除品牌
      *
      * @param id 数据库ID
-     * @return 响应
+     * @return 操作结果
      */
     @ApiOperation("删除品牌")
     @DeleteMapping("/deleteBrand")
-    public CommonRes<Void> deleteBrand(@RequestParam("id") Long id) {
+    public CommonRes<Void> deleteBrand(@ApiParam(value="数据库ID",required = true) @RequestParam("id") Long id) {
         brandService.deleteBrand(id);
         return CommonRes.SUCCESS;
     }
@@ -123,11 +125,11 @@ public class BrandController implements BrandApi {
      * 批量删除品牌
      *
      * @param ids ID数组
-     * @return 响应
+     * @return 操作结果
      */
     @ApiOperation("批量删除品牌")
     @DeleteMapping("/batchDeleteBrand")
-    public CommonRes<Void> batchDeleteBrand(@RequestParam("ids") Long[] ids) {
+    public CommonRes<Void> batchDeleteBrand(@ApiParam(value="ID列表，以逗号隔开",required = true) @RequestParam(value = "ids") Long[] ids) {
         brandService.batchDeleteBrand(ids);
         return CommonRes.SUCCESS;
     }

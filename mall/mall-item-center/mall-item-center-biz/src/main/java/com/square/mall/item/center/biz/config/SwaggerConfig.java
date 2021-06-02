@@ -40,7 +40,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.square.mall.item.center.biz"))
                 .paths(PathSelectors.any())
 
-                .build().securityContexts(CollectionUtils.newArrayList(securityContext(),securityContext1())).securitySchemes(CollectionUtils.<SecurityScheme>newArrayList(apiKey(),apiKey1()));
+                .build().securityContexts(CollectionUtils.newArrayList(securityContext(),securityContext1())).securitySchemes(CollectionUtils.newArrayList());
     }
 
     private ApiInfo groupApiInfo(){
@@ -52,15 +52,6 @@ public class SwaggerConfig {
                     "402634287@qq.com"))
                 .version("1.0")
                 .build();
-    }
-
-
-
-    private ApiKey apiKey() {
-        return new ApiKey("BearerToken", "Authorization", "header");
-    }
-    private ApiKey apiKey1() {
-        return new ApiKey("BearerToken1", "Authorization-x", "header");
     }
 
     private SecurityContext securityContext() {
