@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mall-item-center-service</artifactId>
+    <artifactId>mall-item-center-biz</artifactId>
 
     <dependencies>
         <dependency>
