@@ -12,7 +12,7 @@
     <artifactId>mall-member-center</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>mall-member-center-service</module>
+        <module>mall-member-center-biz</module>
         <module>mall-member-center-api</module>
     </modules>
 
