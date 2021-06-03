@@ -44,7 +44,7 @@ public class SwaggerConfig {
 
     private ApiInfo groupApiInfo(){
         return new ApiInfoBuilder()
-                .title("Square Pavilion Mall Item Center")
+                .title("四方阁商品中心")
                 .description("本项目用于提供商品相关业务的中心层功能")
                 .termsOfServiceUrl("localhost:6100")
                 .contact(new Contact("Gencent", "https://github.com/ChenJincheng-Gencent",
