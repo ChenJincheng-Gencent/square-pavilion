@@ -33,6 +33,7 @@ public class BrandController implements BrandApi {
      * @param brandDto 查询条件
      * @return 品牌数据列表
      */
+    @Override
     @ApiOperation("条件查询品牌列表")
     @PostMapping("/selectBrandByCondition")
     public CommonRes<List<BrandDto>> selectBrandByCondition(@RequestBody BrandDto brandDto) {
@@ -47,6 +48,7 @@ public class BrandController implements BrandApi {
      * @param pageSize 分页大小
      * @return 品牌列表
      */
+    @Override
     @ApiOperation("分页条件查询品牌列表")
     @PostMapping("/selectPageBrandByCondition")
     public CommonPageRes<List<BrandDto>> selectPageBrandByCondition(@RequestBody BrandDto brandDto,
@@ -61,6 +63,7 @@ public class BrandController implements BrandApi {
      * @param id ID
      * @return 品牌
      */
+    @Override
     @ApiOperation("根据ID查询品牌")
     @GetMapping("/selectBrandById")
     public CommonRes<BrandDto> selectBrandById(@ApiParam(value="数据库ID",required = true) @RequestParam("id") Long id) {
@@ -73,6 +76,7 @@ public class BrandController implements BrandApi {
      *
      * @return 品牌列表
      */
+    @Override
     @ApiOperation("查询所有品牌列表")
     @GetMapping("/selectBrandAll")
     public CommonRes<List<BrandDto>> selectBrandAll() {
@@ -85,6 +89,7 @@ public class BrandController implements BrandApi {
      * @param brandDto 品牌
      * @return 数据库ID
      */
+    @Override
     @ApiOperation("插入品牌")
     @PostMapping("/insertBrand")
     public CommonRes<Long> insertBrand(@RequestBody BrandDto brandDto) {
@@ -99,6 +104,7 @@ public class BrandController implements BrandApi {
      * @param brandDto 品牌
      * @return 操作结果
      */
+    @Override
     @ApiOperation("更新品牌")
     @PutMapping("/updateBrand")
     public CommonRes<Void> updateBrand(@RequestBody BrandDto brandDto) {
@@ -113,6 +119,7 @@ public class BrandController implements BrandApi {
      * @param id 数据库ID
      * @return 操作结果
      */
+    @Override
     @ApiOperation("删除品牌")
     @DeleteMapping("/deleteBrand")
     public CommonRes<Void> deleteBrand(@ApiParam(value="数据库ID",required = true) @RequestParam("id") Long id) {
@@ -127,6 +134,7 @@ public class BrandController implements BrandApi {
      * @param ids ID数组
      * @return 操作结果
      */
+    @Override
     @ApiOperation("批量删除品牌")
     @DeleteMapping("/batchDeleteBrand")
     public CommonRes<Void> batchDeleteBrand(@ApiParam(value="ID列表，以逗号隔开",required = true) @RequestParam(value = "ids") Long[] ids) {

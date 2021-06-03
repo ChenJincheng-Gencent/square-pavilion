@@ -6,6 +6,7 @@ import com.square.mall.common.enums.ErrorCode;
 import com.square.mall.common.util.ListUtil;
 import com.square.mall.item.center.api.dto.*;
 import com.square.mall.item.center.biz.service.*;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/template")
 @Slf4j
+@Api(tags = "模板")
 public class TemplateController {
 
     @Resource

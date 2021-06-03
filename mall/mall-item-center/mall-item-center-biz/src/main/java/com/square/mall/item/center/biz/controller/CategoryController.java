@@ -4,6 +4,7 @@ import com.square.mall.common.dto.CommonPageRes;
 import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.dto.CategoryDto;
 import com.square.mall.item.center.biz.service.CategoryService;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/category")
+@Api(tags = "分类")
 public class CategoryController {
 
     @Resource

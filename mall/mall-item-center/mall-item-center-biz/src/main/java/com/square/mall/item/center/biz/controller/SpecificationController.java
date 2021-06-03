@@ -9,6 +9,7 @@ import com.square.mall.item.center.api.dto.SpecificationGroupDto;
 import com.square.mall.item.center.api.dto.SpecificationOptionDto;
 import com.square.mall.item.center.biz.service.SpecificationOptionService;
 import com.square.mall.item.center.biz.service.SpecificationService;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/specification")
+@Api(tags = "规格")
 public class SpecificationController {
 
     @Resource

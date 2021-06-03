@@ -4,6 +4,7 @@ import com.square.mall.common.dto.CommonPageRes;
 import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.dto.ItemDto;
 import com.square.mall.item.center.biz.service.ItemService;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/item")
+@Api(tags = "商品")
 public class ItemController {
 
     @Resource

@@ -3,6 +3,7 @@ package com.square.mall.item.center.biz.controller;
 import com.square.mall.common.dto.CommonRes;
 import com.square.mall.item.center.api.dto.SpecificationOptionDto;
 import com.square.mall.item.center.biz.service.SpecificationOptionService;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/specification/option")
+@Api(tags = "规格选项")
 public class SpecificationOptionController {
 
     @Resource

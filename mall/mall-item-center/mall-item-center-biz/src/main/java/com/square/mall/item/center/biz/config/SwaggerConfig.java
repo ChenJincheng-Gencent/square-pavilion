@@ -39,14 +39,16 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.square.mall.item.center.biz"))
                 .paths(PathSelectors.any())
-                .build().securityContexts(CollectionUtils.newArrayList()).securitySchemes(CollectionUtils.newArrayList());
+                .build()
+                .securityContexts(CollectionUtils.newArrayList())
+                .securitySchemes(CollectionUtils.newArrayList());
     }
 
     private ApiInfo groupApiInfo(){
         return new ApiInfoBuilder()
                 .title("四方阁商品中心")
                 .description("本项目用于提供商品相关业务的中心层功能")
-                .termsOfServiceUrl("localhost:6100")
+                .termsOfServiceUrl("192.168.31.12:8300")
                 .contact(new Contact("Gencent", "https://github.com/ChenJincheng-Gencent",
                     "402634287@qq.com"))
                 .version("1.0")
