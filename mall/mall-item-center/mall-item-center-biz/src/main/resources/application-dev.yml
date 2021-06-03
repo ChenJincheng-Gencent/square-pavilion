@@ -42,6 +42,9 @@ kafka:
       offset:
         reset: earliest
 
+endpoints:
+  autoconfig:
+    enabled: true
 
 redis:
   item:
