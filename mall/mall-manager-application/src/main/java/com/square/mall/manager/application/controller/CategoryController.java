@@ -25,7 +25,7 @@ import java.util.List;
  */
 @Controller
 @EnableAutoConfiguration
-@RequestMapping(value = "/manager/v1")
+@RequestMapping(value = "/category")
 @Slf4j
 @Validated
 @Api(tags = "分类")
@@ -40,7 +40,7 @@ public class CategoryController {
      * @param parentId 上级ID
      * @return 分类列表
      */
-    @GetMapping("/category/list")
+    @GetMapping("/selectCategoryByParentId")
     @ResponseBody
     @ApiOperation(value = "根据上级ID查询分类列表")
     public CommonRes<List<CategoryDto>> selectCategoryByParentId(@RequestParam("parentId") @NotNull(message = "上级ID不能为空") Long parentId)  {
@@ -58,7 +58,7 @@ public class CategoryController {
      * @param id ID
      * @return 分类列表
      */
-    @GetMapping("/category")
+    @GetMapping("/selectCategoryById")
     @ResponseBody
     @ApiOperation(value = "根据ID查询分类")
     public CommonRes<CategoryDto> selectCategoryById(@RequestParam("id") @NotNull(message = "ID不能为空") Long id)  {
@@ -76,7 +76,7 @@ public class CategoryController {
      * @param categoryDto 分类
      * @return 数据库ID
      */
-    @PostMapping("/category")
+    @PostMapping("/insertCategory")
     @ResponseBody
     @ApiOperation(value = "插入分类")
     public CommonRes<Long> insertCategory(@RequestBody @Valid CategoryDto categoryDto) {
@@ -91,7 +91,7 @@ public class CategoryController {
      * @param categoryDto 分类
      * @return 响应
      */
-    @PutMapping("/category")
+    @PutMapping("/updateCategory")
     @ResponseBody
     @ApiOperation(value = "更新分类")
     public CommonRes<Void> updateCategory(@RequestBody @Valid CategoryDto categoryDto) {
@@ -107,11 +107,12 @@ public class CategoryController {
      * @param pageSize 分页大小
      * @return 品牌列表
      */
-    @PostMapping("/category/list/page/condition")
+    @PostMapping("/selectPageCategoryByCondition")
     @ResponseBody
     @ApiOperation(value = "分页条件查询品牌列表")
     public CommonPageRes<List<CategoryDto>> selectPageCategoryByCondition(@RequestBody CategoryDto categoryDto,
-                                                                          @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize)  {
+                                                                          @RequestParam("pageNum") Integer pageNum,
+                                                                          @RequestParam("pageSize") Integer pageSize)  {
 
         CommonPageRes<List<CategoryDto>> categoryDtoList = categoryService.selectPageCategoryByCondition(categoryDto, pageNum, pageSize);
         log.info("categoryDtoList: {}, categoryDto: {}, pageNum: {}, pageSize: {}", categoryDtoList, categoryDto, pageNum, pageSize);
@@ -126,7 +127,7 @@ public class CategoryController {
      * @param ids ID数组
      * @return 响应
      */
-    @DeleteMapping("/category/batch")
+    @DeleteMapping("/deleteCategory")
     @ResponseBody
     @ApiOperation(value = "批量删除分类列表")
     public CommonRes<Void> deleteCategory(Long[] ids) {

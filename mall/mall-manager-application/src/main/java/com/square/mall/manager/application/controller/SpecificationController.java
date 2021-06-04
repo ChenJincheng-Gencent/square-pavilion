@@ -29,7 +29,7 @@ import java.util.List;
  */
 @Controller
 @EnableAutoConfiguration
-@RequestMapping(value = "/manager/v1")
+@RequestMapping(value = "/specification")
 @Slf4j
 @Validated
 @Api(tags = "规格")
@@ -46,7 +46,7 @@ public class SpecificationController {
      * @param pageSize 分页大小
      * @return 规格列表
      */
-    @PostMapping("/specification/list/page/condition")
+    @PostMapping("/selectPageSpecificationByCondition")
     @ResponseBody
     @ApiOperation(value = "分页条件查询规格列表")
     public CommonPageRes<List<SpecificationDto>> selectPageSpecificationByCondition(@RequestBody SpecificationDto specificationDto,
@@ -65,7 +65,7 @@ public class SpecificationController {
      * @param specificationGroupDto 规格组合
      * @return 数据库ID
      */
-    @PostMapping("/specification/group")
+    @PostMapping("/insertSpecificationGroup")
     @ResponseBody
     @ApiOperation(value = "插入规格组合")
     public CommonRes<Long> insertSpecificationGroup(@RequestBody @Valid SpecificationGroupDto specificationGroupDto) {
@@ -80,7 +80,7 @@ public class SpecificationController {
      * @param specificationGroupDto 规格组合
      * @return 响应
      */
-    @PutMapping("/specification/group")
+    @PutMapping("/updateSpecification")
     @ResponseBody
     @ApiOperation(value = "更新规格组合")
     public CommonRes<Void> updateSpecification(@RequestBody @Valid SpecificationGroupDto specificationGroupDto) {
@@ -94,7 +94,7 @@ public class SpecificationController {
      * @param ids 规格ID数组
      * @return 响应
      */
-    @DeleteMapping("/specification/group/batch")
+    @DeleteMapping("/deleteSpecificationGroup")
     @ResponseBody
     @ApiOperation(value = "批量删除规格组合")
     public CommonRes<Void> deleteSpecificationGroup(Long[] ids) {
@@ -107,7 +107,7 @@ public class SpecificationController {
      * @param specId 规格ID
      * @return 规格组合
      */
-    @GetMapping("/specification/group")
+    @GetMapping("/selectSpecificationGroupBySpecId")
     @ResponseBody
     @ApiOperation(value = "根据规格ID查询规格组合")
     public CommonRes<SpecificationGroupDto> selectSpecificationGroupBySpecId(@RequestParam("specId")
@@ -125,7 +125,7 @@ public class SpecificationController {
      *
      * @return 规格列表
      */
-    @GetMapping("/specification/all")
+    @GetMapping("/selectSpecificationAll")
     @ResponseBody
     @ApiOperation(value = "查询所有规格列表")
     public CommonRes<List<Select2Vo>> selectSpecificationAll()  {

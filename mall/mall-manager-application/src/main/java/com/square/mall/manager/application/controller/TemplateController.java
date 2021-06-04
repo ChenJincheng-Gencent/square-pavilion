@@ -32,7 +32,7 @@ import java.util.List;
  */
 @Controller
 @EnableAutoConfiguration
-@RequestMapping(value = "/manager/v1")
+@RequestMapping(value = "/template")
 @Slf4j
 @Validated
 @Api(tags = "模板")
@@ -49,7 +49,7 @@ public class TemplateController {
      * @param pageSize 分页大小
      * @return 模板组合列表
      */
-    @PostMapping("/template/group/list/page/condition")
+    @PostMapping("/selectPageSpecificationByCondition")
     @ResponseBody
     @ApiOperation(value = "分页条件查询模板组合列表")
     public CommonPageRes<List<TemplateGroupVo>> selectPageSpecificationByCondition(@RequestBody TemplateDto templateDto,
@@ -105,7 +105,7 @@ public class TemplateController {
      * @param templateId 模板ID
      * @return 模板组合
      */
-    @GetMapping("/template/group")
+    @GetMapping("/selectSpecificationGroupBySpecId")
     @ResponseBody
     @ApiOperation(value = "根据模板ID查询模板组合")
     public CommonRes<TemplateGroupVo> selectSpecificationGroupBySpecId(@RequestParam("templateId")
@@ -150,7 +150,7 @@ public class TemplateController {
      * @param templateGroupVo 模板组合
      * @return 数据库ID
      */
-    @PostMapping("/template/group")
+    @PostMapping("/insertTemplateGroup")
     @ResponseBody
     @ApiOperation(value = "插入模板组合")
     public CommonRes<Long> insertTemplateGroup(@RequestBody @Valid TemplateGroupVo templateGroupVo) {
@@ -186,7 +186,7 @@ public class TemplateController {
      * @param templateGroupVo 模板组合
      * @return 数据库ID
      */
-    @PutMapping("/template/group")
+    @PutMapping("/updateTemplateGroup")
     @ResponseBody
     @ApiOperation(value = "更新模板组合")
     public CommonRes<Void> updateTemplateGroup(@RequestBody @Valid TemplateGroupVo templateGroupVo) {
@@ -222,7 +222,7 @@ public class TemplateController {
      * @param ids 模板ID数组
      * @return 响应
      */
-    @DeleteMapping("/template/group/batch")
+    @DeleteMapping("/deleteTemplateGroup")
     @ResponseBody
     @ApiOperation(value = "批量删除模板组合")
     public CommonRes<Void> deleteTemplateGroup(Long[] ids) {
