@@ -4,6 +4,8 @@ import com.square.mall.common.dto.CommonRes;
 import com.square.mall.member.center.api.AddressApi;
 import com.square.mall.member.center.api.dto.AddressDto;
 import com.square.mall.member.center.biz.service.AddressService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -17,6 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/address")
+@Api(tags = "收货地址")
 public class AddressController implements AddressApi {
 
     @Resource
@@ -30,6 +33,7 @@ public class AddressController implements AddressApi {
      */
     @Override
     @PostMapping("/insertAddress")
+    @ApiOperation("插入收货地址")
     public CommonRes<Long> insertAddress(@RequestBody AddressDto addressDto) {
         addressService.insertAddress(addressDto);
         return new CommonRes<>(addressDto.getId());
@@ -43,6 +47,7 @@ public class AddressController implements AddressApi {
      */
     @Override
     @PutMapping("/updateAddress")
+    @ApiOperation("更新收货地址")
     public CommonRes<Void> updateAddress(@RequestBody AddressDto addressDto) {
         addressService.updateAddress(addressDto);
         return CommonRes.SUCCESS;
@@ -56,6 +61,7 @@ public class AddressController implements AddressApi {
      */
     @Override
     @DeleteMapping("/deleteAddress")
+    @ApiOperation("删除收货地址")
     public CommonRes<Void> deleteAddress(@RequestParam("id") Long id) {
         addressService.deleteAddress(id);
         return CommonRes.SUCCESS;
@@ -69,6 +75,7 @@ public class AddressController implements AddressApi {
      */
     @Override
     @GetMapping("/selectAddressByMemberId")
+    @ApiOperation("根据会员ID获取收货地址列表")
     public CommonRes<List<AddressDto>> selectAddressByMemberId(@RequestParam("memberId") Long memberId) {
         return new CommonRes<>(addressService.selectAddressByMemberId(memberId));
     }

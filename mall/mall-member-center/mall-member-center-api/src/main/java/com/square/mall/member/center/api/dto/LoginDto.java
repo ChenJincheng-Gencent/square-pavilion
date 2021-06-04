@@ -19,7 +19,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value = "LoginDto", description = "登录信息")
+@ApiModel(value = "LoginDto", description = "登录")
 public class LoginDto implements Serializable {
 
     private static final long serialVersionUID = 2073483643035364618L;

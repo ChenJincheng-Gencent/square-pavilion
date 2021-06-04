@@ -4,6 +4,8 @@ import com.square.mall.common.dto.CommonRes;
 import com.square.mall.member.center.api.LoginApi;
 import com.square.mall.member.center.api.dto.LoginDto;
 import com.square.mall.member.center.biz.service.LoginService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/login")
+@Api(tags = "登录")
 public class LoginController implements LoginApi {
 
     @Resource
@@ -32,6 +35,7 @@ public class LoginController implements LoginApi {
      */
     @Override
     @PostMapping("/insertLogin")
+    @ApiOperation("登录")
     public CommonRes<Long> insertLogin(@RequestBody LoginDto loginDto) {
         return new CommonRes<>(loginService.insertLogin(loginDto));
     }
