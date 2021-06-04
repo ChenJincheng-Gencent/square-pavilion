@@ -35,7 +35,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(groupApiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.square.mall.manager.application"))
+                .apis(RequestHandlerSelectors.basePackage("com.square.mall"))
                 .paths(PathSelectors.any())
                 .build()
                 .securityContexts(CollectionUtils.newArrayList())

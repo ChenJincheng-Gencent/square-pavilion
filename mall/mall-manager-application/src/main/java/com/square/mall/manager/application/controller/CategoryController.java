@@ -28,7 +28,7 @@ import java.util.List;
 @RequestMapping(value = "/manager/v1")
 @Slf4j
 @Validated
-@Api(tags = "分类REST API")
+@Api(tags = "分类")
 public class CategoryController {
 
     @Resource

@@ -35,7 +35,7 @@ import java.util.List;
 @RequestMapping(value = "/manager/v1")
 @Slf4j
 @Validated
-@Api(tags = "模板REST API")
+@Api(tags = "模板")
 public class TemplateController {
 
     @Resource

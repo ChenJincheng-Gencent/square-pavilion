@@ -32,7 +32,7 @@ import java.util.List;
 @RequestMapping(value = "/manager/v1")
 @Slf4j
 @Validated
-@Api(tags = "规格REST API")
+@Api(tags = "规格")
 public class SpecificationController {
 
     @Resource

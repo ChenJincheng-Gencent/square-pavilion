@@ -33,7 +33,7 @@ import java.util.List;
 @RequestMapping(value = "/manager/v1")
 @Slf4j
 @Validated
-@Api(tags = "品牌REST API")
+@Api(tags = "品牌")
 public class BrandController {
 
     @Resource
@@ -69,7 +69,7 @@ public class BrandController {
     @PostMapping("/brand")
     @ResponseBody
     @ApiOperation(value = "插入品牌")
-    public CommonRes insertBrand(@RequestBody @Valid BrandDto brandDto) {
+    public CommonRes<Long> insertBrand(@RequestBody @Valid BrandDto brandDto) {
         CommonRes<Long> id = brandService.insertBrand(brandDto);
         log.info("id: {}, brandDto: {}", id.getData(), brandDto);
         return id;
@@ -84,7 +84,7 @@ public class BrandController {
     @PutMapping("/brand")
     @ResponseBody
     @ApiOperation(value = "更新品牌")
-    public CommonRes updateBrand(@RequestBody @Valid ModBrandVo modBrandVo) {
+    public CommonRes<Void> updateBrand(@RequestBody @Valid ModBrandVo modBrandVo) {
         BrandDto brandDto = new BrandDto();
         BeanUtils.copyProperties(modBrandVo, brandDto);
         return brandService.updateBrand(brandDto);
@@ -99,7 +99,7 @@ public class BrandController {
     @DeleteMapping("/brand/batch")
     @ResponseBody
     @ApiOperation(value = "批量删除品牌")
-    public CommonRes deleteBrand(Long[] ids) {
+    public CommonRes<Void> deleteBrand(Long[] ids) {
         return brandService.batchDeleteBrand(ids);
     }
 

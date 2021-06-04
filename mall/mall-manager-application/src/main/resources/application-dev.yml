@@ -15,7 +15,7 @@ mall-item-center:
 
 spring:
   application:
-    name: mall-member-application
+    name: mall-manager-application
   main:
     allow-bean-definition-overriding: true
   cloud:
