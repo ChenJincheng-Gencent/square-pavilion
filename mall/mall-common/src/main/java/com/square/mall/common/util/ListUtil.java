@@ -1,5 +1,6 @@
 package com.square.mall.common.util;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -11,26 +12,26 @@ import java.util.List;
 public class ListUtil {
 
     /**
-     * 判断列表是否不为空
+     * 判断集合是否不为空
      *
-     * @param list 列表
+     * @param collection 集合
      * @return 是否不为空
      */
-    public static boolean isNotBlank(List list) {
+    public static boolean isNotBlank(final Collection<?> collection) {
 
-        return null != list && !list.isEmpty();
+        return null != collection && !collection.isEmpty();
 
     }
 
     /**
-     * 判断列表是否为空
+     * 判断集合是否为空
      *
-     * @param list 列表
+     * @param collection 集合
      * @return boolean
      */
-    public static boolean isBlank(List list) {
+    public static boolean isBlank(final Collection<?> collection) {
 
-        return null == list || list.isEmpty();
+        return null == collection || collection.isEmpty();
 
     }
 
