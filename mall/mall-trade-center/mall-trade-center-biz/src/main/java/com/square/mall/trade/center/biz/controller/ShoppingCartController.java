@@ -5,6 +5,8 @@ import com.square.mall.common.enums.ErrorCode;
 import com.square.mall.trade.center.api.ShoppingCartApi;
 import com.square.mall.trade.center.api.dto.ShoppingCartDto;
 import com.square.mall.trade.center.biz.service.ShoppingCartService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/shopping/cart")
 @Slf4j
+@Api(tags = "购物车")
 public class ShoppingCartController implements ShoppingCartApi {
 
     @Resource
@@ -33,6 +36,7 @@ public class ShoppingCartController implements ShoppingCartApi {
      */
     @PostMapping("/addShoppingCart")
     @Override
+    @ApiOperation("加入购物车")
     public CommonRes<Void> addShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
 
         if (null == shoppingCartDto || null == shoppingCartDto.getItemId() || null == shoppingCartDto.getMemberId()) {
@@ -57,6 +61,7 @@ public class ShoppingCartController implements ShoppingCartApi {
      */
     @PutMapping("/updateShoppingCart")
     @Override
+    @ApiOperation("更新购物车")
     public CommonRes<Void> updateShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
         ShoppingCartDto oldShoppingCartDto = shoppingCartService.selectShoppingCart(shoppingCartDto.getMemberId(), shoppingCartDto
             .getItemId());
@@ -77,6 +82,7 @@ public class ShoppingCartController implements ShoppingCartApi {
      */
     @GetMapping("/getShoppingCartList")
     @Override
+    @ApiOperation("根据会员ID查询购物车列表")
     public CommonRes<List<ShoppingCartDto>> getShoppingCartList(@RequestParam("memberId") Long memberId) {
 
         List<ShoppingCartDto> shoppingCartDtoList = shoppingCartService.selectShoppingCartList(memberId);
@@ -92,6 +98,7 @@ public class ShoppingCartController implements ShoppingCartApi {
      */
     @DeleteMapping("/deleteShoppingCart")
     @Override
+    @ApiOperation("根据会员ID和商品ID删除购物车")
     public CommonRes<Void> deleteShoppingCart(@RequestParam("memberId") Long memberId, @RequestParam("itemId") Long itemId) {
         shoppingCartService.deleteShoppingCart(memberId, itemId);
         return CommonRes.SUCCESS;
@@ -106,19 +113,21 @@ public class ShoppingCartController implements ShoppingCartApi {
      */
     @DeleteMapping("/batchDeleteShoppingCartList")
     @Override
+    @ApiOperation("根据会员ID和商品ID列表批量删除购物车")
     public CommonRes<Void> batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId, @RequestParam("itemIds") Long[] itemIds) {
         shoppingCartService.batchDeleteShoppingCartList(memberId, itemIds);
         return CommonRes.SUCCESS;
     }
 
     /**
-     * 根据会员ID和商品ID列表批量删除购物车
+     * 根据会员ID删除所有购物车
      *
      * @param memberId 会员ID
      * @return 响应
      */
     @DeleteMapping("/deleteAllShoppingCartList")
     @Override
+    @ApiOperation("根据会员ID删除所有购物车")
     public CommonRes<Void> deleteAllShoppingCartList(@RequestParam("memberId") Long memberId) {
         shoppingCartService.deleteAllShoppingCartList(memberId);
         return CommonRes.SUCCESS;
