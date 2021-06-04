@@ -33,7 +33,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     private final static Set<String> URI_WHITE_SET = new HashSet<>();
 
     static {
-
+        URI_WHITE_SET.add("/error");
+        URI_WHITE_SET.add("/actuator/health");
     }
 
     @Resource
