@@ -23,7 +23,7 @@ import javax.sql.DataSource;
  * @date 2020/7/22
  */
 @Configuration
-@MapperScan(basePackages = "com.square.mall.trade.center.service.dao", sqlSessionFactoryRef = "tradeSessionFactory")
+@MapperScan(basePackages = "com.square.mall.trade.center.biz.dao", sqlSessionFactoryRef = "tradeSessionFactory")
 public class MysqlDataConfig {
 
     @Value("${mysql.trade.dataSource.userName}")
@@ -63,7 +63,7 @@ public class MysqlDataConfig {
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver()
                 .getResources("classpath:mapper/**/*Mapper.xml"));
-        sessionFactory.setTypeAliasesPackage("com.square.mall.trade.center.service.eo");
+        sessionFactory.setTypeAliasesPackage("com.square.mall.trade.center.bize.eo");
         sessionFactory.setVfs(SpringBootVFS.class);
 
         return sessionFactory.getObject();

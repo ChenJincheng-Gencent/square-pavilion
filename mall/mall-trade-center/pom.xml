@@ -12,7 +12,7 @@
     <artifactId>mall-trade-center</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>mall-trade-center-service</module>
+        <module>mall-trade-center-biz</module>
         <module>mall-trade-center-api</module>
     </modules>
 
