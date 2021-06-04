@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.square.mall.item.center.service.dao.OrderDao">
 
-    <resultMap id="OrderMap" type="com.square.mall.trade.center.service.eo.OrderEo">
+    <resultMap id="OrderMap" type="com.square.mall.trade.center.biz.eo.OrderEo">
         <id column="id" property="id"/>
     </resultMap>
 

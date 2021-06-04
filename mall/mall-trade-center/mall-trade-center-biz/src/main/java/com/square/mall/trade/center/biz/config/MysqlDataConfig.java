@@ -1,4 +1,4 @@
-package com.square.mall.trade.center.service.config;
+package com.square.mall.trade.center.biz.config;
 
 
 import com.zaxxer.hikari.HikariConfig;

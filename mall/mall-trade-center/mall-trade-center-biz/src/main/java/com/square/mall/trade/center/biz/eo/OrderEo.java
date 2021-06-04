@@ -1,4 +1,4 @@
-package com.square.mall.trade.center.service.eo;
+package com.square.mall.trade.center.biz.eo;
 
 import com.square.mall.common.eo.BaseEo;
 import lombok.AllArgsConstructor;

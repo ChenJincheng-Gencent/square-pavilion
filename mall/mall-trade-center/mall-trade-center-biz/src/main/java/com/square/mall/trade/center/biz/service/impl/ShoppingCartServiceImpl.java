@@ -1,9 +1,9 @@
-package com.square.mall.trade.center.service.service.impl;
+package com.square.mall.trade.center.biz.service.impl;
 
 import com.square.mall.trade.center.api.dto.ShoppingCartDto;
-import com.square.mall.trade.center.service.dao.ShoppingCartDao;
-import com.square.mall.trade.center.service.eo.ShoppingCartEo;
-import com.square.mall.trade.center.service.service.ShoppingCartService;
+import com.square.mall.trade.center.biz.dao.ShoppingCartDao;
+import com.square.mall.trade.center.biz.eo.ShoppingCartEo;
+import com.square.mall.trade.center.biz.service.ShoppingCartService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;

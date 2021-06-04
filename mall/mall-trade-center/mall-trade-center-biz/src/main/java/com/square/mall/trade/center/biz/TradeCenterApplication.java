@@ -1,4 +1,4 @@
-package com.square.mall.trade.center.service;
+package com.square.mall.trade.center.biz;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

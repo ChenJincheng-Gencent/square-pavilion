@@ -1,5 +1,5 @@
 
-package com.square.mall.trade.center.service.config;
+package com.square.mall.trade.center.biz.config;
 
 import com.github.xiaoymin.knife4j.core.util.CollectionUtils;
 import org.springframework.context.annotation.Bean;

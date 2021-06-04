@@ -1,10 +1,10 @@
-package com.square.mall.trade.center.service.controller;
+package com.square.mall.trade.center.biz.controller;
 
 import com.square.mall.common.dto.CommonRes;
 import com.square.mall.common.enums.ErrorCode;
 import com.square.mall.trade.center.api.ShoppingCartApi;
 import com.square.mall.trade.center.api.dto.ShoppingCartDto;
-import com.square.mall.trade.center.service.service.ShoppingCartService;
+import com.square.mall.trade.center.biz.service.ShoppingCartService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 

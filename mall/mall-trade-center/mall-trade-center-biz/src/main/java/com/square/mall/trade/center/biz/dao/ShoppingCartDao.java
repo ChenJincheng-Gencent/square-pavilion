@@ -1,6 +1,6 @@
-package com.square.mall.trade.center.service.dao;
+package com.square.mall.trade.center.biz.dao;
 
-import com.square.mall.trade.center.service.eo.ShoppingCartEo;
+import com.square.mall.trade.center.biz.eo.ShoppingCartEo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
