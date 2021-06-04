@@ -61,6 +61,30 @@ spring:
             - Path=/trade-center/**
           filters:
             - StripPrefix=1
+        - id: shop-center
+          uri: lb://mall-shop-center
+          predicates:
+            - Path=/shop-center/**
+          filters:
+            - StripPrefix=1
+        - id: ticket-center
+          uri: lb://mall-ticket-center
+          predicates:
+            - Path=/ticket-center/**
+          filters:
+            - StripPrefix=1
+        - id: interaction-center
+          uri: lb://mall-interaction-center
+          predicates:
+            - Path=/interaction-center/**
+          filters:
+            - StripPrefix=1
+        - id: promotion-center
+          uri: lb://mall-promotion-center
+          predicates:
+            - Path=/promotion-center/**
+          filters:
+            - StripPrefix=1
         - id: member-center
           uri: lb://mall-member-center
           predicates:
@@ -79,16 +103,10 @@ spring:
             - Path=/inventory-center/**
           filters:
             - StripPrefix=1
-        - id: promotion-center
-          uri: lb://mall-promotion-center
+        - id: storage-center
+          uri: lb://mall-storage-center
           predicates:
-            - Path=/promotion-center/**
-          filters:
-            - StripPrefix=1
-        - id: ticket-center
-          uri: lb://mall-ticket-center
-          predicates:
-            - Path=/ticket-center/**
+            - Path=/storage-center/**
           filters:
             - StripPrefix=1
         - id: logistics-center
@@ -97,28 +115,10 @@ spring:
             - Path=/logistics-center/**
           filters:
             - StripPrefix=1
-        - id: interaction-center
-          uri: lb://mall-interaction-center
-          predicates:
-            - Path=/interaction-center/**
-          filters:
-            - StripPrefix=1
-        - id: storage-center
-          uri: lb://mall-storage-center
-          predicates:
-            - Path=/storage-center/**
-          filters:
-            - StripPrefix=1
         - id: interface-center
           uri: lb://mall-interface-center
           predicates:
             - Path=/interface-center/**
-          filters:
-            - StripPrefix=1
-        - id: shop-center
-          uri: lb://mall-shop-center
-          predicates:
-            - Path=/shop-center/**
           filters:
             - StripPrefix=1
       discovery:
