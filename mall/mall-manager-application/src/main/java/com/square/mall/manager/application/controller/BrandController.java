@@ -30,7 +30,7 @@ import java.util.List;
  */
 @Controller
 @EnableAutoConfiguration
-@RequestMapping(value = "/manager/v1")
+@RequestMapping(value = "/brand")
 @Slf4j
 @Validated
 @Api(tags = "品牌")
@@ -47,11 +47,12 @@ public class BrandController {
      * @param pageSize 分页大小
      * @return 品牌列表
      */
-    @PostMapping("/brand/list/page/condition")
+    @PostMapping("/selectPageBrandByCondition")
     @ResponseBody
     @ApiOperation(value = "分页条件查询品牌列表")
     public CommonPageRes<List<BrandDto>> selectPageBrandByCondition(@RequestBody BrandDto brandDto,
-                                                                    @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize)  {
+                                                                    @RequestParam("pageNum") Integer pageNum,
+                                                                    @RequestParam("pageSize") Integer pageSize)  {
 
         CommonPageRes<List<BrandDto>> brandDtoList = brandService.selectPageBrandByCondition(brandDto, pageNum, pageSize);
         log.info("brandDtoList: {}, brandDto: {}, pageNum: {}, pageSize: {}", brandDtoList, brandDto, pageNum, pageSize);
@@ -66,7 +67,7 @@ public class BrandController {
      * @param brandDto 品牌
      * @return 数据库ID
      */
-    @PostMapping("/brand")
+    @PostMapping("/insertBrand")
     @ResponseBody
     @ApiOperation(value = "插入品牌")
     public CommonRes<Long> insertBrand(@RequestBody @Valid BrandDto brandDto) {
@@ -81,7 +82,7 @@ public class BrandController {
      * @param modBrandVo 品牌
      * @return 响应
      */
-    @PutMapping("/brand")
+    @PutMapping("/updateBrand")
     @ResponseBody
     @ApiOperation(value = "更新品牌")
     public CommonRes<Void> updateBrand(@RequestBody @Valid ModBrandVo modBrandVo) {
@@ -96,7 +97,7 @@ public class BrandController {
      * @param ids ID数组
      * @return 响应
      */
-    @DeleteMapping("/brand/batch")
+    @DeleteMapping("/deleteBrand")
     @ResponseBody
     @ApiOperation(value = "批量删除品牌")
     public CommonRes<Void> deleteBrand(Long[] ids) {
@@ -109,7 +110,7 @@ public class BrandController {
      * @param id ID
      * @return 品牌
      */
-    @GetMapping("/brand")
+    @GetMapping("/selectBrandById")
     @ResponseBody
     @ApiOperation(value = "根据ID查询品牌")
     public CommonRes<BrandDto> selectBrandById(@RequestParam("id") @NotNull(message = "ID不能为空") Long id)  {
@@ -126,7 +127,7 @@ public class BrandController {
      *
      * @return 品牌列表
      */
-    @GetMapping("/brand/all")
+    @GetMapping("/selectBrandAll")
     @ResponseBody
     @ApiOperation(value = "查询所有品牌列表")
     public CommonRes<List<Select2Vo>> selectBrandAll()  {
