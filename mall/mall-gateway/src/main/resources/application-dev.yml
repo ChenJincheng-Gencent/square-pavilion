@@ -37,7 +37,7 @@ spring:
             - Path=/item-application/**
           filters:
             - StripPrefix=1
-        - id: manger-application
+        - id: manager-application
           uri: lb://mall-manager-application
           predicates:
             - Path=/manager-application/**
