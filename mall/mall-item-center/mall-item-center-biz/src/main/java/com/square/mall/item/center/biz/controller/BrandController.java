@@ -8,6 +8,7 @@ import com.square.mall.item.center.biz.service.BrandService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -22,6 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/brand")
 @Api(tags = "品牌")
+@Slf4j
 public class BrandController implements BrandApi {
 
     @Resource
