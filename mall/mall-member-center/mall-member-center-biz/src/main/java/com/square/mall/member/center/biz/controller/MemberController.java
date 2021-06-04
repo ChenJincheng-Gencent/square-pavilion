@@ -2,6 +2,7 @@ package com.square.mall.member.center.biz.controller;
 
 import com.square.mall.common.dto.CommonRes;
 import com.square.mall.common.util.StringUtil;
+import com.square.mall.member.center.api.MemberApi;
 import com.square.mall.member.center.api.dto.MemberDto;
 import com.square.mall.member.center.biz.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +19,7 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/member")
 @Slf4j
-public class MemberController {
+public class MemberController implements MemberApi {
 
     @Resource
     private MemberService memberService;
@@ -29,9 +30,10 @@ public class MemberController {
      * @param memberDto 会员信息
      * @return 数据库ID
      */
-    @PostMapping("")
+    @PostMapping("/insertMember")
+    @Override
     public CommonRes<Long> insertMember(@RequestBody MemberDto memberDto) {
-        int success = memberService.insertMember(memberDto);
+        memberService.insertMember(memberDto);
         return new CommonRes<>(memberDto.getId());
     }
 
@@ -41,9 +43,10 @@ public class MemberController {
      * @param memberDto 会员信息
      * @return 响应
      */
-    @PutMapping("")
+    @Override
+    @PutMapping("/updateMemberByMobile")
     public CommonRes<Void> updateMemberByMobile(@RequestBody MemberDto memberDto) {
-        int success = memberService.updateMemberByMobile(memberDto);
+        memberService.updateMemberByMobile(memberDto);
         return CommonRes.SUCCESS;
     }
 
@@ -53,7 +56,8 @@ public class MemberController {
      * @param mobile 手机号
      * @return 会员信息
      */
-    @GetMapping("")
+    @Override
+    @GetMapping("/selectMemberByMobile")
     public CommonRes<MemberDto> selectMemberByMobile(@RequestParam("mobile") String mobile) {
 
         if (StringUtil.isBlank(mobile)) {

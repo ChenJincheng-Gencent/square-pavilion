@@ -20,7 +20,7 @@ public interface MemberApi {
      * @param memberDto 会员信息
      * @return 数据库ID
      */
-    @PostMapping("/member")
+    @PostMapping("/member/insertMember")
     CommonRes<Long> insertMember(@RequestBody MemberDto memberDto);
 
     /**
@@ -29,7 +29,7 @@ public interface MemberApi {
      * @param memberDto 会员信息
      * @return 响应
      */
-    @PutMapping("/member")
+    @PutMapping("/member/updateMemberByMobile")
     CommonRes<Void> updateMemberByMobile(@RequestBody MemberDto memberDto);
 
     /**
@@ -38,7 +38,7 @@ public interface MemberApi {
      * @param mobile 手机号码
      * @return 会员信息
      */
-    @GetMapping("/member")
+    @GetMapping("/member/selectMemberByMobile")
     CommonRes<MemberDto> selectMemberByMobile(@RequestParam("mobile") String mobile);
 
 }

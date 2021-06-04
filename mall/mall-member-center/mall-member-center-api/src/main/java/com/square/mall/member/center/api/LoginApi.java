@@ -21,7 +21,7 @@ public interface LoginApi {
      * @param loginDto 登录信息
      * @return 数据库ID
      */
-    @PostMapping("/login")
+    @PostMapping("/login/insertLogin")
     CommonRes<Long> insertLogin(@RequestBody LoginDto loginDto);
 
 }

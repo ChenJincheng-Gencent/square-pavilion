@@ -22,7 +22,7 @@ public interface AddressApi {
      * @param addressDto 收货地址
      * @return 数据库ID
      */
-    @PostMapping("/address")
+    @PostMapping("/address/insertAddress")
     CommonRes<Long> insertAddress(@RequestBody AddressDto addressDto);
 
     /**
@@ -31,7 +31,7 @@ public interface AddressApi {
      * @param addressDto 收货地址
      * @return 响应
      */
-    @PutMapping("/address")
+    @PutMapping("/address/updateAddress")
     CommonRes<Void> updateAddress(@RequestBody AddressDto addressDto);
 
     /**
@@ -40,7 +40,7 @@ public interface AddressApi {
      * @param id 数据库ID
      * @return 响应
      */
-    @DeleteMapping("/address")
+    @DeleteMapping("/address/deleteAddress")
     CommonRes<Void> deleteAddress(@RequestParam("id") Long id);
 
     /**
@@ -49,7 +49,7 @@ public interface AddressApi {
      * @param memberId 会员ID
      * @return 收货地址列表
      */
-    @GetMapping("/address/list")
+    @GetMapping("/address/selectAddressByMemberId")
     CommonRes<List<AddressDto>> selectAddressByMemberId(@RequestParam("memberId") Long memberId);
 
 }

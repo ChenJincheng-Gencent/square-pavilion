@@ -1,6 +1,7 @@
 package com.square.mall.member.center.biz.controller;
 
 import com.square.mall.common.dto.CommonRes;
+import com.square.mall.member.center.api.LoginApi;
 import com.square.mall.member.center.api.dto.LoginDto;
 import com.square.mall.member.center.biz.service.LoginService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/login")
-public class LoginController {
+public class LoginController implements LoginApi {
 
     @Resource
     private LoginService loginService;
@@ -29,7 +30,8 @@ public class LoginController {
      * @param loginDto 登录信息
      * @return token
      */
-    @PostMapping("")
+    @Override
+    @PostMapping("/insertLogin")
     public CommonRes<Long> insertLogin(@RequestBody LoginDto loginDto) {
         return new CommonRes<>(loginService.insertLogin(loginDto));
     }
