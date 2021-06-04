@@ -31,7 +31,7 @@ public class ShoppingCartController implements ShoppingCartApi {
      * @param shoppingCartDto 购物车
      * @return 响应
      */
-    @PostMapping("")
+    @PostMapping("/addShoppingCart")
     @Override
     public CommonRes<Void> addShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
 
@@ -55,7 +55,7 @@ public class ShoppingCartController implements ShoppingCartApi {
      * @param shoppingCartDto 购物车
      * @return 响应
      */
-    @PutMapping("")
+    @PutMapping("/updateShoppingCart")
     @Override
     public CommonRes<Void> updateShoppingCart(@RequestBody ShoppingCartDto shoppingCartDto) {
         ShoppingCartDto oldShoppingCartDto = shoppingCartService.selectShoppingCart(shoppingCartDto.getMemberId(), shoppingCartDto
@@ -75,7 +75,7 @@ public class ShoppingCartController implements ShoppingCartApi {
      * @param memberId 会员ID
      * @return 购物车列表
      */
-    @GetMapping("/list/member-id")
+    @GetMapping("/getShoppingCartList")
     @Override
     public CommonRes<List<ShoppingCartDto>> getShoppingCartList(@RequestParam("memberId") Long memberId) {
 
@@ -90,7 +90,7 @@ public class ShoppingCartController implements ShoppingCartApi {
      * @param itemId 商品ID
      * @return 响应
      */
-    @DeleteMapping("")
+    @DeleteMapping("/deleteShoppingCart")
     @Override
     public CommonRes<Void> deleteShoppingCart(@RequestParam("memberId") Long memberId, @RequestParam("itemId") Long itemId) {
         shoppingCartService.deleteShoppingCart(memberId, itemId);
@@ -104,7 +104,7 @@ public class ShoppingCartController implements ShoppingCartApi {
      * @param itemIds 商品ID列表
      * @return 响应
      */
-    @DeleteMapping("/batch")
+    @DeleteMapping("/batchDeleteShoppingCartList")
     @Override
     public CommonRes<Void> batchDeleteShoppingCartList(@RequestParam("memberId") Long memberId, @RequestParam("itemIds") Long[] itemIds) {
         shoppingCartService.batchDeleteShoppingCartList(memberId, itemIds);
@@ -117,7 +117,7 @@ public class ShoppingCartController implements ShoppingCartApi {
      * @param memberId 会员ID
      * @return 响应
      */
-    @DeleteMapping("/all")
+    @DeleteMapping("/deleteAllShoppingCartList")
     @Override
     public CommonRes<Void> deleteAllShoppingCartList(@RequestParam("memberId") Long memberId) {
         shoppingCartService.deleteAllShoppingCartList(memberId);
