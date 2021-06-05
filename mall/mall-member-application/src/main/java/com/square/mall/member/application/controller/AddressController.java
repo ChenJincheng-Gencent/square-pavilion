@@ -7,6 +7,7 @@ import com.square.mall.member.center.api.dto.AddressDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -27,10 +28,10 @@ import java.util.List;
  */
 @Controller
 @EnableAutoConfiguration
-@RequestMapping(value = "/member/v1")
+@RequestMapping(value = "/address")
 @Slf4j
 @Validated
-@Api(tags = "收货地址REST API")
+@Api(tags = "收货地址")
 public class AddressController {
 
     @Resource
@@ -42,12 +43,13 @@ public class AddressController {
      * @param memberId 会员ID
      * @return 收货地址列表
      */
-    @GetMapping("/address/list")
+    @GetMapping("/selectAddressByMemberId")
     @ResponseBody
     @ApiOperation(value = "根据会员ID获取收货地址列表")
     @ApiImplicitParam(name = "memberId", value = "会员ID", paramType = "query", dataTypeClass = Long.class,
         required = true, example = "11")
-    public CommonRes<List<AddressDto>> selectAddressByMemberId(@RequestParam("memberId") @NotNull(message = "会员ID不能为空") Long memberId) {
+    public CommonRes<List<AddressDto>> selectAddressByMemberId(@RequestParam("memberId")
+                                                               @NotNull(message = "会员ID不能为空") Long memberId) {
 
         CommonRes<List<AddressDto>> addressDtoList = addressService.selectAddressByMemberId(memberId);
         log.info("AddressDtoList: {}, memberId: {}", addressDtoList, memberId);
@@ -62,7 +64,7 @@ public class AddressController {
      * @param addressDto 收货地址
      * @return 数据库ID
      */
-    @PostMapping("/address")
+    @PostMapping("/insertAddress")
     @ResponseBody
     @ApiOperation(value = "插入收货地址")
     public CommonRes<Long> insertAddress(@RequestBody @Valid AddressDto addressDto) {
@@ -77,7 +79,7 @@ public class AddressController {
      * @param modAddressVo 收货地址
      * @return 响应
      */
-    @PutMapping("/address")
+    @PutMapping("/updateAddress")
     @ResponseBody
     @ApiOperation(value = "更新收货地址")
     public CommonRes<Void> updateAddress(@RequestBody @Valid ModAddressVo modAddressVo) {
@@ -92,10 +94,11 @@ public class AddressController {
      * @param id 数据库ID
      * @return 响应
      */
-    @DeleteMapping("/address")
+    @DeleteMapping("/deleteAddress")
     @ResponseBody
     @ApiOperation(value = "删除收货地址")
-    public CommonRes<Void> deleteAddress(@RequestParam("id") @NotNull(message = "ID不能为空") Long id) {
+    public CommonRes<Void> deleteAddress(@ApiParam(name = "数据库ID", required = true) @RequestParam("id")
+                                         @NotNull(message = "ID不能为空")Long id) {
         return addressService.deleteAddress(id);
     }
 

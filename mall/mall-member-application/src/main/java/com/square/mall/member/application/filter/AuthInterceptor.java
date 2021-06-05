@@ -33,8 +33,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
     static {
         URI_WHITE_SET.add("/error");
-        URI_WHITE_SET.add("/member/v1/login");
-        URI_WHITE_SET.add("/member/v1/auth/code");
+        URI_WHITE_SET.add("/login/login");
+        URI_WHITE_SET.add("/login/generateAuthCode");
     }
 
     @Resource
@@ -47,27 +47,25 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         boolean isOk = false;
         try {
             String uri = httpRequest.getRequestURI().replace(httpRequest.getContextPath(), "");
-            log.info("uri: " + uri);
+            log.info("preHandle uri: " + uri);
             // 可直接访问的uri
             if (URI_WHITE_SET.contains(uri)) {
-                log.info("可直接访问的uri = {}", uri);
-                isOk = true;
-                return isOk;
+                log.info("preHandle 可直接访问的uri: {}", uri);
+                return true;
             }
             // 需要token才能访问的uri
             String token = httpRequest.getHeader("auth");
             if (StringUtil.isBlank(token)) {
-                log.error("消息头没有传auth参数！uri: {}", uri);
-                return isOk;
+                log.error("preHandle 消息头没有传auth参数！uri: {}", uri);
+                return false;
             }
             String mobile = JwtUtil.getMobile(token);
             String key = "login:auth:token:" + mobile;
             isOk = checkToken(key, token);
             return isOk;
         } catch (Exception e) {
-            log.error("error message", e);
+            log.error("preHandle error message", e);
         } finally {
-
             if (!isOk) {
                 httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 PrintWriter out = httpResponse.getWriter();
@@ -75,7 +73,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
                 out.close();
             }
         }
-        return isOk;
+        return false;
     }
 
 

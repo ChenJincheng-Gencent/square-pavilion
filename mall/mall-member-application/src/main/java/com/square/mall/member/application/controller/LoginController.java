@@ -23,10 +23,10 @@ import javax.validation.constraints.Pattern;
  */
 @Controller
 @EnableAutoConfiguration
-@RequestMapping(value = "/member/v1")
+@RequestMapping(value = "/login")
 @Slf4j
 @Validated
-@Api(tags = "登录REST API")
+@Api(tags = "登录")
 public class LoginController {
 
     @Resource
@@ -62,7 +62,7 @@ public class LoginController {
      * @param mobile 手机号码
      * @return 响应
      */
-    @PostMapping("/login/out")
+    @PostMapping("/loginOut")
     @ResponseBody
     @ApiOperation(value = "手机号码登出")
     @ApiImplicitParam(name = "mobile", value = "手机号码", paramType = "query", dataTypeClass = String.class,
@@ -81,7 +81,7 @@ public class LoginController {
      * @param mobile 手机号
      * @return 响应结果
      */
-    @PostMapping("/auth/code")
+    @PostMapping("/generateAuthCode")
     @ResponseBody
     @ApiOperation(value = "获取短信验证码")
     @ApiImplicitParam(name = "mobile", value = "手机号码", paramType = "query", dataTypeClass = String.class,
