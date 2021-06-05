@@ -25,7 +25,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
-    private static final String RESP_RESULT = "{\"code\":401,\"msg\":\"unauthorized!\"}";
+    private static final String RES_RESULT = "{\"code\":401,\"msg\":\"unauthorized!\"}";
 
     /**
      * 可直接访问的url
@@ -51,31 +51,29 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             // 可直接访问的uri
             if (URI_WHITE_SET.contains(uri)) {
                 log.info("可直接访问的uri = {}", uri);
-                isOk = true;
-                return isOk;
+                return true;
             }
             // 需要token才能访问的uri
             String token = httpRequest.getHeader("auth");
             if (StringUtil.isBlank(token)) {
                 log.error("消息头没有传auth参数！uri: {}", uri);
-                return isOk;
+                return false;
             }
             String mobile = JwtUtil.getMobile(token);
             String key = "login:auth:token:" + mobile;
             isOk = checkToken(key, token);
             return isOk;
         } catch (Exception e) {
-            log.error("error message", e);
+            log.error("preHandle error message", e);
         } finally {
-
             if (!isOk) {
                 httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 PrintWriter out = httpResponse.getWriter();
-                out.append(RESP_RESULT);
+                out.append(RES_RESULT);
                 out.close();
             }
         }
-        return isOk;
+        return false;
     }
 
 
@@ -88,7 +86,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
      */
     private boolean checkToken(String key, String token) {
         String tokenCache = cacheService.getCache(key, String.class);
-        log.info("token: {}, tokenCache: {}", token, tokenCache);
+        log.info("checkToken token: {}, tokenCache: {}", token, tokenCache);
         return token.equals(tokenCache);
     }
 
