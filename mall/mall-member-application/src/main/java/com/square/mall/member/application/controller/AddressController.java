@@ -26,7 +26,7 @@ import java.util.List;
  * @author Gencent
  * @date 2020/7/20
  */
-@Controller
+@RestController
 @EnableAutoConfiguration
 @RequestMapping(value = "/address")
 @Slf4j

@@ -23,7 +23,7 @@ import javax.validation.constraints.Pattern;
  * @author Gencent
  * @date 2020/7/3
  */
-@Controller
+@RestController
 @EnableAutoConfiguration
 @RequestMapping(value = "/member")
 @Slf4j

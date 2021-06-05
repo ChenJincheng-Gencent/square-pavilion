@@ -21,7 +21,7 @@ import javax.validation.constraints.Pattern;
  * @author Gencent
  * @date 2020/7/17
  */
-@Controller
+@RestController
 @EnableAutoConfiguration
 @RequestMapping(value = "/login")
 @Slf4j
