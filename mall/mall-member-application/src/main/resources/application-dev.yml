@@ -13,9 +13,9 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.117.128:8848,192.168.117.129:8848,192.168.117.130:8848
+        server-addr: 192.168.31.10:8848,192.168.31.11:8848,192.168.31.12:8848
       config:
-        server-addr: 192.168.117.128:8848,192.168.117.129:8848,192.168.117.130:8848
+        server-addr: 192.168.31.10:8848,192.168.31.11:8848,192.168.31.12:8848
         file-extension: yaml
 
 #kafka配置
@@ -29,10 +29,14 @@ kafka:
       offset:
         reset: earliest
 
+endpoints:
+  autoconfig:
+    enabled: true
+
 redis:
   member:
     application:
-      host: 192.168.117.128
+      host: 192.168.31.10
       port: 6379
       password: cjc1573
       timeout: 2000
