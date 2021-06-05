@@ -24,7 +24,6 @@ import javax.validation.constraints.Pattern;
  * @date 2020/7/3
  */
 @RestController
-@EnableAutoConfiguration
 @RequestMapping(value = "/member")
 @Slf4j
 @Validated
@@ -41,7 +40,6 @@ public class MemberController {
      * @return 会员信息
      */
     @GetMapping("/selectMemberByMobile")
-    @ResponseBody
     @ApiOperation(value = "根据手机号获取会员信息")
     @ApiImplicitParam(name = "mobile", value = "手机号码", paramType = "query", dataTypeClass = String.class,
         required = true, example = "13500000001")
@@ -62,7 +60,6 @@ public class MemberController {
      * @return 数据库ID
      */
     @PostMapping("/insertMember")
-    @ResponseBody
     @ApiOperation(value = "插入会员信息")
     public CommonRes<Long> insertMember(@RequestBody @Valid MemberDto memberDto) {
         CommonRes<Long> id = memberService.insertMember(memberDto);
@@ -77,7 +74,6 @@ public class MemberController {
      * @return 响应
      */
     @PutMapping("/updateMemberByMobile")
-    @ResponseBody
     @ApiOperation(value = "根据手机号码更新会员信息")
     public CommonRes<Void> updateMemberByMobile(@RequestBody @Valid MemberDto memberDto) {
        return memberService.updateMemberByMobile(memberDto);

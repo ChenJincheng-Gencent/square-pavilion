@@ -22,7 +22,6 @@ import javax.validation.constraints.Pattern;
  * @date 2020/7/17
  */
 @RestController
-@EnableAutoConfiguration
 @RequestMapping(value = "/login")
 @Slf4j
 @Validated
@@ -40,7 +39,6 @@ public class LoginController {
      * @return token
      */
     @PostMapping("/login")
-    @ResponseBody
     @ApiOperation(value = "手机号码登录")
     @ApiImplicitParam(name = "mobile", value = "手机号码", paramType = "query", dataTypeClass = String.class,
         required = true, example = "13500000001")
@@ -63,7 +61,6 @@ public class LoginController {
      * @return 响应
      */
     @PostMapping("/loginOut")
-    @ResponseBody
     @ApiOperation(value = "手机号码登出")
     @ApiImplicitParam(name = "mobile", value = "手机号码", paramType = "query", dataTypeClass = String.class,
             required = true, example = "13500000001")
@@ -82,7 +79,6 @@ public class LoginController {
      * @return 响应结果
      */
     @PostMapping("/generateAuthCode")
-    @ResponseBody
     @ApiOperation(value = "获取短信验证码")
     @ApiImplicitParam(name = "mobile", value = "手机号码", paramType = "query", dataTypeClass = String.class,
             required = true, example = "13500000001")

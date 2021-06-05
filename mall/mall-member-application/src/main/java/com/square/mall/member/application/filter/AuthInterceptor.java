@@ -51,13 +51,14 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             // 可直接访问的uri
             if (URI_WHITE_SET.contains(uri)) {
                 log.info("preHandle 可直接访问的uri: {}", uri);
-                return true;
+                isOk = true;
+                return isOk;
             }
             // 需要token才能访问的uri
             String token = httpRequest.getHeader("auth");
             if (StringUtil.isBlank(token)) {
                 log.error("preHandle 消息头没有传auth参数！uri: {}", uri);
-                return false;
+                return isOk;
             }
             String mobile = JwtUtil.getMobile(token);
             String key = "login:auth:token:" + mobile;

@@ -27,7 +27,6 @@ import java.util.List;
  * @date 2020/7/20
  */
 @RestController
-@EnableAutoConfiguration
 @RequestMapping(value = "/address")
 @Slf4j
 @Validated
@@ -44,7 +43,6 @@ public class AddressController {
      * @return 收货地址列表
      */
     @GetMapping("/selectAddressByMemberId")
-    @ResponseBody
     @ApiOperation(value = "根据会员ID获取收货地址列表")
     @ApiImplicitParam(name = "memberId", value = "会员ID", paramType = "query", dataTypeClass = Long.class,
         required = true, example = "11")
@@ -65,7 +63,6 @@ public class AddressController {
      * @return 数据库ID
      */
     @PostMapping("/insertAddress")
-    @ResponseBody
     @ApiOperation(value = "插入收货地址")
     public CommonRes<Long> insertAddress(@RequestBody @Valid AddressDto addressDto) {
         CommonRes<Long> id = addressService.insertAddress(addressDto);
@@ -80,7 +77,6 @@ public class AddressController {
      * @return 响应
      */
     @PutMapping("/updateAddress")
-    @ResponseBody
     @ApiOperation(value = "更新收货地址")
     public CommonRes<Void> updateAddress(@RequestBody @Valid ModAddressVo modAddressVo) {
         AddressDto addressDto = new AddressDto();
@@ -95,7 +91,6 @@ public class AddressController {
      * @return 响应
      */
     @DeleteMapping("/deleteAddress")
-    @ResponseBody
     @ApiOperation(value = "删除收货地址")
     public CommonRes<Void> deleteAddress(@ApiParam(name = "数据库ID", required = true) @RequestParam("id")
                                          @NotNull(message = "ID不能为空")Long id) {
