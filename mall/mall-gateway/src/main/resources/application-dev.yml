@@ -5,6 +5,15 @@ server:
 logging:
   config: classpath:logback-spring.xml
 
+redis:
+  gateway:
+    host: 192.168.31.10
+    port: 6379
+    password: cjc1573
+    timeout: 2000
+    index: 1
+    workModel: single
+
 spring:
   application:
     name: mall-gateway
