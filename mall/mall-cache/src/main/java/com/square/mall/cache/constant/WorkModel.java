@@ -29,6 +29,6 @@ public enum WorkModel {
      */
     SHARDING("sharding");
 
-    private String name;
+    private final String name;
 
 }
