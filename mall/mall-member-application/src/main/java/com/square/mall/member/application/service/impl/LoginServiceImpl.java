@@ -1,6 +1,7 @@
 package com.square.mall.member.application.service.impl;
 
 import com.square.mall.cache.api.CacheService;
+import com.square.mall.cache.constant.ExpireTimeConstant;
 import com.square.mall.common.dto.CommonRes;
 import com.square.mall.common.util.JwtUtil;
 import com.square.mall.common.util.SequenceUtil;
@@ -9,6 +10,7 @@ import com.square.mall.member.application.enums.MemberApplicationBizCode;
 import com.square.mall.member.application.exception.MemberApplicationBizException;
 import com.square.mall.member.application.service.LoginService;
 
+import com.square.mall.member.application.util.RedisKeyConstant;
 import com.square.mall.member.center.api.LoginApi;
 import com.square.mall.member.center.api.MemberApi;
 import com.square.mall.member.center.api.dto.LoginDto;
@@ -58,7 +60,8 @@ public class LoginServiceImpl implements LoginService {
             memberId = oldMemberDto.getId();
         }
         String token = JwtUtil.sign(mobile, memberId);
-        cacheService.setCache("login:auth:token:" + mobile, token, 24*60*60);
+        cacheService.setCache("gateway", RedisKeyConstant.LOGIN_AUTH_TOKEN + mobile, token,
+            ExpireTimeConstant.ONE_DAY);
         LoginDto loginDto = new LoginDto();
         loginDto.setMemberId(memberId);
         loginDto.setMobile(mobile);
@@ -69,7 +72,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public CommonRes<Void> loginOut(String mobile) {
-        cacheService.delCache("login:auth:token:" + mobile);
+        cacheService.delCache("gateway", RedisKeyConstant.LOGIN_AUTH_TOKEN + mobile);
         return CommonRes.SUCCESS;
     }
 
@@ -79,7 +82,7 @@ public class LoginServiceImpl implements LoginService {
         String authCode = SequenceUtil.getRandNum(6);
         String msg = "【四方阁平台】 "+ authCode +" (四方阁平台验证码，请完成验证)，如非本人操作，请忽略本短信。";
         SmsUtil.sendMessage(mobile, msg);
-        cacheService.setCache("login:auth:" + mobile, authCode,60);
+        cacheService.setCache("login:auth:" + mobile, authCode, ExpireTimeConstant.ONE_MINUTE);
         return CommonRes.SUCCESS;
     }
 
