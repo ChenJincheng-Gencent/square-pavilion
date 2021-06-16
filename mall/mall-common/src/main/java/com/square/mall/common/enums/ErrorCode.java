@@ -22,7 +22,7 @@ public enum ErrorCode {
     /**
      * 失败
      */
-    FAILURE(-1, "请求处理失败"),
+    FAILURE(-1, "请求处理失败，请稍后重试"),
 
     /**
      * 参数为空
