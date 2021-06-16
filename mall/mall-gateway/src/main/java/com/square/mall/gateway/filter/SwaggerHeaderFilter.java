@@ -1,4 +1,4 @@
-package com.square.mall.gateway.config;
+package com.square.mall.gateway.filter;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.cloud.gateway.filter.GatewayFilter;

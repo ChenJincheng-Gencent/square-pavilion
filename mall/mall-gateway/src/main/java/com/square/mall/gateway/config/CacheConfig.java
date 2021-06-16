@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- *  缓存配置
+ * 缓存配置
  *
  * @author Gencent
  * @date 2020/7/13
