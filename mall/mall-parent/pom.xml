@@ -27,6 +27,7 @@
         <jedis.version>3.3.0</jedis.version>
         <jackson.version>2.11.1</jackson.version>
         <pagehelper.starter.version>1.2.13</pagehelper.starter.version>
+        <hystrix.version>2.2.8.RELEASE</hystrix.version>
 
         <!-- mall模块版本号 -->
         <mall-cache.version>1.0-SNAPSHOT</mall-cache.version>
