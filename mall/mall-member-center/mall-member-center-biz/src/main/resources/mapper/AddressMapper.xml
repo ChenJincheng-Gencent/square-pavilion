@@ -31,7 +31,7 @@
     <select id="selectAddressByMemberId" resultMap="AddressMap">
         SELECT
         <include refid="need_column"/>
-        FROM me_address WHERE member_id = #{memberId} and is_delete = 0
+        FROM me_address WHERE member_id = #{memberId}
     </select>
 
     <insert id="insertAddress" parameterType="com.square.mall.member.center.biz.eo.AddressEo" useGeneratedKeys="true" keyProperty="id">
@@ -71,17 +71,17 @@
             is_default = #{isDefault},
         </if>
         update_time = now()
-        WHERE id = #{id} and is_delete = 0
+        WHERE id = #{id}
     </insert>
 
     <delete id="deleteAddress" parameterType="Long" >
-        UPDATE me_address SET is_delete = 1 where id = #{id} and is_delete = 0;
+        DELETE me_address where id = #{id}
     </delete>
 
     <select id="selectAddressById" resultMap="AddressMap">
         SELECT
         <include refid="need_column"/>
-        FROM me_address WHERE id = #{id} and is_delete = 0
+        FROM me_address WHERE id = #{id}
     </select>
 
 </mapper>
