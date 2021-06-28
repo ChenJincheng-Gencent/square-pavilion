@@ -49,6 +49,11 @@
             <version>${fastjson.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.square.mall</groupId>
+            <artifactId>mall-cache</artifactId>
+            <version>${mall-cache.version}</version>
+        </dependency>
+        <dependency>
             <groupId> org.aspectj</groupId >
             <artifactId>aspectjweaver</artifactId >
             <version>${aspectjweaver.version}</version >
@@ -64,11 +69,6 @@
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>${jedis.version}</version>
         </dependency>
         <dependency>
             <groupId>com.auth0</groupId>
