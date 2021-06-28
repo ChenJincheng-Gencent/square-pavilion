@@ -5,12 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.square.mall.cache.constant.WorkModel;
 import com.square.mall.cache.vo.CacheRegistryVo;
-import com.square.mall.common.constant.SymbolConstant;
-import com.square.mall.common.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
-import org.springframework.util.CollectionUtils;
 import redis.clients.jedis.*;
 import redis.clients.jedis.params.SetParams;
 import redis.clients.jedis.util.Hashing;
@@ -42,8 +38,8 @@ public class RedisCache extends AbstractCacheService {
 
         if (WorkModel.SINGLE.getName().equalsIgnoreCase(cacheRegistryVo.getWorkModel())) {
             String address = cacheRegistryVo.getAddresses()[0];
-            String host = address.split(SymbolConstant.COLON)[0];
-            String port = address.split(SymbolConstant.COLON)[1];
+            String host = address.split(":")[0];
+            String port = address.split(":")[1];
             jedisPool = new JedisPool(poolConfig, host, Integer.parseInt(port), cacheRegistryVo.getConnectionTimeout(),
                 cacheRegistryVo.getAppSecret(), dbIndex);
         } else if (WorkModel.CLUSTER.getName().equalsIgnoreCase(cacheRegistryVo.getWorkModel())) {
@@ -93,7 +89,7 @@ public class RedisCache extends AbstractCacheService {
             uriHost.append("/").append(this.dbIndex);
         }
         JedisShardInfo jedisShardInfo = new JedisShardInfo(uriHost.toString());
-        if (StringUtils.isNotEmpty(appSecret)) {
+        if (null != appSecret && !appSecret.isEmpty()) {
             jedisShardInfo.setPassword(appSecret);
         }
         jedisShardInfo.setConnectionTimeout(3000);
@@ -260,7 +256,7 @@ public class RedisCache extends AbstractCacheService {
             } else if (jedisCluster != null) {
                 json = jedisCluster.get(combineKey);
             }
-            if (StringUtils.isNotEmpty(json)) {
+            if (null != json && !json.isEmpty()) {
                 value = JSONObject.parseObject(json, clz);
             }
         } catch (Exception e) {
@@ -491,7 +487,7 @@ public class RedisCache extends AbstractCacheService {
             } else if (this.jedisCluster != null) {
                 list = this.jedisCluster.lrange(combineKey, from, to);
             }
-            if (!CollectionUtils.isEmpty(list)) {
+            if (null != list && list.size() > 0) {
                 tlist = new ArrayList<>();
                 for (String str : list) {
                     T t = JSONObject.parseObject(str, clz);
@@ -557,7 +553,7 @@ public class RedisCache extends AbstractCacheService {
             } else if (this.jedisCluster != null) {
                 json = this.jedisCluster.hget(combineKey, field);
             }
-            Object object = StringUtils.isNotEmpty(json) ? JSONObject.parseObject(json, clz) : null;
+            Object object = null != json && !json.isEmpty() ? JSONObject.parseObject(json, clz) : null;
             return (T)object;
         } catch (Exception e) {
             log.error("����map������������: key={}", combineKey, e);
@@ -584,9 +580,9 @@ public class RedisCache extends AbstractCacheService {
             } else if (this.jedisCluster != null) {
                 json = this.jedisCluster.hget(combineKey, field);
             }
-            return StringUtil.isNotBlank(json) ? (List)JSON.parseObject(json, List.class) : null;
+            return null != json && !json.isEmpty() ? (List)JSON.parseObject(json, List.class) : null;
         } catch (Exception e) {
-            log.error("����map������������: key={}", key, e);
+            log.error("hget: key={}", key, e);
         } finally {
             shutdown(jds, shardedJedis);
         }
@@ -610,9 +606,9 @@ public class RedisCache extends AbstractCacheService {
             } else if (this.jedisCluster != null) {
                 json = this.jedisCluster.hget(combineKey, field);
             }
-            return StringUtils.isNotEmpty(json) ? JSON.parseObject(json, Map.class) : null;
+            return null != json && !json.isEmpty() ? JSON.parseObject(json, Map.class) : null;
         } catch (Exception e) {
-            log.error("����map������������: key={}", key, e);
+            log.error("hgetMap: key={}", key, e);
         } finally {
             shutdown(jds, shardedJedis);
         }
@@ -986,7 +982,7 @@ public class RedisCache extends AbstractCacheService {
             }
             return result;
         } catch (Exception e) {
-            log.error("����key:{}, zscan����", combineKey, e);
+            log.error("zscan key:{}, zscan throws exception", combineKey, e);
         } finally {
             shutdown(jds, shardedJedis);
         }
@@ -1136,7 +1132,7 @@ public class RedisCache extends AbstractCacheService {
 
     private Map<String, Double> getMap(Map<String, Long> scoreMembers) {
         Map<String, Double> map = new HashMap<>();
-        if (!CollectionUtils.isEmpty(scoreMembers)) {
+        if (!scoreMembers.isEmpty()) {
             for (Map.Entry<String, Long> m : scoreMembers.entrySet()) {
                 map.put(m.getKey(), Double.valueOf((m.getValue())));
             }

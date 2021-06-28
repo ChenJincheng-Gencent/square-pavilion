@@ -2,7 +2,6 @@ package com.square.mall.cache.api;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.square.mall.cache.vo.CacheRegistryVo;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
@@ -404,7 +403,7 @@ public abstract class AbstractCacheService implements CacheService {
 
 
     public String combineKey(String group, String key) {
-        if (StringUtils.isNotBlank(group)) {
+        if (null != group && !group.isEmpty()) {
             return group + ":" + key;
         }
         return key;

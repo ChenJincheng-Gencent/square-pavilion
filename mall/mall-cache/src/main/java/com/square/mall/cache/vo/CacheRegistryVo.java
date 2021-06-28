@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Arrays;
 import com.square.mall.cache.constant.WorkModel;
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  *  缓存注册VO
@@ -38,7 +37,7 @@ public class CacheRegistryVo implements Serializable {
     private String[] addresses;
 
     public String[] getAddresses() {
-        if (this.addresses == null && StringUtils.isNotBlank(this.host) && StringUtils.isNotBlank(this.port)) {
+        if (this.addresses == null && null != this.host && !this.host.isEmpty() && null != this.port && !this.port.isEmpty()) {
             String address = this.host + ":" + this.port;
             this.addresses = new String[] { address };
         }
@@ -46,7 +45,7 @@ public class CacheRegistryVo implements Serializable {
     }
 
     public void setAddress(String address) {
-        if (StringUtils.isNotEmpty(address)) {
+        if (null != address && !address.isEmpty()) {
             String[] addr = address.split(",");
             this.addresses = new String[addr.length];
             for (int i = 0; i < addr.length; i++) {
