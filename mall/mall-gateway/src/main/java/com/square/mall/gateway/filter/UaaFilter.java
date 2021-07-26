@@ -52,6 +52,7 @@ public class UaaFilter implements GlobalFilter, Ordered {
         URI_WHITE_SET.add("/webjars/**");
         URI_WHITE_SET.add("/login/login");
         URI_WHITE_SET.add("/login/generateAuthCode");
+        URI_WHITE_SET.add("/member-center/**");
 
     }
 
@@ -145,13 +146,7 @@ public class UaaFilter implements GlobalFilter, Ordered {
      */
     private String replacePrefix(String path) {
         if (path.startsWith("/trade-application") || path.startsWith("/member-application")
-            || path.startsWith("/item-application") || path.startsWith("/manager-application")
-            || path.startsWith("/job-application") || path.startsWith("/trade-center")
-            || path.startsWith("/member-center") || path.startsWith("/item-center")
-            || path.startsWith("/inventory-center") || path.startsWith("/promotion-center")
-            || path.startsWith("/interaction-center") || path.startsWith("/logistics-center")
-            || path.startsWith("/storage-center") || path.startsWith("/shop-center")
-            || path.startsWith("/interface-center") || path.startsWith("/ticket-center")) {
+            || path.startsWith("/item-application") || path.startsWith("/manager-application")) {
             return path.substring(path.indexOf("/",1));
         }
         return path;

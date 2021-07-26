@@ -34,10 +34,10 @@ spring:
             - Path=/trade-application/**
           filters:
             - StripPrefix=1
-            - name: Hystrix
-              args:
-                name: fallbackCmdA
-                fallbackUri: forward:/fallbackA
+            #- name: Hystrix
+            #  args:
+            #    name: fallbackcmd
+            #    fallbackUri: forward:/fallbackA
         - id: member-application
           uri: lb://mall-member-application
           predicates:
@@ -141,10 +141,4 @@ spring:
         retry:
           enabled: true
 
-hystrix:
-  command:
-    fallbackCmdA:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 5000
+#hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
