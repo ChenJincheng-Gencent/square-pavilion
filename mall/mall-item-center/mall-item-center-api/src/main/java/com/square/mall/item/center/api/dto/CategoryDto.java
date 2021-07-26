@@ -44,13 +44,13 @@ public class CategoryDto implements Serializable {
     /**
      * 上级ID
      */
-    @ApiModelProperty(name = "parentId", value = "上级ID", example = "1L")
+    @ApiModelProperty(name = "parentId", value = "上级ID", example = "1")
     private Long parentId;
 
     /**
      * 模板ID
      */
-    @ApiModelProperty(name = "templateId", value = "模板ID", example = "1L")
+    @ApiModelProperty(name = "templateId", value = "模板ID", example = "1")
     private Long templateId;
 
 }

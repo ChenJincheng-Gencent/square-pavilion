@@ -44,7 +44,7 @@ public class ExtraAttributesDto implements Serializable {
     /**
      * 模板ID
      */
-    @ApiModelProperty(name = "templateId", value = "模板ID", example = "1L")
+    @ApiModelProperty(name = "templateId", value = "模板ID", example = "1")
     private Long templateId;
 
 }

@@ -14,8 +14,8 @@
     <dependencies>
         <dependency>
             <groupId>com.square.mall</groupId>
-            <artifactId>mall-cache</artifactId>
-            <version>${mall-cache.version}</version>
+            <artifactId>mall-common</artifactId>
+            <version>${mall-common.version}</version>
         </dependency>
     </dependencies>
 

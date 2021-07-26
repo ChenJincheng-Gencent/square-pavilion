@@ -51,12 +51,14 @@ endpoints:
 
 redis:
   item:
-    host: 192.168.31.10
-    port: 6379
-    password: cjc1573
-    timeout: 2000
-    index: 8
-    pool:
+    center:
+     host: 192.168.31.10
+     port: 6379
+     password: cjc1573
+     timeout: 2000
+     index: 8
+     workModel: single
+     pool:
       max-active: 8
       max-idle: 8
       max-wait: -1
